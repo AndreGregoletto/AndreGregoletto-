@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Consulta BF da Família - Corrigido</title>
+  <title>Consulta BF da Família - Períodos</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js"></script>
   <style>
     :root {
@@ -36,20 +36,20 @@
     }
 
     .container {
-      width: min(1180px, calc(100% - 32px));
+      width: min(1240px, calc(100% - 32px));
       margin: 0 auto;
       padding: 32px 0 48px;
     }
 
     .hero {
       display: grid;
-      grid-template-columns: 1.3fr .7fr;
+      grid-template-columns: 1.25fr .75fr;
       gap: 18px;
       align-items: stretch;
       margin-bottom: 18px;
     }
 
-    .card {
+    .card, .panel {
       background: var(--panel);
       border: 1px solid var(--line);
       border-radius: var(--radius);
@@ -98,7 +98,7 @@
     .subtitle {
       margin: 0;
       color: var(--muted);
-      max-width: 820px;
+      max-width: 840px;
       line-height: 1.65;
       font-size: 16px;
     }
@@ -106,6 +106,7 @@
     .hero-side {
       padding: 22px;
       display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
     }
 
@@ -124,8 +125,10 @@
     }
 
     .mini-stat strong {
-      font-size: 24px;
+      display: block;
+      font-size: 22px;
       letter-spacing: -.5px;
+      line-height: 1.2;
     }
 
     .tabs {
@@ -135,9 +138,7 @@
       margin: 20px 0;
     }
 
-    .tab-btn, button, select, input {
-      font: inherit;
-    }
+    .tab-btn, button, select, input { font: inherit; }
 
     .tab-btn, .primary-btn, .ghost-btn {
       border: 1px solid var(--line);
@@ -174,13 +175,7 @@
       gap: 14px;
     }
 
-    .panel {
-      padding: 20px;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
+    .panel { padding: 20px; }
 
     .panel h2, .panel h3 {
       margin: 0 0 14px;
@@ -195,9 +190,8 @@
       position: relative;
     }
 
-    .chart-wrap.small {
-      height: 250px;
-    }
+    .chart-wrap.small { height: 250px; }
+    .chart-wrap.tall { height: 410px; }
 
     .table-wrap {
       width: 100%;
@@ -209,7 +203,7 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 780px;
+      min-width: 920px;
       background: rgba(15, 23, 42, .54);
     }
 
@@ -247,6 +241,15 @@
     .badge.bad { color: #fecaca; background: rgba(239, 68, 68, .14); border-color: rgba(239,68,68,.22); }
     .badge.info { color: #bae6fd; background: rgba(56, 189, 248, .12); border-color: rgba(56,189,248,.22); }
 
+    .delta {
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .delta.down { color: #86efac; }
+    .delta.up { color: #fca5a5; }
+    .delta.flat { color: #cbd5e1; }
+
     .person-list {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -275,7 +278,11 @@
       margin-bottom: 6px;
     }
 
-    .person-card small { color: var(--muted); }
+    .person-card small {
+      color: var(--muted);
+      line-height: 1.5;
+      display: block;
+    }
 
     .detail-header {
       display: flex;
@@ -360,7 +367,7 @@
     }
 
     textarea {
-      min-height: 160px;
+      min-height: 190px;
       resize: vertical;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
       font-size: 13px;
@@ -388,17 +395,18 @@
       line-height: 1.55;
     }
 
-    @media (max-width: 920px) {
+    @media (max-width: 980px) {
       .hero, .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .hero-side { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .folds { grid-template-columns: 1fr; }
       .chart-wrap { height: 310px; }
     }
 
     @media (max-width: 560px) {
-      .container { width: min(100% - 20px, 1180px); padding-top: 18px; }
+      .container { width: min(100% - 20px, 1240px); padding-top: 18px; }
       .hero-main, .hero-side, .panel { padding: 16px; }
-      .form-grid { grid-template-columns: 1fr; }
+      .hero-side, .form-grid { grid-template-columns: 1fr; }
       .detail-header { display: block; }
     }
   </style>
@@ -407,10 +415,10 @@
   <main class="container">
     <section class="hero">
       <div class="card hero-main">
-        <span class="eyebrow">📏 Adipômetro • BF familiar</span>
+        <span class="eyebrow">📏 Adipômetro • BF familiar por período</span>
         <h1>Consulta de BF da Família</h1>
         <p class="subtitle">
-          Página estática em HTML + JavaScript para GitHub Pages. Calcula estimativas de BF% quando as dobras batem com o protocolo, mostra ranking familiar e permite consultar cada pessoa individualmente.
+          Página estática em HTML + JavaScript para GitHub Pages. Agora os dados ficam agrupados por período, com evolução individual, evolução geral da família, ranking do último período e resumo com variação entre medições.
         </p>
       </div>
       <aside class="card hero-side" id="kpiBox"></aside>
@@ -419,6 +427,7 @@
     <nav class="tabs" aria-label="Abas da página">
       <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
       <button class="tab-btn" data-tab="individual">Consulta individual</button>
+      <button class="tab-btn" data-tab="periodos">Dados por período</button>
       <button class="tab-btn" data-tab="editar">Adicionar / editar dados</button>
       <button class="tab-btn" data-tab="metodo">Método</button>
     </nav>
@@ -426,14 +435,27 @@
     <section id="dashboard" class="section active">
       <div class="grid-2">
         <article class="panel">
-          <h2>Ranking por BF% estimado</h2>
-          <p class="muted">Mostra apenas quem tem protocolo suficiente para cálculo. Pessoas fora da faixa da fórmula aparecem com alerta.</p>
-          <div class="chart-wrap"><canvas id="bfChart"></canvas></div>
+          <h2>Evolução geral da família</h2>
+          <p class="muted">Compara a média de BF% calculável com a soma total das dobras por período. Medições sem dobras válidas entram como ausentes no BF%.</p>
+          <div class="chart-wrap tall"><canvas id="globalEvolutionChart"></canvas></div>
         </article>
         <article class="panel">
-          <h2>Soma das 3 dobras</h2>
-          <p class="muted">Comparativo bruto em mm. Útil porque inclui todos, mesmo quando o protocolo de BF% não fecha.</p>
-          <div class="chart-wrap"><canvas id="foldsChart"></canvas></div>
+          <h2>Ranking do último período</h2>
+          <p class="muted">Usa o último período com medição disponível. Pessoas sem protocolo suficiente aparecem fora do gráfico de BF%.</p>
+          <div class="chart-wrap tall"><canvas id="latestRankingChart"></canvas></div>
+        </article>
+      </div>
+
+      <div class="grid-2" style="margin-top:18px;">
+        <article class="panel">
+          <h2>Evolução de peso registrado</h2>
+          <p class="muted">Considera apenas pesos maiores que zero.</p>
+          <div class="chart-wrap"><canvas id="weightEvolutionChart"></canvas></div>
+        </article>
+        <article class="panel">
+          <h2>Variação de BF% no último período</h2>
+          <p class="muted">Diferença do último período contra a medição anterior da mesma pessoa.</p>
+          <div class="chart-wrap"><canvas id="deltaChart"></canvas></div>
         </article>
       </div>
 
@@ -444,12 +466,14 @@
             <thead>
               <tr>
                 <th>Pessoa</th>
-                <th>Data</th>
+                <th>Período</th>
                 <th>Idade</th>
+                <th>Peso</th>
                 <th>Protocolo</th>
                 <th>Dobras</th>
                 <th>Soma</th>
                 <th>BF%</th>
+                <th>Variação BF%</th>
                 <th>Observação</th>
               </tr>
             </thead>
@@ -462,16 +486,56 @@
     <section id="individual" class="section">
       <article class="panel">
         <h2>Consulta individual</h2>
-        <p class="muted">Clique em uma pessoa para ver detalhes da medição, dobras e alerta de validade da fórmula.</p>
+        <p class="muted">Clique em uma pessoa para ver os dados por período e os gráficos de evolução individual.</p>
         <div class="person-list" id="personCards"></div>
         <div id="personDetail"></div>
+      </article>
+    </section>
+
+    <section id="periodos" class="section">
+      <article class="panel">
+        <div class="detail-header">
+          <div class="detail-title">
+            <h2>Dados por período</h2>
+            <div class="muted">Escolha uma data para ver todas as pessoas daquele período.</div>
+          </div>
+          <div style="min-width:180px;">
+            <label for="periodFilter">Período</label>
+            <select id="periodFilter"></select>
+          </div>
+        </div>
+
+        <div class="grid-3" id="periodKpis" style="margin-bottom:14px;"></div>
+
+        <div class="grid-2" style="margin-bottom:18px;">
+          <div class="chart-wrap"><canvas id="periodBfChart"></canvas></div>
+          <div class="chart-wrap"><canvas id="periodFoldChart"></canvas></div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Pessoa</th>
+                <th>Idade</th>
+                <th>Peso</th>
+                <th>Dobras</th>
+                <th>Soma</th>
+                <th>BF%</th>
+                <th>Status</th>
+                <th>Observação</th>
+              </tr>
+            </thead>
+            <tbody id="periodRows"></tbody>
+          </table>
+        </div>
       </article>
     </section>
 
     <section id="editar" class="section">
       <article class="panel">
         <h2>Adicionar medição local</h2>
-        <p class="muted">Como o GitHub Pages é estático, este cadastro salva no navegador usando localStorage. Para tornar definitivo no site, copie o JSON exportado e atualize o arquivo.</p>
+        <p class="muted">Como o GitHub Pages é estático, este cadastro salva no navegador usando localStorage. Para tornar definitivo no site, copie o JSON exportado e atualize o objeto DEFAULT_MEASUREMENTS no arquivo.</p>
 
         <form id="addForm">
           <div class="form-grid">
@@ -484,6 +548,10 @@
               <input id="age" required type="number" min="1" max="110" />
             </div>
             <div>
+              <label for="weight">Peso</label>
+              <input id="weight" type="number" min="0" step="0.1" placeholder="Opcional" />
+            </div>
+            <div>
               <label for="sex">Sexo usado na fórmula</label>
               <select id="sex" required>
                 <option value="M">Masculino</option>
@@ -492,7 +560,7 @@
             </div>
             <div>
               <label for="date">Data</label>
-              <input id="date" required type="date" value="2026-04-12" />
+              <input id="date" required type="date" />
             </div>
             <div>
               <label for="site1Name">Dobra 1</label>
@@ -522,13 +590,13 @@
           <div class="actions">
             <button class="primary-btn" type="submit">Salvar no navegador</button>
             <button class="ghost-btn" type="button" id="resetLocal">Limpar dados locais</button>
-            <button class="ghost-btn" type="button" id="exportJson">Exportar JSON</button>
+            <button class="ghost-btn" type="button" id="exportJson">Copiar JSON</button>
           </div>
         </form>
       </article>
 
       <article class="panel" style="margin-top:18px;">
-        <h2>JSON atual</h2>
+        <h2>JSON atual agrupado por período</h2>
         <textarea id="jsonOutput" readonly></textarea>
       </article>
     </section>
@@ -550,72 +618,107 @@
           </div>
         </div>
         <p class="note" style="margin-top:16px;">
-          Observação: fórmula de adipômetro é estimativa.
+          Observação: fórmula de adipômetro é estimativa. Para menores de 18 anos ou idosos fora da faixa original, o resultado é exibido como referência visual, não como avaliação clínica.
         </p>
       </article>
     </section>
-
   </main>
 
   <script>
-    const STORAGE_KEY = 'bf-familia-medicoes-v3-nomes-corrigidos';
+    const STORAGE_KEY = 'bf-familia-medicoes-periodos-v1';
 
-    const defaultPeople = [
-      {
-        id: cryptoSafeId('vo'),
-        name: 'Dona Inês',
-        age: 75,
-        sex: 'F',
-        date: '2026-04-12',
-        folds: { triceps: 18, suprailiac: 22, thigh: 38 },
-        note: 'Fora da faixa validada da fórmula feminina adulta; usar como referência visual.'
+    // Para deixar definitivo no GitHub, altere este objeto.
+    // Formato aceito: período em YYYY-MM-DD, depois nome da pessoa e medidas.
+    const DEFAULT_MEASUREMENTS = {
+      '2026-04-12': {
+        'Dona Inês': {
+          idade: 75,
+          tricipes: 18,
+          flanco: 22,
+          coxa: 38,
+          peso: 0
+        },
+        'Tia Mah': {
+          idade: 43,
+          tricipes: 22,
+          flanco: 20,
+          coxa: 22,
+          peso: 0
+        },
+        'Titio Douglas': {
+          idade: 43,
+          peito: 13,
+          abdomem: 20,
+          coxa: 21,
+          peso: 0
+        },
+        'Tio Guto': {
+          idade: 42,
+          peito: 13,
+          abdomem: 23,
+          coxa: 13,
+          peso: 0
+        },
+        'André': {
+          idade: 28,
+          peito: 8,
+          abdomem: 12,
+          coxa: 19,
+          peso: 0
+        },
+        'Felipe': {
+          idade: 14,
+          peito: 2,
+          abdomem: 3,
+          coxa: 19,
+          peso: 0
+        }
       },
-      {
-        id: cryptoSafeId('tia'),
-        name: 'Titia Mah',
-        age: 43,
-        sex: 'F',
-        date: '2026-04-12',
-        folds: { triceps: 22, suprailiac: 22, thigh: 22 },
-        note: 'Protocolo feminino 3 dobras.'
-      },
-      {
-        id: cryptoSafeId('titio'),
-        name: 'Titio Douglas',
-        age: 43,
-        sex: 'M',
-        date: '2026-04-12',
-        folds: { chest: 22, abdomen: 20, thigh: 22 },
-        note: 'Protocolo masculino 3 dobras.'
-      },
-      {
-        id: cryptoSafeId('tio'),
-        name: 'Tio Guto',
-        age: 42,
-        sex: 'M',
-        date: '2026-04-12',
-        folds: { chest: 13, abdomen: 23, thigh: 13 },
-        note: 'Protocolo masculino 3 dobras.'
-      },
-      {
-        id: cryptoSafeId('eu'),
-        name: 'André',
-        age: 28,
-        sex: 'M',
-        date: '2026-04-12',
-        folds: { chest: 8, abdomen: 12, thigh: 12 },
-        note: 'Protocolo masculino 3 dobras.'
-      },
-      {
-        id: cryptoSafeId('felipe'),
-        name: 'Felipe',
-        age: 14,
-        sex: 'M',
-        date: '2026-04-12',
-        folds: { chest: 2, abdomen: 3, thigh: 19 },
-        note: 'Menor de 18 anos: fórmula adulta fora da faixa validada; usar apenas como referência visual.'
+      '2026-05-17': {
+        'Dona Inês': {
+          idade: 75,
+          tricipes: 22,
+          flanco: 22,
+          coxa: 38,
+          peso: 82.7
+        },
+        'Tia Mah': {
+          idade: 43,
+          tricipes: 21,
+          flanco: 18,
+          coxa: 22,
+          peso: 66.4
+        },
+        'Titio Douglas': {
+          idade: 43,
+          peito: 12,
+          abdomem: 15,
+          coxa: 22,
+          peso: 66.4
+        },
+        'Tio Guto': {
+          idade: '',
+          peito: '',
+          abdomem: '',
+          coxa: '',
+          peso: ''
+        },
+        'André': {
+          idade: 28,
+          peito: 9,
+          abdomem: 9,
+          coxa: 10,
+          peso: 86
+        },
+        'Felipe': {
+          idade: 13,
+          peito: 9,
+          abdomem: 10,
+          coxa: 20,
+          peso: 59
+        }
       }
-    ];
+    };
 
     const siteLabels = {
       chest: 'Peito',
@@ -625,71 +728,176 @@
       suprailiac: 'Flanco / supra-ilíaca'
     };
 
+    const siteToPortuguese = {
+      chest: 'peito',
+      abdomen: 'abdomem',
+      thigh: 'coxa',
+      triceps: 'tricipes',
+      suprailiac: 'flanco'
+    };
+
+    const aliasToSite = {
+      peito: 'chest',
+      chest: 'chest',
+      torax: 'chest',
+      tórax: 'chest',
+      abdomen: 'abdomen',
+      abdomem: 'abdomen',
+      abdominal: 'abdomen',
+      coxa: 'thigh',
+      thigh: 'thigh',
+      tricipes: 'triceps',
+      tríceps: 'triceps',
+      triceps: 'triceps',
+      flanco: 'suprailiac',
+      suprailiaca: 'suprailiac',
+      'supra-ilíaca': 'suprailiac',
+      suprailiac: 'suprailiac'
+    };
+
     const siteOptions = Object.entries(siteLabels);
     const charts = {};
-    let selectedPersonId = null;
+    let selectedPersonName = null;
+    let selectedPeriod = null;
 
-    function cryptoSafeId(prefix) {
-      return `${prefix}-${Math.random().toString(36).slice(2, 9)}`;
+    function numberOrNull(value) {
+      if (value === null || value === undefined || value === '') return null;
+      const parsed = Number(String(value).replace(',', '.'));
+      return Number.isFinite(parsed) ? parsed : null;
     }
 
-    function loadPeople() {
+    function uid() {
+      return Math.random().toString(36).slice(2, 11);
+    }
+
+    function deepClone(value) {
+      return JSON.parse(JSON.stringify(value));
+    }
+
+    function mergeMeasurements(base, extra) {
+      const merged = deepClone(base);
+      Object.entries(extra || {}).forEach(([period, people]) => {
+        if (!merged[period]) merged[period] = {};
+        Object.entries(people || {}).forEach(([name, data]) => {
+          merged[period][name] = data;
+        });
+      });
+      return merged;
+    }
+
+    function getStoredMeasurements() {
       try {
-        const local = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-        return [...defaultPeople, ...local];
+        return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
       } catch (error) {
         console.error(error);
-        return [...defaultPeople];
+        return {};
       }
     }
 
-    function saveLocalPerson(person) {
-      const current = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-      current.push(person);
+    function getRawMeasurements() {
+      return mergeMeasurements(DEFAULT_MEASUREMENTS, getStoredMeasurements());
+    }
+
+    function saveLocalMeasurement(period, name, data) {
+      const current = getStoredMeasurements();
+      if (!current[period]) current[period] = {};
+      current[period][name] = data;
       localStorage.setItem(STORAGE_KEY, JSON.stringify(current));
     }
 
+    function inferSex(folds) {
+      if (Number.isFinite(folds.chest) || Number.isFinite(folds.abdomen)) return 'M';
+      if (Number.isFinite(folds.triceps) || Number.isFinite(folds.suprailiac)) return 'F';
+      return '';
+    }
+
+    function normalizeRow(period, name, data) {
+      const folds = {};
+
+      Object.entries(data || {}).forEach(([rawKey, rawValue]) => {
+        const key = String(rawKey).toLowerCase().trim();
+        const site = aliasToSite[key];
+        const value = numberOrNull(rawValue);
+
+        if (site && value !== null) {
+          folds[site] = value;
+        }
+      });
+
+      const age = numberOrNull(data?.idade ?? data?.age);
+      const weight = numberOrNull(data?.peso ?? data?.weight);
+      const sex = data?.sex || inferSex(folds);
+      const measured = Object.values(folds).some(value => Number.isFinite(value)) || (weight !== null && weight > 0);
+
+      return calculate({
+        id: `${period}-${name}`,
+        period,
+        name,
+        age,
+        weight,
+        sex,
+        folds,
+        measured,
+        raw: data || {}
+      });
+    }
+
+    function normalizeMeasurements(raw) {
+      const rows = [];
+
+      Object.entries(raw).forEach(([period, people]) => {
+        Object.entries(people || {}).forEach(([name, data]) => {
+          rows.push(normalizeRow(period, name, data));
+        });
+      });
+
+      const withDeltas = addDeltas(rows);
+      return withDeltas.sort((a, b) => {
+        if (a.period !== b.period) return a.period.localeCompare(b.period);
+        return a.name.localeCompare(b.name, 'pt-BR');
+      });
+    }
+
     function sumFolds(folds) {
-      return Object.values(folds).reduce((total, value) => total + Number(value || 0), 0);
+      const values = Object.values(folds).filter(value => Number.isFinite(value));
+      if (!values.length) return null;
+      return values.reduce((total, value) => total + value, 0);
     }
 
     function hasSites(folds, required) {
-      return required.every(site => Number.isFinite(Number(folds[site])));
+      return required.every(site => Number.isFinite(folds[site]) && folds[site] > 0);
     }
 
     function calculate(person) {
-      const folds = person.folds || {};
-      const sum = sumFolds(folds);
+      const sum = sumFolds(person.folds);
       let protocol = 'Sem protocolo válido';
       let bodyDensity = null;
       let bf = null;
-      let validAge = true;
-      let validity = 'ok';
-      let warning = '';
+      let validity = 'bad';
+      let warning = 'Medição ausente ou dobras insuficientes para cálculo.';
 
-      if (person.sex === 'M' && hasSites(folds, ['chest', 'abdomen', 'thigh'])) {
+      if (person.sex === 'M' && person.age !== null && sum !== null && hasSites(person.folds, ['chest', 'abdomen', 'thigh'])) {
         protocol = 'JP3 masculino';
         bodyDensity = 1.10938 - (0.0008267 * sum) + (0.0000016 * Math.pow(sum, 2)) - (0.0002574 * person.age);
         bf = (495 / bodyDensity) - 450;
-        validAge = person.age >= 18 && person.age <= 61;
+        validity = person.age >= 18 && person.age <= 61 ? 'good' : 'warn';
+        warning = validity === 'good'
+          ? 'Cálculo dentro do protocolo informado.'
+          : 'Fora da faixa etária adulta usual do protocolo; usar apenas como referência visual.';
       }
 
-      if (person.sex === 'F' && hasSites(folds, ['triceps', 'suprailiac', 'thigh'])) {
+      if (person.sex === 'F' && person.age !== null && sum !== null && hasSites(person.folds, ['triceps', 'suprailiac', 'thigh'])) {
         protocol = 'JP3 feminino';
         bodyDensity = 1.0994921 - (0.0009929 * sum) + (0.0000023 * Math.pow(sum, 2)) - (0.0001392 * person.age);
         bf = (495 / bodyDensity) - 450;
-        validAge = person.age >= 18 && person.age <= 55;
+        validity = person.age >= 18 && person.age <= 55 ? 'good' : 'warn';
+        warning = validity === 'good'
+          ? 'Cálculo dentro do protocolo informado.'
+          : 'Fora da faixa etária adulta usual do protocolo; usar apenas como referência visual.';
       }
 
-      if (bf === null) {
-        validity = 'bad';
-        warning = person.note || 'Dobras insuficientes para o protocolo selecionado.';
-      } else if (!validAge) {
-        validity = 'warn';
-        warning = person.note || 'Cálculo fora da faixa etária original da fórmula; usar apenas como referência.';
-      } else {
-        validity = 'good';
-        warning = person.note || 'Cálculo dentro do protocolo informado.';
+      if (!person.measured) {
+        warning = 'Sem medição registrada neste período.';
       }
 
       return {
@@ -697,39 +905,144 @@
         sum,
         protocol,
         bodyDensity,
-        bf,
-        validAge,
+        bf: Number.isFinite(bf) ? bf : null,
         validity,
-        warning
+        warning,
+        deltaBf: null,
+        deltaSum: null,
+        deltaWeight: null
       };
     }
 
-    function formatDate(date) {
-      if (!date) return '-';
-      const [year, month, day] = date.split('-');
+    function addDeltas(rows) {
+      const byPerson = new Map();
+      rows.forEach(row => {
+        if (!byPerson.has(row.name)) byPerson.set(row.name, []);
+        byPerson.get(row.name).push(row);
+      });
+
+      byPerson.forEach(personRows => {
+        personRows.sort((a, b) => a.period.localeCompare(b.period));
+
+        personRows.forEach((row, index) => {
+          const previous = [...personRows.slice(0, index)].reverse().find(item => item.measured);
+          if (!previous) return;
+
+          if (Number.isFinite(row.bf) && Number.isFinite(previous.bf)) {
+            row.deltaBf = row.bf - previous.bf;
+          }
+
+          if (Number.isFinite(row.sum) && Number.isFinite(previous.sum)) {
+            row.deltaSum = row.sum - previous.sum;
+          }
+
+          if (Number.isFinite(row.weight) && row.weight > 0 && Number.isFinite(previous.weight) && previous.weight > 0) {
+            row.deltaWeight = row.weight - previous.weight;
+          }
+        });
+      });
+
+      return rows;
+    }
+
+    function getRows() {
+      return normalizeMeasurements(getRawMeasurements());
+    }
+
+    function getPeriods(rows) {
+      return [...new Set(rows.map(row => row.period))].sort();
+    }
+
+    function getLatestPeriod(rows) {
+      return getPeriods(rows).slice(-1)[0] || null;
+    }
+
+    function getPeople(rows) {
+      return [...new Set(rows.map(row => row.name))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+    }
+
+    function rowsForLatestByPerson(rows) {
+      const result = [];
+      getPeople(rows).forEach(name => {
+        const last = rows
+          .filter(row => row.name === name && row.measured)
+          .sort((a, b) => b.period.localeCompare(a.period))[0];
+        if (last) result.push(last);
+      });
+      return result.sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'));
+    }
+
+    function buildGlobalEvolution(rows) {
+      return getPeriods(rows).map(period => {
+        const periodRows = rows.filter(row => row.period === period && row.measured);
+        const bfRows = periodRows.filter(row => Number.isFinite(row.bf));
+        const sumRows = periodRows.filter(row => Number.isFinite(row.sum));
+        const weightRows = periodRows.filter(row => Number.isFinite(row.weight) && row.weight > 0);
+
+        const avg = values => values.length ? values.reduce((total, value) => total + value, 0) / values.length : null;
+        const total = values => values.length ? values.reduce((current, value) => current + value, 0) : null;
+
+        return {
+          period,
+          countMeasured: periodRows.length,
+          avgBf: avg(bfRows.map(row => row.bf)),
+          totalFolds: total(sumRows.map(row => row.sum)),
+          avgFolds: avg(sumRows.map(row => row.sum)),
+          totalWeight: total(weightRows.map(row => row.weight)),
+          avgWeight: avg(weightRows.map(row => row.weight))
+        };
+      });
+    }
+
+    function formatPeriod(period) {
+      if (!period) return '—';
+      const [year, month, day] = period.split('-');
       return `${day}/${month}/${year}`;
     }
 
-    function formatPercent(value) {
-      return Number.isFinite(value) ? `${value.toFixed(1)}%` : '—';
+    function shortPeriod(period) {
+      if (!period) return '—';
+      const [year, month, day] = period.split('-');
+      return `${day}/${month}`;
     }
 
-    function badge(calc) {
-      if (calc.validity === 'good') return '<span class="badge good">OK</span>';
-      if (calc.validity === 'warn') return '<span class="badge warn">Alerta</span>';
+    function formatNumber(value, decimals = 1) {
+      return Number.isFinite(value) ? value.toFixed(decimals).replace('.', ',') : '—';
+    }
+
+    function formatPercent(value) {
+      return Number.isFinite(value) ? `${formatNumber(value, 1)}%` : '—';
+    }
+
+    function formatKg(value) {
+      return Number.isFinite(value) && value > 0 ? `${formatNumber(value, 1)} kg` : '—';
+    }
+
+    function formatMm(value) {
+      return Number.isFinite(value) ? `${formatNumber(value, 1)} mm` : '—';
+    }
+
+    function badge(row) {
+      if (!row.measured) return '<span class="badge bad">Sem medição</span>';
+      if (row.validity === 'good') return '<span class="badge good">OK</span>';
+      if (row.validity === 'warn') return '<span class="badge warn">Alerta</span>';
       return '<span class="badge bad">Sem BF%</span>';
     }
 
-    function renderKpis(rows) {
-      const withBf = rows.filter(item => Number.isFinite(item.bf));
-      const lowest = [...withBf].sort((a, b) => a.bf - b.bf)[0];
-      const highest = [...withBf].sort((a, b) => b.bf - a.bf)[0];
+    function deltaText(value, suffix = '%') {
+      if (!Number.isFinite(value)) return '<span class="muted">—</span>';
+      const cls = Math.abs(value) < 0.05 ? 'flat' : value < 0 ? 'down' : 'up';
+      const sign = value > 0 ? '+' : '';
+      return `<span class="delta ${cls}">${sign}${formatNumber(value, 1)}${suffix}</span>`;
+    }
 
-      document.getElementById('kpiBox').innerHTML = `
-        <div class="mini-stat"><span>Total de pessoas</span><strong>${rows.length}</strong></div>
-        <div class="mini-stat"><span>Menor BF% estimado</span><strong>${lowest ? `${lowest.name} • ${formatPercent(lowest.bf)}` : '—'}</strong></div>
-        <div class="mini-stat"><span>Maior BF% estimado</span><strong>${highest ? `${highest.name} • ${formatPercent(highest.bf)}` : '—'}</strong></div>
-      `;
+    function foldsText(folds) {
+      const entries = Object.entries(folds || {});
+      if (!entries.length) return '<span class="muted">—</span>';
+
+      return entries
+        .map(([site, value]) => `${siteLabels[site] || site}: <strong>${formatNumber(value, 1)}mm</strong>`)
+        .join('<br>');
     }
 
     function destroyChart(id) {
@@ -739,56 +1052,16 @@
       }
     }
 
-    function renderCharts(rows) {
-      const bfRows = rows.filter(item => Number.isFinite(item.bf)).sort((a, b) => a.bf - b.bf);
-      destroyChart('bfChart');
-      destroyChart('foldsChart');
-
-      charts.bfChart = new Chart(document.getElementById('bfChart'), {
-        type: 'line',
-        data: {
-          labels: bfRows.map(item => item.name),
-          datasets: [{
-            label: 'BF% estimado',
-            data: bfRows.map(item => Number(item.bf.toFixed(2))),
-            borderColor: '#38bdf8',
-            backgroundColor: 'rgba(56, 189, 248, .18)',
-            tension: .35,
-            fill: true,
-            pointRadius: 5,
-            pointHoverRadius: 8
-          }]
-        },
-        options: baseChartOptions('%')
-      });
-
-      const foldRows = [...rows].sort((a, b) => a.sum - b.sum);
-      charts.foldsChart = new Chart(document.getElementById('foldsChart'), {
-        type: 'bar',
-        data: {
-          labels: foldRows.map(item => item.name),
-          datasets: [{
-            label: 'Soma das dobras em mm',
-            data: foldRows.map(item => Number(item.sum.toFixed(1))),
-            backgroundColor: foldRows.map(item => item.validity === 'bad' ? 'rgba(239, 68, 68, .55)' : item.validity === 'warn' ? 'rgba(245, 158, 11, .60)' : 'rgba(167, 139, 250, .62)'),
-            borderColor: foldRows.map(item => item.validity === 'bad' ? '#ef4444' : item.validity === 'warn' ? '#f59e0b' : '#a78bfa'),
-            borderWidth: 1,
-            borderRadius: 12
-          }]
-        },
-        options: baseChartOptions('mm')
-      });
-    }
-
-    function baseChartOptions(suffix) {
+    function baseChartOptions(suffix = '', beginAtZero = true) {
       return {
         responsive: true,
         maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
         plugins: {
           legend: { labels: { color: '#e5e7eb' } },
           tooltip: {
             callbacks: {
-              label: context => `${context.dataset.label}: ${context.parsed.y}${suffix}`
+              label: context => `${context.dataset.label}: ${formatNumber(context.parsed.y, 1)}${suffix}`
             }
           }
         },
@@ -798,7 +1071,7 @@
             grid: { color: 'rgba(148, 163, 184, .10)' }
           },
           y: {
-            beginAtZero: true,
+            beginAtZero,
             ticks: { color: '#cbd5e1', callback: value => `${value}${suffix}` },
             grid: { color: 'rgba(148, 163, 184, .12)' }
           }
@@ -806,104 +1079,423 @@
       };
     }
 
-    function renderSummary(rows) {
-      document.getElementById('summaryRows').innerHTML = rows.map(item => `
-        <tr>
-          <td><strong>${item.name}</strong></td>
-          <td>${formatDate(item.date)}</td>
-          <td>${item.age}</td>
-          <td>${item.protocol}<br>${badge(item)}</td>
-          <td>${foldsText(item.folds)}</td>
-          <td><strong>${item.sum.toFixed(1)} mm</strong></td>
-          <td><strong>${formatPercent(item.bf)}</strong></td>
-          <td class="muted">${item.warning}</td>
-        </tr>
-      `).join('');
+    function renderKpis(rows) {
+      const periods = getPeriods(rows);
+      const latestRows = rowsForLatestByPerson(rows);
+      const withBf = latestRows.filter(item => Number.isFinite(item.bf));
+      const lowest = [...withBf].sort((a, b) => a.bf - b.bf)[0];
+      const highest = [...withBf].sort((a, b) => b.bf - a.bf)[0];
+      const evolution = buildGlobalEvolution(rows);
+      const firstAvg = evolution.find(item => Number.isFinite(item.avgBf))?.avgBf ?? null;
+      const lastAvg = [...evolution].reverse().find(item => Number.isFinite(item.avgBf))?.avgBf ?? null;
+      const avgDelta = Number.isFinite(firstAvg) && Number.isFinite(lastAvg) ? lastAvg - firstAvg : null;
+
+      document.getElementById('kpiBox').innerHTML = `
+        <div class="mini-stat"><span>Pessoas</span><strong>${getPeople(rows).length}</strong></div>
+        <div class="mini-stat"><span>Períodos</span><strong>${periods.length}</strong></div>
+        <div class="mini-stat"><span>Menor BF% atual</span><strong>${lowest ? `${lowest.name}<br>${formatPercent(lowest.bf)}` : '—'}</strong></div>
+        <div class="mini-stat"><span>Evolução média</span><strong>${Number.isFinite(avgDelta) ? deltaText(avgDelta).replace('delta ', '') : '—'}</strong></div>
+      `;
     }
 
-    function foldsText(folds) {
-      return Object.entries(folds)
-        .map(([site, value]) => `${siteLabels[site] || site}: <strong>${Number(value).toFixed(1)}mm</strong>`)
-        .join('<br>');
+    function renderDashboardCharts(rows) {
+      const evolution = buildGlobalEvolution(rows);
+      const latestRows = rowsForLatestByPerson(rows);
+      const rankingRows = latestRows.filter(row => Number.isFinite(row.bf)).sort((a, b) => a.bf - b.bf);
+      const deltaRows = latestRows.filter(row => Number.isFinite(row.deltaBf)).sort((a, b) => a.deltaBf - b.deltaBf);
+
+      destroyChart('globalEvolutionChart');
+      destroyChart('latestRankingChart');
+      destroyChart('weightEvolutionChart');
+      destroyChart('deltaChart');
+
+      charts.globalEvolutionChart = new Chart(document.getElementById('globalEvolutionChart'), {
+        type: 'line',
+        data: {
+          labels: evolution.map(item => shortPeriod(item.period)),
+          datasets: [
+            {
+              label: 'Média BF%',
+              data: evolution.map(item => Number.isFinite(item.avgBf) ? Number(item.avgBf.toFixed(2)) : null),
+              borderColor: '#38bdf8',
+              backgroundColor: 'rgba(56, 189, 248, .16)',
+              tension: .35,
+              fill: true,
+              pointRadius: 5,
+              yAxisID: 'y'
+            },
+            {
+              label: 'Soma total das dobras',
+              data: evolution.map(item => Number.isFinite(item.totalFolds) ? Number(item.totalFolds.toFixed(1)) : null),
+              borderColor: '#a78bfa',
+              backgroundColor: 'rgba(167, 139, 250, .12)',
+              tension: .35,
+              pointRadius: 5,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: { mode: 'index', intersect: false },
+          plugins: { legend: { labels: { color: '#e5e7eb' } } },
+          scales: {
+            x: { ticks: { color: '#cbd5e1' }, grid: { color: 'rgba(148, 163, 184, .10)' } },
+            y: {
+              type: 'linear',
+              position: 'left',
+              beginAtZero: true,
+              title: { display: true, text: 'BF%', color: '#cbd5e1' },
+              ticks: { color: '#cbd5e1', callback: value => `${value}%` },
+              grid: { color: 'rgba(148, 163, 184, .12)' }
+            },
+            y1: {
+              type: 'linear',
+              position: 'right',
+              beginAtZero: true,
+              title: { display: true, text: 'Dobras mm', color: '#cbd5e1' },
+              ticks: { color: '#cbd5e1', callback: value => `${value}mm` },
+              grid: { drawOnChartArea: false }
+            }
+          }
+        }
+      });
+
+      charts.latestRankingChart = new Chart(document.getElementById('latestRankingChart'), {
+        type: 'bar',
+        data: {
+          labels: rankingRows.map(item => item.name),
+          datasets: [{
+            label: 'BF% último período',
+            data: rankingRows.map(item => Number(item.bf.toFixed(2))),
+            backgroundColor: rankingRows.map(item => item.validity === 'warn' ? 'rgba(245, 158, 11, .65)' : 'rgba(56, 189, 248, .60)'),
+            borderColor: rankingRows.map(item => item.validity === 'warn' ? '#f59e0b' : '#38bdf8'),
+            borderWidth: 1,
+            borderRadius: 12
+          }]
+        },
+        options: baseChartOptions('%')
+      });
+
+      charts.weightEvolutionChart = new Chart(document.getElementById('weightEvolutionChart'), {
+        type: 'line',
+        data: {
+          labels: evolution.map(item => shortPeriod(item.period)),
+          datasets: [
+            {
+              label: 'Peso total registrado',
+              data: evolution.map(item => Number.isFinite(item.totalWeight) ? Number(item.totalWeight.toFixed(1)) : null),
+              borderColor: '#22c55e',
+              backgroundColor: 'rgba(34, 197, 94, .16)',
+              tension: .35,
+              fill: true,
+              pointRadius: 5
+            },
+            {
+              label: 'Peso médio registrado',
+              data: evolution.map(item => Number.isFinite(item.avgWeight) ? Number(item.avgWeight.toFixed(1)) : null),
+              borderColor: '#f59e0b',
+              backgroundColor: 'rgba(245, 158, 11, .12)',
+              tension: .35,
+              pointRadius: 5
+            }
+          ]
+        },
+        options: baseChartOptions('kg')
+      });
+
+      charts.deltaChart = new Chart(document.getElementById('deltaChart'), {
+        type: 'bar',
+        data: {
+          labels: deltaRows.map(item => item.name),
+          datasets: [{
+            label: 'Variação BF%',
+            data: deltaRows.map(item => Number(item.deltaBf.toFixed(2))),
+            backgroundColor: deltaRows.map(item => item.deltaBf <= 0 ? 'rgba(34, 197, 94, .58)' : 'rgba(239, 68, 68, .58)'),
+            borderColor: deltaRows.map(item => item.deltaBf <= 0 ? '#22c55e' : '#ef4444'),
+            borderWidth: 1,
+            borderRadius: 12
+          }]
+        },
+        options: baseChartOptions('%', false)
+      });
+    }
+
+    function renderSummary(rows) {
+      document.getElementById('summaryRows').innerHTML = [...rows]
+        .sort((a, b) => b.period.localeCompare(a.period) || a.name.localeCompare(b.name, 'pt-BR'))
+        .map(item => `
+          <tr>
+            <td><strong>${item.name}</strong></td>
+            <td>${formatPeriod(item.period)}</td>
+            <td>${item.age ?? '—'}</td>
+            <td>${formatKg(item.weight)}</td>
+            <td>${item.protocol}<br>${badge(item)}</td>
+            <td>${foldsText(item.folds)}</td>
+            <td><strong>${formatMm(item.sum)}</strong></td>
+            <td><strong>${formatPercent(item.bf)}</strong></td>
+            <td>${deltaText(item.deltaBf)}</td>
+            <td class="muted">${item.warning}</td>
+          </tr>
+        `).join('');
     }
 
     function renderPersonCards(rows) {
-      if (!selectedPersonId) selectedPersonId = rows[0]?.id;
+      const latestRows = rowsForLatestByPerson(rows);
+      if (!selectedPersonName) selectedPersonName = latestRows[0]?.name || getPeople(rows)[0];
 
-      document.getElementById('personCards').innerHTML = rows.map(item => `
-        <div class="person-card ${item.id === selectedPersonId ? 'active' : ''}" data-person-id="${item.id}">
+      document.getElementById('personCards').innerHTML = latestRows.map(item => `
+        <div class="person-card ${item.name === selectedPersonName ? 'active' : ''}" data-person-name="${item.name}">
           <strong>${item.name}</strong>
-          <small>${formatPercent(item.bf)} • soma ${item.sum.toFixed(1)}mm</small>
+          <small>${formatPercent(item.bf)} • soma ${formatMm(item.sum)}<br>${formatPeriod(item.period)} • var. ${Number.isFinite(item.deltaBf) ? deltaText(item.deltaBf) : '—'}</small>
         </div>
       `).join('');
 
-      document.querySelectorAll('[data-person-id]').forEach(card => {
+      document.querySelectorAll('[data-person-name]').forEach(card => {
         card.addEventListener('click', () => {
-          selectedPersonId = card.getAttribute('data-person-id');
+          selectedPersonName = card.getAttribute('data-person-name');
           renderAll();
           showTab('individual');
         });
       });
 
-      const selected = rows.find(item => item.id === selectedPersonId) || rows[0];
-      renderPersonDetail(selected);
+      renderPersonDetail(rows, selectedPersonName);
     }
 
-    function renderPersonDetail(item) {
-      if (!item) return;
+    function renderPersonDetail(rows, name) {
+      const personRows = rows
+        .filter(row => row.name === name)
+        .sort((a, b) => a.period.localeCompare(b.period));
+
+      const latest = [...personRows].reverse().find(row => row.measured) || personRows[personRows.length - 1];
+      if (!latest) {
+        document.getElementById('personDetail').innerHTML = '<p class="note">Nenhuma pessoa encontrada.</p>';
+        return;
+      }
 
       document.getElementById('personDetail').innerHTML = `
         <div class="detail-header">
           <div class="detail-title">
-            <h2>${item.name}</h2>
-            <div class="muted">${item.age} anos • medição em ${formatDate(item.date)} • ${item.protocol}</div>
+            <h2>${latest.name}</h2>
+            <div class="muted">Última medição em ${formatPeriod(latest.period)} • ${latest.protocol}</div>
           </div>
-          <div>${badge(item)}</div>
+          <div>${badge(latest)}</div>
         </div>
 
         <div class="grid-3" style="margin-bottom:14px;">
-          <div class="mini-stat"><span>BF% estimado</span><strong>${formatPercent(item.bf)}</strong></div>
-          <div class="mini-stat"><span>Soma das dobras</span><strong>${item.sum.toFixed(1)} mm</strong></div>
-          <div class="mini-stat"><span>Densidade corporal</span><strong>${item.bodyDensity ? item.bodyDensity.toFixed(4) : '—'}</strong></div>
+          <div class="mini-stat"><span>BF% atual</span><strong>${formatPercent(latest.bf)}</strong></div>
+          <div class="mini-stat"><span>Variação BF%</span><strong>${Number.isFinite(latest.deltaBf) ? deltaText(latest.deltaBf) : '—'}</strong></div>
+          <div class="mini-stat"><span>Peso atual</span><strong>${formatKg(latest.weight)}</strong></div>
         </div>
 
-        <div class="folds">
-          ${Object.entries(item.folds).map(([site, value]) => `
-            <div class="fold-box">
-              <span>${siteLabels[site] || site}</span>
-              <strong>${Number(value).toFixed(1)}mm</strong>
-            </div>
-          `).join('')}
+        <div class="grid-2" style="margin-bottom:18px;">
+          <div class="panel" style="box-shadow:none; background:rgba(15,23,42,.42);">
+            <h3>Evolução de BF%</h3>
+            <div class="chart-wrap small"><canvas id="individualBfChart"></canvas></div>
+          </div>
+          <div class="panel" style="box-shadow:none; background:rgba(15,23,42,.42);">
+            <h3>Evolução da soma das dobras</h3>
+            <div class="chart-wrap small"><canvas id="individualFoldChart"></canvas></div>
+          </div>
         </div>
 
-        <p class="note" style="margin-top:14px;">${item.warning}</p>
+        <div class="grid-2" style="margin-bottom:18px;">
+          <div class="panel" style="box-shadow:none; background:rgba(15,23,42,.42);">
+            <h3>Evolução de peso</h3>
+            <div class="chart-wrap small"><canvas id="individualWeightChart"></canvas></div>
+          </div>
+          <div class="panel" style="box-shadow:none; background:rgba(15,23,42,.42);">
+            <h3>Dobras por período</h3>
+            <div class="chart-wrap small"><canvas id="individualSitesChart"></canvas></div>
+          </div>
+        </div>
 
-        <div class="panel" style="box-shadow:none; margin-top:14px; background:rgba(15,23,42,.42);">
-          <h3>Gráfico individual das dobras</h3>
-          <div class="chart-wrap small"><canvas id="individualChart"></canvas></div>
+        <h3>Dados por período</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Período</th>
+                <th>Idade</th>
+                <th>Peso</th>
+                <th>Dobras</th>
+                <th>Soma</th>
+                <th>BF%</th>
+                <th>Variação BF%</th>
+                <th>Variação peso</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${personRows.map(item => `
+                <tr>
+                  <td>${formatPeriod(item.period)}</td>
+                  <td>${item.age ?? '—'}</td>
+                  <td>${formatKg(item.weight)}</td>
+                  <td>${foldsText(item.folds)}</td>
+                  <td><strong>${formatMm(item.sum)}</strong></td>
+                  <td><strong>${formatPercent(item.bf)}</strong></td>
+                  <td>${deltaText(item.deltaBf)}</td>
+                  <td>${deltaText(item.deltaWeight, 'kg')}</td>
+                  <td>${badge(item)}<br><span class="muted">${item.warning}</span></td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
         </div>
       `;
 
-      destroyChart('individualChart');
-      charts.individualChart = new Chart(document.getElementById('individualChart'), {
+      renderIndividualCharts(personRows);
+    }
+
+    function renderIndividualCharts(personRows) {
+      destroyChart('individualBfChart');
+      destroyChart('individualFoldChart');
+      destroyChart('individualWeightChart');
+      destroyChart('individualSitesChart');
+
+      const labels = personRows.map(item => shortPeriod(item.period));
+
+      charts.individualBfChart = new Chart(document.getElementById('individualBfChart'), {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [{
+            label: 'BF%',
+            data: personRows.map(item => Number.isFinite(item.bf) ? Number(item.bf.toFixed(2)) : null),
+            borderColor: '#38bdf8',
+            backgroundColor: 'rgba(56, 189, 248, .16)',
+            fill: true,
+            tension: .35,
+            pointRadius: 5
+          }]
+        },
+        options: baseChartOptions('%')
+      });
+
+      charts.individualFoldChart = new Chart(document.getElementById('individualFoldChart'), {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [{
+            label: 'Soma das dobras',
+            data: personRows.map(item => Number.isFinite(item.sum) ? Number(item.sum.toFixed(1)) : null),
+            borderColor: '#a78bfa',
+            backgroundColor: 'rgba(167, 139, 250, .16)',
+            fill: true,
+            tension: .35,
+            pointRadius: 5
+          }]
+        },
+        options: baseChartOptions('mm')
+      });
+
+      charts.individualWeightChart = new Chart(document.getElementById('individualWeightChart'), {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [{
+            label: 'Peso',
+            data: personRows.map(item => Number.isFinite(item.weight) && item.weight > 0 ? Number(item.weight.toFixed(1)) : null),
+            borderColor: '#22c55e',
+            backgroundColor: 'rgba(34, 197, 94, .16)',
+            fill: true,
+            tension: .35,
+            pointRadius: 5
+          }]
+        },
+        options: baseChartOptions('kg', false)
+      });
+
+      const sites = [...new Set(personRows.flatMap(item => Object.keys(item.folds || {})))];
+      charts.individualSitesChart = new Chart(document.getElementById('individualSitesChart'), {
         type: 'bar',
         data: {
-          labels: Object.keys(item.folds).map(site => siteLabels[site] || site),
+          labels,
+          datasets: sites.map((site, index) => ({
+            label: siteLabels[site] || site,
+            data: personRows.map(item => Number.isFinite(item.folds[site]) ? item.folds[site] : null),
+            backgroundColor: ['rgba(56, 189, 248, .58)', 'rgba(167, 139, 250, .58)', 'rgba(245, 158, 11, .58)', 'rgba(34, 197, 94, .58)', 'rgba(239, 68, 68, .58)'][index % 5],
+            borderColor: ['#38bdf8', '#a78bfa', '#f59e0b', '#22c55e', '#ef4444'][index % 5],
+            borderWidth: 1,
+            borderRadius: 10
+          }))
+        },
+        options: baseChartOptions('mm')
+      });
+    }
+
+    function renderPeriodSelector(rows) {
+      const periods = getPeriods(rows);
+      if (!selectedPeriod || !periods.includes(selectedPeriod)) selectedPeriod = periods[periods.length - 1];
+
+      const select = document.getElementById('periodFilter');
+      select.innerHTML = periods.map(period => `<option value="${period}">${formatPeriod(period)}</option>`).join('');
+      select.value = selectedPeriod;
+    }
+
+    function renderPeriodTab(rows) {
+      renderPeriodSelector(rows);
+      const periodRows = rows.filter(row => row.period === selectedPeriod).sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'));
+      const measuredRows = periodRows.filter(row => row.measured);
+      const bfRows = periodRows.filter(row => Number.isFinite(row.bf));
+      const sumRows = periodRows.filter(row => Number.isFinite(row.sum));
+      const average = values => values.length ? values.reduce((total, value) => total + value, 0) / values.length : null;
+
+      document.getElementById('periodKpis').innerHTML = `
+        <div class="mini-stat"><span>Pessoas no período</span><strong>${periodRows.length}</strong></div>
+        <div class="mini-stat"><span>Medições preenchidas</span><strong>${measuredRows.length}</strong></div>
+        <div class="mini-stat"><span>Média BF%</span><strong>${formatPercent(average(bfRows.map(row => row.bf)))}</strong></div>
+      `;
+
+      document.getElementById('periodRows').innerHTML = periodRows.map(item => `
+        <tr>
+          <td><strong>${item.name}</strong></td>
+          <td>${item.age ?? '—'}</td>
+          <td>${formatKg(item.weight)}</td>
+          <td>${foldsText(item.folds)}</td>
+          <td><strong>${formatMm(item.sum)}</strong></td>
+          <td><strong>${formatPercent(item.bf)}</strong></td>
+          <td>${badge(item)}</td>
+          <td class="muted">${item.warning}</td>
+        </tr>
+      `).join('');
+
+      destroyChart('periodBfChart');
+      destroyChart('periodFoldChart');
+
+      charts.periodBfChart = new Chart(document.getElementById('periodBfChart'), {
+        type: 'bar',
+        data: {
+          labels: bfRows.sort((a, b) => a.bf - b.bf).map(item => item.name),
           datasets: [{
-            label: `${item.name} - dobras em mm`,
-            data: Object.values(item.folds).map(Number),
-            backgroundColor: 'rgba(56, 189, 248, .56)',
-            borderColor: '#38bdf8',
+            label: `BF% em ${formatPeriod(selectedPeriod)}`,
+            data: bfRows.sort((a, b) => a.bf - b.bf).map(item => Number(item.bf.toFixed(2))),
+            backgroundColor: bfRows.map(item => item.validity === 'warn' ? 'rgba(245, 158, 11, .65)' : 'rgba(56, 189, 248, .60)'),
+            borderColor: bfRows.map(item => item.validity === 'warn' ? '#f59e0b' : '#38bdf8'),
+            borderWidth: 1,
+            borderRadius: 12
+          }]
+        },
+        options: baseChartOptions('%')
+      });
+
+      charts.periodFoldChart = new Chart(document.getElementById('periodFoldChart'), {
+        type: 'bar',
+        data: {
+          labels: sumRows.sort((a, b) => a.sum - b.sum).map(item => item.name),
+          datasets: [{
+            label: `Soma das dobras em ${formatPeriod(selectedPeriod)}`,
+            data: sumRows.sort((a, b) => a.sum - b.sum).map(item => Number(item.sum.toFixed(1))),
+            backgroundColor: 'rgba(167, 139, 250, .62)',
+            borderColor: '#a78bfa',
             borderWidth: 1,
             borderRadius: 12
           }]
         },
         options: baseChartOptions('mm')
       });
-    }
-
-    function renderJson(rows) {
-      document.getElementById('jsonOutput').value = JSON.stringify(rows.map(({ sum, protocol, bodyDensity, bf, validAge, validity, warning, ...original }) => original), null, 2);
     }
 
     function fillSiteSelects() {
@@ -916,13 +1508,34 @@
       });
     }
 
+    function applySexDefaultSites() {
+      if (document.getElementById('sex').value === 'F') {
+        document.getElementById('site1Name').value = 'triceps';
+        document.getElementById('site2Name').value = 'suprailiac';
+        document.getElementById('site3Name').value = 'thigh';
+      } else {
+        document.getElementById('site1Name').value = 'chest';
+        document.getElementById('site2Name').value = 'abdomen';
+        document.getElementById('site3Name').value = 'thigh';
+      }
+    }
+
+    function exportDataToPortugueseJson(raw) {
+      return JSON.stringify(raw, null, 2);
+    }
+
+    function renderJson() {
+      document.getElementById('jsonOutput').value = exportDataToPortugueseJson(getRawMeasurements());
+    }
+
     function renderAll() {
-      const rows = loadPeople().map(calculate);
+      const rows = getRows();
       renderKpis(rows);
-      renderCharts(rows);
+      renderDashboardCharts(rows);
       renderSummary(rows);
       renderPersonCards(rows);
-      renderJson(rows);
+      renderPeriodTab(rows);
+      renderJson();
     }
 
     function showTab(tabId) {
@@ -935,35 +1548,41 @@
       btn.addEventListener('click', () => showTab(btn.dataset.tab));
     });
 
+    document.getElementById('periodFilter').addEventListener('change', event => {
+      selectedPeriod = event.target.value;
+      renderAll();
+      showTab('periodos');
+    });
+
+    document.getElementById('sex').addEventListener('change', applySexDefaultSites);
+
     document.getElementById('addForm').addEventListener('submit', event => {
       event.preventDefault();
 
+      const name = document.getElementById('name').value.trim();
+      const period = document.getElementById('date').value;
+      const sex = document.getElementById('sex').value;
+      const age = numberOrNull(document.getElementById('age').value);
+      const weight = numberOrNull(document.getElementById('weight').value);
       const foldEntries = [
-        [document.getElementById('site1Name').value, Number(document.getElementById('site1Value').value)],
-        [document.getElementById('site2Name').value, Number(document.getElementById('site2Value').value)],
-        [document.getElementById('site3Name').value, Number(document.getElementById('site3Value').value)]
+        [document.getElementById('site1Name').value, numberOrNull(document.getElementById('site1Value').value)],
+        [document.getElementById('site2Name').value, numberOrNull(document.getElementById('site2Value').value)],
+        [document.getElementById('site3Name').value, numberOrNull(document.getElementById('site3Value').value)]
       ];
 
-      const folds = foldEntries.reduce((acc, [site, value]) => {
-        acc[site] = value;
-        return acc;
-      }, {});
+      const data = { idade: age, sex, peso: weight || 0 };
+      foldEntries.forEach(([site, value]) => {
+        if (site && value !== null) data[siteToPortuguese[site] || site] = value;
+      });
 
-      const person = {
-        id: cryptoSafeId('local'),
-        name: document.getElementById('name').value.trim(),
-        age: Number(document.getElementById('age').value),
-        sex: document.getElementById('sex').value,
-        date: document.getElementById('date').value,
-        folds,
-        note: 'Medição cadastrada localmente no navegador.'
-      };
+      saveLocalMeasurement(period, name, data);
+      selectedPersonName = name;
+      selectedPeriod = period;
 
-      saveLocalPerson(person);
-      selectedPersonId = person.id;
       event.target.reset();
-      document.getElementById('date').value = '2026-04-12';
+      document.getElementById('date').value = getLatestPeriod(getRows()) || '2026-05-17';
       fillSiteSelects();
+      applySexDefaultSites();
       renderAll();
       showTab('individual');
     });
@@ -971,7 +1590,8 @@
     document.getElementById('resetLocal').addEventListener('click', () => {
       if (!confirm('Tem certeza que deseja apagar apenas as medições salvas neste navegador?')) return;
       localStorage.removeItem(STORAGE_KEY);
-      selectedPersonId = null;
+      selectedPersonName = null;
+      selectedPeriod = null;
       renderAll();
     });
 
@@ -985,19 +1605,10 @@
       }
     });
 
-    document.getElementById('sex').addEventListener('change', event => {
-      if (event.target.value === 'F') {
-        document.getElementById('site1Name').value = 'triceps';
-        document.getElementById('site2Name').value = 'suprailiac';
-        document.getElementById('site3Name').value = 'thigh';
-      } else {
-        document.getElementById('site1Name').value = 'chest';
-        document.getElementById('site2Name').value = 'abdomen';
-        document.getElementById('site3Name').value = 'thigh';
-      }
-    });
-
     fillSiteSelects();
+    applySexDefaultSites();
+    document.getElementById('date').value = getLatestPeriod(getRows()) || '2026-05-17';
+    selectedPeriod = getLatestPeriod(getRows());
     renderAll();
   </script>
 </body>
