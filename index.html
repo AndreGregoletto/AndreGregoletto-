@@ -3,53 +3,59 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Consulta BF da Família - Períodos</title>
+  <title>Consulta BF e Medidas da Família</title>
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
   <style>
     :root {
-      --bg: #0f172a;
-      --panel: rgba(15, 23, 42, .86);
-      --panel-2: rgba(30, 41, 59, .88);
-      --text: #e5e7eb;
-      --muted: #94a3b8;
-      --line: rgba(148, 163, 184, .22);
-      --brand: #38bdf8;
-      --brand-2: #a78bfa;
+      --bg: #020817;
+      --bg2: #07142f;
+      --panel: rgba(8,20,46,.88);
+      --panel2: rgba(10,27,58,.86);
+      --text: #f4f7ff;
+      --muted: #a9b8d6;
+      --line: rgba(93,156,255,.26);
+      --line2: rgba(93,156,255,.42);
+      --cyan: #28c8ff;
+      --purple: #bf86ff;
       --good: #22c55e;
       --warn: #f59e0b;
       --bad: #ef4444;
-      --radius: 22px;
-      --shadow: 0 22px 80px rgba(2, 6, 23, .44);
+      --shadow: 0 22px 70px rgba(0,0,0,.46);
+      --radius: 26px;
     }
 
     * { box-sizing: border-box; }
-
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(56, 189, 248, .24), transparent 34%),
-        radial-gradient(circle at top right, rgba(167, 139, 250, .24), transparent 30%),
-        linear-gradient(135deg, #020617 0%, #0f172a 52%, #111827 100%);
+        radial-gradient(circle at 8% 4%, rgba(40,200,255,.12), transparent 26%),
+        radial-gradient(circle at 88% 8%, rgba(191,134,255,.10), transparent 30%),
+        linear-gradient(135deg, var(--bg) 0%, var(--bg2) 52%, #030d1e 100%);
     }
 
     .container {
-      width: min(1240px, calc(100% - 32px));
+      width: min(1440px, calc(100% - 28px));
       margin: 0 auto;
-      padding: 32px 0 48px;
+      padding: 26px 0 42px;
     }
 
     .hero {
       display: grid;
-      grid-template-columns: 1.25fr .75fr;
+      grid-template-columns: 1.35fr .65fr;
       gap: 18px;
-      align-items: stretch;
       margin-bottom: 18px;
     }
 
-    .card, .panel {
+    .hero-main, .hero-side, .panel, .card {
       background: var(--panel);
       border: 1px solid var(--line);
       border-radius: var(--radius);
@@ -59,75 +65,75 @@
 
     .hero-main {
       padding: 28px;
-      overflow: hidden;
       position: relative;
+      overflow: hidden;
     }
 
-    .hero-main::after {
+    .hero-main:after {
       content: "";
-      width: 220px;
-      height: 220px;
       position: absolute;
-      right: -80px;
-      top: -80px;
-      background: linear-gradient(135deg, rgba(56, 189, 248, .18), rgba(167, 139, 250, .16));
+      right: -95px;
+      top: -95px;
+      width: 250px;
+      height: 250px;
       border-radius: 999px;
-      filter: blur(2px);
+      background: radial-gradient(circle, rgba(40,200,255,.22), transparent 65%);
+    }
+
+    .hero-side {
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
     }
 
     .eyebrow {
       display: inline-flex;
       gap: 8px;
       align-items: center;
-      color: #bae6fd;
-      border: 1px solid rgba(56, 189, 248, .22);
-      background: rgba(56, 189, 248, .08);
-      padding: 7px 11px;
+      color: #bfeeff;
+      border: 1px solid rgba(40,200,255,.28);
+      background: rgba(40,200,255,.08);
+      padding: 8px 12px;
       border-radius: 999px;
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     h1 {
-      margin: 18px 0 10px;
-      font-size: clamp(30px, 4vw, 52px);
-      line-height: 1.02;
-      letter-spacing: -1.5px;
+      margin: 16px 0 8px;
+      font-size: clamp(32px, 4vw, 54px);
+      line-height: 1;
+      letter-spacing: -1.4px;
     }
 
     .subtitle {
       margin: 0;
+      max-width: 940px;
       color: var(--muted);
-      max-width: 840px;
-      line-height: 1.65;
-      font-size: 16px;
+      line-height: 1.7;
+      font-size: 15px;
     }
 
-    .hero-side {
-      padding: 22px;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .mini-stat {
-      background: rgba(15, 23, 42, .78);
+    .stat, .mini-stat {
+      background: rgba(8,20,46,.78);
       border: 1px solid var(--line);
       border-radius: 18px;
-      padding: 16px;
+      padding: 15px;
     }
 
-    .mini-stat span {
+    .stat span, .mini-stat span {
       display: block;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
       margin-bottom: 6px;
     }
 
-    .mini-stat strong {
+    .stat strong, .mini-stat strong {
       display: block;
-      font-size: 22px;
-      letter-spacing: -.5px;
+      font-size: 21px;
       line-height: 1.2;
     }
 
@@ -138,26 +144,31 @@
       margin: 20px 0;
     }
 
-    .tab-btn, button, select, input { font: inherit; }
-
-    .tab-btn, .primary-btn, .ghost-btn {
+    .tab-btn, .ghost-btn, .primary-btn {
       border: 1px solid var(--line);
       color: var(--text);
-      background: rgba(15, 23, 42, .74);
+      background: rgba(8,20,46,.76);
       border-radius: 999px;
       padding: 11px 16px;
+      font: inherit;
       cursor: pointer;
-      transition: .18s ease;
+      transition: .16s ease;
     }
 
-    .tab-btn:hover, .primary-btn:hover, .ghost-btn:hover {
+    .primary-btn {
+      background: linear-gradient(135deg, rgba(40,200,255,.85), rgba(191,134,255,.72));
+      border-color: rgba(255,255,255,.12);
+      font-weight: 800;
+    }
+
+    .tab-btn:hover, .ghost-btn:hover, .primary-btn:hover {
       transform: translateY(-1px);
-      border-color: rgba(56, 189, 248, .5);
+      border-color: rgba(40,200,255,.50);
     }
 
     .tab-btn.active {
-      background: linear-gradient(135deg, rgba(56, 189, 248, .24), rgba(167, 139, 250, .20));
-      border-color: rgba(56, 189, 248, .54);
+      background: linear-gradient(135deg, rgba(40,200,255,.20), rgba(191,134,255,.14));
+      border-color: rgba(40,200,255,.58);
     }
 
     .section { display: none; }
@@ -176,14 +187,10 @@
     }
 
     .panel { padding: 20px; }
-
-    .panel h2, .panel h3 {
-      margin: 0 0 14px;
-      letter-spacing: -.4px;
-    }
-
-    .panel h2 { font-size: 22px; }
+    .panel h2, .panel h3 { margin: 0 0 12px; letter-spacing: -.4px; }
+    .panel h2 { font-size: 23px; }
     .panel h3 { font-size: 18px; }
+    .muted { color: var(--muted); }
 
     .chart-wrap {
       height: 340px;
@@ -203,8 +210,8 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 920px;
-      background: rgba(15, 23, 42, .54);
+      min-width: 980px;
+      background: rgba(8,20,46,.54);
     }
 
     th, td {
@@ -215,19 +222,18 @@
     }
 
     th {
-      color: #cbd5e1;
+      color: #d7e3fb;
       font-size: 12px;
       text-transform: uppercase;
       letter-spacing: .08em;
-      background: rgba(30, 41, 59, .75);
+      background: rgba(11,27,58,.78);
     }
 
-    tr:hover td { background: rgba(56, 189, 248, .04); }
+    tr:hover td { background: rgba(40,200,255,.04); }
 
-    .badge {
+    .badge-status {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
       border-radius: 999px;
       padding: 5px 9px;
       font-size: 12px;
@@ -236,16 +242,11 @@
       white-space: nowrap;
     }
 
-    .badge.good { color: #bbf7d0; background: rgba(34, 197, 94, .14); border-color: rgba(34,197,94,.22); }
-    .badge.warn { color: #fde68a; background: rgba(245, 158, 11, .14); border-color: rgba(245,158,11,.22); }
-    .badge.bad { color: #fecaca; background: rgba(239, 68, 68, .14); border-color: rgba(239,68,68,.22); }
-    .badge.info { color: #bae6fd; background: rgba(56, 189, 248, .12); border-color: rgba(56,189,248,.22); }
+    .badge-status.good { color: #bbf7d0; background: rgba(34,197,94,.14); border-color: rgba(34,197,94,.24); }
+    .badge-status.warn { color: #fde68a; background: rgba(245,158,11,.14); border-color: rgba(245,158,11,.24); }
+    .badge-status.bad { color: #fecaca; background: rgba(239,68,68,.14); border-color: rgba(239,68,68,.24); }
 
-    .delta {
-      font-weight: 900;
-      white-space: nowrap;
-    }
-
+    .delta { font-weight: 900; white-space: nowrap; }
     .delta.down { color: #86efac; }
     .delta.up { color: #fca5a5; }
     .delta.flat { color: #cbd5e1; }
@@ -259,7 +260,7 @@
 
     .person-card {
       border: 1px solid var(--line);
-      background: rgba(15, 23, 42, .56);
+      background: rgba(8,20,46,.58);
       border-radius: 18px;
       padding: 16px;
       cursor: pointer;
@@ -267,9 +268,9 @@
     }
 
     .person-card:hover, .person-card.active {
-      border-color: rgba(56, 189, 248, .58);
+      border-color: rgba(40,200,255,.58);
       transform: translateY(-2px);
-      background: rgba(56, 189, 248, .07);
+      background: rgba(40,200,255,.07);
     }
 
     .person-card strong {
@@ -292,51 +293,6 @@
       margin-bottom: 16px;
     }
 
-    .detail-title h2 { margin-bottom: 4px; }
-    .muted { color: var(--muted); }
-
-    .folds {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .fold-box {
-      padding: 15px;
-      border-radius: 18px;
-      background: rgba(30, 41, 59, .58);
-      border: 1px solid var(--line);
-    }
-
-    .fold-box span {
-      display: block;
-      color: var(--muted);
-      font-size: 13px;
-      margin-bottom: 7px;
-    }
-
-    .fold-box strong { font-size: 24px; }
-
-    .note {
-      line-height: 1.6;
-      padding: 14px 16px;
-      border: 1px solid rgba(245, 158, 11, .23);
-      background: rgba(245, 158, 11, .09);
-      border-radius: 16px;
-      color: #fde68a;
-    }
-
-    .formula {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      color: #dbeafe;
-      background: rgba(2, 6, 23, .45);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 12px;
-      overflow-x: auto;
-      line-height: 1.6;
-    }
-
     .form-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -345,7 +301,7 @@
 
     label {
       display: block;
-      color: #cbd5e1;
+      color: #d3def3;
       font-size: 13px;
       margin-bottom: 7px;
       font-weight: 700;
@@ -354,23 +310,18 @@
     input, select, textarea {
       width: 100%;
       color: var(--text);
-      background: rgba(15, 23, 42, .72);
+      background: rgba(8,20,46,.72);
       border: 1px solid var(--line);
       border-radius: 14px;
       padding: 11px 12px;
       outline: none;
-    }
-
-    input:focus, select:focus, textarea:focus {
-      border-color: rgba(56, 189, 248, .62);
-      box-shadow: 0 0 0 4px rgba(56, 189, 248, .10);
+      font: inherit;
     }
 
     textarea {
-      min-height: 190px;
+      min-height: 220px;
       resize: vertical;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      font-size: 13px;
+      font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     }
 
     .actions {
@@ -380,55 +331,253 @@
       margin-top: 14px;
     }
 
-    .primary-btn {
-      background: linear-gradient(135deg, rgba(56, 189, 248, .8), rgba(167, 139, 250, .74));
-      border-color: rgba(255,255,255,.12);
+    .note {
+      line-height: 1.6;
+      padding: 14px 16px;
+      border: 1px solid rgba(245,158,11,.23);
+      background: rgba(245,158,11,.09);
+      border-radius: 16px;
+      color: #fde68a;
+    }
+
+    .measure-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(330px, 1fr));
+      gap: 18px;
+    }
+
+    .measure-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 430px;
+      padding: 18px;
+      border-radius: 30px;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(23,84,170,.08), transparent 22%),
+        linear-gradient(180deg, rgba(6,18,43,.98), rgba(3,11,26,.98));
+      box-shadow: var(--shadow);
+    }
+
+    .measure-card:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(64,148,255,.3), rgba(255,255,255,0), rgba(189,134,255,.18));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .measure-title {
+      text-align: center;
+      font-size: 31px;
+      line-height: 1.05;
+      margin: 0 0 10px;
       font-weight: 800;
+      letter-spacing: -.6px;
     }
 
-    .ghost-btn { background: rgba(15, 23, 42, .55); }
+    .profile-badge-wrap { text-align: center; }
 
-    .footer-note {
+    .profile-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 230px;
+      min-height: 48px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(40,200,255,.5);
+      color: #8fe6ff;
+      background: rgba(40,200,255,.12);
+      font-weight: 800;
+      font-size: 17px;
+      box-shadow: inset 0 0 24px rgba(40,200,255,.08), 0 0 20px rgba(40,200,255,.06);
+    }
+
+    .profile-badge.purple {
+      border-color: rgba(191,134,255,.52);
+      color: #e5c7ff;
+      background: rgba(191,134,255,.14);
+      box-shadow: inset 0 0 24px rgba(191,134,255,.08), 0 0 20px rgba(191,134,255,.06);
+    }
+
+    .measure-ratio {
+      margin-top: 12px;
+      padding-left: 182px;
+      color: #c1cde6;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .measure-content {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: 170px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .avatar {
+      min-height: 290px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-top: 4px;
+      overflow: hidden;
+    }
+
+    .avatar img {
+      width: 156px;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      filter: drop-shadow(0 12px 18px rgba(0,0,0,.25));
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .avatar-fallback {
+      width: 130px;
+      height: 260px;
+      border-radius: 60px 60px 48px 48px;
+      background: linear-gradient(180deg, #d5e9ff, #7897c8 48%, #2f4d80);
+      opacity: .95;
+      box-shadow: 0 0 28px rgba(40,200,255,.28);
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .metric {
+      min-height: 112px;
+      border-radius: 18px;
+      border: 1px solid var(--line2);
+      background: linear-gradient(180deg, rgba(10,27,58,.86), rgba(8,20,46,.92));
+      padding: 12px 14px 11px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 0;
+    }
+
+    .metric-head {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .metric i {
+      width: 28px;
+      text-align: center;
+      font-size: 21px;
+      margin-top: 2px;
+      color: #67d7ff;
+      opacity: .95;
+      flex: 0 0 28px;
+    }
+
+    .metric.purple i { color: #d09cff; }
+
+    .metric-label {
+      color: #d6e2fb;
+      font-size: 16px;
+      line-height: 1.08;
+      font-weight: 500;
+      word-break: keep-all;
+    }
+
+    .metric-value {
+      font-size: 23px;
+      line-height: 1;
+      letter-spacing: -.3px;
+      font-weight: 900;
+      margin-top: 10px;
+    }
+
+    .metric-value span {
+      display: block;
+      margin-top: 5px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .measure-note {
       margin-top: 18px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.55;
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(191,134,255,.16);
+      background: rgba(191,134,255,.06);
+      color: #d2dcf1;
+      font-size: 15px;
+      line-height: 1.7;
     }
 
-    @media (max-width: 980px) {
-      .hero, .grid-2, .grid-3 { grid-template-columns: 1fr; }
-      .hero-side { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .formula {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      color: #dbeafe;
+      background: rgba(2,6,23,.45);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      overflow-x: auto;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 1280px) {
+      .hero, .grid-2 { grid-template-columns: 1fr; }
+      .measure-grid { grid-template-columns: repeat(2, minmax(320px, 1fr)); }
       .form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .folds { grid-template-columns: 1fr; }
-      .chart-wrap { height: 310px; }
     }
 
-    @media (max-width: 560px) {
-      .container { width: min(100% - 20px, 1240px); padding-top: 18px; }
+    @media (max-width: 820px) {
+      .container { width: min(100% - 18px, 1440px); padding-top: 18px; }
       .hero-main, .hero-side, .panel { padding: 16px; }
-      .hero-side, .form-grid { grid-template-columns: 1fr; }
+      .hero-side, .grid-3, .form-grid { grid-template-columns: 1fr; }
+      .measure-grid { grid-template-columns: 1fr; }
+      .measure-ratio { padding-left: 0; text-align: center; }
+      .measure-content { grid-template-columns: 1fr; }
+      .avatar { min-height: auto; }
+      .avatar img { width: 170px; }
       .detail-header { display: block; }
+      .chart-wrap { height: 300px; }
+    }
+
+    @media (max-width: 480px) {
+      .metrics { grid-template-columns: 1fr; }
+      .profile-badge { min-width: 0; width: 100%; }
+      .measure-title { font-size: 26px; }
     }
   </style>
 </head>
+
 <body>
   <main class="container">
     <section class="hero">
-      <div class="card hero-main">
-        <span class="eyebrow">📏 Adipômetro • BF familiar por período</span>
-        <h1>Consulta de BF da Família</h1>
+      <div class="hero-main">
+        <span class="eyebrow">📏 Adipômetro • BF • Medidas corporais</span>
+        <h1>Consulta corporal da família</h1>
         <p class="subtitle">
-          Página estática em HTML + JavaScript para GitHub Pages. Agora os dados ficam agrupados por período, com evolução individual, evolução geral da família, ranking do último período e resumo com variação entre medições.
+          Página estática para GitHub Pages. Inclui evolução por período, BF% pelo adipômetro, peso, dados individuais e visualização de medidas corporais com manequins carregados por arquivo.
         </p>
       </div>
-      <aside class="card hero-side" id="kpiBox"></aside>
+      <aside class="hero-side" id="kpiBox"></aside>
     </section>
 
-    <nav class="tabs" aria-label="Abas da página">
+    <nav class="tabs">
       <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
       <button class="tab-btn" data-tab="individual">Consulta individual</button>
+      <button class="tab-btn" data-tab="medidas">Medidas corporais</button>
       <button class="tab-btn" data-tab="periodos">Dados por período</button>
-      <button class="tab-btn" data-tab="editar">Adicionar / editar dados</button>
+      <button class="tab-btn" data-tab="editar">Adicionar / editar</button>
       <button class="tab-btn" data-tab="metodo">Método</button>
     </nav>
 
@@ -436,17 +585,17 @@
       <div class="grid-2">
         <article class="panel">
           <h2>Evolução geral da família</h2>
-          <p class="muted">Compara a média de BF% calculável com a soma total das dobras por período. Medições sem dobras válidas entram como ausentes no BF%.</p>
+          <p class="muted">Compara média de BF% calculável e soma total das dobras por período.</p>
           <div class="chart-wrap tall"><canvas id="globalEvolutionChart"></canvas></div>
         </article>
         <article class="panel">
           <h2>Ranking do último período</h2>
-          <p class="muted">Usa o último período com medição disponível. Pessoas sem protocolo suficiente aparecem fora do gráfico de BF%.</p>
+          <p class="muted">Mostra o último período com medição disponível.</p>
           <div class="chart-wrap tall"><canvas id="latestRankingChart"></canvas></div>
         </article>
       </div>
 
-      <div class="grid-2" style="margin-top:18px;">
+      <div class="grid-2" style="margin-top:18px">
         <article class="panel">
           <h2>Evolução de peso registrado</h2>
           <p class="muted">Considera apenas pesos maiores que zero.</p>
@@ -454,12 +603,12 @@
         </article>
         <article class="panel">
           <h2>Variação de BF% no último período</h2>
-          <p class="muted">Diferença do último período contra a medição anterior da mesma pessoa.</p>
+          <p class="muted">Diferença do último período contra a medição anterior.</p>
           <div class="chart-wrap"><canvas id="deltaChart"></canvas></div>
         </article>
       </div>
 
-      <article class="panel" style="margin-top:18px;">
+      <article class="panel" style="margin-top:18px">
         <h2>Resumo das medições</h2>
         <div class="table-wrap">
           <table>
@@ -473,7 +622,8 @@
                 <th>Dobras</th>
                 <th>Soma</th>
                 <th>BF%</th>
-                <th>Variação BF%</th>
+                <th>Var. BF%</th>
+                <th>Medidas</th>
                 <th>Observação</th>
               </tr>
             </thead>
@@ -486,28 +636,55 @@
     <section id="individual" class="section">
       <article class="panel">
         <h2>Consulta individual</h2>
-        <p class="muted">Clique em uma pessoa para ver os dados por período e os gráficos de evolução individual.</p>
+        <p class="muted">Clique em uma pessoa para ver dados por período, gráficos de evolução e medidas corporais.</p>
         <div class="person-list" id="personCards"></div>
         <div id="personDetail"></div>
+      </article>
+    </section>
+
+    <section id="medidas" class="section">
+      <article class="panel">
+        <div class="detail-header">
+          <div>
+            <h2>Medidas corporais — último período</h2>
+            <div class="muted">Manequins técnicos sem rosto, usando as medidas tiradas sem contração muscular.</div>
+          </div>
+          <div style="min-width:180px">
+            <label for="measurePeriodFilter">Período</label>
+            <select id="measurePeriodFilter"></select>
+          </div>
+        </div>
+
+        <div class="measure-grid" id="measureCards"></div>
+
+        <div class="measure-note">
+          <strong>Importante:</strong> para abrir localmente no navegador, mantenha o arquivo <strong>index.html</strong> junto da pasta <strong>assets</strong>.
+          Se subir no GitHub Pages, envie a pasta inteira. Assim não haverá erro de imagem <code>undefined</code>.
+        </div>
+      </article>
+
+      <article class="panel" style="margin-top:18px">
+        <h2>Comparativo das medidas corporais</h2>
+        <div class="chart-wrap tall"><canvas id="measureCompareChart"></canvas></div>
       </article>
     </section>
 
     <section id="periodos" class="section">
       <article class="panel">
         <div class="detail-header">
-          <div class="detail-title">
+          <div>
             <h2>Dados por período</h2>
             <div class="muted">Escolha uma data para ver todas as pessoas daquele período.</div>
           </div>
-          <div style="min-width:180px;">
+          <div style="min-width:180px">
             <label for="periodFilter">Período</label>
             <select id="periodFilter"></select>
           </div>
         </div>
 
-        <div class="grid-3" id="periodKpis" style="margin-bottom:14px;"></div>
+        <div class="grid-3" id="periodKpis" style="margin-bottom:14px"></div>
 
-        <div class="grid-2" style="margin-bottom:18px;">
+        <div class="grid-2" style="margin-bottom:18px">
           <div class="chart-wrap"><canvas id="periodBfChart"></canvas></div>
           <div class="chart-wrap"><canvas id="periodFoldChart"></canvas></div>
         </div>
@@ -522,8 +699,8 @@
                 <th>Dobras</th>
                 <th>Soma</th>
                 <th>BF%</th>
+                <th>Medidas</th>
                 <th>Status</th>
-                <th>Observação</th>
               </tr>
             </thead>
             <tbody id="periodRows"></tbody>
@@ -535,58 +712,29 @@
     <section id="editar" class="section">
       <article class="panel">
         <h2>Adicionar medição local</h2>
-        <p class="muted">Como o GitHub Pages é estático, este cadastro salva no navegador usando localStorage. Para tornar definitivo no site, copie o JSON exportado e atualize o objeto DEFAULT_MEASUREMENTS no arquivo.</p>
+        <p class="muted">Salva no navegador via localStorage. Para tornar definitivo, copie o JSON exportado e atualize o objeto DEFAULT_MEASUREMENTS.</p>
 
         <form id="addForm">
           <div class="form-grid">
-            <div>
-              <label for="name">Nome</label>
-              <input id="name" required placeholder="Ex.: André" />
-            </div>
-            <div>
-              <label for="age">Idade</label>
-              <input id="age" required type="number" min="1" max="110" />
-            </div>
-            <div>
-              <label for="weight">Peso</label>
-              <input id="weight" type="number" min="0" step="0.1" placeholder="Opcional" />
-            </div>
-            <div>
-              <label for="sex">Sexo usado na fórmula</label>
-              <select id="sex" required>
-                <option value="M">Masculino</option>
-                <option value="F">Feminino</option>
-              </select>
-            </div>
-            <div>
-              <label for="date">Data</label>
-              <input id="date" required type="date" />
-            </div>
-            <div>
-              <label for="site1Name">Dobra 1</label>
-              <select id="site1Name"></select>
-            </div>
-            <div>
-              <label for="site1Value">Valor 1 (mm)</label>
-              <input id="site1Value" required type="number" min="0" step="0.1" />
-            </div>
-            <div>
-              <label for="site2Name">Dobra 2</label>
-              <select id="site2Name"></select>
-            </div>
-            <div>
-              <label for="site2Value">Valor 2 (mm)</label>
-              <input id="site2Value" required type="number" min="0" step="0.1" />
-            </div>
-            <div>
-              <label for="site3Name">Dobra 3</label>
-              <select id="site3Name"></select>
-            </div>
-            <div>
-              <label for="site3Value">Valor 3 (mm)</label>
-              <input id="site3Value" required type="number" min="0" step="0.1" />
-            </div>
+            <div><label for="name">Nome</label><input id="name" required placeholder="Ex.: André"></div>
+            <div><label for="age">Idade</label><input id="age" required type="number" min="1" max="110"></div>
+            <div><label for="weight">Peso</label><input id="weight" type="number" min="0" step="0.1" placeholder="Opcional"></div>
+            <div><label for="sex">Sexo usado na fórmula</label><select id="sex"><option value="M">Masculino</option><option value="F">Feminino</option></select></div>
+            <div><label for="date">Data</label><input id="date" required type="date"></div>
+            <div><label for="site1Name">Dobra 1</label><select id="site1Name"></select></div>
+            <div><label for="site1Value">Valor 1 (mm)</label><input id="site1Value" type="number" min="0" step="0.1"></div>
+            <div><label for="site2Name">Dobra 2</label><select id="site2Name"></select></div>
+            <div><label for="site2Value">Valor 2 (mm)</label><input id="site2Value" type="number" min="0" step="0.1"></div>
+            <div><label for="site3Name">Dobra 3</label><select id="site3Name"></select></div>
+            <div><label for="site3Value">Valor 3 (mm)</label><input id="site3Value" type="number" min="0" step="0.1"></div>
+            <div><label for="mChest">Peito/tórax (cm)</label><input id="mChest" type="number" min="0" step="0.1"></div>
+            <div><label for="mAbdomen">Abdômen (cm)</label><input id="mAbdomen" type="number" min="0" step="0.1"></div>
+            <div><label for="mWaist">Cintura (cm)</label><input id="mWaist" type="number" min="0" step="0.1"></div>
+            <div><label for="mHip">Quadril (cm)</label><input id="mHip" type="number" min="0" step="0.1"></div>
+            <div><label for="mThigh">Coxa medida (cm)</label><input id="mThigh" type="number" min="0" step="0.1"></div>
+            <div><label for="mArm">Braço (cm)</label><input id="mArm" type="number" min="0" step="0.1"></div>
           </div>
+
           <div class="actions">
             <button class="primary-btn" type="submit">Salvar no navegador</button>
             <button class="ghost-btn" type="button" id="resetLocal">Limpar dados locais</button>
@@ -595,7 +743,7 @@
         </form>
       </article>
 
-      <article class="panel" style="margin-top:18px;">
+      <article class="panel" style="margin-top:18px">
         <h2>JSON atual agrupado por período</h2>
         <textarea id="jsonOutput" readonly></textarea>
       </article>
@@ -604,9 +752,8 @@
     <section id="metodo" class="section">
       <article class="panel">
         <h2>Método usado</h2>
-        <p class="muted">
-          A página usa Jackson-Pollock 3 dobras quando os pontos medidos batem com o protocolo. Depois converte densidade corporal para BF% pela equação de Siri.
-        </p>
+        <p class="muted">A página usa Jackson-Pollock 3 dobras quando os pontos medidos batem com o protocolo. Depois converte densidade corporal para BF% pela equação de Siri.</p>
+
         <div class="grid-2">
           <div>
             <h3>Homens — 3 dobras</h3>
@@ -617,150 +764,49 @@
             <div class="formula">S = tríceps + supra-ilíaca/flanco + coxa<br>BD = 1.0994921 - 0.0009929*S + 0.0000023*S² - 0.0001392*idade<br>BF% = 495 / BD - 450</div>
           </div>
         </div>
-        <p class="note" style="margin-top:16px;">
-          Observação: fórmula de adipômetro é estimativa. Para menores de 18 anos ou idosos fora da faixa original, o resultado é exibido como referência visual, não como avaliação clínica.
-        </p>
+
+        <p class="note" style="margin-top:16px">Fórmula de adipômetro é estimativa. Para menores de 18 anos ou idosos fora da faixa original, o resultado é exibido como referência visual, não avaliação clínica.</p>
       </article>
     </section>
   </main>
 
   <script>
-    const STORAGE_KEY = 'bf-familia-medicoes-periodos-v1';
+    const STORAGE_KEY = 'bf-familia-site-assets-v1';
 
-    // Para deixar definitivo no GitHub, altere este objeto.
-    // Formato aceito: período em YYYY-MM-DD, depois nome da pessoa e medidas.
     const DEFAULT_MEASUREMENTS = {
       '2026-04-12': {
-        'Dona Inês': {
-          idade: 75,
-          tricipes: 18,
-          flanco: 22,
-          coxa: 38,
-          peso: 0
-        },
-        'Tia Mah': {
-          idade: 43,
-          tricipes: 22,
-          flanco: 20,
-          coxa: 22,
-          peso: 0
-        },
-        'Titio Douglas': {
-          idade: 43,
-          peito: 13,
-          abdomem: 20,
-          coxa: 21,
-          peso: 0
-        },
-        'Tio Guto': {
-          idade: 42,
-          peito: 13,
-          abdomem: 23,
-          coxa: 13,
-          peso: 0
-        },
-        'André': {
-          idade: 28,
-          peito: 8,
-          abdomem: 12,
-          coxa: 19,
-          peso: 0
-        },
-        'Felipe': {
-          idade: 14,
-          peito: 2,
-          abdomem: 3,
-          coxa: 19,
-          peso: 0
-        }
+        'Dona Inês': { idade: 75, tricipes: 18, flanco: 22, coxa: 38, peso: 0 },
+        'Tia Mah': { idade: 43, tricipes: 22, flanco: 20, coxa: 22, peso: 0 },
+        'Titio Douglas': { idade: 43, peito: 13, abdomem: 20, coxa: 21, peso: 0 },
+        'Tio Guto': { idade: 42, peito: 13, abdomem: 23, coxa: 13, peso: 0 },
+        'André': { idade: 28, peito: 8, abdomem: 12, coxa: 19, peso: 0 },
+        'Felipe': { idade: 14, peito: 2, abdomem: 3, coxa: 19, peso: 0 }
       },
       '2026-05-17': {
-        'Dona Inês': {
-          idade: 75,
-          tricipes: 22,
-          flanco: 22,
-          coxa: 38,
-          peso: 82.7
-        },
-        'Tia Mah': {
-          idade: 43,
-          tricipes: 21,
-          flanco: 18,
-          coxa: 22,
-          peso: 66.4
-        },
-        'Titio Douglas': {
-          idade: 43,
-          peito: 12,
-          abdomem: 15,
-          coxa: 22,
-          peso: 66.4
-        }, 
-        'Tio Guto': {
-          idade: 42,
-          peito: 10,
-          abdomem: 14,
-          coxa: 21,
-          peso: 75
-        },
-        'André': {
-          idade: 28,
-          peito: 9,
-          abdomem: 9,
-          coxa: 10,
-          peso: 86
-        },
-        'Felipe': {
-          idade: 13,
-          peito: 9,
-          abdomem: 10,
-          coxa: 20,
-          peso: 59
-        }
-      },'2026-06-21': {
-        'Dona Inês': {
-          idade: 75,
-          tricipes: 21,
-          flanco: 19,
-          coxa: 24,
-          peso: 84.2
-        },
-        'Tia Mah': {
-          idade: 43,
-          tricipes: 18,
-          flanco: 20,
-          coxa: 23,
-          peso: 66.05
-        },
-        'Titio Douglas': {
-          idade: 43,
-          peito: 10,
-          abdomem: 12,
-          coxa: 20,
-          peso: 67.8 
-        }, 
-        'Tio Guto': {
-          idade: 42,
-          peito: 12,
-          abdomem: 18,
-          coxa: 18,
-          peso: 74.7
-        },
-        'André': {
-          idade: 28,
-          peito: 9,
-          abdomem: 10,
-          coxa: 12,
-          peso: 86.65
-        },
-        'Felipe': {
-          idade: 13,
-          peito: 4,
-          abdomem: 10,
-          coxa: 16,
-          peso: 60.05
-        }
+        'Dona Inês': { idade: 75, tricipes: 22, flanco: 22, coxa: 38, peso: 82.7 },
+        'Tia Mah': { idade: 43, tricipes: 21, flanco: 18, coxa: 22, peso: 66.4 },
+        'Titio Douglas': { idade: 43, peito: 12, abdomem: 15, coxa: 22, peso: 66.4 },
+        'Tio Guto': { idade: 42, peito: 10, abdomem: 14, coxa: 21, peso: 75 },
+        'André': { idade: 28, peito: 9, abdomem: 9, coxa: 10, peso: 86 },
+        'Felipe': { idade: 13, peito: 9, abdomem: 10, coxa: 20, peso: 59 }
+      },
+      '2026-06-21': {
+        'Dona Inês': { idade: 75, tricipes: 21, flanco: 19, coxa: 24, peso: 84.2, medidas: { cintura: 109.5, quadril: 123, coxa: 56, braco: 32 } },
+        'Tia Mah': { idade: 43, tricipes: 18, flanco: 20, coxa: 23, peso: 66.05, medidas: { cintura: 76, quadril: 101, coxa: 56, braco: 28.5 } },
+        'Titio Douglas': { idade: 43, peito: 10, abdomem: 12, coxa: 20, peso: 67.8, medidas: { peito: 95.5, abdomem: 82.5, coxa: 54.5, braco: 27.5 } },
+        'Tio Guto': { idade: 42, peito: 12, abdomem: 18, coxa: 18, peso: 74.7, medidas: { peito: 101, abdomem: 86, coxa: 54, braco: 30.5 } },
+        'André': { idade: 28, peito: 9, abdomem: 10, coxa: 12, peso: 86.65, medidas: { peito: 104, abdomem: 83, coxa: 62, braco: 34.5 } },
+        'Felipe': { idade: 13, peito: 4, abdomem: 10, coxa: 16, peso: 60.05, medidas: { peito: 69, abdomem: 76, coxa: 50, braco: 22.5 } }
       }
+    };
+
+    const AVATARS = {
+      andre: 'assets/andre.png',
+      donaines: 'assets/ines.png',
+      felipe: 'assets/felipe.png',
+      tiamah: 'assets/tiamah.png',
+      tioguto: 'assets/tioguto.png',
+      titiodouglas: 'assets/titiodouglas.png'
     };
 
     const siteLabels = {
@@ -798,19 +844,34 @@
       suprailiac: 'suprailiac'
     };
 
+    const measureLabels = {
+      peito: 'Peito /<br>tórax',
+      abdomem: 'Abdômen',
+      cintura: 'Cintura',
+      quadril: 'Quadril',
+      coxa: 'Coxa',
+      braco: 'Braço'
+    };
+
+    const measureIcons = {
+      peito: 'fa-solid fa-shirt',
+      abdomem: 'fa-solid fa-child-reaching',
+      cintura: 'fa-solid fa-ruler-horizontal',
+      quadril: 'fa-solid fa-venus',
+      coxa: 'fa-solid fa-person-walking',
+      braco: 'fa-solid fa-dumbbell'
+    };
+
     const siteOptions = Object.entries(siteLabels);
     const charts = {};
     let selectedPersonName = null;
     let selectedPeriod = null;
+    let selectedMeasurePeriod = null;
 
     function numberOrNull(value) {
       if (value === null || value === undefined || value === '') return null;
       const parsed = Number(String(value).replace(',', '.'));
       return Number.isFinite(parsed) ? parsed : null;
-    }
-
-    function uid() {
-      return Math.random().toString(36).slice(2, 11);
     }
 
     function deepClone(value) {
@@ -832,7 +893,6 @@
       try {
         return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
       } catch (error) {
-        console.error(error);
         return {};
       }
     }
@@ -854,22 +914,28 @@
       return '';
     }
 
+    function normalizeMeasures(data) {
+      const source = data?.medidas || {};
+      const result = {};
+      ['peito', 'abdomem', 'cintura', 'quadril', 'coxa', 'braco'].forEach(key => {
+        const value = numberOrNull(source[key]);
+        if (value !== null && value > 0) result[key] = value;
+      });
+      return result;
+    }
+
     function normalizeRow(period, name, data) {
       const folds = {};
-
       Object.entries(data || {}).forEach(([rawKey, rawValue]) => {
-        const key = String(rawKey).toLowerCase().trim();
-        const site = aliasToSite[key];
+        const site = aliasToSite[String(rawKey).toLowerCase().trim()];
         const value = numberOrNull(rawValue);
-
-        if (site && value !== null) {
-          folds[site] = value;
-        }
+        if (site && value !== null) folds[site] = value;
       });
 
       const age = numberOrNull(data?.idade ?? data?.age);
       const weight = numberOrNull(data?.peso ?? data?.weight);
       const sex = data?.sex || inferSex(folds);
+      const measures = normalizeMeasures(data);
       const measured = Object.values(folds).some(value => Number.isFinite(value)) || (weight !== null && weight > 0);
 
       return calculate({
@@ -880,22 +946,21 @@
         weight,
         sex,
         folds,
+        measures,
         measured,
         raw: data || {}
       });
     }
 
     function normalizeMeasurements(raw) {
-      const rows = [];
-
+      let rows = [];
       Object.entries(raw).forEach(([period, people]) => {
         Object.entries(people || {}).forEach(([name, data]) => {
           rows.push(normalizeRow(period, name, data));
         });
       });
-
-      const withDeltas = addDeltas(rows);
-      return withDeltas.sort((a, b) => {
+      rows = addDeltas(rows);
+      return rows.sort((a, b) => {
         if (a.period !== b.period) return a.period.localeCompare(b.period);
         return a.name.localeCompare(b.name, 'pt-BR');
       });
@@ -903,8 +968,7 @@
 
     function sumFolds(folds) {
       const values = Object.values(folds).filter(value => Number.isFinite(value));
-      if (!values.length) return null;
-      return values.reduce((total, value) => total + value, 0);
+      return values.length ? values.reduce((total, value) => total + value, 0) : null;
     }
 
     function hasSites(folds, required) {
@@ -966,19 +1030,12 @@
 
       byPerson.forEach(personRows => {
         personRows.sort((a, b) => a.period.localeCompare(b.period));
-
         personRows.forEach((row, index) => {
           const previous = [...personRows.slice(0, index)].reverse().find(item => item.measured);
           if (!previous) return;
 
-          if (Number.isFinite(row.bf) && Number.isFinite(previous.bf)) {
-            row.deltaBf = row.bf - previous.bf;
-          }
-
-          if (Number.isFinite(row.sum) && Number.isFinite(previous.sum)) {
-            row.deltaSum = row.sum - previous.sum;
-          }
-
+          if (Number.isFinite(row.bf) && Number.isFinite(previous.bf)) row.deltaBf = row.bf - previous.bf;
+          if (Number.isFinite(row.sum) && Number.isFinite(previous.sum)) row.deltaSum = row.sum - previous.sum;
           if (Number.isFinite(row.weight) && row.weight > 0 && Number.isFinite(previous.weight) && previous.weight > 0) {
             row.deltaWeight = row.weight - previous.weight;
           }
@@ -1015,6 +1072,10 @@
       return result.sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'));
     }
 
+    function rowsWithMeasures(rows, period) {
+      return rows.filter(row => row.period === period && Object.keys(row.measures || {}).length);
+    }
+
     function buildGlobalEvolution(rows) {
       return getPeriods(rows).map(period => {
         const periodRows = rows.filter(row => row.period === period && row.measured);
@@ -1030,7 +1091,6 @@
           countMeasured: periodRows.length,
           avgBf: avg(bfRows.map(row => row.bf)),
           totalFolds: total(sumRows.map(row => row.sum)),
-          avgFolds: avg(sumRows.map(row => row.sum)),
           totalWeight: total(weightRows.map(row => row.weight)),
           avgWeight: avg(weightRows.map(row => row.weight))
         };
@@ -1066,10 +1126,10 @@
     }
 
     function badge(row) {
-      if (!row.measured) return '<span class="badge bad">Sem medição</span>';
-      if (row.validity === 'good') return '<span class="badge good">OK</span>';
-      if (row.validity === 'warn') return '<span class="badge warn">Alerta</span>';
-      return '<span class="badge bad">Sem BF%</span>';
+      if (!row.measured) return '<span class="badge-status bad">Sem medição</span>';
+      if (row.validity === 'good') return '<span class="badge-status good">OK</span>';
+      if (row.validity === 'warn') return '<span class="badge-status warn">Alerta</span>';
+      return '<span class="badge-status bad">Sem BF%</span>';
     }
 
     function deltaText(value, suffix = '%') {
@@ -1082,10 +1142,13 @@
     function foldsText(folds) {
       const entries = Object.entries(folds || {});
       if (!entries.length) return '<span class="muted">—</span>';
+      return entries.map(([site, value]) => `${siteLabels[site] || site}: <strong>${formatNumber(value, 1)}mm</strong>`).join('<br>');
+    }
 
-      return entries
-        .map(([site, value]) => `${siteLabels[site] || site}: <strong>${formatNumber(value, 1)}mm</strong>`)
-        .join('<br>');
+    function measuresText(measures) {
+      const entries = Object.entries(measures || {});
+      if (!entries.length) return '<span class="muted">—</span>';
+      return entries.map(([key, value]) => `${(measureLabels[key] || key).replace('<br>', ' ')}: <strong>${formatNumber(value, 1)}cm</strong>`).join('<br>');
     }
 
     function destroyChart(id) {
@@ -1101,7 +1164,7 @@
         maintainAspectRatio: false,
         interaction: { mode: 'index', intersect: false },
         plugins: {
-          legend: { labels: { color: '#e5e7eb' } },
+          legend: { labels: { color: '#f4f7ff' } },
           tooltip: {
             callbacks: {
               label: context => `${context.dataset.label}: ${formatNumber(context.parsed.y, 1)}${suffix}`
@@ -1110,34 +1173,32 @@
         },
         scales: {
           x: {
-            ticks: { color: '#cbd5e1' },
-            grid: { color: 'rgba(148, 163, 184, .10)' }
+            ticks: { color: '#d7e3fb' },
+            grid: { color: 'rgba(148,163,184,.10)' }
           },
           y: {
             beginAtZero,
-            ticks: { color: '#cbd5e1', callback: value => `${value}${suffix}` },
-            grid: { color: 'rgba(148, 163, 184, .12)' }
+            ticks: { color: '#d7e3fb', callback: value => `${value}${suffix}` },
+            grid: { color: 'rgba(148,163,184,.12)' }
           }
         }
       };
     }
 
     function renderKpis(rows) {
-      const periods = getPeriods(rows);
       const latestRows = rowsForLatestByPerson(rows);
       const withBf = latestRows.filter(item => Number.isFinite(item.bf));
       const lowest = [...withBf].sort((a, b) => a.bf - b.bf)[0];
-      const highest = [...withBf].sort((a, b) => b.bf - a.bf)[0];
       const evolution = buildGlobalEvolution(rows);
       const firstAvg = evolution.find(item => Number.isFinite(item.avgBf))?.avgBf ?? null;
       const lastAvg = [...evolution].reverse().find(item => Number.isFinite(item.avgBf))?.avgBf ?? null;
       const avgDelta = Number.isFinite(firstAvg) && Number.isFinite(lastAvg) ? lastAvg - firstAvg : null;
 
       document.getElementById('kpiBox').innerHTML = `
-        <div class="mini-stat"><span>Pessoas</span><strong>${getPeople(rows).length}</strong></div>
-        <div class="mini-stat"><span>Períodos</span><strong>${periods.length}</strong></div>
-        <div class="mini-stat"><span>Menor BF% atual</span><strong>${lowest ? `${lowest.name}<br>${formatPercent(lowest.bf)}` : '—'}</strong></div>
-        <div class="mini-stat"><span>Evolução média</span><strong>${Number.isFinite(avgDelta) ? deltaText(avgDelta).replace('delta ', '') : '—'}</strong></div>
+        <div class="stat"><span>Pessoas</span><strong>${getPeople(rows).length}</strong></div>
+        <div class="stat"><span>Períodos</span><strong>${getPeriods(rows).length}</strong></div>
+        <div class="stat"><span>Menor BF% atual</span><strong>${lowest ? `${lowest.name}<br>${formatPercent(lowest.bf)}` : '—'}</strong></div>
+        <div class="stat"><span>Evolução média</span><strong>${Number.isFinite(avgDelta) ? deltaText(avgDelta) : '—'}</strong></div>
       `;
     }
 
@@ -1147,10 +1208,7 @@
       const rankingRows = latestRows.filter(row => Number.isFinite(row.bf)).sort((a, b) => a.bf - b.bf);
       const deltaRows = latestRows.filter(row => Number.isFinite(row.deltaBf)).sort((a, b) => a.deltaBf - b.deltaBf);
 
-      destroyChart('globalEvolutionChart');
-      destroyChart('latestRankingChart');
-      destroyChart('weightEvolutionChart');
-      destroyChart('deltaChart');
+      ['globalEvolutionChart', 'latestRankingChart', 'weightEvolutionChart', 'deltaChart'].forEach(destroyChart);
 
       charts.globalEvolutionChart = new Chart(document.getElementById('globalEvolutionChart'), {
         type: 'line',
@@ -1160,8 +1218,8 @@
             {
               label: 'Média BF%',
               data: evolution.map(item => Number.isFinite(item.avgBf) ? Number(item.avgBf.toFixed(2)) : null),
-              borderColor: '#38bdf8',
-              backgroundColor: 'rgba(56, 189, 248, .16)',
+              borderColor: '#28c8ff',
+              backgroundColor: 'rgba(40,200,255,.16)',
               tension: .35,
               fill: true,
               pointRadius: 5,
@@ -1170,8 +1228,8 @@
             {
               label: 'Soma total das dobras',
               data: evolution.map(item => Number.isFinite(item.totalFolds) ? Number(item.totalFolds.toFixed(1)) : null),
-              borderColor: '#a78bfa',
-              backgroundColor: 'rgba(167, 139, 250, .12)',
+              borderColor: '#bf86ff',
+              backgroundColor: 'rgba(191,134,255,.12)',
               tension: .35,
               pointRadius: 5,
               yAxisID: 'y1'
@@ -1182,23 +1240,21 @@
           responsive: true,
           maintainAspectRatio: false,
           interaction: { mode: 'index', intersect: false },
-          plugins: { legend: { labels: { color: '#e5e7eb' } } },
+          plugins: { legend: { labels: { color: '#f4f7ff' } } },
           scales: {
-            x: { ticks: { color: '#cbd5e1' }, grid: { color: 'rgba(148, 163, 184, .10)' } },
+            x: { ticks: { color: '#d7e3fb' }, grid: { color: 'rgba(148,163,184,.10)' } },
             y: {
               type: 'linear',
               position: 'left',
               beginAtZero: true,
-              title: { display: true, text: 'BF%', color: '#cbd5e1' },
-              ticks: { color: '#cbd5e1', callback: value => `${value}%` },
-              grid: { color: 'rgba(148, 163, 184, .12)' }
+              ticks: { color: '#d7e3fb', callback: value => `${value}%` },
+              grid: { color: 'rgba(148,163,184,.12)' }
             },
             y1: {
               type: 'linear',
               position: 'right',
               beginAtZero: true,
-              title: { display: true, text: 'Dobras mm', color: '#cbd5e1' },
-              ticks: { color: '#cbd5e1', callback: value => `${value}mm` },
+              ticks: { color: '#d7e3fb', callback: value => `${value}mm` },
               grid: { drawOnChartArea: false }
             }
           }
@@ -1212,9 +1268,7 @@
           datasets: [{
             label: 'BF% último período',
             data: rankingRows.map(item => Number(item.bf.toFixed(2))),
-            backgroundColor: rankingRows.map(item => item.validity === 'warn' ? 'rgba(245, 158, 11, .65)' : 'rgba(56, 189, 248, .60)'),
-            borderColor: rankingRows.map(item => item.validity === 'warn' ? '#f59e0b' : '#38bdf8'),
-            borderWidth: 1,
+            backgroundColor: rankingRows.map(item => item.validity === 'warn' ? 'rgba(245,158,11,.65)' : 'rgba(40,200,255,.60)'),
             borderRadius: 12
           }]
         },
@@ -1230,7 +1284,7 @@
               label: 'Peso total registrado',
               data: evolution.map(item => Number.isFinite(item.totalWeight) ? Number(item.totalWeight.toFixed(1)) : null),
               borderColor: '#22c55e',
-              backgroundColor: 'rgba(34, 197, 94, .16)',
+              backgroundColor: 'rgba(34,197,94,.16)',
               tension: .35,
               fill: true,
               pointRadius: 5
@@ -1239,7 +1293,7 @@
               label: 'Peso médio registrado',
               data: evolution.map(item => Number.isFinite(item.avgWeight) ? Number(item.avgWeight.toFixed(1)) : null),
               borderColor: '#f59e0b',
-              backgroundColor: 'rgba(245, 158, 11, .12)',
+              backgroundColor: 'rgba(245,158,11,.12)',
               tension: .35,
               pointRadius: 5
             }
@@ -1255,9 +1309,7 @@
           datasets: [{
             label: 'Variação BF%',
             data: deltaRows.map(item => Number(item.deltaBf.toFixed(2))),
-            backgroundColor: deltaRows.map(item => item.deltaBf <= 0 ? 'rgba(34, 197, 94, .58)' : 'rgba(239, 68, 68, .58)'),
-            borderColor: deltaRows.map(item => item.deltaBf <= 0 ? '#22c55e' : '#ef4444'),
-            borderWidth: 1,
+            backgroundColor: deltaRows.map(item => item.deltaBf <= 0 ? 'rgba(34,197,94,.58)' : 'rgba(239,68,68,.58)'),
             borderRadius: 12
           }]
         },
@@ -1268,18 +1320,19 @@
     function renderSummary(rows) {
       document.getElementById('summaryRows').innerHTML = [...rows]
         .sort((a, b) => b.period.localeCompare(a.period) || a.name.localeCompare(b.name, 'pt-BR'))
-        .map(item => `
+        .map(row => `
           <tr>
-            <td><strong>${item.name}</strong></td>
-            <td>${formatPeriod(item.period)}</td>
-            <td>${item.age ?? '—'}</td>
-            <td>${formatKg(item.weight)}</td>
-            <td>${item.protocol}<br>${badge(item)}</td>
-            <td>${foldsText(item.folds)}</td>
-            <td><strong>${formatMm(item.sum)}</strong></td>
-            <td><strong>${formatPercent(item.bf)}</strong></td>
-            <td>${deltaText(item.deltaBf)}</td>
-            <td class="muted">${item.warning}</td>
+            <td><strong>${row.name}</strong></td>
+            <td>${formatPeriod(row.period)}</td>
+            <td>${row.age ?? '—'}</td>
+            <td>${formatKg(row.weight)}</td>
+            <td>${row.protocol}<br>${badge(row)}</td>
+            <td>${foldsText(row.folds)}</td>
+            <td><strong>${formatMm(row.sum)}</strong></td>
+            <td><strong>${formatPercent(row.bf)}</strong></td>
+            <td>${deltaText(row.deltaBf)}</td>
+            <td>${measuresText(row.measures)}</td>
+            <td class="muted">${row.warning}</td>
           </tr>
         `).join('');
     }
@@ -1307,11 +1360,9 @@
     }
 
     function renderPersonDetail(rows, name) {
-      const personRows = rows
-        .filter(row => row.name === name)
-        .sort((a, b) => a.period.localeCompare(b.period));
-
+      const personRows = rows.filter(row => row.name === name).sort((a, b) => a.period.localeCompare(b.period));
       const latest = [...personRows].reverse().find(row => row.measured) || personRows[personRows.length - 1];
+
       if (!latest) {
         document.getElementById('personDetail').innerHTML = '<p class="note">Nenhuma pessoa encontrada.</p>';
         return;
@@ -1319,38 +1370,38 @@
 
       document.getElementById('personDetail').innerHTML = `
         <div class="detail-header">
-          <div class="detail-title">
+          <div>
             <h2>${latest.name}</h2>
             <div class="muted">Última medição em ${formatPeriod(latest.period)} • ${latest.protocol}</div>
           </div>
           <div>${badge(latest)}</div>
         </div>
 
-        <div class="grid-3" style="margin-bottom:14px;">
+        <div class="grid-3" style="margin-bottom:14px">
           <div class="mini-stat"><span>BF% atual</span><strong>${formatPercent(latest.bf)}</strong></div>
           <div class="mini-stat"><span>Variação BF%</span><strong>${Number.isFinite(latest.deltaBf) ? deltaText(latest.deltaBf) : '—'}</strong></div>
           <div class="mini-stat"><span>Peso atual</span><strong>${formatKg(latest.weight)}</strong></div>
         </div>
 
-        <div class="grid-2" style="margin-bottom:18px;">
-          <div class="panel" style="box-shadow:none; background:rgba(15,23,42,.42);">
+        <div class="grid-2" style="margin-bottom:18px">
+          <div class="panel" style="box-shadow:none;background:rgba(8,20,46,.42)">
             <h3>Evolução de BF%</h3>
             <div class="chart-wrap small"><canvas id="individualBfChart"></canvas></div>
           </div>
-          <div class="panel" style="box-shadow:none; background:rgba(15,23,42,.42);">
+          <div class="panel" style="box-shadow:none;background:rgba(8,20,46,.42)">
             <h3>Evolução da soma das dobras</h3>
             <div class="chart-wrap small"><canvas id="individualFoldChart"></canvas></div>
           </div>
         </div>
 
-        <div class="grid-2" style="margin-bottom:18px;">
-          <div class="panel" style="box-shadow:none; background:rgba(15,23,42,.42);">
+        <div class="grid-2" style="margin-bottom:18px">
+          <div class="panel" style="box-shadow:none;background:rgba(8,20,46,.42)">
             <h3>Evolução de peso</h3>
             <div class="chart-wrap small"><canvas id="individualWeightChart"></canvas></div>
           </div>
-          <div class="panel" style="box-shadow:none; background:rgba(15,23,42,.42);">
-            <h3>Dobras por período</h3>
-            <div class="chart-wrap small"><canvas id="individualSitesChart"></canvas></div>
+          <div class="panel" style="box-shadow:none;background:rgba(8,20,46,.42)">
+            <h3>Evolução das medidas corporais</h3>
+            <div class="chart-wrap small"><canvas id="individualMeasuresChart"></canvas></div>
           </div>
         </div>
 
@@ -1365,23 +1416,23 @@
                 <th>Dobras</th>
                 <th>Soma</th>
                 <th>BF%</th>
-                <th>Variação BF%</th>
-                <th>Variação peso</th>
+                <th>Var. BF%</th>
+                <th>Medidas</th>
                 <th>Status</th>
               </tr>
             </thead>
             <tbody>
-              ${personRows.map(item => `
+              ${personRows.map(row => `
                 <tr>
-                  <td>${formatPeriod(item.period)}</td>
-                  <td>${item.age ?? '—'}</td>
-                  <td>${formatKg(item.weight)}</td>
-                  <td>${foldsText(item.folds)}</td>
-                  <td><strong>${formatMm(item.sum)}</strong></td>
-                  <td><strong>${formatPercent(item.bf)}</strong></td>
-                  <td>${deltaText(item.deltaBf)}</td>
-                  <td>${deltaText(item.deltaWeight, 'kg')}</td>
-                  <td>${badge(item)}<br><span class="muted">${item.warning}</span></td>
+                  <td>${formatPeriod(row.period)}</td>
+                  <td>${row.age ?? '—'}</td>
+                  <td>${formatKg(row.weight)}</td>
+                  <td>${foldsText(row.folds)}</td>
+                  <td><strong>${formatMm(row.sum)}</strong></td>
+                  <td><strong>${formatPercent(row.bf)}</strong></td>
+                  <td>${deltaText(row.deltaBf)}</td>
+                  <td>${measuresText(row.measures)}</td>
+                  <td>${badge(row)}<br><span class="muted">${row.warning}</span></td>
                 </tr>
               `).join('')}
             </tbody>
@@ -1393,11 +1444,7 @@
     }
 
     function renderIndividualCharts(personRows) {
-      destroyChart('individualBfChart');
-      destroyChart('individualFoldChart');
-      destroyChart('individualWeightChart');
-      destroyChart('individualSitesChart');
-
+      ['individualBfChart', 'individualFoldChart', 'individualWeightChart', 'individualMeasuresChart'].forEach(destroyChart);
       const labels = personRows.map(item => shortPeriod(item.period));
 
       charts.individualBfChart = new Chart(document.getElementById('individualBfChart'), {
@@ -1407,8 +1454,8 @@
           datasets: [{
             label: 'BF%',
             data: personRows.map(item => Number.isFinite(item.bf) ? Number(item.bf.toFixed(2)) : null),
-            borderColor: '#38bdf8',
-            backgroundColor: 'rgba(56, 189, 248, .16)',
+            borderColor: '#28c8ff',
+            backgroundColor: 'rgba(40,200,255,.16)',
             fill: true,
             tension: .35,
             pointRadius: 5
@@ -1424,8 +1471,8 @@
           datasets: [{
             label: 'Soma das dobras',
             data: personRows.map(item => Number.isFinite(item.sum) ? Number(item.sum.toFixed(1)) : null),
-            borderColor: '#a78bfa',
-            backgroundColor: 'rgba(167, 139, 250, .16)',
+            borderColor: '#bf86ff',
+            backgroundColor: 'rgba(191,134,255,.16)',
             fill: true,
             tension: .35,
             pointRadius: 5
@@ -1442,7 +1489,7 @@
             label: 'Peso',
             data: personRows.map(item => Number.isFinite(item.weight) && item.weight > 0 ? Number(item.weight.toFixed(1)) : null),
             borderColor: '#22c55e',
-            backgroundColor: 'rgba(34, 197, 94, .16)',
+            backgroundColor: 'rgba(34,197,94,.16)',
             fill: true,
             tension: .35,
             pointRadius: 5
@@ -1451,21 +1498,20 @@
         options: baseChartOptions('kg', false)
       });
 
-      const sites = [...new Set(personRows.flatMap(item => Object.keys(item.folds || {})))];
-      charts.individualSitesChart = new Chart(document.getElementById('individualSitesChart'), {
+      const keys = [...new Set(personRows.flatMap(item => Object.keys(item.measures || {})))];
+
+      charts.individualMeasuresChart = new Chart(document.getElementById('individualMeasuresChart'), {
         type: 'bar',
         data: {
           labels,
-          datasets: sites.map((site, index) => ({
-            label: siteLabels[site] || site,
-            data: personRows.map(item => Number.isFinite(item.folds[site]) ? item.folds[site] : null),
-            backgroundColor: ['rgba(56, 189, 248, .58)', 'rgba(167, 139, 250, .58)', 'rgba(245, 158, 11, .58)', 'rgba(34, 197, 94, .58)', 'rgba(239, 68, 68, .58)'][index % 5],
-            borderColor: ['#38bdf8', '#a78bfa', '#f59e0b', '#22c55e', '#ef4444'][index % 5],
-            borderWidth: 1,
+          datasets: keys.map((key, index) => ({
+            label: (measureLabels[key] || key).replace('<br>', ' '),
+            data: personRows.map(item => Number.isFinite(item.measures[key]) ? item.measures[key] : null),
+            backgroundColor: ['rgba(40,200,255,.58)', 'rgba(191,134,255,.58)', 'rgba(245,158,11,.58)', 'rgba(34,197,94,.58)', 'rgba(239,68,68,.58)', 'rgba(148,163,184,.58)'][index % 6],
             borderRadius: 10
           }))
         },
-        options: baseChartOptions('mm')
+        options: baseChartOptions('cm')
       });
     }
 
@@ -1478,6 +1524,15 @@
       select.value = selectedPeriod;
     }
 
+    function renderMeasureSelector(rows) {
+      const periods = getPeriods(rows).filter(period => rowsWithMeasures(rows, period).length);
+      if (!selectedMeasurePeriod || !periods.includes(selectedMeasurePeriod)) selectedMeasurePeriod = periods[periods.length - 1];
+
+      const select = document.getElementById('measurePeriodFilter');
+      select.innerHTML = periods.map(period => `<option value="${period}">${formatPeriod(period)}</option>`).join('');
+      select.value = selectedMeasurePeriod;
+    }
+
     function renderPeriodTab(rows) {
       renderPeriodSelector(rows);
       const periodRows = rows.filter(row => row.period === selectedPeriod).sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'));
@@ -1487,37 +1542,37 @@
       const average = values => values.length ? values.reduce((total, value) => total + value, 0) / values.length : null;
 
       document.getElementById('periodKpis').innerHTML = `
-        <div class="mini-stat"><span>Pessoas no período</span><strong>${periodRows.length}</strong></div>
+        <div class="mini-stat"><span>Pessoas</span><strong>${periodRows.length}</strong></div>
         <div class="mini-stat"><span>Medições preenchidas</span><strong>${measuredRows.length}</strong></div>
         <div class="mini-stat"><span>Média BF%</span><strong>${formatPercent(average(bfRows.map(row => row.bf)))}</strong></div>
       `;
 
-      document.getElementById('periodRows').innerHTML = periodRows.map(item => `
+      document.getElementById('periodRows').innerHTML = periodRows.map(row => `
         <tr>
-          <td><strong>${item.name}</strong></td>
-          <td>${item.age ?? '—'}</td>
-          <td>${formatKg(item.weight)}</td>
-          <td>${foldsText(item.folds)}</td>
-          <td><strong>${formatMm(item.sum)}</strong></td>
-          <td><strong>${formatPercent(item.bf)}</strong></td>
-          <td>${badge(item)}</td>
-          <td class="muted">${item.warning}</td>
+          <td><strong>${row.name}</strong></td>
+          <td>${row.age ?? '—'}</td>
+          <td>${formatKg(row.weight)}</td>
+          <td>${foldsText(row.folds)}</td>
+          <td><strong>${formatMm(row.sum)}</strong></td>
+          <td><strong>${formatPercent(row.bf)}</strong></td>
+          <td>${measuresText(row.measures)}</td>
+          <td>${badge(row)}</td>
         </tr>
       `).join('');
 
-      destroyChart('periodBfChart');
-      destroyChart('periodFoldChart');
+      ['periodBfChart', 'periodFoldChart'].forEach(destroyChart);
+
+      const bfSorted = [...bfRows].sort((a, b) => a.bf - b.bf);
+      const sumSorted = [...sumRows].sort((a, b) => a.sum - b.sum);
 
       charts.periodBfChart = new Chart(document.getElementById('periodBfChart'), {
         type: 'bar',
         data: {
-          labels: bfRows.sort((a, b) => a.bf - b.bf).map(item => item.name),
+          labels: bfSorted.map(row => row.name),
           datasets: [{
             label: `BF% em ${formatPeriod(selectedPeriod)}`,
-            data: bfRows.sort((a, b) => a.bf - b.bf).map(item => Number(item.bf.toFixed(2))),
-            backgroundColor: bfRows.map(item => item.validity === 'warn' ? 'rgba(245, 158, 11, .65)' : 'rgba(56, 189, 248, .60)'),
-            borderColor: bfRows.map(item => item.validity === 'warn' ? '#f59e0b' : '#38bdf8'),
-            borderWidth: 1,
+            data: bfSorted.map(row => Number(row.bf.toFixed(2))),
+            backgroundColor: 'rgba(40,200,255,.60)',
             borderRadius: 12
           }]
         },
@@ -1527,17 +1582,120 @@
       charts.periodFoldChart = new Chart(document.getElementById('periodFoldChart'), {
         type: 'bar',
         data: {
-          labels: sumRows.sort((a, b) => a.sum - b.sum).map(item => item.name),
+          labels: sumSorted.map(row => row.name),
           datasets: [{
             label: `Soma das dobras em ${formatPeriod(selectedPeriod)}`,
-            data: sumRows.sort((a, b) => a.sum - b.sum).map(item => Number(item.sum.toFixed(1))),
-            backgroundColor: 'rgba(167, 139, 250, .62)',
-            borderColor: '#a78bfa',
-            borderWidth: 1,
+            data: sumSorted.map(row => Number(row.sum.toFixed(1))),
+            backgroundColor: 'rgba(191,134,255,.62)',
             borderRadius: 12
           }]
         },
         options: baseChartOptions('mm')
+      });
+    }
+
+    function profileFor(row) {
+      const m = row.measures || {};
+      if (Number.isFinite(m.cintura) && Number.isFinite(m.quadril)) {
+        const ratio = m.cintura / m.quadril;
+        if (ratio <= .78) return 'Visual mais atlético';
+        if (ratio >= .86) return 'Visual robusto';
+        return 'Visual equilibrado';
+      }
+
+      if (Number.isFinite(m.abdomem) && Number.isFinite(m.peito)) {
+        const ratio = m.abdomem / m.peito;
+        if (ratio >= 1) return 'Mais volume central';
+        return 'Visual equilibrado';
+      }
+
+      return 'Visual registrado';
+    }
+
+    function ratioFor(row) {
+      const m = row.measures || {};
+      if (Number.isFinite(m.cintura) && Number.isFinite(m.quadril)) {
+        return { label: 'cintura/quadril', value: m.cintura / m.quadril };
+      }
+
+      if (Number.isFinite(m.abdomem) && Number.isFinite(m.peito)) {
+        return { label: 'abdômen/peito', value: m.abdomem / m.peito };
+      }
+
+      return { label: 'proporção', value: null };
+    }
+
+    function avatarKey(name) {
+      return name
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '');
+    }
+
+    function measureOrder(row) {
+      return Number.isFinite(row.measures.cintura) || Number.isFinite(row.measures.quadril)
+        ? ['cintura', 'quadril', 'coxa', 'braco']
+        : ['peito', 'abdomem', 'coxa', 'braco'];
+    }
+
+    function renderMeasureCard(row) {
+      const ratio = ratioFor(row);
+      const purple = measureOrder(row)[0] === 'cintura';
+      const key = avatarKey(row.name);
+      const avatar = AVATARS[key] || AVATARS.andre;
+
+      return `
+        <article class="measure-card">
+          <h2 class="measure-title">${row.name}</h2>
+          <div class="profile-badge-wrap">
+            <div class="profile-badge ${purple ? 'purple' : ''}">${profileFor(row)}</div>
+          </div>
+          <div class="measure-ratio">${ratio.label}: ${Number.isFinite(ratio.value) ? formatNumber(ratio.value, 2) : '—'}</div>
+
+          <div class="measure-content">
+            <div class="avatar">
+              <img src="${avatar}" alt="Manequim de ${row.name}" onerror="this.replaceWith(Object.assign(document.createElement('div'), {className:'avatar-fallback'}))">
+            </div>
+
+            <div class="metrics">
+              ${measureOrder(row).map(key => `
+                <div class="metric ${purple ? 'purple' : ''}">
+                  <div class="metric-head">
+                    <i class="${measureIcons[key] || 'fa-solid fa-ruler'}"></i>
+                    <div class="metric-label">${measureLabels[key] || key}</div>
+                  </div>
+                  <div class="metric-value">${formatNumber(row.measures[key], 1)}<span>cm</span></div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderMeasureTab(rows) {
+      renderMeasureSelector(rows);
+      const periodRows = rowsWithMeasures(rows, selectedMeasurePeriod).sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'));
+
+      document.getElementById('measureCards').innerHTML = periodRows.map(renderMeasureCard).join('');
+
+      destroyChart('measureCompareChart');
+
+      const keys = ['peito', 'abdomem', 'cintura', 'quadril', 'coxa', 'braco'];
+
+      charts.measureCompareChart = new Chart(document.getElementById('measureCompareChart'), {
+        type: 'bar',
+        data: {
+          labels: periodRows.map(row => row.name),
+          datasets: keys.map((key, index) => ({
+            label: (measureLabels[key] || key).replace('<br>', ' '),
+            data: periodRows.map(row => Number.isFinite(row.measures[key]) ? row.measures[key] : null),
+            backgroundColor: ['rgba(40,200,255,.58)', 'rgba(191,134,255,.58)', 'rgba(245,158,11,.58)', 'rgba(34,197,94,.58)', 'rgba(239,68,68,.58)', 'rgba(148,163,184,.58)'][index],
+            borderRadius: 10
+          }))
+        },
+        options: baseChartOptions('cm')
       });
     }
 
@@ -1552,23 +1710,14 @@
     }
 
     function applySexDefaultSites() {
-      if (document.getElementById('sex').value === 'F') {
-        document.getElementById('site1Name').value = 'triceps';
-        document.getElementById('site2Name').value = 'suprailiac';
-        document.getElementById('site3Name').value = 'thigh';
-      } else {
-        document.getElementById('site1Name').value = 'chest';
-        document.getElementById('site2Name').value = 'abdomen';
-        document.getElementById('site3Name').value = 'thigh';
-      }
-    }
-
-    function exportDataToPortugueseJson(raw) {
-      return JSON.stringify(raw, null, 2);
+      const sex = document.getElementById('sex').value;
+      document.getElementById('site1Name').value = sex === 'F' ? 'triceps' : 'chest';
+      document.getElementById('site2Name').value = sex === 'F' ? 'suprailiac' : 'abdomen';
+      document.getElementById('site3Name').value = 'thigh';
     }
 
     function renderJson() {
-      document.getElementById('jsonOutput').value = exportDataToPortugueseJson(getRawMeasurements());
+      document.getElementById('jsonOutput').value = JSON.stringify(getRawMeasurements(), null, 2);
     }
 
     function renderAll() {
@@ -1578,23 +1727,30 @@
       renderSummary(rows);
       renderPersonCards(rows);
       renderPeriodTab(rows);
+      renderMeasureTab(rows);
       renderJson();
     }
 
     function showTab(tabId) {
-      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tabId));
+      document.querySelectorAll('.tab-btn').forEach(button => button.classList.toggle('active', button.dataset.tab === tabId));
       document.querySelectorAll('.section').forEach(section => section.classList.toggle('active', section.id === tabId));
-      setTimeout(() => renderAll(), 0);
+      setTimeout(renderAll, 0);
     }
 
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => showTab(btn.dataset.tab));
+    document.querySelectorAll('.tab-btn').forEach(button => {
+      button.addEventListener('click', () => showTab(button.dataset.tab));
     });
 
     document.getElementById('periodFilter').addEventListener('change', event => {
       selectedPeriod = event.target.value;
       renderAll();
       showTab('periodos');
+    });
+
+    document.getElementById('measurePeriodFilter').addEventListener('change', event => {
+      selectedMeasurePeriod = event.target.value;
+      renderAll();
+      showTab('medidas');
     });
 
     document.getElementById('sex').addEventListener('change', applySexDefaultSites);
@@ -1605,25 +1761,44 @@
       const name = document.getElementById('name').value.trim();
       const period = document.getElementById('date').value;
       const sex = document.getElementById('sex').value;
-      const age = numberOrNull(document.getElementById('age').value);
       const weight = numberOrNull(document.getElementById('weight').value);
-      const foldEntries = [
+
+      const data = {
+        idade: numberOrNull(document.getElementById('age').value),
+        sex,
+        peso: weight || 0
+      };
+
+      [
         [document.getElementById('site1Name').value, numberOrNull(document.getElementById('site1Value').value)],
         [document.getElementById('site2Name').value, numberOrNull(document.getElementById('site2Value').value)],
         [document.getElementById('site3Name').value, numberOrNull(document.getElementById('site3Value').value)]
-      ];
-
-      const data = { idade: age, sex, peso: weight || 0 };
-      foldEntries.forEach(([site, value]) => {
+      ].forEach(([site, value]) => {
         if (site && value !== null) data[siteToPortuguese[site] || site] = value;
       });
+
+      const medidas = {
+        peito: numberOrNull(document.getElementById('mChest').value),
+        abdomem: numberOrNull(document.getElementById('mAbdomen').value),
+        cintura: numberOrNull(document.getElementById('mWaist').value),
+        quadril: numberOrNull(document.getElementById('mHip').value),
+        coxa: numberOrNull(document.getElementById('mThigh').value),
+        braco: numberOrNull(document.getElementById('mArm').value)
+      };
+
+      Object.keys(medidas).forEach(key => {
+        if (medidas[key] === null) delete medidas[key];
+      });
+
+      if (Object.keys(medidas).length) data.medidas = medidas;
 
       saveLocalMeasurement(period, name, data);
       selectedPersonName = name;
       selectedPeriod = period;
+      selectedMeasurePeriod = period;
 
       event.target.reset();
-      document.getElementById('date').value = getLatestPeriod(getRows()) || '2026-05-17';
+      document.getElementById('date').value = getLatestPeriod(getRows()) || '2026-06-21';
       fillSiteSelects();
       applySexDefaultSites();
       renderAll();
@@ -1631,27 +1806,28 @@
     });
 
     document.getElementById('resetLocal').addEventListener('click', () => {
-      if (!confirm('Tem certeza que deseja apagar apenas as medições salvas neste navegador?')) return;
+      if (!confirm('Apagar apenas dados salvos neste navegador?')) return;
       localStorage.removeItem(STORAGE_KEY);
       selectedPersonName = null;
       selectedPeriod = null;
+      selectedMeasurePeriod = null;
       renderAll();
     });
 
     document.getElementById('exportJson').addEventListener('click', async () => {
-      const json = document.getElementById('jsonOutput').value;
       try {
-        await navigator.clipboard.writeText(json);
+        await navigator.clipboard.writeText(document.getElementById('jsonOutput').value);
         alert('JSON copiado para a área de transferência.');
       } catch (error) {
-        alert('Não foi possível copiar automaticamente. Selecione o texto do JSON e copie manualmente.');
+        alert('Selecione o texto do JSON e copie manualmente.');
       }
     });
 
     fillSiteSelects();
     applySexDefaultSites();
-    document.getElementById('date').value = getLatestPeriod(getRows()) || '2026-05-17';
+    document.getElementById('date').value = getLatestPeriod(getRows()) || '2026-06-21';
     selectedPeriod = getLatestPeriod(getRows());
+    selectedMeasurePeriod = selectedPeriod;
     renderAll();
   </script>
 </body>
