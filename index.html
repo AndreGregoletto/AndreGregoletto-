@@ -521,6 +521,168 @@
       line-height: 1.7;
     }
 
+
+    .workout-section {
+      margin: 18px 0;
+      padding: 18px;
+      border: 1px solid var(--line);
+      background: rgba(8,20,46,.42);
+      border-radius: 22px;
+    }
+
+    .workout-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+
+    .workout-head h3 {
+      margin: 0 0 6px;
+    }
+
+    .workout-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .workout-tab {
+      border: 1px solid var(--line);
+      background: rgba(8,20,46,.74);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 9px 13px;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .workout-tab.active {
+      border-color: rgba(40,200,255,.56);
+      background: linear-gradient(135deg, rgba(40,200,255,.20), rgba(191,134,255,.14));
+      color: #bfeeff;
+    }
+
+    .workout-pane {
+      display: none;
+    }
+
+    .workout-pane.active {
+      display: block;
+    }
+
+    .workout-day-title {
+      margin-bottom: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .workout-day-title strong {
+      color: var(--text);
+      font-size: 18px;
+    }
+
+    .workout-exercises {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    .exercise-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 220px;
+      gap: 14px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(10,27,58,.78), rgba(8,20,46,.82));
+      min-width: 0;
+    }
+
+    .exercise-card h4 {
+      margin: 0 0 10px;
+      font-size: 17px;
+      line-height: 1.25;
+    }
+
+    .exercise-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .exercise-meta span {
+      border: 1px solid rgba(40,200,255,.24);
+      background: rgba(40,200,255,.08);
+      color: #c9efff;
+      border-radius: 999px;
+      padding: 6px 9px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .exercise-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #9fe7ff;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .exercise-video {
+      width: 100%;
+      min-height: 132px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(2,8,23,.55);
+    }
+
+    .exercise-video iframe {
+      display: block;
+      width: 100%;
+      height: 132px;
+      border: 0;
+    }
+
+    .external-preview {
+      height: 132px;
+      display: grid;
+      place-items: center;
+      padding: 12px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    @media (max-width: 1120px) {
+      .workout-exercises {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .workout-head {
+        display: block;
+      }
+
+      .exercise-card {
+        grid-template-columns: 1fr;
+      }
+
+      .exercise-video iframe,
+      .external-preview {
+        height: 190px;
+      }
+    }
+
     .formula {
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       color: #dbeafe;
@@ -799,6 +961,273 @@
         'Felipe': { idade: 13, peito: 4, abdomem: 10, coxa: 16, peso: 60.05, medidas: { peito: 69, abdomem: 76, coxa: 50, braco: 22.5 } }
       }
     };
+
+    const TRAINING_PLANS = {
+      "Tia Mah": {
+            "titulo": "Treino feminino",
+            "observacao": "Treino importado do PDF Treino-woman. Cada aba representa um dia/treino.",
+            "dias": [
+                  {
+                        "codigo": "A",
+                        "nome": "Posterior & Glúteo",
+                        "exercicios": [
+                              {
+                                    "nome": "Mesa flexora",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/IXg1PQ_5gmw"
+                              },
+                              {
+                                    "nome": "Stiff",
+                                    "series": "3",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/raMtPJQ5f9A"
+                              },
+                              {
+                                    "nome": "Cadeira flexora",
+                                    "series": "3",
+                                    "repeticoes": "15",
+                                    "video": "https://www.youtube.com/shorts/T46yKiz8laY"
+                              },
+                              {
+                                    "nome": "Afundo búlgaro",
+                                    "series": "3",
+                                    "repeticoes": "10",
+                                    "video": "https://www.youtube.com/shorts/0KQOdTvfc5A"
+                              },
+                              {
+                                    "nome": "Cadeira adutora",
+                                    "series": "3",
+                                    "repeticoes": "15",
+                                    "video": "https://www.youtube.com/shorts/1aATfJITaIw"
+                              },
+                              {
+                                    "nome": "Elevação pélvica (máquina ou barra livre)",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/Nuoo1XgRtGY"
+                              }
+                        ]
+                  },
+                  {
+                        "codigo": "B",
+                        "nome": "Peito, Ombro & Tríceps",
+                        "exercicios": [
+                              {
+                                    "nome": "Supino reto",
+                                    "series": "4",
+                                    "repeticoes": "10",
+                                    "video": "https://www.youtube.com/shorts/hlV6f0kHmeo"
+                              },
+                              {
+                                    "nome": "Supino inclinado na máquina",
+                                    "series": "3",
+                                    "repeticoes": "10",
+                                    "video": "https://www.youtube.com/shorts/wW0sG8mXqO0"
+                              },
+                              {
+                                    "nome": "Elevação lateral",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/ot9nwSC1JnA"
+                              },
+                              {
+                                    "nome": "Elevação frontal",
+                                    "series": "3",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/GqZRmCow0rw"
+                              },
+                              {
+                                    "nome": "Tríceps corda",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/-QGC1cL6ETE"
+                              },
+                              {
+                                    "nome": "Abdominal (prancha)",
+                                    "series": "3",
+                                    "repeticoes": "30 seg",
+                                    "video": "https://www.youtube.com/shorts/uxPlAbWFUDs"
+                              },
+                              {
+                                    "nome": "Panturrilha (escada ou em pé)",
+                                    "series": "4",
+                                    "repeticoes": "15",
+                                    "video": "https://www.youtube.com/shorts/3afDSh_V0sg"
+                              }
+                        ]
+                  },
+                  {
+                        "codigo": "C",
+                        "nome": "Quadríceps e Glúteo",
+                        "exercicios": [
+                              {
+                                    "nome": "Agachamento",
+                                    "series": "4",
+                                    "repeticoes": "10",
+                                    "video": "https://www.youtube.com/shorts/1oipoiTpbJA"
+                              },
+                              {
+                                    "nome": "Hack machine",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/watch?v=SBBURLX8eKs"
+                              },
+                              {
+                                    "nome": "Leg press 45°",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/D9WR6PoMYxs"
+                              },
+                              {
+                                    "nome": "Afundo e passada",
+                                    "series": "3",
+                                    "repeticoes": "10",
+                                    "video": "https://www.youtube.com/shorts/JoZYP87WAp0"
+                              },
+                              {
+                                    "nome": "Cadeira extensora",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/PzIfB9MiiX8"
+                              },
+                              {
+                                    "nome": "Cadeira abdutora",
+                                    "series": "3",
+                                    "repeticoes": "15",
+                                    "video": "https://www.youtube.com/shorts/nabhYLtz8Gg"
+                              }
+                        ]
+                  },
+                  {
+                        "codigo": "D",
+                        "nome": "Costas & Bíceps",
+                        "exercicios": [
+                              {
+                                    "nome": "Remada aberta polia alta",
+                                    "series": "4",
+                                    "repeticoes": "10",
+                                    "video": "https://www.youtube.com/shorts/_2MfZAj98tk"
+                              },
+                              {
+                                    "nome": "Puxada triângulo polia",
+                                    "series": "3",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/ySLFHxmJ_Sc"
+                              },
+                              {
+                                    "nome": "Pull down",
+                                    "series": "3",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/GDhW19yQrJI"
+                              },
+                              {
+                                    "nome": "Rosca direta (cabo, halter ou barra W)",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/x6JCKfdzPJE"
+                              },
+                              {
+                                    "nome": "Abdominal (prancha)",
+                                    "series": "3",
+                                    "repeticoes": "60 seg",
+                                    "video": "https://www.youtube.com/shorts/uxPlAbWFUDs"
+                              },
+                              {
+                                    "nome": "Panturrilha (escada ou em pé)",
+                                    "series": "4",
+                                    "repeticoes": "20",
+                                    "video": "https://www.youtube.com/shorts/3afDSh_V0sg"
+                              }
+                        ]
+                  },
+                  {
+                        "codigo": "E",
+                        "nome": "Full inferiores leve — ênfase glúteo",
+                        "exercicios": [
+                              {
+                                    "nome": "Elevação pélvica (máquina ou barra livre)",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/Nuoo1XgRtGY"
+                              },
+                              {
+                                    "nome": "Glúteo no cabo",
+                                    "series": "3",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/XqQlpJhB8xU"
+                              },
+                              {
+                                    "nome": "Cadeira abdutora",
+                                    "series": "3",
+                                    "repeticoes": "20",
+                                    "video": "https://www.youtube.com/shorts/nabhYLtz8Gg"
+                              },
+                              {
+                                    "nome": "Cadeira flexora",
+                                    "series": "3",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/T46yKiz8laY"
+                              },
+                              {
+                                    "nome": "Mesa flexora",
+                                    "series": "3",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/IXg1PQ_5gmw"
+                              },
+                              {
+                                    "nome": "Cardio (bicicleta, escada ou esteira)",
+                                    "series": "20",
+                                    "repeticoes": "30 min",
+                                    "video": "https://i.pinimg.com/originals/e6/9a/ca/e69acae1176c249d95dcea23f85381c9.jpg"
+                              }
+                        ]
+                  },
+                  {
+                        "codigo": "F",
+                        "nome": "Dia de estímulo — Glúteo, abdômen e cardio",
+                        "exercicios": [
+                              {
+                                    "nome": "Elevação pélvica (máquina ou barra livre)",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/Nuoo1XgRtGY"
+                              },
+                              {
+                                    "nome": "Cadeira adutora",
+                                    "series": "3",
+                                    "repeticoes": "15",
+                                    "video": "https://www.youtube.com/shorts/1aATfJITaIw"
+                              },
+                              {
+                                    "nome": "Cadeira abdutora",
+                                    "series": "3",
+                                    "repeticoes": "20",
+                                    "video": "https://www.youtube.com/shorts/nabhYLtz8Gg"
+                              },
+                              {
+                                    "nome": "Glúteo no cabo",
+                                    "series": "3",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/XqQlpJhB8xU"
+                              },
+                              {
+                                    "nome": "Abdominal (prancha)",
+                                    "series": "3",
+                                    "repeticoes": "60 seg",
+                                    "video": "https://www.youtube.com/shorts/uxPlAbWFUDs"
+                              },
+                              {
+                                    "nome": "Cardio (bicicleta, escada ou esteira)",
+                                    "series": "20",
+                                    "repeticoes": "30 min",
+                                    "video": "https://i.pinimg.com/originals/e6/9a/ca/e69acae1176c249d95dcea23f85381c9.jpg"
+                              }
+                        ]
+                  }
+            ]
+      }
+};
 
     const AVATARS = {
       andre: 'assets/andre.png',
@@ -1359,6 +1788,139 @@
       renderPersonDetail(rows, selectedPersonName);
     }
 
+
+    function youtubeEmbedUrl(url) {
+      if (!url) return null;
+
+      let id = null;
+
+      if (url.includes('youtube.com/shorts/')) {
+        id = url.split('youtube.com/shorts/')[1].split(/[?&/]/)[0];
+      } else if (url.includes('youtube.com/watch')) {
+        try {
+          id = new URL(url).searchParams.get('v');
+        } catch (error) {
+          id = null;
+        }
+      } else if (url.includes('youtu.be/')) {
+        id = url.split('youtu.be/')[1].split(/[?&/]/)[0];
+      }
+
+      return id ? `https://www.youtube.com/embed/${id}` : null;
+    }
+
+    function renderWorkoutVideo(url, title) {
+      const embed = youtubeEmbedUrl(url);
+
+      if (embed) {
+        return `
+          <div class="exercise-video">
+            <iframe
+              src="${embed}"
+              title="${title}"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="exercise-video">
+          <div class="external-preview">
+            <div>
+              <i class="fa-solid fa-image" style="font-size:24px;margin-bottom:8px;color:#9fe7ff;"></i><br>
+              Referência externa
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderWorkoutSection(personName) {
+      const plan = TRAINING_PLANS[personName];
+
+      if (!plan) {
+        return `
+          <section class="workout-section">
+            <div class="workout-head">
+              <div>
+                <h3>Treino</h3>
+                <div class="muted">Nenhum treino cadastrado para esta pessoa ainda.</div>
+              </div>
+            </div>
+            <p class="muted">Para adicionar futuramente, inclua uma chave com o nome da pessoa dentro do objeto <strong>TRAINING_PLANS</strong>.</p>
+          </section>
+        `;
+      }
+
+      return `
+        <section class="workout-section" data-workout-section>
+          <div class="workout-head">
+            <div>
+              <h3>${plan.titulo || 'Treino'}</h3>
+              <div class="muted">${plan.observacao || 'Treino cadastrado no objeto dinâmico.'}</div>
+            </div>
+            <div class="badge-status good">${plan.dias.length} dias</div>
+          </div>
+
+          <div class="workout-tabs">
+            ${plan.dias.map((day, index) => `
+              <button type="button" class="workout-tab ${index === 0 ? 'active' : ''}" data-workout-tab="${index}">
+                Treino ${day.codigo}
+              </button>
+            `).join('')}
+          </div>
+
+          <div class="workout-panes">
+            ${plan.dias.map((day, index) => `
+              <div class="workout-pane ${index === 0 ? 'active' : ''}" data-workout-pane="${index}">
+                <div class="workout-day-title">
+                  <strong>Treino ${day.codigo} | ${day.nome}</strong><br>
+                  ${day.exercicios.length} exercícios cadastrados
+                </div>
+
+                <div class="workout-exercises">
+                  ${day.exercicios.map(exercise => `
+                    <article class="exercise-card">
+                      <div>
+                        <h4>${exercise.nome}</h4>
+                        <div class="exercise-meta">
+                          <span>Séries: ${exercise.series}</span>
+                          <span>Reps/tempo: ${exercise.repeticoes}</span>
+                        </div>
+                        <a class="exercise-link" href="${exercise.video}" target="_blank" rel="noopener">
+                          <i class="fa-brands fa-youtube"></i>
+                          Abrir referência
+                        </a>
+                      </div>
+                      ${renderWorkoutVideo(exercise.video, exercise.nome)}
+                    </article>
+                  `).join('')}
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </section>
+      `;
+    }
+
+    function bindWorkoutTabs() {
+      document.querySelectorAll('[data-workout-section]').forEach(section => {
+        const tabs = section.querySelectorAll('[data-workout-tab]');
+        const panes = section.querySelectorAll('[data-workout-pane]');
+
+        tabs.forEach(tab => {
+          tab.addEventListener('click', () => {
+            const index = tab.getAttribute('data-workout-tab');
+
+            tabs.forEach(item => item.classList.toggle('active', item === tab));
+            panes.forEach(pane => pane.classList.toggle('active', pane.getAttribute('data-workout-pane') === index));
+          });
+        });
+      });
+    }
+
     function renderPersonDetail(rows, name) {
       const personRows = rows.filter(row => row.name === name).sort((a, b) => a.period.localeCompare(b.period));
       const latest = [...personRows].reverse().find(row => row.measured) || personRows[personRows.length - 1];
@@ -1405,6 +1967,8 @@
           </div>
         </div>
 
+        ${renderWorkoutSection(name)}
+
         <h3>Dados por período</h3>
         <div class="table-wrap">
           <table>
@@ -1440,6 +2004,7 @@
         </div>
       `;
 
+      bindWorkoutTabs();
       renderIndividualCharts(personRows);
     }
 
