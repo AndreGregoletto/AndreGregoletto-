@@ -399,6 +399,14 @@
     let selectedPeriod = null;
     let selectedMeasurePeriod = null;
     let selectedReportPerson = null;
+    let selectedComparePeriod = null;
+    let selectedComparePersonA = null;
+    let selectedComparePersonB = null;
+
+    const BODY_FAT_REFERENCE = {
+      M: [{ label: 'Atleta', min: 6, max: 13 }, { label: 'Fitness', min: 14, max: 17 }, { label: 'Sobrepeso / faixa media', min: 18, max: 24 }, { label: 'Obesidade', min: 25, max: 40 }],
+      F: [{ label: 'Atleta', min: 14, max: 20 }, { label: 'Fitness', min: 21, max: 24 }, { label: 'Sobrepeso', min: 25, max: 31 }, { label: 'Obesidade', min: 32, max: 45 }]
+    };
 
     function numberOrNull(value) {
       if (value === null || value === undefined || value === '') return null;
@@ -895,11 +903,23 @@
         id = url.split('youtu.be/')[1].split(/[?&/]/)[0];
       }
 
-      return id ? `https://www.youtube-nocookie.com/embed/${id}` : null;
+      return id ? `https://www.youtube.com/embed/${id}?rel=0` : null;
     }
 
     function renderWorkoutVideo(url, title) {
       const embed = youtubeEmbedUrl(url);
+
+      if (embed && location.protocol === 'file:') {
+        const videoId = embed.split('/embed/')[1].split('?')[0];
+        return `
+          <div class="exercise-video local-video-preview">
+            <a href="${url}" target="_blank" rel="noopener" aria-label="Abrir ${title} no YouTube">
+              <img src="https://i.ytimg.com/vi/${videoId}/hqdefault.jpg" alt="Miniatura do vídeo: ${title}">
+              <span><i class="fa-brands fa-youtube"></i> Abrir vídeo no YouTube</span>
+            </a>
+          </div>
+        `;
+      }
 
       if (embed) {
         return `
@@ -908,8 +928,10 @@
               src="${embed}"
               title="${title}"
               loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowfullscreen></iframe>
+            <a class="exercise-preview-link" href="${url}" target="_blank" rel="noopener">Abrir vídeo no YouTube</a>
           </div>
         `;
       }
@@ -1440,6 +1462,51 @@
       const keys = ['peito', 'abdomem', 'cintura', 'quadril', 'coxa', 'braco'];
       charts.reportMeasuresChart = new Chart(document.getElementById('reportMeasuresChart'), { type: 'bar', data: { labels: keys.map(key => (measureLabels[key] || key).replace('<br>', ' ')), datasets: [{ label: 'Anterior', data: keys.map(key => previous?.measures[key] ?? null), backgroundColor: 'rgba(148,163,184,.55)', borderRadius: 8 }, { label: 'Atual', data: keys.map(key => latest?.measures[key] ?? null), backgroundColor: 'rgba(40,200,255,.65)', borderRadius: 8 }] }, options: baseChartOptions(' cm') });
     }
+    function rowForComparison(rows, period, name) {
+      return rows.find(row => row.period === period && row.name === name) || null;
+    }
+
+    function comparisonValue(row, key) {
+      if (!row) return null;
+      if (key === 'weight') return row.weight > 0 ? row.weight : null;
+      return Number.isFinite(row[key]) ? row[key] : null;
+    }
+
+    function renderComparisonTab(rows) {
+      const periodSelect = document.getElementById('comparePeriodFilter');
+      const personASelect = document.getElementById('comparePersonA');
+      const personBSelect = document.getElementById('comparePersonB');
+      if (!periodSelect || !personASelect || !personBSelect) return;
+      const periods = getPeriods(rows), people = getPeople(rows);
+      if (!selectedComparePeriod || !periods.includes(selectedComparePeriod)) selectedComparePeriod = getLatestPeriod(rows);
+      if (!selectedComparePersonA || !people.includes(selectedComparePersonA)) selectedComparePersonA = people[0] || null;
+      if (!selectedComparePersonB || !people.includes(selectedComparePersonB) || selectedComparePersonB === selectedComparePersonA) selectedComparePersonB = people.find(name => name !== selectedComparePersonA) || selectedComparePersonA;
+      periodSelect.innerHTML = periods.map(period => `<option value="${period}">${formatPeriod(period)}</option>`).join(''); periodSelect.value = selectedComparePeriod || '';
+      [personASelect, personBSelect].forEach(select => { select.innerHTML = people.map(name => `<option value="${name}">${name}</option>`).join(''); });
+      personASelect.value = selectedComparePersonA || ''; personBSelect.value = selectedComparePersonB || '';
+      const a = rowForComparison(rows, selectedComparePeriod, selectedComparePersonA), b = rowForComparison(rows, selectedComparePeriod, selectedComparePersonB);
+      const kpis = document.getElementById('compareKpis');
+      if (kpis) kpis.innerHTML = [a, b].map(row => `<div class="mini-stat"><span>${row?.name || 'Pessoa'}</span><strong>${formatPercent(row?.bf)}</strong><small>${formatKg(row?.weight)} · ${formatMm(row?.sum)}</small></div>`).join('');
+      ['compareBfChart', 'compareWeightChart', 'compareFoldsChart', 'compareMeasuresChart'].forEach(destroyChart);
+      const labels = [selectedComparePersonA, selectedComparePersonB];
+      const makeBar = (id, label, values, suffix, colors) => { const canvas = document.getElementById(id); if (!canvas) return; charts[id] = new Chart(canvas, { type: 'bar', data: { labels, datasets: [{ label, data: values, backgroundColor: colors, borderRadius: 8 }] }, options: baseChartOptions(suffix) }); };
+      makeBar('compareBfChart', 'BF%', [comparisonValue(a, 'bf'), comparisonValue(b, 'bf')], '%', ['rgba(40,200,255,.75)', 'rgba(191,134,255,.75)']);
+      makeBar('compareWeightChart', 'Peso', [comparisonValue(a, 'weight'), comparisonValue(b, 'weight')], ' kg', ['rgba(34,197,94,.75)', 'rgba(245,158,11,.75)']);
+      makeBar('compareFoldsChart', 'Soma', [comparisonValue(a, 'sum'), comparisonValue(b, 'sum')], ' mm', ['rgba(244,114,182,.75)', 'rgba(251,146,60,.75)']);
+      const measureKeys = [...new Set([...Object.keys(a?.measures || {}), ...Object.keys(b?.measures || {})])];
+      const measureCanvas = document.getElementById('compareMeasuresChart');
+      if (measureCanvas && measureKeys.length) charts.compareMeasuresChart = new Chart(measureCanvas, { type: 'bar', data: { labels: measureKeys.map(key => measureLabels[key] || key), datasets: [{ label: selectedComparePersonA, data: measureKeys.map(key => a?.measures[key] ?? null), backgroundColor: 'rgba(40,200,255,.75)', borderRadius: 8 }, { label: selectedComparePersonB, data: measureKeys.map(key => b?.measures[key] ?? null), backgroundColor: 'rgba(191,134,255,.75)', borderRadius: 8 }] }, options: baseChartOptions(' cm') });
+    }
+
+    function renderReferenceTab() {
+      const renderRows = values => values.map(item => `<tr><td>${item.label}</td><td>${item.min}% a ${item.max}%</td></tr>`).join('');
+      const men = BODY_FAT_REFERENCE.M, women = BODY_FAT_REFERENCE.F;
+      const menRows = document.getElementById('referenceMenRows'), womenRows = document.getElementById('referenceWomenRows');
+      if (!menRows || !womenRows) return;
+      menRows.innerHTML = renderRows(men); womenRows.innerHTML = renderRows(women);
+      [['referenceMenChart', 'Homens', men], ['referenceWomenChart', 'Mulheres', women]].forEach(([id, label, values]) => { destroyChart(id); const canvas = document.getElementById(id); if (!canvas) return; charts[id] = new Chart(canvas, { type: 'bar', data: { labels: values.map(item => item.label), datasets: [{ label: `${label} - limite inferior`, data: values.map(item => item.min), backgroundColor: 'rgba(40,200,255,.65)', borderRadius: 6 }, { label: 'limite superior', data: values.map(item => item.max), backgroundColor: 'rgba(191,134,255,.65)', borderRadius: 6 }] }, options: baseChartOptions('%') }); });
+    }
+
     function renderAll() {
       const rows = getRows();
       renderKpis(rows);
@@ -1450,6 +1517,8 @@
       renderMeasureTab(rows);
       renderTrainingTab(rows);
       renderDetailedReports(rows);
+      renderComparisonTab(rows);
+      renderReferenceTab();
     }
 
     function showTab(tabId) {
@@ -1474,6 +1543,9 @@
       showTab('medidas');
     });
     document.getElementById('reportPersonFilter').addEventListener('change', event => { selectedReportPerson = event.target.value; renderAll(); showTab('relatorios'); });
+    document.getElementById('comparePeriodFilter').addEventListener('change', event => { selectedComparePeriod = event.target.value; renderAll(); showTab('comparacao'); });
+    document.getElementById('comparePersonA').addEventListener('change', event => { selectedComparePersonA = event.target.value; renderAll(); showTab('comparacao'); });
+    document.getElementById('comparePersonB').addEventListener('change', event => { selectedComparePersonB = event.target.value; renderAll(); showTab('comparacao'); });
 
     loadMeasurements()
       .then(() => {
