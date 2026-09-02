@@ -395,8 +395,10 @@
     const siteOptions = Object.entries(siteLabels);
     const charts = {};
     let selectedPersonName = null;
+    let selectedTrainingPersonName = null;
     let selectedPeriod = null;
     let selectedMeasurePeriod = null;
+    let selectedReportPerson = null;
 
     function numberOrNull(value) {
       if (value === null || value === undefined || value === '') return null;
@@ -825,6 +827,15 @@
     }
 
     function renderSummary(rows) {
+      const summaryKpis = document.getElementById('summaryKpis');
+      if (summaryKpis) {
+        const latest = getLatestPeriod(rows);
+        const latestRows = rows.filter(row => row.period === latest);
+        const calculated = latestRows.filter(row => Number.isFinite(row.bf)).length;
+        const deltas = latestRows.filter(row => Number.isFinite(row.deltaBf));
+        const averageDelta = deltas.length ? deltas.reduce((sum, row) => sum + row.deltaBf, 0) / deltas.length : null;
+        summaryKpis.innerHTML = `<div class="mini-stat"><span>Último período</span><strong>${formatPeriod(latest)}</strong></div><div class="mini-stat"><span>BF% calculável</span><strong>${calculated}/${latestRows.length}</strong></div><div class="mini-stat"><span>Variação média recente</span><strong>${deltaText(averageDelta)}</strong></div>`;
+      }
       document.getElementById('summaryRows').innerHTML = [...rows]
         .sort((a, b) => b.period.localeCompare(a.period) || a.name.localeCompare(b.name, 'pt-BR'))
         .map(row => `
@@ -918,19 +929,7 @@
     function renderWorkoutSection(personName) {
       const plan = TRAINING_PLANS[personName];
 
-      if (!plan) {
-        return `
-          <section class="workout-section">
-            <div class="workout-head">
-              <div>
-                <h3>Treino</h3>
-                <div class="muted">Nenhum treino cadastrado para esta pessoa ainda.</div>
-              </div>
-            </div>
-            <p class="muted">Para adicionar futuramente, inclua uma chave com o nome da pessoa dentro do objeto <strong>TRAINING_PLANS</strong>.</p>
-          </section>
-        `;
-      }
+      if (!plan) return '';
 
       return `
         <section class="workout-section" data-workout-section>
@@ -1399,17 +1398,17 @@
       const content = document.getElementById('trainingContent');
       if (!cards || !content) return;
       const available = people.filter(name => TRAINING_PLANS[name]);
-      if (!selectedPersonName || !TRAINING_PLANS[selectedPersonName]) selectedPersonName = available[0] || null;
-      cards.innerHTML = available.map(name => `<button type="button" class="person-card ${name === selectedPersonName ? 'active' : ''}" data-training-person="${name}"><strong>${name}</strong><small>${TRAINING_PLANS[name].titulo}</small></button>`).join('');
-      content.innerHTML = selectedPersonName ? `
+      if (!selectedTrainingPersonName || !TRAINING_PLANS[selectedTrainingPersonName]) selectedTrainingPersonName = available[0] || null;
+      cards.innerHTML = available.map(name => `<button type="button" class="person-card ${name === selectedTrainingPersonName ? 'active' : ''}" data-training-person="${name}"><strong>${name}</strong><small>${TRAINING_PLANS[name].titulo}</small></button>`).join('');
+      content.innerHTML = selectedTrainingPersonName ? `
         <div class="workout-tabs training-view-tabs" role="tablist" aria-label="Seções do treinamento">
           <button type="button" class="workout-tab active" data-training-view="plan">Plano de treino</button>
           <button type="button" class="workout-tab" data-training-view="evolution">Evolução</button>
         </div>
-        <div data-training-pane="plan">${renderWorkoutSection(selectedPersonName)}</div>
-        <div data-training-pane="evolution" hidden>${renderTrainingProgress(selectedPersonName)}</div>` : '<p class="note">Nenhum treinamento cadastrado.</p>';
+        <div data-training-pane="plan">${renderWorkoutSection(selectedTrainingPersonName)}</div>
+        <div data-training-pane="evolution" hidden>${renderTrainingProgress(selectedTrainingPersonName)}</div>` : '<p class="note">Nenhum treinamento cadastrado.</p>';
       cards.querySelectorAll('[data-training-person]').forEach(card => card.addEventListener('click', () => {
-        selectedPersonName = card.dataset.trainingPerson;
+        selectedTrainingPersonName = card.dataset.trainingPerson;
         renderTrainingTab(rows);
       }));
       content.querySelectorAll('[data-training-view]').forEach(tab => tab.addEventListener('click', () => {
@@ -1420,11 +1419,27 @@
       bindWorkoutTabs();
       const progressSelect = content.querySelector('#progressExerciseSelect');
       if (progressSelect) {
-        progressSelect.addEventListener('change', () => renderProgressVisual(selectedPersonName, progressSelect.value));
-        renderProgressVisual(selectedPersonName, progressSelect.value);
+        progressSelect.addEventListener('change', () => renderProgressVisual(selectedTrainingPersonName, progressSelect.value));
+        renderProgressVisual(selectedTrainingPersonName, progressSelect.value);
       }
     }
 
+
+    function renderDetailedReports(rows) {
+      const select = document.getElementById('reportPersonFilter'); const kpis = document.getElementById('reportKpis'); const history = document.getElementById('reportHistoryRows');
+      if (!select || !kpis || !history) return;
+      const people = getPeople(rows); if (!selectedReportPerson || !people.includes(selectedReportPerson)) selectedReportPerson = people[0] || null;
+      select.innerHTML = people.map(name => `<option value="${name}">${name}</option>`).join(''); select.value = selectedReportPerson || '';
+      const personRows = rows.filter(row => row.name === selectedReportPerson).sort((a, b) => a.period.localeCompare(b.period)); const latest = personRows.at(-1); const previous = personRows.at(-2);
+      const bfDelta = latest && previous && Number.isFinite(latest.bf) && Number.isFinite(previous.bf) ? latest.bf - previous.bf : null; const weightDelta = latest && previous && latest.weight > 0 && previous.weight > 0 ? latest.weight - previous.weight : null;
+      kpis.innerHTML = `<div class="mini-stat"><span>Último BF%</span><strong>${formatPercent(latest?.bf)}</strong></div><div class="mini-stat"><span>Variação recente</span><strong>${deltaText(bfDelta)}</strong></div><div class="mini-stat"><span>Variação de peso</span><strong>${deltaText(weightDelta, ' kg')}</strong></div>`;
+      history.innerHTML = [...personRows].reverse().map(row => `<tr><td>${formatPeriod(row.period)}</td><td><strong>${formatPercent(row.bf)}</strong></td><td>${deltaText(row.deltaBf)}</td><td>${formatKg(row.weight)}</td><td>${formatMm(row.sum)}</td><td>${measuresText(row.measures)}</td><td>${badge(row)}</td></tr>`).join('');
+      ['reportBfChart', 'reportWeightChart', 'reportMeasuresChart'].forEach(destroyChart);
+      charts.reportBfChart = new Chart(document.getElementById('reportBfChart'), { type: 'line', data: { labels: personRows.map(row => shortPeriod(row.period)), datasets: [{ label: 'BF%', data: personRows.map(row => row.bf), borderColor: '#28c8ff', backgroundColor: 'rgba(40,200,255,.16)', fill: true, tension: .3 }] }, options: baseChartOptions('%', false) });
+      charts.reportWeightChart = new Chart(document.getElementById('reportWeightChart'), { type: 'line', data: { labels: personRows.map(row => shortPeriod(row.period)), datasets: [{ label: 'Peso', data: personRows.map(row => row.weight > 0 ? row.weight : null), borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,.16)', fill: true, tension: .3 }] }, options: baseChartOptions(' kg', false) });
+      const keys = ['peito', 'abdomem', 'cintura', 'quadril', 'coxa', 'braco'];
+      charts.reportMeasuresChart = new Chart(document.getElementById('reportMeasuresChart'), { type: 'bar', data: { labels: keys.map(key => (measureLabels[key] || key).replace('<br>', ' ')), datasets: [{ label: 'Anterior', data: keys.map(key => previous?.measures[key] ?? null), backgroundColor: 'rgba(148,163,184,.55)', borderRadius: 8 }, { label: 'Atual', data: keys.map(key => latest?.measures[key] ?? null), backgroundColor: 'rgba(40,200,255,.65)', borderRadius: 8 }] }, options: baseChartOptions(' cm') });
+    }
     function renderAll() {
       const rows = getRows();
       renderKpis(rows);
@@ -1434,11 +1449,12 @@
       renderPeriodTab(rows);
       renderMeasureTab(rows);
       renderTrainingTab(rows);
+      renderDetailedReports(rows);
     }
 
     function showTab(tabId) {
-      document.querySelectorAll('.tab-btn').forEach(button => button.classList.toggle('active', button.dataset.tab === tabId));
-      document.querySelectorAll('.section').forEach(section => section.classList.toggle('active', section.id === tabId));
+      document.querySelectorAll('.tab-btn').forEach(button => { const active = button.dataset.tab === tabId; button.classList.toggle('active', active); button.setAttribute('aria-selected', String(active)); });
+      document.querySelectorAll('.section').forEach(section => { const active = section.id === tabId; section.classList.toggle('active', active); section.toggleAttribute('hidden', !active); });
       setTimeout(renderAll, 0);
     }
 
@@ -1457,6 +1473,8 @@
       renderAll();
       showTab('medidas');
     });
+    document.getElementById('reportPersonFilter').addEventListener('change', event => { selectedReportPerson = event.target.value; renderAll(); showTab('relatorios'); });
+
     loadMeasurements()
       .then(() => {
         selectedPeriod = getLatestPeriod(getRows());

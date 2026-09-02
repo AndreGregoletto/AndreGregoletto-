@@ -734,11 +734,19 @@
       .profile-badge { min-width: 0; width: 100%; }
       .measure-title { font-size: 26px; }
     }
+
+    .skip-link { position: fixed; left: 12px; top: -60px; z-index: 20; padding: 12px 16px; border-radius: 12px; color: var(--bg); background: var(--cyan); font-weight: 800; text-decoration: none; }
+    .skip-link:focus { top: 12px; }
+    main:focus { outline: none; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
+    @media (max-width: 480px) { .progress-timeline-item { grid-template-columns: 1fr; gap: 5px; } .workout-tabs { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; } .workout-tab { flex: 0 0 auto; min-height: 44px; } }
+    @media print { .tabs, .skip-link, .exercise-video, .chart-wrap canvas { display: none !important; } .section { display: block !important; } .panel, .measure-card, .workout-section, .exercise-card { box-shadow: none; background: #fff; color: #111; border-color: #bbb; } }
   </style>
 </head>
 
 <body>
-  <main class="container">
+  <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
+  <main class="container" id="main-content" tabindex="-1">
     <section class="hero">
       <div class="hero-main">
         <span class="eyebrow">📏 Adipômetro • BF • Medidas corporais</span>
@@ -750,7 +758,7 @@
       <aside class="hero-side" id="kpiBox"></aside>
     </section>
 
-    <nav class="tabs">
+    <nav class="tabs" aria-label="Seções da consulta">
       <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
       <button class="tab-btn" data-tab="individual">Consulta individual</button>
       <button class="tab-btn" data-tab="treinamento">Treinamento</button>
@@ -788,6 +796,8 @@
 
       <article class="panel" style="margin-top:18px">
         <h2>Resumo das medições</h2>
+        <p class="muted">Visão completa por pessoa e período. Use Relatórios detalhados para acompanhar uma pessoa individualmente.</p>
+        <div class="grid-3" id="summaryKpis" style="margin-bottom:14px"></div>
         <div class="table-wrap">
           <table>
             <thead>
@@ -811,6 +821,16 @@
       </article>
     </section>
 
+
+    <section id="relatorios" class="section">
+      <article class="panel">
+        <div class="detail-header"><div><h2>Relatórios detalhados</h2><p class="muted">Acompanhe a evolução de uma pessoa entre todos os períodos registrados.</p></div><div style="min-width:220px"><label for="reportPersonFilter">Pessoa</label><select id="reportPersonFilter"></select></div></div>
+        <div class="grid-3" id="reportKpis"></div>
+      </article>
+      <div class="grid-2" style="margin-top:18px"><article class="panel"><h3>Evolução de BF%</h3><div class="chart-wrap"><canvas id="reportBfChart"></canvas></div></article><article class="panel"><h3>Evolução de peso</h3><div class="chart-wrap"><canvas id="reportWeightChart"></canvas></div></article></div>
+      <article class="panel" style="margin-top:18px"><h3>Medidas: último período x anterior</h3><div class="chart-wrap"><canvas id="reportMeasuresChart"></canvas></div></article>
+      <article class="panel" style="margin-top:18px"><h3>Histórico da pessoa</h3><div class="table-wrap"><table><thead><tr><th>Período</th><th>BF%</th><th>Variação</th><th>Peso</th><th>Soma das dobras</th><th>Medidas</th><th>Status</th></tr></thead><tbody id="reportHistoryRows"></tbody></table></div></article>
+    </section>
     <section id="individual" class="section">
       <article class="panel">
         <h2>Consulta individual</h2>
@@ -844,10 +864,6 @@
 
         <div class="measure-grid" id="measureCards"></div>
 
-        <div class="measure-note">
-          <strong>Importante:</strong> para abrir localmente no navegador, mantenha o arquivo <strong>index.html</strong> junto da pasta <strong>assets</strong>.
-          Se subir no GitHub Pages, envie a pasta inteira. Assim não haverá erro de imagem <code>undefined</code>.
-        </div>
       </article>
 
       <article class="panel" style="margin-top:18px">
