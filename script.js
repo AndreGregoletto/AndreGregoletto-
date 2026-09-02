@@ -265,8 +265,70 @@
                         ]
                   }
             ]
+      },
+      "Titio Douglas": {
+        "titulo": "Treino conjunto — Upper / Lower / Fullbody",
+        "observacao": "Manual de Treino — Ciclo de 8 Semanas. Rotina compartilhada com André.",
+        "dias": [
+          {"codigo": "Upper", "nome": "Upper — segunda-feira", "exercicios": [
+            {"nome": "Fly", "series": "3 x 12"}, {"nome": "Supino reto", "series": "3 x 12"}, {"nome": "Remada alta supinada", "series": "3 x 12"}, {"nome": "Remada baixa triângulo", "series": "3 x 12"}, {"nome": "Desenvolvimento máquina", "series": "3 x 12"}, {"nome": "Elevação lateral", "series": "3 x 12-15"}, {"nome": "Tríceps paralela", "series": "3 x 10-12"}, {"nome": "Rosca W", "series": "3 x 12"}
+          ]},
+          {"codigo": "Lower", "nome": "Lower — quinta-feira", "exercicios": [
+            {"nome": "Leg press", "series": "4 x 10"}, {"nome": "Agachamento sumô", "series": "3 x 12"}, {"nome": "Cadeira flexora", "series": "3 x 12"}, {"nome": "Cadeira extensora", "series": "3 x 12"}
+          ]},
+          {"codigo": "Fullbody", "nome": "Fullbody — sábado", "exercicios": [
+            {"nome": "Supino reto", "series": "3 x 12"}, {"nome": "Fly", "series": "3 x 12"}, {"nome": "Puxada alta individual", "series": "3 x 12"}, {"nome": "Remada baixa triângulo", "series": "3 x 12"}, {"nome": "Elevação lateral", "series": "3 x 12-15"}, {"nome": "Tríceps paralela", "series": "3 x 10"}, {"nome": "Rosca Scott", "series": "3 x 12"}, {"nome": "Cadeira flexora", "series": "4 x 8"}, {"nome": "Cadeira extensora", "series": "4 x 10"}
+          ]}
+        ]
+      },
+      "André": {
+        "titulo": "Manual de Treino — Ciclo de 8 Semanas",
+        "observacao": "Rotina completa de segunda a domingo. Progressão planejada para força, hipertrofia e condicionamento.",
+        "dias": [
+          {"codigo": "Domingo", "nome": "Cardio longo / recuperação", "exercicios": [
+            {"nome": "Corrida Z2", "series": "45-70 min"}, {"nome": "Mobilidade", "series": "10-15 min"}
+          ]},
+          {"codigo": "Upper", "nome": "Upper — segunda-feira", "exercicios": [
+            {"nome": "Fly", "series": "3 x 12"}, {"nome": "Supino reto", "series": "3 x 12"}, {"nome": "Remada alta supinada", "series": "3 x 12"}, {"nome": "Remada baixa triângulo", "series": "3 x 12"}, {"nome": "Desenvolvimento máquina", "series": "3 x 12"}, {"nome": "Elevação lateral", "series": "3 x 12-15"}, {"nome": "Tríceps paralela", "series": "3 x 10-12"}, {"nome": "Rosca W", "series": "3 x 12"}
+          ]},
+          {"codigo": "Terça", "nome": "Terra + posterior + grip", "exercicios": [
+            {"nome": "Levantamento terra", "series": "Conforme tabela de progressão"}, {"nome": "Terra romeno", "series": "3 x 8-10"}, {"nome": "Cadeira flexora", "series": "3 x 10-12"}, {"nome": "Panturrilha", "series": "4 x 12-20"}, {"nome": "Sustentação de barra / grip", "series": "3 séries"}
+          ]},
+          {"codigo": "Quarta", "nome": "Ombros + cardio de qualidade", "exercicios": [
+            {"nome": "Desenvolvimento militar", "series": "Conforme tabela de progressão"}, {"nome": "Elevação lateral na polia", "series": "4 x 10-15"}, {"nome": "Crucifixo invertido", "series": "4 x 12-15"}, {"nome": "Face pull", "series": "3 x 12-15"}, {"nome": "Cardio", "series": "Conforme tabela"}
+          ]},
+          {"codigo": "Lower", "nome": "Lower — quinta-feira", "exercicios": [
+            {"nome": "Leg press", "series": "4 x 10"}, {"nome": "Agachamento sumô", "series": "3 x 12"}, {"nome": "Cadeira flexora", "series": "3 x 12"}, {"nome": "Cadeira extensora", "series": "3 x 12"}, {"nome": "Cadeira abdutora", "series": "3 x 12-15"}, {"nome": "Cadeira adutora", "series": "3 x 12-15"}, {"nome": "Panturrilha", "series": "3-4 x 15-20"}
+          ]},
+          {"codigo": "Sexta", "nome": "Agachamento + core + cardio leve", "exercicios": [
+            {"nome": "Agachamento livre", "series": "Conforme tabela de progressão"}, {"nome": "Búlgaro livre", "series": "3 x 8-12"}, {"nome": "Extensão lombar ou reverse hyper", "series": "3 x 10-15"}, {"nome": "Abdominal / core", "series": "3-4 séries"}, {"nome": "Cardio Z2", "series": "25-40 min"}
+          ]},
+          {"codigo": "Fullbody", "nome": "Fullbody — sábado", "exercicios": [
+            {"nome": "Supino reto", "series": "3 x 12"}, {"nome": "Fly", "series": "3 x 12"}, {"nome": "Puxada alta individual", "series": "3 x 12"}, {"nome": "Remada baixa triângulo", "series": "3 x 12"}, {"nome": "Elevação lateral", "series": "3 x 12-15"}, {"nome": "Tríceps paralela", "series": "3 x 10"}, {"nome": "Rosca Scott", "series": "3 x 12"}, {"nome": "Cadeira flexora", "series": "4 x 8"}, {"nome": "Cadeira extensora", "series": "4 x 10"}
+          ]}
+        ]
       }
 };
+
+
+    const TRAINING_PROGRESS = {
+      "Titio Douglas": {
+        "2026-09-02": {
+          "titulo": "Upper",
+          "observacao": "Treino realizado em 02/09/2026 (quarta-feira). A sessão substituiu o treino de segunda-feira.",
+          "exercicios": [
+            {"numero": 1, "nome": "Fly", "series": [{"peso": 33, "repeticoes": 12}, {"peso": 40, "repeticoes": 9}, {"peso": 40, "repeticoes": 6, "observacao": "meia na falha"}]},
+            {"numero": 2, "nome": "Supino reto", "series": [{"peso": 50, "repeticoes": 12}, {"peso": 50, "repeticoes": 12}, {"peso": 50, "repeticoes": 12}]},
+            {"numero": 3, "nome": "Remada alta supinada", "series": [{"peso": 40, "repeticoes": 12}, {"peso": 47, "repeticoes": 12}, {"peso": 47, "repeticoes": 12}]},
+            {"numero": 4, "nome": "Remada baixa triângulo", "series": [{"peso": 26, "repeticoes": 12}, {"peso": 26, "repeticoes": 12}, {"peso": 26, "repeticoes": 12, "observacao": "pegada dupla"}]},
+            {"numero": 5, "nome": "Desenvolvimento máquina", "series": [], "observacao": "N/A"},
+            {"numero": 6, "nome": "Elevação lateral", "series": [{"peso": 15, "repeticoes": 12}, {"peso": 15, "repeticoes": 12}, {"peso": 15, "repeticoes": 12}]},
+            {"numero": 7, "nome": "Tríceps paralela", "series": [{"peso": 50, "repeticoes": 12}, {"peso": 55, "repeticoes": 12}, {"peso": 60, "repeticoes": 12}]},
+            {"numero": 8, "nome": "Rosca W", "series": [{"peso": 26.25, "repeticoes": 12}, {"peso": 26.25, "repeticoes": 12}, {"peso": 26.25, "repeticoes": 10}]}
+          ]
+        }
+      }
+    };
 
     const CLASSIFICATION_AVATARS = {
       essential: "assets/felipe.png",
@@ -822,7 +884,7 @@
         id = url.split('youtu.be/')[1].split(/[?&/]/)[0];
       }
 
-      return id ? `https://www.youtube.com/embed/${id}` : null;
+      return id ? `https://www.youtube-nocookie.com/embed/${id}` : null;
     }
 
     function renderWorkoutVideo(url, title) {
@@ -905,10 +967,7 @@
                           <span>Séries: ${exercise.series}</span>
                           <span>Reps/tempo: ${exercise.repeticoes}</span>
                         </div>
-                        <a class="exercise-link" href="${exercise.video}" target="_blank" rel="noopener">
-                          <i class="fa-brands fa-youtube"></i>
-                          Abrir referência
-                        </a>
+                        ${exercise.video ? `<a class="exercise-link" href="${exercise.video}" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i> Abrir referência</a>` : '<span class="muted"><i class="fa-solid fa-list-check"></i> Conforme o manual de 8 semanas</span>'}
                       </div>
                       ${renderWorkoutVideo(exercise.video, exercise.nome)}
                     </article>
@@ -1291,6 +1350,81 @@
       });
     }
 
+
+
+
+    function renderProgressVisual(personName, exerciseName) {
+      const records = TRAINING_PROGRESS[personName] || {};
+      const entries = Object.entries(records).flatMap(([date, record]) => record.exercicios.filter(item => !exerciseName || item.nome === exerciseName).map(item => ({ date, item })));
+      const selected = entries.filter(entry => !exerciseName || entry.item.nome === exerciseName);
+      const labels = selected.map(entry => formatPeriod(entry.date));
+      const maxLoads = selected.map(entry => entry.item.series.length ? Math.max(...entry.item.series.map(set => set.peso)) : null);
+      const volumes = selected.map(entry => entry.item.series.reduce((sum, set) => sum + (set.peso * set.repeticoes), 0) || null);
+      const timeline = document.getElementById('trainingProgressTimeline');
+      if (timeline) timeline.innerHTML = selected.map(entry => `<article class="progress-timeline-item"><time>${formatPeriod(entry.date)}</time><div><strong>${entry.item.nome}</strong><p>${entry.item.series.length ? entry.item.series.map(set => `${formatNumber(set.peso, 2)} kg × ${set.repeticoes}`).join(' · ') : 'N/A'}</p></div></article>`).join('') || '<p class="muted">Nenhum registro para este exercício.</p>';
+      destroyChart('trainingProgressChart');
+      const canvas = document.getElementById('trainingProgressChart');
+      if (!canvas || !selected.length) return;
+      charts.trainingProgressChart = new Chart(canvas, { type: 'line', data: { labels, datasets: [
+        { label: 'Maior carga (kg)', data: maxLoads, borderColor: '#28c8ff', backgroundColor: 'rgba(40,200,255,.16)', tension: .25, fill: true, yAxisID: 'y' },
+        { label: 'Volume (kg × reps)', data: volumes, borderColor: '#bf86ff', backgroundColor: 'rgba(191,134,255,.12)', tension: .25, yAxisID: 'y1' }
+      ] }, options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false }, plugins: { legend: { labels: { color: '#f4f7ff' } } }, scales: { x: { ticks: { color: '#d7e3fb' }, grid: { color: 'rgba(148,163,184,.10)' } }, y: { beginAtZero: true, ticks: { color: '#d7e3fb' } }, y1: { beginAtZero: true, position: 'right', ticks: { color: '#d7e3fb' }, grid: { drawOnChartArea: false } } } } });
+    }
+
+    function renderTrainingProgress(personName) {
+      const records = TRAINING_PROGRESS[personName];
+      if (!records) return '<section class="workout-section"><p class="muted">Nenhuma evolução registrada para esta pessoa.</p></section>';
+      const exerciseNames = [...new Set(Object.values(records).flatMap(record => record.exercicios.map(item => item.nome)))];
+      return `<section class="workout-section">
+        <div class="workout-head"><div><h3>Gráficos de progressão</h3><div class="muted">Acompanhe carga máxima e volume acumulado por exercício.</div></div></div>
+        <label for="progressExerciseSelect">Exercício</label>
+        <select id="progressExerciseSelect">${exerciseNames.map(name => `<option value="${name}">${name}</option>`).join('')}</select>
+        <div class="chart-wrap small" style="margin-top:14px"><canvas id="trainingProgressChart"></canvas></div>
+        <h4 style="margin:18px 0 10px">Timeline do exercício</h4>
+        <div class="progress-timeline" id="trainingProgressTimeline"></div>
+      </section>` + Object.entries(records).sort(([a], [b]) => b.localeCompare(a)).map(([date, record]) => `
+        <section class="workout-section">
+          <div class="workout-head"><div><h3>${record.titulo} — ${formatPeriod(date)}</h3><div class="muted">${record.observacao}</div></div></div>
+          <div class="table-wrap">
+            <table class="progress-table"><thead><tr><th>#</th><th>Exercício</th><th>Séries realizadas</th><th>Observação</th></tr></thead><tbody>
+              ${record.exercicios.map(item => `<tr><td><strong>${item.numero}</strong></td><td><strong>${item.nome}</strong></td><td>${item.series.length ? item.series.map(set => `${formatNumber(set.peso, 2)} kg × ${set.repeticoes}`).join('<br>') : 'N/A'}</td><td>${[...new Set(item.series.map(set => set.observacao).filter(Boolean).concat(item.observacao || []))].join('; ') || '—'}</td></tr>`).join('')}
+            </tbody></table>
+          </div>
+        </section>`).join('');
+    }
+
+    function renderTrainingTab(rows) {
+      const people = getPeople(rows);
+      const cards = document.getElementById('trainingPersonCards');
+      const content = document.getElementById('trainingContent');
+      if (!cards || !content) return;
+      const available = people.filter(name => TRAINING_PLANS[name]);
+      if (!selectedPersonName || !TRAINING_PLANS[selectedPersonName]) selectedPersonName = available[0] || null;
+      cards.innerHTML = available.map(name => `<button type="button" class="person-card ${name === selectedPersonName ? 'active' : ''}" data-training-person="${name}"><strong>${name}</strong><small>${TRAINING_PLANS[name].titulo}</small></button>`).join('');
+      content.innerHTML = selectedPersonName ? `
+        <div class="workout-tabs training-view-tabs" role="tablist" aria-label="Seções do treinamento">
+          <button type="button" class="workout-tab active" data-training-view="plan">Plano de treino</button>
+          <button type="button" class="workout-tab" data-training-view="evolution">Evolução</button>
+        </div>
+        <div data-training-pane="plan">${renderWorkoutSection(selectedPersonName)}</div>
+        <div data-training-pane="evolution" hidden>${renderTrainingProgress(selectedPersonName)}</div>` : '<p class="note">Nenhum treinamento cadastrado.</p>';
+      cards.querySelectorAll('[data-training-person]').forEach(card => card.addEventListener('click', () => {
+        selectedPersonName = card.dataset.trainingPerson;
+        renderTrainingTab(rows);
+      }));
+      content.querySelectorAll('[data-training-view]').forEach(tab => tab.addEventListener('click', () => {
+        content.querySelectorAll('[data-training-view]').forEach(item => item.classList.toggle('active', item === tab));
+        content.querySelectorAll('[data-training-pane]').forEach(pane => pane.hidden = pane.dataset.trainingPane !== tab.dataset.trainingView);
+        if (tab.dataset.trainingView === 'plan') bindWorkoutTabs();
+      }));
+      bindWorkoutTabs();
+      const progressSelect = content.querySelector('#progressExerciseSelect');
+      if (progressSelect) {
+        progressSelect.addEventListener('change', () => renderProgressVisual(selectedPersonName, progressSelect.value));
+        renderProgressVisual(selectedPersonName, progressSelect.value);
+      }
+    }
+
     function renderAll() {
       const rows = getRows();
       renderKpis(rows);
@@ -1299,6 +1433,7 @@
       renderPersonCards(rows);
       renderPeriodTab(rows);
       renderMeasureTab(rows);
+      renderTrainingTab(rows);
     }
 
     function showTab(tabId) {

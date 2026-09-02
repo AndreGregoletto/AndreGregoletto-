@@ -694,6 +694,11 @@
       }
     }
 
+    .progress-timeline { display: grid; gap: 10px; }
+    .progress-timeline-item { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 14px; align-items: start; padding: 12px 14px; border: 1px solid var(--line); border-radius: 14px; background: rgba(8,20,46,.54); }
+    .progress-timeline-item time { color: #9fe7ff; font-weight: 800; font-size: 13px; }
+    .progress-timeline-item p { margin: 4px 0 0; color: var(--muted); line-height: 1.5; }
+
     .formula {
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       color: #dbeafe;
@@ -748,6 +753,7 @@
     <nav class="tabs">
       <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
       <button class="tab-btn" data-tab="individual">Consulta individual</button>
+      <button class="tab-btn" data-tab="treinamento">Treinamento</button>
       <button class="tab-btn" data-tab="medidas">Medidas corporais</button>
       <button class="tab-btn" data-tab="periodos">Dados por período</button>
       <button class="tab-btn" data-tab="metodo">Método</button>
@@ -814,6 +820,15 @@
       </article>
     </section>
 
+
+    <section id="treinamento" class="section">
+      <article class="panel">
+        <h2>Treinamento</h2>
+        <p class="muted">Selecione uma pessoa para consultar o plano. Douglas faz Upper, Lower e Fullbody; André segue a rotina completa de segunda a domingo do manual de 8 semanas.</p>
+        <div class="person-list" id="trainingPersonCards"></div>
+        <div id="trainingContent"></div>
+      </article>
+    </section>
     <section id="medidas" class="section">
       <article class="panel">
         <div class="detail-header">
