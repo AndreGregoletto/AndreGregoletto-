@@ -1,32 +1,5 @@
 
-    const STORAGE_KEY = 'bf-familia-site-assets-v1';
-
-    const DEFAULT_MEASUREMENTS = {
-      '2026-04-12': {
-        'Dona Inês': { idade: 75, tricipes: 18, flanco: 22, coxa: 38, peso: 0 },
-        'Tia Mah': { idade: 43, tricipes: 22, flanco: 20, coxa: 22, peso: 0 },
-        'Titio Douglas': { idade: 43, peito: 13, abdomem: 20, coxa: 21, peso: 0 },
-        'Tio Guto': { idade: 42, peito: 13, abdomem: 23, coxa: 13, peso: 0 },
-        'André': { idade: 28, peito: 8, abdomem: 12, coxa: 19, peso: 0 },
-        'Felipe': { idade: 14, peito: 2, abdomem: 3, coxa: 19, peso: 0 }
-      },
-      '2026-05-17': {
-        'Dona Inês': { idade: 75, tricipes: 22, flanco: 22, coxa: 38, peso: 82.7 },
-        'Tia Mah': { idade: 43, tricipes: 21, flanco: 18, coxa: 22, peso: 66.4 },
-        'Titio Douglas': { idade: 43, peito: 12, abdomem: 15, coxa: 22, peso: 66.4 },
-        'Tio Guto': { idade: 42, peito: 10, abdomem: 14, coxa: 21, peso: 75 },
-        'André': { idade: 28, peito: 9, abdomem: 9, coxa: 10, peso: 86 },
-        'Felipe': { idade: 13, peito: 9, abdomem: 10, coxa: 20, peso: 59 }
-      },
-      '2026-06-21': {
-        'Dona Inês': { idade: 75, tricipes: 21, flanco: 19, coxa: 24, peso: 84.2, medidas: { cintura: 109.5, quadril: 123, coxa: 56, braco: 32 } },
-        'Tia Mah': { idade: 43, tricipes: 18, flanco: 20, coxa: 23, peso: 66.05, medidas: { cintura: 76, quadril: 101, coxa: 56, braco: 28.5 } },
-        'Titio Douglas': { idade: 43, peito: 10, abdomem: 12, coxa: 20, peso: 67.8, medidas: { peito: 95.5, abdomem: 82.5, coxa: 54.5, braco: 27.5 } },
-        'Tio Guto': { idade: 42, peito: 12, abdomem: 18, coxa: 18, peso: 74.7, medidas: { peito: 101, abdomem: 86, coxa: 54, braco: 30.5 } },
-        'André': { idade: 28, peito: 9, abdomem: 10, coxa: 12, peso: 86.65, medidas: { peito: 104, abdomem: 83, coxa: 62, braco: 34.5 } },
-        'Felipe': { idade: 13, peito: 4, abdomem: 10, coxa: 16, peso: 60.05, medidas: { peito: 69, abdomem: 76, coxa: 50, braco: 22.5 } }
-      }
-    };
+    let DEFAULT_MEASUREMENTS = {};
 
     const TRAINING_PLANS = {
       "Tia Mah": {
@@ -295,13 +268,13 @@
       }
 };
 
-    const AVATARS = {
-      andre: 'assets/andre.png',
-      donaines: 'assets/ines.png',
-      felipe: 'assets/felipe.png',
-      tiamah: 'assets/tiamah.png',
-      tioguto: 'assets/tioguto.png',
-      titiodouglas: 'assets/titiodouglas.png'
+    const CLASSIFICATION_AVATARS = {
+      essential: "assets/felipe.png",
+      athlete: "assets/andre.png",
+      fitness: "assets/tioguto.png",
+      average: "assets/tiamah.png",
+      aboveAverage: "assets/titiodouglas.png",
+      high: "assets/ines.png"
     };
 
     const siteLabels = {
@@ -384,23 +357,19 @@
       return merged;
     }
 
-    function getStoredMeasurements() {
-      try {
-        return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-      } catch (error) {
-        return {};
-      }
-    }
-
     function getRawMeasurements() {
-      return mergeMeasurements(DEFAULT_MEASUREMENTS, getStoredMeasurements());
+      return DEFAULT_MEASUREMENTS;
     }
 
-    function saveLocalMeasurement(period, name, data) {
-      const current = getStoredMeasurements();
-      if (!current[period]) current[period] = {};
-      current[period][name] = data;
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(current));
+    async function loadMeasurements() {
+      const embedded = document.getElementById('measurements-data');
+      if (location.protocol === "file:" && embedded) {
+        DEFAULT_MEASUREMENTS = JSON.parse(embedded.textContent);
+        return;
+      }
+      const response = await fetch('data.json', { cache: 'no-store' });
+      if (!response.ok) throw new Error('data.json could not be loaded');
+      DEFAULT_MEASUREMENTS = await response.json();
     }
 
     function inferSex(folds) {
@@ -426,39 +395,20 @@
         const value = numberOrNull(rawValue);
         if (site && value !== null) folds[site] = value;
       });
-
       const age = numberOrNull(data?.idade ?? data?.age);
       const weight = numberOrNull(data?.peso ?? data?.weight);
       const sex = data?.sex || inferSex(folds);
       const measures = normalizeMeasures(data);
       const measured = Object.values(folds).some(value => Number.isFinite(value)) || (weight !== null && weight > 0);
-
-      return calculate({
-        id: `${period}-${name}`,
-        period,
-        name,
-        age,
-        weight,
-        sex,
-        folds,
-        measures,
-        measured,
-        raw: data || {}
-      });
+      return calculate({ id: `${period}-${name}`, period, name, age, weight, sex, folds, measures, measured, raw: data || {} });
     }
 
     function normalizeMeasurements(raw) {
       let rows = [];
-      Object.entries(raw).forEach(([period, people]) => {
-        Object.entries(people || {}).forEach(([name, data]) => {
-          rows.push(normalizeRow(period, name, data));
-        });
+      Object.entries(raw || {}).forEach(([period, people]) => {
+        Object.entries(people || {}).forEach(([name, data]) => rows.push(normalizeRow(period, name, data)));
       });
-      rows = addDeltas(rows);
-      return rows.sort((a, b) => {
-        if (a.period !== b.period) return a.period.localeCompare(b.period);
-        return a.name.localeCompare(b.name, 'pt-BR');
-      });
+      return addDeltas(rows).sort((a, b) => a.period !== b.period ? a.period.localeCompare(b.period) : a.name.localeCompare(b.name, 'pt-BR'));
     }
 
     function sumFolds(folds) {
@@ -1225,8 +1175,19 @@
       });
     }
 
+    function classificationFor(row) {
+      if (!Number.isFinite(row.bf)) return { key: "average", label: "Sem classificação de BF%" };
+      const female = row.sex === "F";
+      const ranges = female
+        ? [[14, "essential", "Essencial"], [20, "athlete", "Atleta"], [24, "fitness", "Fitness"], [31, "average", "Média"], [38, "aboveAverage", "Acima da média"], [Infinity, "high", "Alta"]]
+        : [[6, "essential", "Essencial"], [13, "athlete", "Atleta"], [17, "fitness", "Fitness"], [24, "average", "Média"], [31, "aboveAverage", "Acima da média"], [Infinity, "high", "Alta"]];
+      const match = ranges.find(([limit]) => row.bf < limit) || ranges[ranges.length - 1];
+      return { key: match[1], label: match[2] };
+    }
+
     function profileFor(row) {
       const m = row.measures || {};
+      if (Number.isFinite(row.bf)) return "BF% " + classificationFor(row).label;
       if (Number.isFinite(m.cintura) && Number.isFinite(m.quadril)) {
         const ratio = m.cintura / m.quadril;
         if (ratio <= .78) return 'Visual mais atlético';
@@ -1273,8 +1234,8 @@
     function renderMeasureCard(row) {
       const ratio = ratioFor(row);
       const purple = measureOrder(row)[0] === 'cintura';
-      const key = avatarKey(row.name);
-      const avatar = AVATARS[key] || AVATARS.andre;
+      const classification = classificationFor(row);
+      const avatar = CLASSIFICATION_AVATARS[classification.key];
 
       return `
         <article class="measure-card">
@@ -1286,7 +1247,7 @@
 
           <div class="measure-content">
             <div class="avatar">
-              <img src="${avatar}" alt="Manequim de ${row.name}" onerror="this.replaceWith(Object.assign(document.createElement('div'), {className:'avatar-fallback'}))">
+              <img src="${avatar}" alt="Biotipo ilustrativo: classificação ${classification.label} para ${row.name}" onerror="this.replaceWith(Object.assign(document.createElement('div'), {className:'avatar-fallback'}))">
             </div>
 
             <div class="metrics">
@@ -1330,27 +1291,6 @@
       });
     }
 
-    function fillSiteSelects() {
-      ['site1Name', 'site2Name', 'site3Name'].forEach((id, index) => {
-        const select = document.getElementById(id);
-        select.innerHTML = siteOptions.map(([value, label]) => `<option value="${value}">${label}</option>`).join('');
-        if (index === 0) select.value = 'chest';
-        if (index === 1) select.value = 'abdomen';
-        if (index === 2) select.value = 'thigh';
-      });
-    }
-
-    function applySexDefaultSites() {
-      const sex = document.getElementById('sex').value;
-      document.getElementById('site1Name').value = sex === 'F' ? 'triceps' : 'chest';
-      document.getElementById('site2Name').value = sex === 'F' ? 'suprailiac' : 'abdomen';
-      document.getElementById('site3Name').value = 'thigh';
-    }
-
-    function renderJson() {
-      document.getElementById('jsonOutput').value = JSON.stringify(getRawMeasurements(), null, 2);
-    }
-
     function renderAll() {
       const rows = getRows();
       renderKpis(rows);
@@ -1359,7 +1299,6 @@
       renderPersonCards(rows);
       renderPeriodTab(rows);
       renderMeasureTab(rows);
-      renderJson();
     }
 
     function showTab(tabId) {
@@ -1383,81 +1322,14 @@
       renderAll();
       showTab('medidas');
     });
-
-    document.getElementById('sex').addEventListener('change', applySexDefaultSites);
-
-    document.getElementById('addForm').addEventListener('submit', event => {
-      event.preventDefault();
-
-      const name = document.getElementById('name').value.trim();
-      const period = document.getElementById('date').value;
-      const sex = document.getElementById('sex').value;
-      const weight = numberOrNull(document.getElementById('weight').value);
-
-      const data = {
-        idade: numberOrNull(document.getElementById('age').value),
-        sex,
-        peso: weight || 0
-      };
-
-      [
-        [document.getElementById('site1Name').value, numberOrNull(document.getElementById('site1Value').value)],
-        [document.getElementById('site2Name').value, numberOrNull(document.getElementById('site2Value').value)],
-        [document.getElementById('site3Name').value, numberOrNull(document.getElementById('site3Value').value)]
-      ].forEach(([site, value]) => {
-        if (site && value !== null) data[siteToPortuguese[site] || site] = value;
+    loadMeasurements()
+      .then(() => {
+        selectedPeriod = getLatestPeriod(getRows());
+        selectedMeasurePeriod = selectedPeriod;
+        renderAll();
+      })
+      .catch(error => {
+        console.error(error);
+        document.querySelector("main").insertAdjacentHTML("afterbegin", "<div class=\"note\" role=\"alert\">Data could not be loaded. Publish data.json with the page.</div>");
       });
-
-      const medidas = {
-        peito: numberOrNull(document.getElementById('mChest').value),
-        abdomem: numberOrNull(document.getElementById('mAbdomen').value),
-        cintura: numberOrNull(document.getElementById('mWaist').value),
-        quadril: numberOrNull(document.getElementById('mHip').value),
-        coxa: numberOrNull(document.getElementById('mThigh').value),
-        braco: numberOrNull(document.getElementById('mArm').value)
-      };
-
-      Object.keys(medidas).forEach(key => {
-        if (medidas[key] === null) delete medidas[key];
-      });
-
-      if (Object.keys(medidas).length) data.medidas = medidas;
-
-      saveLocalMeasurement(period, name, data);
-      selectedPersonName = name;
-      selectedPeriod = period;
-      selectedMeasurePeriod = period;
-
-      event.target.reset();
-      document.getElementById('date').value = getLatestPeriod(getRows()) || '2026-06-21';
-      fillSiteSelects();
-      applySexDefaultSites();
-      renderAll();
-      showTab('individual');
-    });
-
-    document.getElementById('resetLocal').addEventListener('click', () => {
-      if (!confirm('Apagar apenas dados salvos neste navegador?')) return;
-      localStorage.removeItem(STORAGE_KEY);
-      selectedPersonName = null;
-      selectedPeriod = null;
-      selectedMeasurePeriod = null;
-      renderAll();
-    });
-
-    document.getElementById('exportJson').addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText(document.getElementById('jsonOutput').value);
-        alert('JSON copiado para a área de transferência.');
-      } catch (error) {
-        alert('Selecione o texto do JSON e copie manualmente.');
-      }
-    });
-
-    fillSiteSelects();
-    applySexDefaultSites();
-    document.getElementById('date').value = getLatestPeriod(getRows()) || '2026-06-21';
-    selectedPeriod = getLatestPeriod(getRows());
-    selectedMeasurePeriod = selectedPeriod;
-    renderAll();
   
