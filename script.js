@@ -271,7 +271,7 @@
         "observacao": "Manual de Treino — Ciclo de 8 Semanas. Rotina compartilhada com André.",
         "dias": [
           {"codigo": "Upper", "nome": "Upper — segunda-feira", "exercicios": [
-            {"nome": "Fly", "series": "3 x 12"}, {"nome": "Supino reto", "series": "3 x 12"}, {"nome": "Remada alta supinada", "series": "3 x 12"}, {"nome": "Remada baixa triângulo", "series": "3 x 12"}, {"nome": "Desenvolvimento máquina", "series": "3 x 12"}, {"nome": "Elevação lateral", "series": "3 x 12-15"}, {"nome": "Tríceps paralela", "series": "3 x 10-12"}, {"nome": "Rosca W", "series": "3 x 12"}
+            {"nome": "Fly", "series": "3 x 12"}, {"nome": "Supino reto", "series": "3 x 12"}, {"nome": "Remada alta supinada", "series": "3 x 12"}, {"nome": "Remada baixa triângulo", "series": "3 x 12"}, {"nome": "Desenvolvimento máquina", "series": "3 x 12"}, {"nome": "Elevação lateral", "series": "3 x 12-15"}, {"nome": "Tríceps paralela", "series": "3 x 10-12"}, {"nome": "Rosca Scott", "series": "3 x 12"}
           ]},
           {"codigo": "Lower", "nome": "Lower — quinta-feira", "exercicios": [
             {"nome": "Leg press", "series": "4 x 10"}, {"nome": "Agachamento sumô", "series": "3 x 12"}, {"nome": "Cadeira flexora", "series": "3 x 12"}, {"nome": "Cadeira extensora", "series": "3 x 12"}
@@ -289,7 +289,7 @@
             {"nome": "Corrida Z2", "series": "45-70 min"}, {"nome": "Mobilidade", "series": "10-15 min"}
           ]},
           {"codigo": "Upper", "nome": "Upper — segunda-feira", "exercicios": [
-            {"nome": "Fly", "series": "3 x 12"}, {"nome": "Supino reto", "series": "3 x 12"}, {"nome": "Remada alta supinada", "series": "3 x 12"}, {"nome": "Remada baixa triângulo", "series": "3 x 12"}, {"nome": "Desenvolvimento máquina", "series": "3 x 12"}, {"nome": "Elevação lateral", "series": "3 x 12-15"}, {"nome": "Tríceps paralela", "series": "3 x 10-12"}, {"nome": "Rosca W", "series": "3 x 12"}
+            {"nome": "Fly", "series": "3 x 12"}, {"nome": "Supino reto", "series": "3 x 12"}, {"nome": "Remada alta supinada", "series": "3 x 12"}, {"nome": "Remada baixa triângulo", "series": "3 x 12"}, {"nome": "Desenvolvimento máquina", "series": "3 x 12"}, {"nome": "Elevação lateral", "series": "3 x 12-15"}, {"nome": "Tríceps paralela", "series": "3 x 10-12"}, {"nome": "Rosca Scott", "series": "3 x 12"}
           ]},
           {"codigo": "Terça", "nome": "Terra + posterior + grip", "exercicios": [
             {"nome": "Levantamento terra", "series": "Conforme tabela de progressão"}, {"nome": "Terra romeno", "series": "3 x 8-10"}, {"nome": "Cadeira flexora", "series": "3 x 10-12"}, {"nome": "Panturrilha", "series": "4 x 12-20"}, {"nome": "Sustentação de barra / grip", "series": "3 séries"}
@@ -304,7 +304,7 @@
             {"nome": "Agachamento livre", "series": "Conforme tabela de progressão"}, {"nome": "Búlgaro livre", "series": "3 x 8-12"}, {"nome": "Extensão lombar ou reverse hyper", "series": "3 x 10-15"}, {"nome": "Abdominal / core", "series": "3-4 séries"}, {"nome": "Cardio Z2", "series": "25-40 min"}
           ]},
           {"codigo": "Fullbody", "nome": "Fullbody — sábado", "exercicios": [
-            {"nome": "Supino reto", "series": "3 x 12"}, {"nome": "Fly", "series": "3 x 12"}, {"nome": "Puxada alta individual", "series": "3 x 12"}, {"nome": "Remada baixa triângulo", "series": "3 x 12"}, {"nome": "Elevação lateral", "series": "3 x 12-15"}, {"nome": "Tríceps paralela", "series": "3 x 10"}, {"nome": "Rosca Scott", "series": "3 x 12"}, {"nome": "Cadeira flexora", "series": "4 x 8"}, {"nome": "Cadeira extensora", "series": "4 x 10"}
+            {"nome": "Supino reto", "series": "3 x 12"}, {"nome": "Fly", "series": "3 x 12"}, {"nome": "Puxada alta individual", "series": "3 x 12"}, {"nome": "Remada baixa triângulo", "series": "3 x 12"}, {"nome": "Elevação lateral", "series": "3 x 12-15"}, {"nome": "Tríceps paralela", "series": "3 x 10"}, {"nome": "Rosca Scott", "series": "3 x 12"}, {"nome": "Leg press", "series": "4 x 10"}, {"nome": "Cadeira flexora", "series": "4 x 8"}, {"nome": "Cadeira extensora", "series": "4 x 10"}, {"nome": "Panturrilha", "series": "3 x 15-20"}
           ]}
         ]
       }
@@ -315,13 +315,13 @@
     let TRAINING_PEOPLE = {};
 
     const CLASSIFICATION_AVATARS = {
-      essential: "assets/felipe.png",
-      athlete: "assets/andre.png",
-      fitness: "assets/tioguto.png",
-      average: "assets/tiamah.png",
-      aboveAverage: "assets/titiodouglas.png",
-      high: "assets/ines.png"
+      M: { essential: 'assets/andre.png', athlete: 'assets/tioguto.png', fitness: 'assets/titiodouglas.png', average: 'assets/felipe.png', aboveAverage: 'assets/felipe.png', high: 'assets/felipe.png' },
+      F: { essential: 'assets/tiamah.png', athlete: 'assets/tiamah.png', fitness: 'assets/tiamah.png', average: 'assets/tiamah.png', aboveAverage: 'assets/ines.png', high: 'assets/ines.png' }
     };
+    function avatarFor(row, key) {
+      const sex = row && row.sex === 'F' ? 'F' : 'M';
+      return CLASSIFICATION_AVATARS[sex][key] || CLASSIFICATION_AVATARS[sex].average;
+    }
 
     const siteLabels = {
       chest: 'Peito',
@@ -383,13 +383,28 @@
     let selectedPeriod = null;
     let selectedMeasurePeriod = null;
     let selectedReportPerson = null;
-    let selectedComparePeriod = null;
+    let selectedComparePeriodA = null;
+    let selectedComparePeriodB = null;
     let selectedComparePersonA = null;
     let selectedComparePersonB = null;
+    let TRAINING_REGISTER_DRAFTS = {};
+    let TRAINING_REGISTER_ACTIVE_DATES = {};
+    try {
+      TRAINING_REGISTER_DRAFTS = JSON.parse(localStorage.getItem('training-register-drafts') || '{}');
+      TRAINING_REGISTER_ACTIVE_DATES = JSON.parse(localStorage.getItem('training-register-active-dates') || '{}');
+    } catch (error) { TRAINING_REGISTER_DRAFTS = {}; TRAINING_REGISTER_ACTIVE_DATES = {}; }
 
     const BODY_FAT_REFERENCE = {
-      M: [{ label: 'Atleta', min: 6, max: 13 }, { label: 'Fitness', min: 14, max: 17 }, { label: 'Sobrepeso / faixa media', min: 18, max: 24 }, { label: 'Obesidade', min: 25, max: 40 }],
-      F: [{ label: 'Atleta', min: 14, max: 20 }, { label: 'Fitness', min: 21, max: 24 }, { label: 'Sobrepeso', min: 25, max: 31 }, { label: 'Obesidade', min: 32, max: 45 }]
+      M: [{ key: 'essential', label: 'Essencial', min: 2, max: 5 }, { key: 'athlete', label: 'Atleta', min: 6, max: 12 }, { key: 'fitness', label: 'Fitness', min: 13, max: 16 }, { key: 'average', label: 'Sobrepeso', min: 17, max: 22 }, { key: 'aboveAverage', label: 'Elevado', min: 23, max: 29 }, { key: 'high', label: 'Obesidade', min: 30, max: 40 }],
+      F: [{ key: 'essential', label: 'Essencial', min: 10, max: 13 }, { key: 'athlete', label: 'Atleta', min: 14, max: 19 }, { key: 'fitness', label: 'Fitness', min: 20, max: 23 }, { key: 'average', label: 'Sobrepeso', min: 24, max: 29 }, { key: 'aboveAverage', label: 'Elevado', min: 30, max: 35 }, { key: 'high', label: 'Obesidade', min: 36, max: 45 }]
+    };
+    const REFERENCE_DESCRIPTIONS = {
+      essential: 'Faixa fisiológica mínima; não é uma meta estética e exige cautela.',
+      athlete: 'Baixa gordura relativa, normalmente associada a alto nível de treinamento.',
+      fitness: 'Faixa enxuta e condicionada, sem exigir nível competitivo.',
+      average: 'Faixa intermediária; avalie junto de cintura, peso e histórico.',
+      aboveAverage: 'Acima do recomendado para a maioria; merece acompanhamento gradual.',
+      high: 'Faixa elevada; priorize avaliação profissional e hábitos sustentáveis.'
     };
 
     function numberOrNull(value) {
@@ -476,8 +491,9 @@
       const weight = numberOrNull(data?.peso ?? data?.weight);
       const sex = data?.sex || inferSex(folds);
       const measures = normalizeMeasures(data);
+      const observation = data?.observacao || data?.obs || '';
       const measured = Object.values(folds).some(value => Number.isFinite(value)) || (weight !== null && weight > 0);
-      return calculate({ id: `${period}-${name}`, personId, period, name, age, weight, sex, folds, measures, measured, raw: data || {} });
+      return calculate({ id: `${period}-${name}`, personId, period, name, age, weight, sex, folds, measures, measured, observation, raw: data || {} });
     }
 
     function normalizeMeasurements(raw) {
@@ -875,7 +891,7 @@
             <td><strong>${formatPercent(row.bf)}</strong></td>
             <td>${deltaText(row.deltaBf)}</td>
             <td>${measuresText(row.measures)}</td>
-            <td class="muted">${row.warning}</td>
+            <td class="muted">${row.observation ? `${row.warning} ${row.observation}` : row.warning}</td>
           </tr>
         `).join('');
     }
@@ -965,10 +981,17 @@
       `;
     }
 
+    function orderedTrainingDays(personName, plan) {
+      if (personName !== 'André') return plan.dias;
+      const order = { Upper: 1, 'Terça': 2, 'Quarta': 3, Lower: 4, Sexta: 5, Fullbody: 6, Domingo: 7 };
+      return [...plan.dias].sort((a, b) => (order[a.codigo] || 99) - (order[b.codigo] || 99));
+    }
+
     function renderWorkoutSection(personName) {
       const plan = TRAINING_PLANS[personName];
 
       if (!plan) return '';
+      const days = orderedTrainingDays(personName, plan);
 
       return `
         <section class="workout-section" data-workout-section>
@@ -977,11 +1000,11 @@
               <h3>${plan.titulo || 'Treino'}</h3>
               <div class="muted">${plan.observacao || 'Treino cadastrado no objeto dinâmico.'}</div>
             </div>
-            <div class="badge-status good">${plan.dias.length} dias</div>
+            <div class="badge-status good">${days.length} dias</div>
           </div>
 
           <div class="workout-tabs">
-            ${plan.dias.map((day, index) => `
+            ${days.map((day, index) => `
               <button type="button" class="workout-tab ${index === 0 ? 'active' : ''}" data-workout-tab="${index}">
                 Treino ${day.codigo}
               </button>
@@ -989,7 +1012,7 @@
           </div>
 
           <div class="workout-panes">
-            ${plan.dias.map((day, index) => `
+            ${days.map((day, index) => `
               <div class="workout-pane ${index === 0 ? 'active' : ''}" data-workout-pane="${index}">
                 <div class="workout-day-title">
                   <strong>Treino ${day.codigo} | ${day.nome}</strong><br>
@@ -1276,8 +1299,8 @@
       if (!Number.isFinite(row.bf)) return { key: "average", label: "Sem classificação de BF%" };
       const female = row.sex === "F";
       const ranges = female
-        ? [[14, "essential", "Essencial"], [20, "athlete", "Atleta"], [24, "fitness", "Fitness"], [31, "average", "Média"], [38, "aboveAverage", "Acima da média"], [Infinity, "high", "Alta"]]
-        : [[6, "essential", "Essencial"], [13, "athlete", "Atleta"], [17, "fitness", "Fitness"], [24, "average", "Média"], [31, "aboveAverage", "Acima da média"], [Infinity, "high", "Alta"]];
+        ? [[14, 'essential', 'Essencial'], [20, 'athlete', 'Atleta'], [24, 'fitness', 'Fitness'], [30, 'average', 'Sobrepeso'], [36, 'aboveAverage', 'Elevado'], [Infinity, 'high', 'Obesidade']]
+        : [[6, 'essential', 'Essencial'], [13, 'athlete', 'Atleta'], [17, 'fitness', 'Fitness'], [23, 'average', 'Sobrepeso'], [30, 'aboveAverage', 'Elevado'], [Infinity, 'high', 'Obesidade']];
       const match = ranges.find(([limit]) => row.bf < limit) || ranges[ranges.length - 1];
       return { key: match[1], label: match[2] };
     }
@@ -1332,7 +1355,7 @@
       const ratio = ratioFor(row);
       const purple = measureOrder(row)[0] === 'cintura';
       const classification = classificationFor(row);
-      const avatar = CLASSIFICATION_AVATARS[classification.key];
+      const avatar = avatarFor(row, classification.key);
 
       return `
         <article class="measure-card">
@@ -1392,30 +1415,36 @@
 
 
     function exerciseNameKey(name) {
-      return String(name || '')
+      const normalized = String(name || '')
         .normalize('NFD')
         .replace(/[\u0300-\u036f]/g, '')
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, ' ')
         .trim();
+      return normalized === 'rosca w' ? 'rosca scott' : normalized;
+    }
+
+    function exerciseDisplayName(name) {
+      return exerciseNameKey(name) === 'rosca scott' ? 'Rosca Scott' : name;
     }
 
     function renderProgressVisual(personName, exerciseName) {
       const personId = Object.values(TRAINING_PEOPLE).find(person => person.nome === personName)?.id || personName;
       const records = TRAINING_PROGRESS[personId] || {};
-      const entries = Object.entries(records).flatMap(([date, record]) => record.exercicios.filter(item => !exerciseName || exerciseNameKey(item.nome) === exerciseName).map(item => ({ date, item })));
+      const entries = Object.entries(records).flatMap(([date, record]) => record.exercicios.filter(item => !exerciseName || exerciseNameKey(item.nome) === exerciseName).map(item => ({ date, record, item })));
       const selected = entries.filter(entry => !exerciseName || exerciseNameKey(entry.item.nome) === exerciseName);
       const labels = selected.map(entry => formatPeriod(entry.date));
+      const units = [...new Set(selected.map(entry => entry.record?.unidade || 'kg'))].join('/') || 'kg';
       const maxLoads = selected.map(entry => entry.item.series.length ? Math.max(...entry.item.series.map(set => set.peso)) : null);
       const volumes = selected.map(entry => entry.item.series.reduce((sum, set) => sum + (set.peso * (Number.isFinite(set.repeticoes) ? set.repeticoes : 0)), 0) || null);
       const timeline = document.getElementById('trainingProgressTimeline');
-      if (timeline) timeline.innerHTML = selected.map(entry => `<article class="progress-timeline-item"><time>${formatPeriod(entry.date)}</time><div><strong>${entry.item.nome}</strong><p>${entry.item.series.length ? entry.item.series.map(set => `${formatNumber(set.peso, 2)} kg × ${set.repeticoes ?? '—'}`).join(' · ') : 'N/A'}</p></div></article>`).join('') || '<p class="muted">Nenhum registro para este exercício.</p>';
+      if (timeline) timeline.innerHTML = selected.map(entry => `<article class="progress-timeline-item"><time>${formatPeriod(entry.date)}</time><div><strong>${exerciseDisplayName(entry.item.nome)}</strong><p>${entry.item.series.length ? entry.item.series.map(set => `${formatNumber(set.peso, 2)} ${entry.record?.unidade || 'kg'} × ${set.repeticoes ?? '—'}`).join(' · ') : 'N/A'}</p></div></article>`).join('') || '<p class="muted">Nenhum registro para este exercício.</p>';
       destroyChart('trainingProgressChart');
       const canvas = document.getElementById('trainingProgressChart');
       if (!canvas || !selected.length) return;
       charts.trainingProgressChart = new Chart(canvas, { type: 'line', data: { labels, datasets: [
-        { label: 'Maior carga (kg)', data: maxLoads, borderColor: '#28c8ff', backgroundColor: 'rgba(40,200,255,.16)', tension: .25, fill: true, yAxisID: 'y' },
-        { label: 'Volume (kg × reps)', data: volumes, borderColor: '#bf86ff', backgroundColor: 'rgba(191,134,255,.12)', tension: .25, yAxisID: 'y1' }
+        { label: `Maior carga (${units})`, data: maxLoads, borderColor: '#28c8ff', backgroundColor: 'rgba(40,200,255,.16)', tension: .25, fill: true, yAxisID: 'y' },
+        { label: `Volume (${units} × reps)`, data: volumes, borderColor: '#bf86ff', backgroundColor: 'rgba(191,134,255,.12)', tension: .25, yAxisID: 'y1' }
       ] }, options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false }, plugins: { legend: { labels: { color: '#f4f7ff' } } }, scales: { x: { ticks: { color: '#d7e3fb' }, grid: { color: 'rgba(148,163,184,.10)' } }, y: { beginAtZero: true, ticks: { color: '#d7e3fb' } }, y1: { beginAtZero: true, position: 'right', ticks: { color: '#d7e3fb' }, grid: { drawOnChartArea: false } } } } });
     }
 
@@ -1423,7 +1452,7 @@
       const personId = Object.values(TRAINING_PEOPLE).find(person => person.nome === personName)?.id || personName;
       const records = TRAINING_PROGRESS[personId];
       if (!records) return '<section class="workout-section"><p class="muted">Nenhuma evolução registrada para esta pessoa.</p></section>';
-      const exerciseOptions = [...new Map(Object.values(records).flatMap(record => record.exercicios.map(item => [exerciseNameKey(item.nome), item.nome]))).entries()];
+      const exerciseOptions = [...new Map(Object.values(records).flatMap(record => record.exercicios.map(item => [exerciseNameKey(item.nome), exerciseDisplayName(item.nome)]))).entries()];
       return `<section class="workout-section">
         <div class="workout-head"><div><h3>Gráficos de progressão</h3><div class="muted">Acompanhe carga máxima e volume acumulado por exercício.</div></div></div>
         <label for="progressExerciseSelect">Exercício</label>
@@ -1436,10 +1465,124 @@
           <div class="workout-head"><div><h3>${record.titulo} — ${formatPeriod(date)}</h3><div class="muted">${record.observacao}</div></div></div>
           <div class="table-wrap">
             <table class="progress-table"><thead><tr><th>#</th><th>Exercício</th><th>Séries realizadas</th><th>Observação</th></tr></thead><tbody>
-              ${record.exercicios.map(item => `<tr><td><strong>${item.numero}</strong></td><td><strong>${item.nome}</strong></td><td>${item.series.length ? item.series.map(set => `${formatNumber(set.peso, 2)} kg × ${set.repeticoes ?? '—'}`).join('<br>') : 'N/A'}</td><td>${[...new Set(item.series.map(set => set.observacao).filter(Boolean).concat(item.observacao || []))].join('; ') || '—'}</td></tr>`).join('')}
+              ${record.exercicios.map(item => `<tr><td><strong>${item.numero}</strong></td><td><strong>${exerciseDisplayName(item.nome)}</strong></td><td>${item.series.length ? item.series.map(set => `${formatNumber(set.peso, 2)} ${record.unidade || 'kg'} × ${set.repeticoes ?? '—'}`).join('<br>') : 'N/A'}</td><td>${[...new Set(item.series.map(set => set.observacao).filter(Boolean).concat(item.observacao || []))].join('; ') || '—'}</td></tr>`).join('')}
             </tbody></table>
           </div>
         </section>`).join('');
+    }
+
+    function trainingPeopleOptions(rows) {
+      const ids = new Map(rows.filter(row => row.personId).map(row => [row.name, row.personId]));
+      return getPeople(rows).filter(name => TRAINING_PLANS[name]).map(name => ({ name, id: ids.get(name) || name.toLowerCase().replace(/[^a-z0-9]+/gi, '-') }));
+    }
+
+    function trainingSlug(value) {
+      return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    }
+
+    function trainingRegisterExerciseRow(exercise = {}, index = 0) {
+      const series = Array.isArray(exercise.registroSeries) ? exercise.registroSeries : (Array.isArray(exercise.seriesRegistro) ? exercise.seriesRegistro : (Array.isArray(exercise.series) ? exercise.series : []));
+      return `<div class="register-exercise" data-register-exercise>
+        <div class="register-exercise-head"><span class="register-number">${index + 1}</span><input class="register-name" type="text" value="${exercise.nome || ''}" placeholder="Nome do exercício"><button type="button" class="ghost-btn register-remove" data-remove-exercise>Remover</button></div>
+        <div class="register-sets">${Array.from({ length: Math.max(3, series.length) }, (_, setIndex) => `<label>S${setIndex + 1}<input class="register-weight" type="number" step="0.01" min="0" value="${series[setIndex]?.peso ?? ''}" placeholder="kg/lb"><input class="register-reps" type="number" step="1" min="0" value="${series[setIndex]?.repeticoes ?? ''}" placeholder="reps"></label>`).join('')}</div><button type="button" class="ghost-btn register-add-set" data-add-set><i class="fa-solid fa-plus"></i> Adicionar série</button>
+        <input class="register-observation" type="text" value="${exercise.observacao || ''}" placeholder="Observação do exercício">
+      </div>`;
+    }
+
+    function trainingRegisterDraftKey(personId, date, workoutCode) {
+      return `${personId}::${date}::${workoutCode}`;
+    }
+
+    function saveTrainingRegisterDraft(pane, personIdOverride, workoutCodeOverride) {
+      const personId = personIdOverride || pane.querySelector('#registerPerson')?.value;
+      const date = pane.querySelector('#registerDate')?.value;
+      const workoutCode = workoutCodeOverride || pane.querySelector('#registerWorkout')?.value;
+      if (!personId || !date || !workoutCode) return;
+      const selectedPerson = Object.values(TRAINING_PEOPLE).find(person => person.id === personId);
+      const plan = TRAINING_PLANS[selectedPerson?.nome];
+      const day = plan?.dias.find(item => item.codigo === workoutCode);
+      const modelo = day?.exercicios.map(item => exerciseNameKey(item.nome)).join('|') || '';
+      const draft = {
+        pessoaId: personId,
+        modelo,
+        data: date,
+        titulo: workoutCode,
+        unidade: pane.querySelector('#registerUnit')?.value || 'kg',
+        observacao: pane.querySelector('#registerSessionObservation')?.value || '',
+        exercicios: [...pane.querySelectorAll('[data-register-exercise]')].map((item, index) => ({
+          numero: index + 1,
+          nome: item.querySelector('.register-name')?.value || '',
+          series: [...item.querySelectorAll('.register-sets label')].map(label => ({
+            peso: label.querySelector('.register-weight')?.value === '' ? null : Number(label.querySelector('.register-weight')?.value),
+            repeticoes: label.querySelector('.register-reps')?.value === '' ? null : Number(label.querySelector('.register-reps')?.value)
+          })),
+          observacao: item.querySelector('.register-observation')?.value || ''
+        }))
+      };
+      TRAINING_REGISTER_DRAFTS[trainingRegisterDraftKey(personId, date, workoutCode)] = draft;
+      TRAINING_REGISTER_ACTIVE_DATES[`${personId}::${workoutCode}`] = date;
+      try { localStorage.setItem('training-register-drafts', JSON.stringify(TRAINING_REGISTER_DRAFTS)); localStorage.setItem('training-register-active-dates', JSON.stringify(TRAINING_REGISTER_ACTIVE_DATES)); } catch (error) { /* sessão continua em memória */ }
+    }
+
+    function clearTrainingRegisterDraft(personId, date, workoutCode) {
+      delete TRAINING_REGISTER_DRAFTS[trainingRegisterDraftKey(personId, date, workoutCode)];
+      delete TRAINING_REGISTER_ACTIVE_DATES[`${personId}::${workoutCode}`];
+      try { localStorage.setItem('training-register-drafts', JSON.stringify(TRAINING_REGISTER_DRAFTS)); localStorage.setItem('training-register-active-dates', JSON.stringify(TRAINING_REGISTER_ACTIVE_DATES)); } catch (error) { /* sem persistência local disponível */ }
+    }
+
+    function renderTrainingRegister(rows, personId, workoutCode) {
+      const options = trainingPeopleOptions(rows);
+      const person = options.find(item => item.id === personId) || options[0];
+      const plan = TRAINING_PLANS[person?.name];
+      const days = plan ? orderedTrainingDays(person.name, plan) : [];
+      const day = days.find(item => item.codigo === workoutCode) || days[0];
+      const today = new Date().toISOString().slice(0, 10);
+      if (!person || !plan || !day) return '<section class="workout-section"><p class="muted">Nenhum plano disponível para registro.</p></section>';
+      const activeDate = TRAINING_REGISTER_ACTIVE_DATES[`${person.id}::${day.codigo}`] || today;
+      const savedDraft = TRAINING_REGISTER_DRAFTS[trainingRegisterDraftKey(person.id, activeDate, day.codigo)];
+      const modelo = day.exercicios.map(item => exerciseNameKey(item.nome)).join('|');
+      const draft = savedDraft?.modelo === modelo ? savedDraft : null;
+      const registerExercises = draft?.exercicios?.length ? draft.exercicios : day.exercicios;
+      return `<section class="workout-section training-register">
+        <div class="workout-head"><div><h3>Registrar sessão</h3><div class="muted">Preencha a sessão realizada e gere o objeto pronto para colar no training-progress.json.</div></div></div>
+        <div class="register-toolbar">
+          <div><label for="registerPerson">Pessoa / ID</label><select id="registerPerson">${options.map(item => `<option value="${item.id}" ${item.id === person.id ? 'selected' : ''}>${item.name} — ${item.id}</option>`).join('')}</select></div>
+          <div><label for="registerWorkout">Treino</label><select id="registerWorkout">${days.map(item => `<option value="${item.codigo}" ${item.codigo === day.codigo ? 'selected' : ''}>${item.codigo} — ${item.nome}</option>`).join('')}</select></div>
+          <div><label for="registerDate">Data</label><input id="registerDate" type="date" value="${draft?.data || activeDate}"></div>
+          <div><label for="registerUnit">Unidade da carga</label><select id="registerUnit"><option value="kg" ${(!draft?.unidade || draft.unidade === 'kg') ? 'selected' : ''}>kg</option><option value="lb" ${draft?.unidade === 'lb' ? 'selected' : ''}>lb</option></select></div>
+        </div>
+        <div class="register-exercises" id="registerExercises">${registerExercises.map((exercise, index) => trainingRegisterExerciseRow(exercise, index)).join('')}</div>
+        <div class="actions"><button type="button" class="ghost-btn" id="registerAddExercise"><i class="fa-solid fa-plus"></i> Adicionar exercício</button></div>
+        <label for="registerSessionObservation">Observação da sessão</label><textarea id="registerSessionObservation" class="register-session-observation" placeholder="Ex.: treino adaptado, troca de exercício, equipamento utilizado...">${draft?.observacao || ''}</textarea>
+        <div class="actions"><button type="button" class="primary-btn" id="registerGenerate"><i class="fa-solid fa-code"></i> Gerar objeto JSON</button><button type="button" class="ghost-btn" id="registerClear">Limpar rascunho</button><button type="button" class="ghost-btn" id="registerCopy" disabled><i class="fa-regular fa-copy"></i> Copiar objeto</button></div>
+        <textarea id="registerOutput" class="register-output" readonly placeholder="O objeto pronto para colar aparecerá aqui."></textarea>
+      </section>`;
+    }
+
+    function bindTrainingRegister(rows, content, personId, workoutCode) {
+      const pane = content.querySelector('[data-training-pane="register"]');
+      if (!pane) return;
+      const personSelect = pane.querySelector('#registerPerson');
+      const workoutSelect = pane.querySelector('#registerWorkout');
+      const currentPersonId = personId || personSelect.value;
+      const currentWorkoutCode = workoutCode || workoutSelect.value;
+      personSelect.addEventListener('change', () => { saveTrainingRegisterDraft(pane, currentPersonId, currentWorkoutCode); const selected = trainingPeopleOptions(rows).find(item => item.id === personSelect.value); const plan = TRAINING_PLANS[selected?.name]; rerenderWithPlan(selected?.id, plan?.dias[0]?.codigo); });
+      workoutSelect.addEventListener('change', () => { saveTrainingRegisterDraft(pane, currentPersonId, currentWorkoutCode); rerenderWithPlan(personSelect.value, workoutSelect.value); });
+      pane.addEventListener('input', event => { if (!event.target.matches('#registerPerson, #registerWorkout')) saveTrainingRegisterDraft(pane, personId, workoutCode || workoutSelect.value); });
+      pane.addEventListener('change', event => { if (!event.target.matches('#registerPerson, #registerWorkout')) saveTrainingRegisterDraft(pane, personId, workoutCode || workoutSelect.value); });
+      const rerenderWithPlan = (nextPersonId, nextWorkoutCode) => { pane.innerHTML = renderTrainingRegister(rows, nextPersonId, nextWorkoutCode); bindTrainingRegister(rows, content, nextPersonId, nextWorkoutCode); };
+      const exerciseList = pane.querySelector('#registerExercises');
+      pane.querySelector('#registerAddExercise').addEventListener('click', () => { exerciseList.insertAdjacentHTML('beforeend', trainingRegisterExerciseRow({}, exerciseList.querySelectorAll('[data-register-exercise]').length)); });
+      exerciseList.addEventListener('click', event => { const addSet = event.target.closest('[data-add-set]'); if (addSet) { const exercise = addSet.closest('[data-register-exercise]'); const setIndex = exercise.querySelectorAll('.register-sets label').length; exercise.querySelector('.register-sets').insertAdjacentHTML('beforeend', `<label>S${setIndex + 1}<input class="register-weight" type="number" step="0.01" min="0" placeholder="kg/lb"><input class="register-reps" type="number" step="1" min="0" placeholder="reps"></label>`); saveTrainingRegisterDraft(pane, personId, workoutCode || workoutSelect.value); return; } if (event.target.closest('[data-remove-exercise]')) { event.target.closest('[data-register-exercise]').remove(); [...exerciseList.querySelectorAll('[data-register-exercise]')].forEach((item, index) => item.querySelector('.register-number').textContent = index + 1); saveTrainingRegisterDraft(pane, personId, workoutCode || workoutSelect.value); } });
+      pane.querySelector('#registerClear').addEventListener('click', () => { const date = pane.querySelector('#registerDate').value; const code = pane.querySelector('#registerWorkout').value; clearTrainingRegisterDraft(personId, date, code); pane.innerHTML = renderTrainingRegister(rows, personId, code); bindTrainingRegister(rows, content, personId, code); });
+      pane.querySelector('#registerGenerate').addEventListener('click', () => {
+        const person = trainingPeopleOptions(rows).find(item => item.id === pane.querySelector('#registerPerson').value);
+        const day = TRAINING_PLANS[person.name].dias.find(item => item.codigo === pane.querySelector('#registerWorkout').value);
+        const unit = pane.querySelector('#registerUnit').value;
+        const session = { id: `${person.id}-${pane.querySelector('#registerDate').value}-${trainingSlug(day.codigo)}`, pessoaId: person.id, data: pane.querySelector('#registerDate').value, titulo: day.codigo, unidade: unit, observacao: pane.querySelector('#registerSessionObservation').value.trim(), exercicios: [...pane.querySelectorAll('[data-register-exercise]')].map((item, index) => { const series = [...item.querySelectorAll('.register-sets label')].map(label => ({ peso: Number(label.querySelector('.register-weight').value), repeticoes: Number(label.querySelector('.register-reps').value) })).filter(set => Number.isFinite(set.peso) && set.peso > 0); const result = { numero: index + 1, nome: item.querySelector('.register-name').value.trim() || 'Exercício não informado', series }; const observation = item.querySelector('.register-observation').value.trim(); if (observation) result.observacao = observation; return result; }) };
+        const output = pane.querySelector('#registerOutput'); output.value = JSON.stringify(session, null, 2); pane.querySelector('#registerCopy').disabled = false; saveTrainingRegisterDraft(pane, personId, pane.querySelector('#registerWorkout').value);
+      });
+      pane.querySelector('#registerCopy').addEventListener('click', async () => { const output = pane.querySelector('#registerOutput'); try { await navigator.clipboard.writeText(output.value); pane.querySelector('#registerCopy').textContent = 'Copiado'; setTimeout(() => pane.querySelector('#registerCopy').innerHTML = '<i class="fa-regular fa-copy"></i> Copiar objeto', 1400); } catch { output.select(); document.execCommand('copy'); } });
     }
 
     function renderTrainingTab(rows) {
@@ -1450,28 +1593,13 @@
       const available = people.filter(name => TRAINING_PLANS[name]);
       if (!selectedTrainingPersonName || !TRAINING_PLANS[selectedTrainingPersonName]) selectedTrainingPersonName = available[0] || null;
       cards.innerHTML = available.map(name => `<button type="button" class="person-card ${name === selectedTrainingPersonName ? 'active' : ''}" data-training-person="${name}"><strong>${name}</strong><small>${TRAINING_PLANS[name].titulo}</small></button>`).join('');
-      content.innerHTML = selectedTrainingPersonName ? `
-        <div class="workout-tabs training-view-tabs" role="tablist" aria-label="Seções do treinamento">
-          <button type="button" class="workout-tab active" data-training-view="plan">Plano de treino</button>
-          <button type="button" class="workout-tab" data-training-view="evolution">Evolução</button>
-        </div>
-        <div data-training-pane="plan">${renderWorkoutSection(selectedTrainingPersonName)}</div>
-        <div data-training-pane="evolution" hidden>${renderTrainingProgress(selectedTrainingPersonName)}</div>` : '<p class="note">Nenhum treinamento cadastrado.</p>';
-      cards.querySelectorAll('[data-training-person]').forEach(card => card.addEventListener('click', () => {
-        selectedTrainingPersonName = card.dataset.trainingPerson;
-        renderTrainingTab(rows);
-      }));
-      content.querySelectorAll('[data-training-view]').forEach(tab => tab.addEventListener('click', () => {
-        content.querySelectorAll('[data-training-view]').forEach(item => item.classList.toggle('active', item === tab));
-        content.querySelectorAll('[data-training-pane]').forEach(pane => pane.hidden = pane.dataset.trainingPane !== tab.dataset.trainingView);
-        if (tab.dataset.trainingView === 'plan') bindWorkoutTabs();
-      }));
+      const registerPerson = trainingPeopleOptions(rows).find(item => item.name === selectedTrainingPersonName);
+      content.innerHTML = selectedTrainingPersonName ? `<div class="workout-tabs training-view-tabs" role="tablist" aria-label="Seções do treinamento"><button type="button" class="workout-tab active" data-training-view="plan">Plano de treino</button><button type="button" class="workout-tab" data-training-view="evolution">Evolução</button><button type="button" class="workout-tab" data-training-view="register">Registro</button></div><div data-training-pane="plan">${renderWorkoutSection(selectedTrainingPersonName)}</div><div data-training-pane="evolution" hidden>${renderTrainingProgress(selectedTrainingPersonName)}</div><div data-training-pane="register" hidden>${renderTrainingRegister(rows, registerPerson?.id)}</div>` : '<p class="note">Nenhum treinamento cadastrado.</p>';
+      cards.querySelectorAll('[data-training-person]').forEach(card => card.addEventListener('click', () => { selectedTrainingPersonName = card.dataset.trainingPerson; renderTrainingTab(rows); }));
+      content.querySelectorAll('[data-training-view]').forEach(tab => tab.addEventListener('click', () => { content.querySelectorAll('[data-training-view]').forEach(item => item.classList.toggle('active', item === tab)); content.querySelectorAll('[data-training-pane]').forEach(pane => pane.hidden = pane.dataset.trainingPane !== tab.dataset.trainingView); if (tab.dataset.trainingView === 'plan') bindWorkoutTabs(); if (tab.dataset.trainingView === 'register') { const selected = trainingPeopleOptions(rows).find(item => item.name === selectedTrainingPersonName); bindTrainingRegister(rows, content, selected?.id); } }));
       bindWorkoutTabs();
       const progressSelect = content.querySelector('#progressExerciseSelect');
-      if (progressSelect) {
-        progressSelect.addEventListener('change', () => renderProgressVisual(selectedTrainingPersonName, progressSelect.value));
-        renderProgressVisual(selectedTrainingPersonName, progressSelect.value);
-      }
+      if (progressSelect) { progressSelect.addEventListener('change', () => renderProgressVisual(selectedTrainingPersonName, progressSelect.value)); renderProgressVisual(selectedTrainingPersonName, progressSelect.value); }
     }
 
 
@@ -1501,38 +1629,54 @@
     }
 
     function renderComparisonTab(rows) {
-      const periodSelect = document.getElementById('comparePeriodFilter');
+      const periodASelect = document.getElementById('comparePeriodA');
+      const periodBSelect = document.getElementById('comparePeriodB');
       const personASelect = document.getElementById('comparePersonA');
       const personBSelect = document.getElementById('comparePersonB');
-      if (!periodSelect || !personASelect || !personBSelect) return;
+      if (!periodASelect || !periodBSelect || !personASelect || !personBSelect) return;
       const periods = getPeriods(rows), people = getPeople(rows);
-      if (!selectedComparePeriod || !periods.includes(selectedComparePeriod)) selectedComparePeriod = getLatestPeriod(rows);
+      if (!selectedComparePeriodA || !periods.includes(selectedComparePeriodA)) selectedComparePeriodA = getLatestPeriod(rows);
+      if (!selectedComparePeriodB || !periods.includes(selectedComparePeriodB)) selectedComparePeriodB = getLatestPeriod(rows);
       if (!selectedComparePersonA || !people.includes(selectedComparePersonA)) selectedComparePersonA = people[0] || null;
-      if (!selectedComparePersonB || !people.includes(selectedComparePersonB) || selectedComparePersonB === selectedComparePersonA) selectedComparePersonB = people.find(name => name !== selectedComparePersonA) || selectedComparePersonA;
-      periodSelect.innerHTML = periods.map(period => `<option value="${period}">${formatPeriod(period)}</option>`).join(''); periodSelect.value = selectedComparePeriod || '';
+      if (!selectedComparePersonB || !people.includes(selectedComparePersonB)) selectedComparePersonB = people[1] || people[0] || null;
+      const periodOptions = periods.map(period => `<option value="${period}">${formatPeriod(period)}</option>`).join('');
+      periodASelect.innerHTML = periodOptions;
+      periodBSelect.innerHTML = periodOptions;
+      periodASelect.value = selectedComparePeriodA || '';
+      periodBSelect.value = selectedComparePeriodB || '';
       [personASelect, personBSelect].forEach(select => { select.innerHTML = people.map(name => `<option value="${name}">${name}</option>`).join(''); });
-      personASelect.value = selectedComparePersonA || ''; personBSelect.value = selectedComparePersonB || '';
-      const a = rowForComparison(rows, selectedComparePeriod, selectedComparePersonA), b = rowForComparison(rows, selectedComparePeriod, selectedComparePersonB);
+      personASelect.value = selectedComparePersonA || '';
+      personBSelect.value = selectedComparePersonB || '';
+      const a = rowForComparison(rows, selectedComparePeriodA, selectedComparePersonA);
+      const b = rowForComparison(rows, selectedComparePeriodB, selectedComparePersonB);
+      const comparisonLabels = [
+        `${selectedComparePersonA || 'Pessoa'} — ${formatPeriod(selectedComparePeriodA)}`,
+        `${selectedComparePersonB || 'Pessoa'} — ${formatPeriod(selectedComparePeriodB)}`
+      ];
       const kpis = document.getElementById('compareKpis');
-      if (kpis) kpis.innerHTML = [a, b].map(row => `<div class="mini-stat"><span>${row?.name || 'Pessoa'}</span><strong>${formatPercent(row?.bf)}</strong><small>${formatKg(row?.weight)} · ${formatMm(row?.sum)}</small></div>`).join('');
+      if (kpis) kpis.innerHTML = [a, b].map((row, index) => `<div class="mini-stat"><span>${comparisonLabels[index]}</span><strong>${formatPercent(row?.bf)}</strong><small>${formatKg(row?.weight)} · ${formatMm(row?.sum)}</small></div>`).join('');
       ['compareBfChart', 'compareWeightChart', 'compareFoldsChart', 'compareMeasuresChart'].forEach(destroyChart);
-      const labels = [selectedComparePersonA, selectedComparePersonB];
+      const labels = comparisonLabels;
       const makeBar = (id, label, values, suffix, colors) => { const canvas = document.getElementById(id); if (!canvas) return; charts[id] = new Chart(canvas, { type: 'bar', data: { labels, datasets: [{ label, data: values, backgroundColor: colors, borderRadius: 8 }] }, options: baseChartOptions(suffix) }); };
       makeBar('compareBfChart', 'BF%', [comparisonValue(a, 'bf'), comparisonValue(b, 'bf')], '%', ['rgba(40,200,255,.75)', 'rgba(191,134,255,.75)']);
       makeBar('compareWeightChart', 'Peso', [comparisonValue(a, 'weight'), comparisonValue(b, 'weight')], ' kg', ['rgba(34,197,94,.75)', 'rgba(245,158,11,.75)']);
       makeBar('compareFoldsChart', 'Soma', [comparisonValue(a, 'sum'), comparisonValue(b, 'sum')], ' mm', ['rgba(244,114,182,.75)', 'rgba(251,146,60,.75)']);
       const measureKeys = [...new Set([...Object.keys(a?.measures || {}), ...Object.keys(b?.measures || {})])];
       const measureCanvas = document.getElementById('compareMeasuresChart');
-      if (measureCanvas && measureKeys.length) charts.compareMeasuresChart = new Chart(measureCanvas, { type: 'bar', data: { labels: measureKeys.map(key => measureLabels[key] || key), datasets: [{ label: selectedComparePersonA, data: measureKeys.map(key => a?.measures[key] ?? null), backgroundColor: 'rgba(40,200,255,.75)', borderRadius: 8 }, { label: selectedComparePersonB, data: measureKeys.map(key => b?.measures[key] ?? null), backgroundColor: 'rgba(191,134,255,.75)', borderRadius: 8 }] }, options: baseChartOptions(' cm') });
+      if (measureCanvas && measureKeys.length) charts.compareMeasuresChart = new Chart(measureCanvas, { type: 'bar', data: { labels: measureKeys.map(key => measureLabels[key] || key), datasets: [{ label: comparisonLabels[0], data: measureKeys.map(key => a?.measures[key] ?? null), backgroundColor: 'rgba(40,200,255,.75)', borderRadius: 8 }, { label: comparisonLabels[1], data: measureKeys.map(key => b?.measures[key] ?? null), backgroundColor: 'rgba(191,134,255,.75)', borderRadius: 8 }] }, options: baseChartOptions(' cm') });
     }
 
     function renderReferenceTab() {
-      const renderRows = values => values.map(item => `<tr><td>${item.label}</td><td>${item.min}% a ${item.max}%</td></tr>`).join('');
+      const renderRows = values => values.map(item => '<tr><td>' + item.label + '</td><td>' + item.min + '% a ' + item.max + '%</td></tr>').join('');
+      const renderProfiles = (values, sex) => values.map(item => '<article class="reference-profile"><div class="reference-profile-image"><img src="' + CLASSIFICATION_AVATARS[sex][item.key] + '" alt="Ilustração de referência: ' + item.label + '"></div><div><strong>' + item.label + '</strong><span>' + item.min + '%–' + item.max + '%</span><p>' + REFERENCE_DESCRIPTIONS[item.key] + '</p></div></article>').join('');
       const men = BODY_FAT_REFERENCE.M, women = BODY_FAT_REFERENCE.F;
       const menRows = document.getElementById('referenceMenRows'), womenRows = document.getElementById('referenceWomenRows');
+      const menProfiles = document.getElementById('referenceMenProfiles'), womenProfiles = document.getElementById('referenceWomenProfiles');
       if (!menRows || !womenRows) return;
       menRows.innerHTML = renderRows(men); womenRows.innerHTML = renderRows(women);
-      [['referenceMenChart', 'Homens', men], ['referenceWomenChart', 'Mulheres', women]].forEach(([id, label, values]) => { destroyChart(id); const canvas = document.getElementById(id); if (!canvas) return; charts[id] = new Chart(canvas, { type: 'bar', data: { labels: values.map(item => item.label), datasets: [{ label: `${label} - limite inferior`, data: values.map(item => item.min), backgroundColor: 'rgba(40,200,255,.65)', borderRadius: 6 }, { label: 'limite superior', data: values.map(item => item.max), backgroundColor: 'rgba(191,134,255,.65)', borderRadius: 6 }] }, options: baseChartOptions('%') }); });
+      if (menProfiles) menProfiles.innerHTML = renderProfiles(men, 'M');
+      if (womenProfiles) womenProfiles.innerHTML = renderProfiles(women, 'F');
+      [['referenceMenChart', 'Homens', men], ['referenceWomenChart', 'Mulheres', women]].forEach(([id, label, values]) => { destroyChart(id); const canvas = document.getElementById(id); if (!canvas) return; charts[id] = new Chart(canvas, { type: 'bar', data: { labels: values.map(item => item.label), datasets: [{ label: label + ' - limite inferior', data: values.map(item => item.min), backgroundColor: 'rgba(40,200,255,.65)', borderRadius: 6 }, { label: 'limite superior', data: values.map(item => item.max), backgroundColor: 'rgba(191,134,255,.75)', borderRadius: 6 }] }, options: baseChartOptions('%') }); });
     }
 
     function renderAll() {
@@ -1550,10 +1694,17 @@
     }
 
     function showTab(tabId) {
+      const nav = document.querySelector('.tabs');
+      const menuToggle = document.getElementById('menuToggle');
+      if (nav) nav.classList.remove('menu-open');
+      if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
       document.querySelectorAll('.tab-btn').forEach(button => { const active = button.dataset.tab === tabId; button.classList.toggle('active', active); button.setAttribute('aria-selected', String(active)); });
       document.querySelectorAll('.section').forEach(section => { const active = section.id === tabId; section.classList.toggle('active', active); section.toggleAttribute('hidden', !active); });
       setTimeout(renderAll, 0);
     }
+
+    const menuToggle = document.getElementById('menuToggle');
+    if (menuToggle) menuToggle.addEventListener('click', () => { const nav = document.querySelector('.tabs'); const open = nav.classList.toggle('menu-open'); menuToggle.setAttribute('aria-expanded', String(open)); });
 
     document.querySelectorAll('.tab-btn').forEach(button => {
       button.addEventListener('click', () => showTab(button.dataset.tab));
@@ -1571,7 +1722,8 @@
       showTab('medidas');
     });
     document.getElementById('reportPersonFilter').addEventListener('change', event => { selectedReportPerson = event.target.value; renderAll(); showTab('relatorios'); });
-    document.getElementById('comparePeriodFilter').addEventListener('change', event => { selectedComparePeriod = event.target.value; renderAll(); showTab('comparacao'); });
+    document.getElementById('comparePeriodA').addEventListener('change', event => { selectedComparePeriodA = event.target.value; renderAll(); showTab('comparacao'); });
+    document.getElementById('comparePeriodB').addEventListener('change', event => { selectedComparePeriodB = event.target.value; renderAll(); showTab('comparacao'); });
     document.getElementById('comparePersonA').addEventListener('change', event => { selectedComparePersonA = event.target.value; renderAll(); showTab('comparacao'); });
     document.getElementById('comparePersonB').addEventListener('change', event => { selectedComparePersonB = event.target.value; renderAll(); showTab('comparacao'); });
 
