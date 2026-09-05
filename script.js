@@ -311,24 +311,8 @@
 };
 
 
-    const TRAINING_PROGRESS = {
-      "Titio Douglas": {
-        "2026-09-02": {
-          "titulo": "Upper",
-          "observacao": "Treino realizado em 02/09/2026 (quarta-feira). A sessão substituiu o treino de segunda-feira.",
-          "exercicios": [
-            {"numero": 1, "nome": "Fly", "series": [{"peso": 33, "repeticoes": 12}, {"peso": 40, "repeticoes": 9}, {"peso": 40, "repeticoes": 6, "observacao": "meia na falha"}]},
-            {"numero": 2, "nome": "Supino reto", "series": [{"peso": 50, "repeticoes": 12}, {"peso": 50, "repeticoes": 12}, {"peso": 50, "repeticoes": 12}]},
-            {"numero": 3, "nome": "Remada alta supinada", "series": [{"peso": 40, "repeticoes": 12}, {"peso": 47, "repeticoes": 12}, {"peso": 47, "repeticoes": 12}]},
-            {"numero": 4, "nome": "Remada baixa triângulo", "series": [{"peso": 26, "repeticoes": 12}, {"peso": 26, "repeticoes": 12}, {"peso": 26, "repeticoes": 12, "observacao": "pegada dupla"}]},
-            {"numero": 5, "nome": "Desenvolvimento máquina", "series": [], "observacao": "N/A"},
-            {"numero": 6, "nome": "Elevação lateral", "series": [{"peso": 15, "repeticoes": 12}, {"peso": 15, "repeticoes": 12}, {"peso": 15, "repeticoes": 12}]},
-            {"numero": 7, "nome": "Tríceps paralela", "series": [{"peso": 50, "repeticoes": 12}, {"peso": 55, "repeticoes": 12}, {"peso": 60, "repeticoes": 12}]},
-            {"numero": 8, "nome": "Rosca W", "series": [{"peso": 26.25, "repeticoes": 12}, {"peso": 26.25, "repeticoes": 12}, {"peso": 26.25, "repeticoes": 10}]}
-          ]
-        }
-      }
-    };
+    let TRAINING_PROGRESS = {};
+    let TRAINING_PEOPLE = {};
 
     const CLASSIFICATION_AVATARS = {
       essential: "assets/felipe.png",
@@ -435,13 +419,34 @@
 
     async function loadMeasurements() {
       const embedded = document.getElementById('measurements-data');
+      if (location.protocol === "file:" && embedded) DEFAULT_MEASUREMENTS = JSON.parse(embedded.textContent);
+      else {
+        const response = await fetch('data.json', { cache: 'no-store' });
+        if (!response.ok) throw new Error('data.json could not be loaded');
+        DEFAULT_MEASUREMENTS = await response.json();
+      }
+      await loadTrainingProgress();
+    }
+
+    function normalizeTrainingProgress(raw) {
+      TRAINING_PEOPLE = Object.fromEntries((raw.people || []).map(person => [person.id, person]));
+      return (raw.sessions || []).reduce((grouped, session) => {
+        if (!grouped[session.pessoaId]) grouped[session.pessoaId] = {};
+        const { id, pessoaId, data, ...record } = session;
+        grouped[pessoaId][data] = record;
+        return grouped;
+      }, {});
+    }
+
+    async function loadTrainingProgress() {
+      const embedded = document.getElementById('training-progress-data');
       if (location.protocol === "file:" && embedded) {
-        DEFAULT_MEASUREMENTS = JSON.parse(embedded.textContent);
+        TRAINING_PROGRESS = normalizeTrainingProgress(JSON.parse(embedded.textContent));
         return;
       }
-      const response = await fetch('data.json', { cache: 'no-store' });
-      if (!response.ok) throw new Error('data.json could not be loaded');
-      DEFAULT_MEASUREMENTS = await response.json();
+      const response = await fetch('training-progress.json', { cache: 'no-store' });
+      if (!response.ok) throw new Error('training-progress.json could not be loaded');
+      TRAINING_PROGRESS = normalizeTrainingProgress(await response.json());
     }
 
     function inferSex(folds) {
@@ -460,7 +465,7 @@
       return result;
     }
 
-    function normalizeRow(period, name, data) {
+    function normalizeRow(period, name, data, personId = null) {
       const folds = {};
       Object.entries(data || {}).forEach(([rawKey, rawValue]) => {
         const site = aliasToSite[String(rawKey).toLowerCase().trim()];
@@ -472,14 +477,25 @@
       const sex = data?.sex || inferSex(folds);
       const measures = normalizeMeasures(data);
       const measured = Object.values(folds).some(value => Number.isFinite(value)) || (weight !== null && weight > 0);
-      return calculate({ id: `${period}-${name}`, period, name, age, weight, sex, folds, measures, measured, raw: data || {} });
+      return calculate({ id: `${period}-${name}`, personId, period, name, age, weight, sex, folds, measures, measured, raw: data || {} });
     }
 
     function normalizeMeasurements(raw) {
       let rows = [];
-      Object.entries(raw || {}).forEach(([period, people]) => {
-        Object.entries(people || {}).forEach(([name, data]) => rows.push(normalizeRow(period, name, data)));
-      });
+      if (raw && Array.isArray(raw.measurements)) {
+        const peopleById = Object.fromEntries((raw.people || []).map(person => [person.id, person]));
+        raw.measurements.forEach(item => {
+          const person = peopleById[item.pessoaId] || {};
+          const data = { ...item, sex: item.sex || person.sexo };
+          delete data.data;
+          delete data.pessoaId;
+          rows.push(normalizeRow(item.data || item.periodo, person.nome || item.nome || item.pessoaId, data, item.pessoaId));
+        });
+      } else {
+        Object.entries(raw || {}).forEach(([period, people]) => {
+          Object.entries(people || {}).forEach(([name, data]) => rows.push(normalizeRow(period, name, data)));
+        });
+      }
       return addDeltas(rows).sort((a, b) => a.period !== b.period ? a.period.localeCompare(b.period) : a.name.localeCompare(b.name, 'pt-BR'));
     }
 
@@ -526,6 +542,7 @@
 
       return {
         ...person,
+        personId: person.personId || null,
         sum,
         protocol,
         bodyDensity,
@@ -1374,15 +1391,25 @@
 
 
 
+    function exerciseNameKey(name) {
+      return String(name || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, ' ')
+        .trim();
+    }
+
     function renderProgressVisual(personName, exerciseName) {
-      const records = TRAINING_PROGRESS[personName] || {};
-      const entries = Object.entries(records).flatMap(([date, record]) => record.exercicios.filter(item => !exerciseName || item.nome === exerciseName).map(item => ({ date, item })));
-      const selected = entries.filter(entry => !exerciseName || entry.item.nome === exerciseName);
+      const personId = Object.values(TRAINING_PEOPLE).find(person => person.nome === personName)?.id || personName;
+      const records = TRAINING_PROGRESS[personId] || {};
+      const entries = Object.entries(records).flatMap(([date, record]) => record.exercicios.filter(item => !exerciseName || exerciseNameKey(item.nome) === exerciseName).map(item => ({ date, item })));
+      const selected = entries.filter(entry => !exerciseName || exerciseNameKey(entry.item.nome) === exerciseName);
       const labels = selected.map(entry => formatPeriod(entry.date));
       const maxLoads = selected.map(entry => entry.item.series.length ? Math.max(...entry.item.series.map(set => set.peso)) : null);
-      const volumes = selected.map(entry => entry.item.series.reduce((sum, set) => sum + (set.peso * set.repeticoes), 0) || null);
+      const volumes = selected.map(entry => entry.item.series.reduce((sum, set) => sum + (set.peso * (Number.isFinite(set.repeticoes) ? set.repeticoes : 0)), 0) || null);
       const timeline = document.getElementById('trainingProgressTimeline');
-      if (timeline) timeline.innerHTML = selected.map(entry => `<article class="progress-timeline-item"><time>${formatPeriod(entry.date)}</time><div><strong>${entry.item.nome}</strong><p>${entry.item.series.length ? entry.item.series.map(set => `${formatNumber(set.peso, 2)} kg × ${set.repeticoes}`).join(' · ') : 'N/A'}</p></div></article>`).join('') || '<p class="muted">Nenhum registro para este exercício.</p>';
+      if (timeline) timeline.innerHTML = selected.map(entry => `<article class="progress-timeline-item"><time>${formatPeriod(entry.date)}</time><div><strong>${entry.item.nome}</strong><p>${entry.item.series.length ? entry.item.series.map(set => `${formatNumber(set.peso, 2)} kg × ${set.repeticoes ?? '—'}`).join(' · ') : 'N/A'}</p></div></article>`).join('') || '<p class="muted">Nenhum registro para este exercício.</p>';
       destroyChart('trainingProgressChart');
       const canvas = document.getElementById('trainingProgressChart');
       if (!canvas || !selected.length) return;
@@ -1393,13 +1420,14 @@
     }
 
     function renderTrainingProgress(personName) {
-      const records = TRAINING_PROGRESS[personName];
+      const personId = Object.values(TRAINING_PEOPLE).find(person => person.nome === personName)?.id || personName;
+      const records = TRAINING_PROGRESS[personId];
       if (!records) return '<section class="workout-section"><p class="muted">Nenhuma evolução registrada para esta pessoa.</p></section>';
-      const exerciseNames = [...new Set(Object.values(records).flatMap(record => record.exercicios.map(item => item.nome)))];
+      const exerciseOptions = [...new Map(Object.values(records).flatMap(record => record.exercicios.map(item => [exerciseNameKey(item.nome), item.nome]))).entries()];
       return `<section class="workout-section">
         <div class="workout-head"><div><h3>Gráficos de progressão</h3><div class="muted">Acompanhe carga máxima e volume acumulado por exercício.</div></div></div>
         <label for="progressExerciseSelect">Exercício</label>
-        <select id="progressExerciseSelect">${exerciseNames.map(name => `<option value="${name}">${name}</option>`).join('')}</select>
+        <select id="progressExerciseSelect">${exerciseOptions.map(([key, name]) => `<option value="${key}">${name}</option>`).join('')}</select>
         <div class="chart-wrap small" style="margin-top:14px"><canvas id="trainingProgressChart"></canvas></div>
         <h4 style="margin:18px 0 10px">Timeline do exercício</h4>
         <div class="progress-timeline" id="trainingProgressTimeline"></div>
@@ -1408,7 +1436,7 @@
           <div class="workout-head"><div><h3>${record.titulo} — ${formatPeriod(date)}</h3><div class="muted">${record.observacao}</div></div></div>
           <div class="table-wrap">
             <table class="progress-table"><thead><tr><th>#</th><th>Exercício</th><th>Séries realizadas</th><th>Observação</th></tr></thead><tbody>
-              ${record.exercicios.map(item => `<tr><td><strong>${item.numero}</strong></td><td><strong>${item.nome}</strong></td><td>${item.series.length ? item.series.map(set => `${formatNumber(set.peso, 2)} kg × ${set.repeticoes}`).join('<br>') : 'N/A'}</td><td>${[...new Set(item.series.map(set => set.observacao).filter(Boolean).concat(item.observacao || []))].join('; ') || '—'}</td></tr>`).join('')}
+              ${record.exercicios.map(item => `<tr><td><strong>${item.numero}</strong></td><td><strong>${item.nome}</strong></td><td>${item.series.length ? item.series.map(set => `${formatNumber(set.peso, 2)} kg × ${set.repeticoes ?? '—'}`).join('<br>') : 'N/A'}</td><td>${[...new Set(item.series.map(set => set.observacao).filter(Boolean).concat(item.observacao || []))].join('; ') || '—'}</td></tr>`).join('')}
             </tbody></table>
           </div>
         </section>`).join('');

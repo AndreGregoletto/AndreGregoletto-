@@ -1,0 +1,437 @@
+{
+  "schemaVersion": 1,
+  "people": [
+    {
+      "id": "titio-douglas",
+      "nome": "Titio Douglas"
+    }
+  ],
+  "sessions": [
+    {
+      "id": "titio-douglas-2026-09-02-upper",
+      "pessoaId": "titio-douglas",
+      "data": "2026-09-02",
+      "titulo": "Upper",
+      "observacao": "Treino realizado em 02/09/2026 (quarta-feira). A sessão substituiu o treino de segunda-feira.",
+      "exercicios": [
+        {
+          "numero": 1,
+          "nome": "Fly",
+          "series": [
+            {
+              "peso": 33,
+              "repeticoes": 12
+            },
+            {
+              "peso": 40,
+              "repeticoes": 9
+            },
+            {
+              "peso": 40,
+              "repeticoes": 6,
+              "observacao": "meia na falha"
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "nome": "Supino reto",
+          "series": [
+            {
+              "peso": 50,
+              "repeticoes": 12
+            },
+            {
+              "peso": 50,
+              "repeticoes": 12
+            },
+            {
+              "peso": 50,
+              "repeticoes": 12
+            }
+          ]
+        },
+        {
+          "numero": 3,
+          "nome": "Remada alta supinada",
+          "series": [
+            {
+              "peso": 40,
+              "repeticoes": 12
+            },
+            {
+              "peso": 47,
+              "repeticoes": 12
+            },
+            {
+              "peso": 47,
+              "repeticoes": 12
+            }
+          ]
+        },
+        {
+          "numero": 4,
+          "nome": "Remada baixa triângulo",
+          "series": [
+            {
+              "peso": 26,
+              "repeticoes": 12
+            },
+            {
+              "peso": 26,
+              "repeticoes": 12
+            },
+            {
+              "peso": 26,
+              "repeticoes": 12,
+              "observacao": "pegada dupla"
+            }
+          ]
+        },
+        {
+          "numero": 5,
+          "nome": "Desenvolvimento máquina",
+          "series": [],
+          "observacao": "N/A"
+        },
+        {
+          "numero": 6,
+          "nome": "Elevação lateral",
+          "series": [
+            {
+              "peso": 15,
+              "repeticoes": 12
+            },
+            {
+              "peso": 15,
+              "repeticoes": 12
+            },
+            {
+              "peso": 15,
+              "repeticoes": 12
+            }
+          ]
+        },
+        {
+          "numero": 7,
+          "nome": "Tríceps paralela",
+          "series": [
+            {
+              "peso": 50,
+              "repeticoes": 12
+            },
+            {
+              "peso": 55,
+              "repeticoes": 12
+            },
+            {
+              "peso": 60,
+              "repeticoes": 12
+            }
+          ]
+        },
+        {
+          "numero": 8,
+          "nome": "Rosca W",
+          "series": [
+            {
+              "peso": 26.25,
+              "repeticoes": 12
+            },
+            {
+              "peso": 26.25,
+              "repeticoes": 12
+            },
+            {
+              "peso": 26.25,
+              "repeticoes": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "titio-douglas-2026-09-03-lower",
+      "pessoaId": "titio-douglas",
+      "data": "2026-09-03",
+      "titulo": "Lower",
+      "observacao": "Treino realizado em 03/09/2026.",
+      "exercicios": [
+        {
+          "numero": 1,
+          "nome": "Leg press",
+          "series": [
+            {
+              "peso": 60,
+              "repeticoes": 12
+            },
+            {
+              "peso": 60,
+              "repeticoes": 12
+            },
+            {
+              "peso": 60,
+              "repeticoes": 12
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "nome": "Agachamento sumô",
+          "series": [
+            {
+              "peso": 40,
+              "repeticoes": 12
+            },
+            {
+              "peso": 40,
+              "repeticoes": 12
+            },
+            {
+              "peso": 40,
+              "repeticoes": 12
+            }
+          ]
+        },
+        {
+          "numero": 3,
+          "nome": "Cadeira flexora",
+          "series": [
+            {
+              "peso": 50,
+              "repeticoes": 12
+            },
+            {
+              "peso": 50,
+              "repeticoes": 12
+            },
+            {
+              "peso": 50,
+              "repeticoes": 12
+            }
+          ]
+        },
+        {
+          "numero": 4,
+          "nome": "Cadeira extensora",
+          "series": [
+            {
+              "peso": 50,
+              "repeticoes": 12
+            },
+            {
+              "peso": 50,
+              "repeticoes": 12
+            },
+            {
+              "peso": 50,
+              "repeticoes": 12
+            }
+          ]
+        },
+        {
+          "numero": 5,
+          "nome": "Cadeira abdutora",
+          "series": [
+            {
+              "peso": 32,
+              "repeticoes": 12
+            },
+            {
+              "peso": 38,
+              "repeticoes": 12
+            },
+            {
+              "peso": 38,
+              "repeticoes": 12
+            }
+          ]
+        },
+        {
+          "numero": 6,
+          "nome": "Cadeira adutora",
+          "series": [
+            {
+              "peso": 44,
+              "repeticoes": 12
+            },
+            {
+              "peso": 50,
+              "repeticoes": 12
+            },
+            {
+              "peso": 60,
+              "repeticoes": 13
+            }
+          ]
+        },
+        {
+          "numero": 7,
+          "nome": "Panturrilha",
+          "series": [],
+          "observacao": "N/A"
+        }
+      ]
+    },
+    {
+      "id": "titio-douglas-2026-09-05-full-body",
+      "pessoaId": "titio-douglas",
+      "data": "2026-09-05",
+      "titulo": "Full body",
+      "observacao": "Treino realizado em 05/09/2026.",
+      "exercicios": [
+        {
+          "numero": 1,
+          "nome": "Supino reto",
+          "series": [
+            {
+              "peso": 55,
+              "repeticoes": 12
+            },
+            {
+              "peso": 55,
+              "repeticoes": 12
+            },
+            {
+              "peso": 55,
+              "repeticoes": 12
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "nome": "Fly",
+          "series": [
+            {
+              "peso": 40,
+              "repeticoes": 11
+            },
+            {
+              "peso": 40,
+              "repeticoes": 10
+            },
+            {
+              "peso": 40,
+              "repeticoes": 8
+            }
+          ]
+        },
+        {
+          "numero": 3,
+          "nome": "Puxada alta neutra",
+          "series": [
+            {
+              "peso": 25,
+              "repeticoes": 12
+            },
+            {
+              "peso": 30,
+              "repeticoes": 12
+            },
+            {
+              "peso": 35,
+              "repeticoes": 12
+            }
+          ],
+          "observacao": "Barra neutra"
+        },
+        {
+          "numero": 4,
+          "nome": "Remada baixa triângulo",
+          "series": [
+            {
+              "peso": 47,
+              "repeticoes": 12
+            },
+            {
+              "peso": 68,
+              "repeticoes": 12
+            },
+            {
+              "peso": 68,
+              "repeticoes": 12
+            }
+          ]
+        },
+        {
+          "numero": 5,
+          "nome": "Elevação lateral",
+          "series": [
+            {
+              "peso": 20,
+              "repeticoes": 12
+            },
+            {
+              "peso": 20,
+              "repeticoes": 12
+            },
+            {
+              "peso": 20,
+              "repeticoes": 12
+            }
+          ]
+        },
+        {
+          "numero": 6,
+          "nome": "Tríceps paralela",
+          "series": [
+            {
+              "peso": 60,
+              "repeticoes": 12
+            },
+            {
+              "peso": 60,
+              "repeticoes": 12
+            },
+            {
+              "peso": 60,
+              "repeticoes": 13
+            }
+          ]
+        },
+        {
+          "numero": 7,
+          "nome": "Rosca Scott",
+          "series": [
+            {
+              "peso": 26.25,
+              "repeticoes": 12
+            },
+            {
+              "peso": 26.25,
+              "repeticoes": 12
+            },
+            {
+              "peso": 26.15,
+              "repeticoes": 12
+            }
+          ]
+        },
+        {
+          "numero": 8,
+          "nome": "Cadeira flexora",
+          "series": [
+            {
+              "peso": 55,
+              "repeticoes": 12
+            },
+            {
+              "peso": 55,
+              "repeticoes": 12
+            },
+            {
+              "peso": 55,
+              "repeticoes": 12
+            }
+          ]
+        },
+        {
+          "numero": 9,
+          "nome": "Cadeira extensora",
+          "series": [],
+          "observacao": "N/A"
+        }
+      ]
+    }
+  ]
+}
