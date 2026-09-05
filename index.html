@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#020817" />
+  <link rel="manifest" href="manifest.json" />
   <title>Consulta BF e Medidas da Família</title>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js"></script>
@@ -786,7 +788,17 @@
       .tabs .tab-btn { display: none; width: 100%; justify-content: center; }
       .tabs.menu-open .tab-btn, .tabs:not(.menu-open) .tab-btn.active { display: flex; }
     }
-    .filter-row { display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; } .filter-row > div { min-width:145px; } .filter-row select { width:100%; }
+    .filter-row { display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+    .tool-actions { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+    .file-btn { display:inline-flex; align-items:center; justify-content:center; }
+    .tool-card, .validation-box { background: rgba(8,20,46,.42); box-shadow:none; }
+    .validation-box.good { border-color: rgba(34,197,94,.42); }
+    .validation-box.warn { border-color: rgba(245,158,11,.48); }
+    body.light-theme { --bg:#eef4fb; --bg2:#dce9f7; --panel:rgba(255,255,255,.92); --panel2:#fff; --text:#12213a; --muted:#52627c; --line:rgba(45,93,150,.22); --line2:rgba(45,93,150,.38); background:linear-gradient(135deg,#f8fbff,#e5effa); }
+    body.light-theme .tabs, body.light-theme th { background:rgba(255,255,255,.88); }
+    body.light-theme .stat, body.light-theme .mini-stat, body.light-theme .person-card, body.light-theme table { background:rgba(255,255,255,.76); }
+    @media print { .hero, .tabs, .skip-link, .summary-filters, .filter-row, .tool-card, .validation-box, button { display:none !important; } body { background:#fff; color:#111; } .container { width:100%; padding:0; } .section { display:block !important; } .panel { page-break-inside:avoid; } }
+ .filter-row > div { min-width:145px; } .filter-row select { width:100%; }
     @media (max-width: 480px) {
       .metrics { grid-template-columns: 1fr; }
       .profile-badge { min-width: 0; width: 100%; }
@@ -798,7 +810,7 @@
     main:focus { outline: none; }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
     @media (max-width: 480px) { .progress-timeline-item { grid-template-columns: 1fr; gap: 5px; } .workout-tabs { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; } .workout-tab { flex: 0 0 auto; min-height: 44px; } }
-    @media print { .tabs, .skip-link, .exercise-video, .chart-wrap canvas { display: none !important; } .section { display: block !important; } .panel, .measure-card, .workout-section, .exercise-card { box-shadow: none; background: #fff; color: #111; border-color: #bbb; } }
+    @media print { .tabs, .skip-link, .exercise-video, .chart-wrap { height: 250px !important; } .chart-wrap canvas { display: block !important; } .section { display: block !important; } .panel, .measure-card, .workout-section, .exercise-card { box-shadow: none; background: #fff; color: #111; border-color: #bbb; } }
   </style>
 </head>
 
@@ -828,6 +840,7 @@
       <button class="tab-btn" data-tab="relatorios">Relatórios detalhados</button>
       <button class="tab-btn" data-tab="comparacao">Comparar pessoas</button>
       <button class="tab-btn" data-tab="referencias">Base de referência</button>
+      <button class="tab-btn" data-tab="dados">Ferramentas</button>
       </div>
     </nav>
 
@@ -860,7 +873,7 @@
 
       <article class="panel" style="margin-top:18px">
         <h2>Resumo das medições</h2>
-        <p class="muted">Visão completa por pessoa e período. Use Relatórios detalhados para acompanhar uma pessoa individualmente.</p>
+        <p class="muted">Visão completa por pessoa e período. Use Relatórios detalhados para acompanhar uma pessoa individualmente.</p><div class="filter-row summary-filters" aria-label="Filtros do resumo"><div><label for="summaryPersonFilter">Pessoa</label><select id="summaryPersonFilter"><option value="">Todas</option></select></div><div><label for="summaryPeriodFilter">Período</label><select id="summaryPeriodFilter"><option value="">Todos</option></select></div></div>
         <div class="grid-3" id="summaryKpis" style="margin-bottom:14px"></div>
         <div class="table-wrap">
           <table>
@@ -888,12 +901,12 @@
 
     <section id="relatorios" class="section">
       <article class="panel">
-        <div class="detail-header"><div><h2>Relatórios detalhados</h2><p class="muted">Acompanhe a evolução de uma pessoa entre todos os períodos registrados.</p></div><div style="min-width:220px"><label for="reportPersonFilter">Pessoa</label><select id="reportPersonFilter"></select></div></div>
+        <div class="detail-header"><div><h2>Relatórios detalhados</h2><p class="muted">Acompanhe a evolução de uma pessoa entre todos os períodos registrados.</p></div><div class="filter-row"><div><label for="reportPersonFilter">Pessoa</label><select id="reportPersonFilter"></select></div><button type="button" class="primary-btn" id="printReport"><i class="fa-solid fa-print"></i> Imprimir / PDF</button></div></div>
         <div class="grid-3" id="reportKpis"></div>
       </article>
       <div class="grid-2" style="margin-top:18px"><article class="panel"><h3>Evolução de BF%</h3><div class="chart-wrap"><canvas id="reportBfChart"></canvas></div></article><article class="panel"><h3>Evolução de peso</h3><div class="chart-wrap"><canvas id="reportWeightChart"></canvas></div></article></div>
       <article class="panel" style="margin-top:18px"><h3>Medidas: último período x anterior</h3><div class="chart-wrap"><canvas id="reportMeasuresChart"></canvas></div></article>
-      <article class="panel" style="margin-top:18px"><h3>Histórico da pessoa</h3><div class="table-wrap"><table><thead><tr><th>Período</th><th>BF%</th><th>Variação</th><th>Peso</th><th>Soma das dobras</th><th>Medidas</th><th>Status</th></tr></thead><tbody id="reportHistoryRows"></tbody></table></div></article>
+      <article class="panel" style="margin-top:18px"><h3>Histórico da pessoa</h3><div class="table-wrap"><table><thead><tr><th>Período</th><th>BF%</th><th>Variação</th><th>Peso</th><th>Soma das dobras</th><th>Medidas</th><th>Observação</th><th>Status</th></tr></thead><tbody id="reportHistoryRows"></tbody></table></div></article>
     </section>
     <section id="individual" class="section">
       <article class="panel">
@@ -920,6 +933,17 @@
       </article>
       <div class="grid-2" style="margin-top:18px"><article class="panel"><h3>BF% por pessoa</h3><div class="chart-wrap"><canvas id="compareBfChart"></canvas></div></article><article class="panel"><h3>Peso registrado</h3><div class="chart-wrap"><canvas id="compareWeightChart"></canvas></div></article></div>
       <div class="grid-2" style="margin-top:18px"><article class="panel"><h3>Soma das dobras</h3><div class="chart-wrap"><canvas id="compareFoldsChart"></canvas></div></article><article class="panel"><h3>Medidas corporais</h3><div class="chart-wrap"><canvas id="compareMeasuresChart"></canvas></div></article></div>
+    </section>
+    <section id="dados" class="section">
+      <article class="panel">
+        <h2>Ferramentas e segurança dos dados</h2>
+        <p class="muted">Faça backup antes de alterar os JSONs no GitHub. A importação fica salva apenas neste navegador até você publicar os arquivos novamente.</p>
+        <div class="grid-2">
+          <div class="panel tool-card"><h3>Backup e restauração</h3><div class="tool-actions"><button type="button" class="primary-btn" id="exportMeasurements"><i class="fa-solid fa-download"></i> Exportar medições</button><button type="button" class="primary-btn" id="exportTraining"><i class="fa-solid fa-download"></i> Exportar treinos</button></div><div class="tool-actions"><label class="file-btn ghost-btn" for="importMeasurements"><i class="fa-solid fa-upload"></i> Importar medições</label><input id="importMeasurements" type="file" accept=".json,application/json" hidden><label class="file-btn ghost-btn" for="importTraining"><i class="fa-solid fa-upload"></i> Importar treinos</label><input id="importTraining" type="file" accept=".json,application/json" hidden></div><button type="button" class="ghost-btn" id="clearLocalData"><i class="fa-solid fa-trash"></i> Limpar dados importados</button><p class="note" id="dataToolStatus" role="status">Nenhuma importação local ativa.</p></div>
+          <div class="panel tool-card"><h3>Preferências</h3><p class="muted">O tema é salvo neste dispositivo e não altera os arquivos do GitHub.</p><button type="button" class="ghost-btn" id="themeToggle"><i class="fa-solid fa-sun"></i> Alternar tema</button><p class="note">No celular, use “Adicionar à tela inicial” para instalar a página.</p></div>
+        </div>
+        <div class="panel validation-box" style="margin-top:18px"><h3>Diagnóstico dos dados</h3><div id="dataValidationStatus" class="muted">Aguardando carregamento.</div></div>
+      </article>
     </section>
     <section id="referencias" class="section">
       <article class="panel"><h2>Base de referencia corporal</h2><p class="muted">Faixas gerais de percentual de gordura para comparacao visual. Nao substituem avaliacao profissional, especialmente em menores de idade, idosos ou atletas.</p><div class="grid-2 reference-layout"><div><h3>Homens</h3><div class="reference-profiles" id="referenceMenProfiles"></div><div class="table-wrap"><table><thead><tr><th>Classificação</th><th>BF%</th></tr></thead><tbody id="referenceMenRows"></tbody></table></div><div class="chart-wrap"><canvas id="referenceMenChart"></canvas></div></div><div><h3>Mulheres</h3><div class="reference-profiles" id="referenceWomenProfiles"></div><div class="table-wrap"><table><thead><tr><th>Classificação</th><th>BF%</th></tr></thead><tbody id="referenceWomenRows"></tbody></table></div><div class="chart-wrap"><canvas id="referenceWomenChart"></canvas></div></div></div></article>
@@ -1775,6 +1799,7 @@
   ]
 }
 </script>
-  <script src="script.js?v=20260905-8"></script>
+  <script src="script.js?v=20260905-10"></script>
+  <script>if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("service-worker.js").catch(() => {});</script>
 </body>
 </html>

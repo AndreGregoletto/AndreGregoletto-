@@ -383,6 +383,9 @@
     let selectedPeriod = null;
     let selectedMeasurePeriod = null;
     let selectedReportPerson = null;
+    let selectedSummaryPerson = "";
+    let selectedSummaryPeriod = "";
+    let TRAINING_PROGRESS_RAW = null;
     let selectedComparePeriodA = null;
     let selectedComparePeriodB = null;
     let selectedComparePersonA = null;
@@ -434,13 +437,58 @@
 
     async function loadMeasurements() {
       const embedded = document.getElementById('measurements-data');
-      if (location.protocol === "file:" && embedded) DEFAULT_MEASUREMENTS = JSON.parse(embedded.textContent);
+      const localMeasurements = readLocalJson('measurements-override');
+      if (localMeasurements) DEFAULT_MEASUREMENTS = localMeasurements;
+      else if (location.protocol === 'file:' && embedded) DEFAULT_MEASUREMENTS = JSON.parse(embedded.textContent);
       else {
         const response = await fetch('data.json', { cache: 'no-store' });
         if (!response.ok) throw new Error('data.json could not be loaded');
         DEFAULT_MEASUREMENTS = await response.json();
       }
       await loadTrainingProgress();
+    }
+
+    function readLocalJson(key) {
+      try { const value = localStorage.getItem(key); return value ? JSON.parse(value) : null; } catch (error) { return null; }
+    }
+
+    function downloadJson(filename, value) {
+      const blob = new Blob([JSON.stringify(value, null, 2)], { type: 'application/json;charset=utf-8' });
+      const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = filename; link.click();
+      setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+    }
+
+    function validateMeasurementsData(raw) {
+      const errors = [];
+      if (!raw || typeof raw !== 'object') return ['Arquivo não é um objeto JSON.'];
+      if (Array.isArray(raw.measurements)) {
+        const people = new Set((raw.people || []).map(person => person.id));
+        const seen = new Set();
+        raw.measurements.forEach((item, index) => { const key = String(item.data || item.periodo || '') + '::' + String(item.pessoaId || ''); if (!item.data || !item.pessoaId) errors.push('Medição ' + (index + 1) + ' sem data ou pessoaId.'); if (people.size && !people.has(item.pessoaId)) errors.push('pessoaId inexistente na medição ' + (index + 1) + '.'); if (seen.has(key)) errors.push('Medição duplicada: ' + key); seen.add(key); });
+      } else if (!Object.keys(raw).length) errors.push('Arquivo de medições vazio.');
+      return errors;
+    }
+
+    function validateTrainingData(raw) {
+      const errors = [];
+      if (!raw || typeof raw !== 'object' || !Array.isArray(raw.sessions)) return ['Arquivo de treinos precisa conter o array sessions.'];
+      const people = new Set((raw.people || []).map(person => person.id));
+      raw.sessions.forEach((session, index) => { if (!session.pessoaId || !session.data) errors.push('Sessão ' + (index + 1) + ' sem pessoaId ou data.'); if (people.size && !people.has(session.pessoaId)) errors.push('pessoaId inexistente na sessão ' + (index + 1) + '.'); if (!Array.isArray(session.exercicios)) errors.push('Sessão ' + (index + 1) + ' sem exercícios válidos.'); });
+      return errors;
+    }
+
+    function updateDataDiagnostics(rows) {
+      const target = document.getElementById('dataValidationStatus');
+      if (!target) return;
+      const errors = validateMeasurementsData(DEFAULT_MEASUREMENTS).concat(validateTrainingData(TRAINING_PROGRESS_RAW));
+      target.innerHTML = errors.length ? '<span class="badge-status warn">Atenção</span> ' + errors.join(' ') : '<span class="badge-status good">Dados válidos</span> ' + rows.length + ' medições e ' + Object.values(TRAINING_PROGRESS).reduce((total, person) => total + Object.keys(person).length, 0) + ' sessões carregadas.';
+      target.parentElement.classList.toggle('good', !errors.length); target.parentElement.classList.toggle('warn', errors.length > 0);
+    }
+
+    function importJsonFile(file, kind) {
+      const reader = new FileReader();
+      reader.onload = () => { try { const raw = JSON.parse(reader.result); const errors = kind === 'measurements' ? validateMeasurementsData(raw) : validateTrainingData(raw); if (errors.length) throw new Error(errors.join(' ')); localStorage.setItem(kind === 'measurements' ? 'measurements-override' : 'training-progress-override', JSON.stringify(raw)); if (kind === 'measurements') DEFAULT_MEASUREMENTS = raw; else { TRAINING_PROGRESS_RAW = raw; TRAINING_PROGRESS = normalizeTrainingProgress(raw); } renderAll(); document.getElementById('dataToolStatus').textContent = 'Importação aplicada neste navegador. Publique o JSON para torná-la permanente.'; } catch (error) { document.getElementById('dataToolStatus').textContent = 'Importação recusada: ' + error.message; } };
+      reader.readAsText(file);
     }
 
     function normalizeTrainingProgress(raw) {
@@ -455,13 +503,13 @@
 
     async function loadTrainingProgress() {
       const embedded = document.getElementById('training-progress-data');
-      if (location.protocol === "file:" && embedded) {
-        TRAINING_PROGRESS = normalizeTrainingProgress(JSON.parse(embedded.textContent));
-        return;
-      }
+      const localTraining = readLocalJson('training-progress-override');
+      if (localTraining) { TRAINING_PROGRESS_RAW = localTraining; TRAINING_PROGRESS = normalizeTrainingProgress(localTraining); return; }
+      if (location.protocol === 'file:' && embedded) { TRAINING_PROGRESS_RAW = JSON.parse(embedded.textContent); TRAINING_PROGRESS = normalizeTrainingProgress(TRAINING_PROGRESS_RAW); return; }
       const response = await fetch('training-progress.json', { cache: 'no-store' });
       if (!response.ok) throw new Error('training-progress.json could not be loaded');
-      TRAINING_PROGRESS = normalizeTrainingProgress(await response.json());
+      TRAINING_PROGRESS_RAW = await response.json();
+      TRAINING_PROGRESS = normalizeTrainingProgress(TRAINING_PROGRESS_RAW);
     }
 
     function inferSex(folds) {
@@ -868,32 +916,23 @@
     }
 
     function renderSummary(rows) {
+      const personSelect = document.getElementById('summaryPersonFilter');
+      const periodSelect = document.getElementById('summaryPeriodFilter');
+      const people = getPeople(rows), periods = getPeriods(rows);
+      if (!selectedSummaryPerson || !people.includes(selectedSummaryPerson)) selectedSummaryPerson = '';
+      if (!selectedSummaryPeriod || !periods.includes(selectedSummaryPeriod)) selectedSummaryPeriod = '';
+      if (personSelect) { personSelect.innerHTML = '<option value="">Todas</option>' + people.map(name => '<option value="' + name + '">' + name + '</option>').join(''); personSelect.value = selectedSummaryPerson; }
+      if (periodSelect) { periodSelect.innerHTML = '<option value="">Todos</option>' + periods.map(period => '<option value="' + period + '">' + formatPeriod(period) + '</option>').join(''); periodSelect.value = selectedSummaryPeriod; }
+      const filtered = rows.filter(row => (!selectedSummaryPerson || row.name === selectedSummaryPerson) && (!selectedSummaryPeriod || row.period === selectedSummaryPeriod));
+      const latest = getLatestPeriod(filtered.length ? filtered : rows);
+      const latestRows = filtered.filter(row => row.period === latest);
+      const calculated = latestRows.filter(row => Number.isFinite(row.bf)).length;
+      const deltas = latestRows.filter(row => Number.isFinite(row.deltaBf));
+      const averageDelta = deltas.length ? deltas.reduce((sum, row) => sum + row.deltaBf, 0) / deltas.length : null;
       const summaryKpis = document.getElementById('summaryKpis');
-      if (summaryKpis) {
-        const latest = getLatestPeriod(rows);
-        const latestRows = rows.filter(row => row.period === latest);
-        const calculated = latestRows.filter(row => Number.isFinite(row.bf)).length;
-        const deltas = latestRows.filter(row => Number.isFinite(row.deltaBf));
-        const averageDelta = deltas.length ? deltas.reduce((sum, row) => sum + row.deltaBf, 0) / deltas.length : null;
-        summaryKpis.innerHTML = `<div class="mini-stat"><span>Último período</span><strong>${formatPeriod(latest)}</strong></div><div class="mini-stat"><span>BF% calculável</span><strong>${calculated}/${latestRows.length}</strong></div><div class="mini-stat"><span>Variação média recente</span><strong>${deltaText(averageDelta)}</strong></div>`;
-      }
-      document.getElementById('summaryRows').innerHTML = [...rows]
-        .sort((a, b) => b.period.localeCompare(a.period) || a.name.localeCompare(b.name, 'pt-BR'))
-        .map(row => `
-          <tr>
-            <td><strong>${row.name}</strong></td>
-            <td>${formatPeriod(row.period)}</td>
-            <td>${row.age ?? '—'}</td>
-            <td>${formatKg(row.weight)}</td>
-            <td>${row.protocol}<br>${badge(row)}</td>
-            <td>${foldsText(row.folds)}</td>
-            <td><strong>${formatMm(row.sum)}</strong></td>
-            <td><strong>${formatPercent(row.bf)}</strong></td>
-            <td>${deltaText(row.deltaBf)}</td>
-            <td>${measuresText(row.measures)}</td>
-            <td class="muted">${row.observation ? `${row.warning} ${row.observation}` : row.warning}</td>
-          </tr>
-        `).join('');
+      if (summaryKpis) summaryKpis.innerHTML = '<div class="mini-stat"><span>Período exibido</span><strong>' + formatPeriod(latest) + '</strong></div><div class="mini-stat"><span>BF% calculável</span><strong>' + calculated + '/' + latestRows.length + '</strong></div><div class="mini-stat"><span>Variação média</span><strong>' + deltaText(averageDelta) + '</strong></div>';
+      document.getElementById('summaryRows').innerHTML = [...filtered].sort((a, b) => b.period.localeCompare(a.period) || a.name.localeCompare(b.name, 'pt-BR')).map(row => '<tr><td><strong>' + row.name + '</strong></td><td>' + formatPeriod(row.period) + '</td><td>' + (row.age ?? '—') + '</td><td>' + formatKg(row.weight) + '</td><td>' + row.protocol + '<br>' + badge(row) + '</td><td>' + foldsText(row.folds) + '</td><td><strong>' + formatMm(row.sum) + '</strong></td><td><strong>' + formatPercent(row.bf) + '</strong></td><td>' + deltaText(row.deltaBf) + '</td><td>' + measuresText(row.measures) + '</td><td class="muted">' + (row.observation ? row.warning + ' ' + row.observation : row.warning) + '</td></tr>').join('');
+      updateDataDiagnostics(rows);
     }
 
     function renderPersonCards(rows) {
@@ -1437,6 +1476,8 @@
       const units = [...new Set(selected.map(entry => entry.record?.unidade || 'kg'))].join('/') || 'kg';
       const maxLoads = selected.map(entry => entry.item.series.length ? Math.max(...entry.item.series.map(set => set.peso)) : null);
       const volumes = selected.map(entry => entry.item.series.reduce((sum, set) => sum + (set.peso * (Number.isFinite(set.repeticoes) ? set.repeticoes : 0)), 0) || null);
+      const progressSummary = document.getElementById('trainingProgressSummary');
+      if (progressSummary) { const previous = selected.at(-2), latest = selected.at(-1); const max = item => item?.item?.series?.length ? Math.max(...item.item.series.map(set => set.peso)) : null; const volume = item => item?.item?.series?.reduce((sum, set) => sum + (set.peso * (Number.isFinite(set.repeticoes) ? set.repeticoes : 0)), 0) || null; const maxDelta = max(latest) !== null && max(previous) !== null ? max(latest) - max(previous) : null; const volumeDelta = volume(latest) !== null && volume(previous) !== null ? volume(latest) - volume(previous) : null; progressSummary.innerHTML = '<div class="mini-stat"><span>Maior carga recente</span><strong>' + (max(latest) === null ? '—' : formatNumber(max(latest), 2) + ' ' + units) + '</strong></div><div class="mini-stat"><span>Variação de carga</span><strong>' + (maxDelta === null ? '—' : (maxDelta >= 0 ? '+' : '') + formatNumber(maxDelta, 2) + ' ' + units) + '</strong></div><div class="mini-stat"><span>Variação de volume</span><strong>' + (volumeDelta === null ? '—' : (volumeDelta >= 0 ? '+' : '') + formatNumber(volumeDelta, 0) + ' kg·reps') + '</strong></div>'; }
       const timeline = document.getElementById('trainingProgressTimeline');
       if (timeline) timeline.innerHTML = selected.map(entry => `<article class="progress-timeline-item"><time>${formatPeriod(entry.date)}</time><div><strong>${exerciseDisplayName(entry.item.nome)}</strong><p>${entry.item.series.length ? entry.item.series.map(set => `${formatNumber(set.peso, 2)} ${entry.record?.unidade || 'kg'} × ${set.repeticoes ?? '—'}`).join(' · ') : 'N/A'}</p></div></article>`).join('') || '<p class="muted">Nenhum registro para este exercício.</p>';
       destroyChart('trainingProgressChart');
@@ -1458,6 +1499,7 @@
         <label for="progressExerciseSelect">Exercício</label>
         <select id="progressExerciseSelect">${exerciseOptions.map(([key, name]) => `<option value="${key}">${name}</option>`).join('')}</select>
         <div class="chart-wrap small" style="margin-top:14px"><canvas id="trainingProgressChart"></canvas></div>
+        <div class="grid-3" id="trainingProgressSummary" style="margin-top:14px"></div>
         <h4 style="margin:18px 0 10px">Timeline do exercício</h4>
         <div class="progress-timeline" id="trainingProgressTimeline"></div>
       </section>` + Object.entries(records).sort(([a], [b]) => b.localeCompare(a)).map(([date, record]) => `
@@ -1611,7 +1653,7 @@
       const personRows = rows.filter(row => row.name === selectedReportPerson).sort((a, b) => a.period.localeCompare(b.period)); const latest = personRows.at(-1); const previous = personRows.at(-2);
       const bfDelta = latest && previous && Number.isFinite(latest.bf) && Number.isFinite(previous.bf) ? latest.bf - previous.bf : null; const weightDelta = latest && previous && latest.weight > 0 && previous.weight > 0 ? latest.weight - previous.weight : null;
       kpis.innerHTML = `<div class="mini-stat"><span>Último BF%</span><strong>${formatPercent(latest?.bf)}</strong></div><div class="mini-stat"><span>Variação recente</span><strong>${deltaText(bfDelta)}</strong></div><div class="mini-stat"><span>Variação de peso</span><strong>${deltaText(weightDelta, ' kg')}</strong></div>`;
-      history.innerHTML = [...personRows].reverse().map(row => `<tr><td>${formatPeriod(row.period)}</td><td><strong>${formatPercent(row.bf)}</strong></td><td>${deltaText(row.deltaBf)}</td><td>${formatKg(row.weight)}</td><td>${formatMm(row.sum)}</td><td>${measuresText(row.measures)}</td><td>${badge(row)}</td></tr>`).join('');
+      history.innerHTML = [...personRows].reverse().map(row => `<tr><td>${formatPeriod(row.period)}</td><td><strong>${formatPercent(row.bf)}</strong></td><td>${deltaText(row.deltaBf)}</td><td>${formatKg(row.weight)}</td><td>${formatMm(row.sum)}</td><td>${measuresText(row.measures)}</td><td>${row.observation || '—'}</td><td>${badge(row)}</td></tr>`).join('');
       ['reportBfChart', 'reportWeightChart', 'reportMeasuresChart'].forEach(destroyChart);
       charts.reportBfChart = new Chart(document.getElementById('reportBfChart'), { type: 'line', data: { labels: personRows.map(row => shortPeriod(row.period)), datasets: [{ label: 'BF%', data: personRows.map(row => row.bf), borderColor: '#28c8ff', backgroundColor: 'rgba(40,200,255,.16)', fill: true, tension: .3 }] }, options: baseChartOptions('%', false) });
       charts.reportWeightChart = new Chart(document.getElementById('reportWeightChart'), { type: 'line', data: { labels: personRows.map(row => shortPeriod(row.period)), datasets: [{ label: 'Peso', data: personRows.map(row => row.weight > 0 ? row.weight : null), borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,.16)', fill: true, tension: .3 }] }, options: baseChartOptions(' kg', false) });
@@ -1709,6 +1751,17 @@
     document.querySelectorAll('.tab-btn').forEach(button => {
       button.addEventListener('click', () => showTab(button.dataset.tab));
     });
+
+    document.getElementById('summaryPersonFilter').addEventListener('change', event => { selectedSummaryPerson = event.target.value; renderAll(); showTab('dashboard'); });
+    document.getElementById('summaryPeriodFilter').addEventListener('change', event => { selectedSummaryPeriod = event.target.value; renderAll(); showTab('dashboard'); });
+    document.getElementById('printReport').addEventListener('click', () => window.print());
+    document.getElementById('exportMeasurements').addEventListener('click', () => downloadJson('data-backup.json', DEFAULT_MEASUREMENTS));
+    document.getElementById('exportTraining').addEventListener('click', () => downloadJson('training-progress-backup.json', TRAINING_PROGRESS_RAW));
+    document.getElementById('importMeasurements').addEventListener('change', event => { if (event.target.files[0]) importJsonFile(event.target.files[0], 'measurements'); event.target.value = ''; });
+    document.getElementById('importTraining').addEventListener('change', event => { if (event.target.files[0]) importJsonFile(event.target.files[0], 'training'); event.target.value = ''; });
+    document.getElementById('clearLocalData').addEventListener('click', () => { localStorage.removeItem('measurements-override'); localStorage.removeItem('training-progress-override'); location.reload(); });
+    document.getElementById('themeToggle').addEventListener('click', () => { document.body.classList.toggle('light-theme'); localStorage.setItem('site-theme', document.body.classList.contains('light-theme') ? 'light' : 'dark'); });
+    if (localStorage.getItem('site-theme') === 'light') document.body.classList.add('light-theme');
 
     document.getElementById('periodFilter').addEventListener('change', event => {
       selectedPeriod = event.target.value;

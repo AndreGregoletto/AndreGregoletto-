@@ -1,0 +1,11 @@
+{
+  "name": "Consulta corporal da família",
+  "short_name": "Consulta corporal",
+  "lang": "pt-BR",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#020817",
+  "theme_color": "#020817",
+  "description": "Acompanhamento de medidas corporais, composição e treinamento.",
+  "icons": []
+}
