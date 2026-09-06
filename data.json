@@ -369,6 +369,21 @@
     },
     {
       "data": "2026-09-06",
+      "pessoaId": "tio-guto",
+      "idade": 42,
+      "peito": 10,
+      "abdomem": 20,
+      "coxa": 20,
+      "peso": 75.90,
+      "medidas": {
+        "peito": 98,
+        "abdomem": 90,
+        "coxa": 55,
+        "braco": 30
+      }
+    },
+    {
+      "data": "2026-09-06",
       "pessoaId": "andre",
       "idade": 28,
       "peito": 3,
