@@ -4,6 +4,10 @@
     {
       "id": "titio-douglas",
       "nome": "Titio Douglas"
+    },
+    {
+      "id": "andre",
+      "nome": "André"
     }
   ],
   "sessions": [
@@ -573,6 +577,117 @@
             }
           ],
           "observacao": "A primeira foi na polia"
+        }
+      ]
+    },
+    {
+      "id": "andre-2026-09-08-terca",
+      "pessoaId": "andre",
+      "data": "2026-09-08",
+      "titulo": "Terça",
+      "unidade": "kg",
+      "observacao": "Treino bem exaustivo, começando 5:50 com última refeição líquida às 19h do dia anterior, finalizando o treino com 30 min de cardio a 6 km/h e inclinação 3.",
+      "exercicios": [
+        {
+          "numero": 1,
+          "nome": "Levantamento terra",
+          "series": [
+            {
+              "peso": 20,
+              "repeticoes": 8
+            },
+            {
+              "peso": 60,
+              "repeticoes": 6
+            },
+            {
+              "peso": 115,
+              "repeticoes": 5
+            },
+            {
+              "peso": 115,
+              "repeticoes": 5
+            },
+            {
+              "peso": 115,
+              "repeticoes": 5
+            },
+            {
+              "peso": 115,
+              "repeticoes": 5
+            }
+          ],
+          "observacao": "Todas sem strap e só senti falta na última série. Nas duas últimas, a mão estava abrindo ao ponto de a barra quase soltar."
+        },
+        {
+          "numero": 2,
+          "nome": "Terra romeno",
+          "series": [
+            {
+              "peso": 75,
+              "repeticoes": 8
+            },
+            {
+              "peso": 75,
+              "repeticoes": 8
+            },
+            {
+              "peso": 75,
+              "repeticoes": 8
+            },
+            {
+              "peso": 75,
+              "repeticoes": 3
+            }
+          ],
+          "observacao": "Fadiga na lombar na última."
+        },
+        {
+          "numero": 3,
+          "nome": "Cadeira flexora",
+          "series": [
+            {
+              "peso": 65,
+              "repeticoes": 12
+            },
+            {
+              "peso": 65,
+              "repeticoes": 12
+            },
+            {
+              "peso": 65,
+              "repeticoes": 12
+            },
+            {
+              "peso": 65,
+              "repeticoes": 12
+            }
+          ],
+          "observacao": "Bem exaustivo, mas bem cadenciado."
+        },
+        {
+          "numero": 4,
+          "nome": "Panturrilha",
+          "series": [
+            {
+              "peso": 45,
+              "repeticoes": 12
+            },
+            {
+              "peso": 60,
+              "repeticoes": 12
+            },
+            {
+              "peso": 60,
+              "repeticoes": 12
+            }
+          ]
+        },
+        {
+          "numero": 5,
+          "nome": "Sustentação de barra / grip",
+          "series": [],
+          "observacao": "Ocupado"
         }
       ]
     }
