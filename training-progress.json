@@ -690,6 +690,496 @@
           "observacao": "Ocupado"
         }
       ]
+    },
+
+{
+
+  "id": "titio-douglas-2026-09-10-lower",
+
+  "pessoaId": "titio-douglas",
+
+  "data": "2026-09-10",
+
+  "titulo": "Lower",
+
+  "unidade": "kg",
+
+  "observacao": "",
+
+  "exercicios": [
+
+    {
+
+      "numero": 1,
+
+      "nome": "Leg press",
+
+      "series": [
+
+        {
+
+          "peso": 60,
+
+          "repeticoes": 12
+
+        },
+
+        {
+
+          "peso": 65,
+
+          "repeticoes": 12
+
+        },
+
+        {
+
+          "peso": 65,
+
+          "repeticoes": 12
+
+        }
+
+      ],
+
+      "observacao": ""
+
+    },
+
+    {
+
+      "numero": 2,
+
+      "nome": "Agachamento sumô",
+
+      "series": [
+
+        {
+
+          "peso": 20,
+
+          "repeticoes": 12
+
+        },
+
+        {
+
+          "peso": 30,
+
+          "repeticoes": 12
+
+        },
+
+        {
+
+          "peso": 40,
+
+          "repeticoes": 12
+
+        }
+
+      ],
+
+      "observacao": ""
+
+    },
+
+    {
+
+      "numero": 3,
+
+      "nome": "Cadeira flexora",
+
+      "series": [
+
+        {
+
+          "peso": 55,
+
+          "repeticoes": 12
+
+        },
+
+        {
+
+          "peso": 55,
+
+          "repeticoes": 12
+
+        },
+
+        {
+
+          "peso": 55,
+
+          "repeticoes": 12
+
+        }
+
+      ],
+
+      "observacao": ""
+
+    },
+
+    {
+
+      "numero": 4,
+
+      "nome": "Cadeira extensora",
+
+      "series": [
+
+        {
+
+          "peso": 55,
+
+          "repeticoes": 12
+
+        },
+
+        {
+
+          "peso": 55,
+
+          "repeticoes": 12
+
+        },
+
+        {
+
+          "peso": 55,
+
+          "repeticoes": 12
+
+        }
+
+      ],
+
+      "observacao": ""
+
+    },
+
+    {
+
+      "numero": 5,
+
+      "nome": "Cadeira adutora",
+
+      "series": []
+
+    },
+
+    {
+
+      "numero": 6,
+
+      "nome": "Cadeira abdutora",
+
+      "series": [
+
+        {
+
+          "peso": 60,
+
+          "repeticoes": 12
+
+        },
+
+        {
+
+          "peso": 66,
+
+          "repeticoes": 12
+
+        },
+
+        {
+
+          "peso": 66,
+
+          "repeticoes": 12
+
+        }
+
+      ],
+
+      "observacao": ""
+
+    },
+
+    {
+
+      "numero": 7,
+
+      "nome": "Cadeira adutora",
+
+      "series": [
+
+        {
+
+          "peso": 38,
+
+          "repeticoes": 13
+
+        },
+
+        {
+
+          "peso": 38,
+
+          "repeticoes": 13
+
+        },
+
+        {
+
+          "peso": 38,
+
+          "repeticoes": 13
+
+        }
+
+      ],
+
+      "observacao": ""
+
+    },
+
+    {
+
+      "numero": 8,
+
+      "nome": "Exercício não informado",
+
+      "series": []
+
     }
+
+  ]
+
+},{
+
+  "id": "andre-2026-09-10-lower",
+
+  "pessoaId": "andre",
+
+  "data": "2026-09-10",
+
+  "titulo": "Lower",
+
+  "unidade": "kg",
+
+  "observacao": "",
+
+  "exercicios": [
+
+    {
+
+      "numero": 1,
+
+      "nome": "Leg press",
+
+      "series": [
+
+        {
+
+          "peso": 100,
+
+          "repeticoes": 12
+
+        },
+
+        {
+
+          "peso": 115,
+
+          "repeticoes": 12
+
+        },
+
+        {
+
+          "peso": 115,
+
+          "repeticoes": 12
+
+        }
+
+      ],
+
+      "observacao": ""
+
+    },
+
+    {
+
+      "numero": 2,
+
+      "nome": "Agachamento sumô",
+
+      "series": [
+
+        {
+
+          "peso": 20,
+
+          "repeticoes": 12
+
+        },
+
+        {
+
+          "peso": 30,
+
+          "repeticoes": 12
+
+        },
+
+        {
+
+          "peso": 40,
+
+          "repeticoes": 12
+
+        }
+
+      ],
+
+      "observacao": "Regenerativo"
+
+    },
+
+    {
+
+      "numero": 3,
+
+      "nome": "Cadeira flexora",
+
+      "series": [
+
+        {
+
+          "peso": 75,
+
+          "repeticoes": 12
+
+        },
+
+        {
+
+          "peso": 90,
+
+          "repeticoes": 12
+
+        },
+
+        {
+
+          "peso": 90,
+
+          "repeticoes": 12
+
+        }
+
+      ],
+
+      "observacao": ""
+
+    },
+
+    {
+
+      "numero": 4,
+
+      "nome": "Cadeira extensora",
+
+      "series": [
+
+        {
+
+          "peso": 115,
+
+          "repeticoes": 8
+
+        },
+
+        {
+
+          "peso": 140,
+
+          "repeticoes": 10
+
+        },
+
+        {
+
+          "peso": 140,
+
+          "repeticoes": 10
+
+        }
+
+      ],
+
+      "observacao": ""
+
+    },
+
+    {
+
+      "numero": 5,
+
+      "nome": "Cadeira adutora",
+
+      "series": []
+
+    },
+
+    {
+
+      "numero": 6,
+
+      "nome": "Cadeira abdutora",
+
+      "series": [
+
+        {
+
+          "peso": 86,
+
+          "repeticoes": 12
+
+        },
+
+        {
+
+          "peso": 86,
+
+          "repeticoes": 12
+
+        },
+
+        {
+
+          "peso": 86,
+
+          "repeticoes": 12
+
+        }
+
+      ],
+
+      "observacao": ""
+
+    },
+
+    {
+
+      "numero": 7,
+
+      "nome": "Cadeira adutora",
+
+      "series": [
   ]
 }
