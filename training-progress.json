@@ -22,14 +22,8 @@
           "numero": 1,
           "nome": "Fly",
           "series": [
-            {
-              "peso": 33,
-              "repeticoes": 12
-            },
-            {
-              "peso": 40,
-              "repeticoes": 9
-            },
+            { "peso": 33, "repeticoes": 12 },
+            { "peso": 40, "repeticoes": 9 },
             {
               "peso": 40,
               "repeticoes": 6,
@@ -41,50 +35,26 @@
           "numero": 2,
           "nome": "Supino reto",
           "series": [
-            {
-              "peso": 50,
-              "repeticoes": 12
-            },
-            {
-              "peso": 50,
-              "repeticoes": 12
-            },
-            {
-              "peso": 50,
-              "repeticoes": 12
-            }
+            { "peso": 50, "repeticoes": 12 },
+            { "peso": 50, "repeticoes": 12 },
+            { "peso": 50, "repeticoes": 12 }
           ]
         },
         {
           "numero": 3,
           "nome": "Remada alta supinada",
           "series": [
-            {
-              "peso": 40,
-              "repeticoes": 12
-            },
-            {
-              "peso": 47,
-              "repeticoes": 12
-            },
-            {
-              "peso": 47,
-              "repeticoes": 12
-            }
+            { "peso": 40, "repeticoes": 12 },
+            { "peso": 47, "repeticoes": 12 },
+            { "peso": 47, "repeticoes": 12 }
           ]
         },
         {
           "numero": 4,
           "nome": "Remada baixa triângulo",
           "series": [
-            {
-              "peso": 26,
-              "repeticoes": 12
-            },
-            {
-              "peso": 26,
-              "repeticoes": 12
-            },
+            { "peso": 26, "repeticoes": 12 },
+            { "peso": 26, "repeticoes": 12 },
             {
               "peso": 26,
               "repeticoes": 12,
@@ -102,54 +72,27 @@
           "numero": 6,
           "nome": "Elevação lateral",
           "series": [
-            {
-              "peso": 15,
-              "repeticoes": 12
-            },
-            {
-              "peso": 15,
-              "repeticoes": 12
-            },
-            {
-              "peso": 15,
-              "repeticoes": 12
-            }
+            { "peso": 15, "repeticoes": 12 },
+            { "peso": 15, "repeticoes": 12 },
+            { "peso": 15, "repeticoes": 12 }
           ]
         },
         {
           "numero": 7,
           "nome": "Tríceps paralela",
           "series": [
-            {
-              "peso": 50,
-              "repeticoes": 12
-            },
-            {
-              "peso": 55,
-              "repeticoes": 12
-            },
-            {
-              "peso": 60,
-              "repeticoes": 12
-            }
+            { "peso": 50, "repeticoes": 12 },
+            { "peso": 55, "repeticoes": 12 },
+            { "peso": 60, "repeticoes": 12 }
           ]
         },
         {
           "numero": 8,
           "nome": "Rosca Scott",
           "series": [
-            {
-              "peso": 26.25,
-              "repeticoes": 12
-            },
-            {
-              "peso": 26.25,
-              "repeticoes": 12
-            },
-            {
-              "peso": 26.25,
-              "repeticoes": 10
-            }
+            { "peso": 26.25, "repeticoes": 12 },
+            { "peso": 26.25, "repeticoes": 12 },
+            { "peso": 26.25, "repeticoes": 10 }
           ]
         }
       ]
@@ -165,108 +108,54 @@
           "numero": 1,
           "nome": "Leg press",
           "series": [
-            {
-              "peso": 60,
-              "repeticoes": 12
-            },
-            {
-              "peso": 60,
-              "repeticoes": 12
-            },
-            {
-              "peso": 60,
-              "repeticoes": 12
-            }
+            { "peso": 60, "repeticoes": 12 },
+            { "peso": 60, "repeticoes": 12 },
+            { "peso": 60, "repeticoes": 12 }
           ]
         },
         {
           "numero": 2,
           "nome": "Agachamento sumô",
           "series": [
-            {
-              "peso": 40,
-              "repeticoes": 12
-            },
-            {
-              "peso": 40,
-              "repeticoes": 12
-            },
-            {
-              "peso": 40,
-              "repeticoes": 12
-            }
+            { "peso": 40, "repeticoes": 12 },
+            { "peso": 40, "repeticoes": 12 },
+            { "peso": 40, "repeticoes": 12 }
           ]
         },
         {
           "numero": 3,
           "nome": "Cadeira flexora",
           "series": [
-            {
-              "peso": 50,
-              "repeticoes": 12
-            },
-            {
-              "peso": 50,
-              "repeticoes": 12
-            },
-            {
-              "peso": 50,
-              "repeticoes": 12
-            }
+            { "peso": 50, "repeticoes": 12 },
+            { "peso": 50, "repeticoes": 12 },
+            { "peso": 50, "repeticoes": 12 }
           ]
         },
         {
           "numero": 4,
           "nome": "Cadeira extensora",
           "series": [
-            {
-              "peso": 50,
-              "repeticoes": 12
-            },
-            {
-              "peso": 50,
-              "repeticoes": 12
-            },
-            {
-              "peso": 50,
-              "repeticoes": 12
-            }
+            { "peso": 50, "repeticoes": 12 },
+            { "peso": 50, "repeticoes": 12 },
+            { "peso": 50, "repeticoes": 12 }
           ]
         },
         {
           "numero": 5,
           "nome": "Cadeira abdutora",
           "series": [
-            {
-              "peso": 32,
-              "repeticoes": 12
-            },
-            {
-              "peso": 38,
-              "repeticoes": 12
-            },
-            {
-              "peso": 38,
-              "repeticoes": 12
-            }
+            { "peso": 32, "repeticoes": 12 },
+            { "peso": 38, "repeticoes": 12 },
+            { "peso": 38, "repeticoes": 12 }
           ]
         },
         {
           "numero": 6,
           "nome": "Cadeira adutora",
           "series": [
-            {
-              "peso": 44,
-              "repeticoes": 12
-            },
-            {
-              "peso": 50,
-              "repeticoes": 12
-            },
-            {
-              "peso": 60,
-              "repeticoes": 13
-            }
+            { "peso": 44, "repeticoes": 12 },
+            { "peso": 50, "repeticoes": 12 },
+            { "peso": 60, "repeticoes": 13 }
           ]
         },
         {
@@ -288,54 +177,27 @@
           "numero": 1,
           "nome": "Supino reto",
           "series": [
-            {
-              "peso": 55,
-              "repeticoes": 12
-            },
-            {
-              "peso": 55,
-              "repeticoes": 12
-            },
-            {
-              "peso": 55,
-              "repeticoes": 12
-            }
+            { "peso": 55, "repeticoes": 12 },
+            { "peso": 55, "repeticoes": 12 },
+            { "peso": 55, "repeticoes": 12 }
           ]
         },
         {
           "numero": 2,
           "nome": "Fly",
           "series": [
-            {
-              "peso": 40,
-              "repeticoes": 11
-            },
-            {
-              "peso": 40,
-              "repeticoes": 10
-            },
-            {
-              "peso": 40,
-              "repeticoes": 8
-            }
+            { "peso": 40, "repeticoes": 11 },
+            { "peso": 40, "repeticoes": 10 },
+            { "peso": 40, "repeticoes": 8 }
           ]
         },
         {
           "numero": 3,
           "nome": "Puxada alta neutra",
           "series": [
-            {
-              "peso": 25,
-              "repeticoes": 12
-            },
-            {
-              "peso": 30,
-              "repeticoes": 12
-            },
-            {
-              "peso": 35,
-              "repeticoes": 12
-            }
+            { "peso": 25, "repeticoes": 12 },
+            { "peso": 30, "repeticoes": 12 },
+            { "peso": 35, "repeticoes": 12 }
           ],
           "observacao": "Barra neutra"
         },
@@ -343,90 +205,45 @@
           "numero": 4,
           "nome": "Remada baixa triângulo",
           "series": [
-            {
-              "peso": 47,
-              "repeticoes": 12
-            },
-            {
-              "peso": 68,
-              "repeticoes": 12
-            },
-            {
-              "peso": 68,
-              "repeticoes": 12
-            }
+            { "peso": 47, "repeticoes": 12 },
+            { "peso": 68, "repeticoes": 12 },
+            { "peso": 68, "repeticoes": 12 }
           ]
         },
         {
           "numero": 5,
           "nome": "Elevação lateral",
           "series": [
-            {
-              "peso": 20,
-              "repeticoes": 12
-            },
-            {
-              "peso": 20,
-              "repeticoes": 12
-            },
-            {
-              "peso": 20,
-              "repeticoes": 12
-            }
+            { "peso": 20, "repeticoes": 12 },
+            { "peso": 20, "repeticoes": 12 },
+            { "peso": 20, "repeticoes": 12 }
           ]
         },
         {
           "numero": 6,
           "nome": "Tríceps paralela",
           "series": [
-            {
-              "peso": 60,
-              "repeticoes": 12
-            },
-            {
-              "peso": 60,
-              "repeticoes": 12
-            },
-            {
-              "peso": 60,
-              "repeticoes": 13
-            }
+            { "peso": 60, "repeticoes": 12 },
+            { "peso": 60, "repeticoes": 12 },
+            { "peso": 60, "repeticoes": 13 }
           ]
         },
         {
           "numero": 7,
           "nome": "Rosca Scott",
           "series": [
-            {
-              "peso": 26.25,
-              "repeticoes": 12
-            },
-            {
-              "peso": 26.25,
-              "repeticoes": 12
-            },
-            {
-              "peso": 26.15,
-              "repeticoes": 12
-            }
+            { "peso": 26.25, "repeticoes": 12 },
+            { "peso": 26.25, "repeticoes": 12 },
+            { "peso": 26.15, "repeticoes": 12 }
           ]
         },
         {
           "numero": 8,
           "nome": "Cadeira flexora",
           "series": [
-            {
-              "peso": 55,
-              "repeticoes": 12
-            },
-            {
-              "peso": 55,
-              "repeticoes": 12
-            },
-            {
-              "peso": 55,
-              "repeticoes": 12
-            }
+            { "peso": 55, "repeticoes": 12 },
+            { "peso": 55, "repeticoes": 12 },
+            { "peso": 55, "repeticoes": 12 }
           ]
         },
         {
@@ -449,72 +266,36 @@
           "numero": 1,
           "nome": "Fly",
           "series": [
-            {
-              "peso": 40,
-              "repeticoes": 10
-            },
-            {
-              "peso": 40,
-              "repeticoes": 10
-            },
-            {
-              "peso": 40,
-              "repeticoes": 10
-            }
+            { "peso": 40, "repeticoes": 10 },
+            { "peso": 40, "repeticoes": 10 },
+            { "peso": 40, "repeticoes": 10 }
           ]
         },
         {
           "numero": 2,
           "nome": "Supino reto",
           "series": [
-            {
-              "peso": 55,
-              "repeticoes": 12
-            },
-            {
-              "peso": 55,
-              "repeticoes": 12
-            },
-            {
-              "peso": 55,
-              "repeticoes": 12
-            }
+            { "peso": 55, "repeticoes": 12 },
+            { "peso": 55, "repeticoes": 12 },
+            { "peso": 55, "repeticoes": 12 }
           ]
         },
         {
           "numero": 3,
           "nome": "Remada alta individual",
           "series": [
-            {
-              "peso": 26,
-              "repeticoes": 12
-            },
-            {
-              "peso": 26,
-              "repeticoes": 12
-            },
-            {
-              "peso": 26,
-              "repeticoes": 12
-            }
+            { "peso": 26, "repeticoes": 12 },
+            { "peso": 26, "repeticoes": 12 },
+            { "peso": 26, "repeticoes": 12 }
           ]
         },
         {
           "numero": 4,
           "nome": "Remada baixa triângulo",
           "series": [
-            {
-              "peso": 68,
-              "repeticoes": 14
-            },
-            {
-              "peso": 68,
-              "repeticoes": 12
-            },
-            {
-              "peso": 75,
-              "repeticoes": 12
-            }
+            { "peso": 68, "repeticoes": 14 },
+            { "peso": 68, "repeticoes": 12 },
+            { "peso": 75, "repeticoes": 12 }
           ],
           "observacao": "Bem cadenciado"
         },
@@ -527,54 +308,27 @@
           "numero": 6,
           "nome": "Elevação lateral",
           "series": [
-            {
-              "peso": 20,
-              "repeticoes": 12
-            },
-            {
-              "peso": 20,
-              "repeticoes": 12
-            },
-            {
-              "peso": 20,
-              "repeticoes": 8
-            }
+            { "peso": 20, "repeticoes": 12 },
+            { "peso": 20, "repeticoes": 12 },
+            { "peso": 20, "repeticoes": 8 }
           ]
         },
         {
           "numero": 7,
           "nome": "Tríceps paralela",
           "series": [
-            {
-              "peso": 60,
-              "repeticoes": 12
-            },
-            {
-              "peso": 60,
-              "repeticoes": 12
-            },
-            {
-              "peso": 60,
-              "repeticoes": 12
-            }
+            { "peso": 60, "repeticoes": 12 },
+            { "peso": 60, "repeticoes": 12 },
+            { "peso": 60, "repeticoes": 12 }
           ]
         },
         {
           "numero": 8,
           "nome": "Rosca Scott",
           "series": [
-            {
-              "peso": 22,
-              "repeticoes": 12
-            },
-            {
-              "peso": 26.25,
-              "repeticoes": 12
-            },
-            {
-              "peso": 26.25,
-              "repeticoes": 12
-            }
+            { "peso": 22, "repeticoes": 12 },
+            { "peso": 26.25, "repeticoes": 12 },
+            { "peso": 26.25, "repeticoes": 12 }
           ],
           "observacao": "A primeira foi na polia"
         }
@@ -592,30 +346,12 @@
           "numero": 1,
           "nome": "Levantamento terra",
           "series": [
-            {
-              "peso": 20,
-              "repeticoes": 8
-            },
-            {
-              "peso": 60,
-              "repeticoes": 6
-            },
-            {
-              "peso": 115,
-              "repeticoes": 5
-            },
-            {
-              "peso": 115,
-              "repeticoes": 5
-            },
-            {
-              "peso": 115,
-              "repeticoes": 5
-            },
-            {
-              "peso": 115,
-              "repeticoes": 5
-            }
+            { "peso": 20, "repeticoes": 8 },
+            { "peso": 60, "repeticoes": 6 },
+            { "peso": 115, "repeticoes": 5 },
+            { "peso": 115, "repeticoes": 5 },
+            { "peso": 115, "repeticoes": 5 },
+            { "peso": 115, "repeticoes": 5 }
           ],
           "observacao": "Todas sem strap e só senti falta na última série. Nas duas últimas, a mão estava abrindo ao ponto de a barra quase soltar."
         },
@@ -623,22 +359,10 @@
           "numero": 2,
           "nome": "Terra romeno",
           "series": [
-            {
-              "peso": 75,
-              "repeticoes": 8
-            },
-            {
-              "peso": 75,
-              "repeticoes": 8
-            },
-            {
-              "peso": 75,
-              "repeticoes": 8
-            },
-            {
-              "peso": 75,
-              "repeticoes": 3
-            }
+            { "peso": 75, "repeticoes": 8 },
+            { "peso": 75, "repeticoes": 8 },
+            { "peso": 75, "repeticoes": 8 },
+            { "peso": 75, "repeticoes": 3 }
           ],
           "observacao": "Fadiga na lombar na última."
         },
@@ -646,22 +370,10 @@
           "numero": 3,
           "nome": "Cadeira flexora",
           "series": [
-            {
-              "peso": 65,
-              "repeticoes": 12
-            },
-            {
-              "peso": 65,
-              "repeticoes": 12
-            },
-            {
-              "peso": 65,
-              "repeticoes": 12
-            },
-            {
-              "peso": 65,
-              "repeticoes": 12
-            }
+            { "peso": 65, "repeticoes": 12 },
+            { "peso": 65, "repeticoes": 12 },
+            { "peso": 65, "repeticoes": 12 },
+            { "peso": 65, "repeticoes": 12 }
           ],
           "observacao": "Bem exaustivo, mas bem cadenciado."
         },
@@ -669,18 +381,9 @@
           "numero": 4,
           "nome": "Panturrilha",
           "series": [
-            {
-              "peso": 45,
-              "repeticoes": 12
-            },
-            {
-              "peso": 60,
-              "repeticoes": 12
-            },
-            {
-              "peso": 60,
-              "repeticoes": 12
-            }
+            { "peso": 45, "repeticoes": 12 },
+            { "peso": 60, "repeticoes": 12 },
+            { "peso": 60, "repeticoes": 12 }
           ]
         },
         {
@@ -691,495 +394,156 @@
         }
       ]
     },
-
-{
-
-  "id": "titio-douglas-2026-09-10-lower",
-
-  "pessoaId": "titio-douglas",
-
-  "data": "2026-09-10",
-
-  "titulo": "Lower",
-
-  "unidade": "kg",
-
-  "observacao": "",
-
-  "exercicios": [
-
     {
-
-      "numero": 1,
-
-      "nome": "Leg press",
-
-      "series": [
-
+      "id": "titio-douglas-2026-09-10-lower",
+      "pessoaId": "titio-douglas",
+      "data": "2026-09-10",
+      "titulo": "Lower",
+      "unidade": "kg",
+      "observacao": "",
+      "exercicios": [
         {
-
-          "peso": 60,
-
-          "repeticoes": 12
-
+          "numero": 1,
+          "nome": "Leg press",
+          "series": [
+            { "peso": 60, "repeticoes": 12 },
+            { "peso": 65, "repeticoes": 12 },
+            { "peso": 65, "repeticoes": 12 }
+          ],
+          "observacao": ""
         },
-
         {
-
-          "peso": 65,
-
-          "repeticoes": 12
-
+          "numero": 2,
+          "nome": "Agachamento sumô",
+          "series": [
+            { "peso": 20, "repeticoes": 12 },
+            { "peso": 30, "repeticoes": 12 },
+            { "peso": 40, "repeticoes": 12 }
+          ],
+          "observacao": ""
         },
-
         {
-
-          "peso": 65,
-
-          "repeticoes": 12
-
+          "numero": 3,
+          "nome": "Cadeira flexora",
+          "series": [
+            { "peso": 55, "repeticoes": 12 },
+            { "peso": 55, "repeticoes": 12 },
+            { "peso": 55, "repeticoes": 12 }
+          ],
+          "observacao": ""
+        },
+        {
+          "numero": 4,
+          "nome": "Cadeira extensora",
+          "series": [
+            { "peso": 55, "repeticoes": 12 },
+            { "peso": 55, "repeticoes": 12 },
+            { "peso": 55, "repeticoes": 12 }
+          ],
+          "observacao": ""
+        },
+        {
+          "numero": 5,
+          "nome": "Cadeira adutora",
+          "series": []
+        },
+        {
+          "numero": 6,
+          "nome": "Cadeira abdutora",
+          "series": [
+            { "peso": 60, "repeticoes": 12 },
+            { "peso": 66, "repeticoes": 12 },
+            { "peso": 66, "repeticoes": 12 }
+          ],
+          "observacao": ""
+        },
+        {
+          "numero": 7,
+          "nome": "Cadeira adutora",
+          "series": [
+            { "peso": 38, "repeticoes": 13 },
+            { "peso": 38, "repeticoes": 13 },
+            { "peso": 38, "repeticoes": 13 }
+          ],
+          "observacao": ""
+        },
+        {
+          "numero": 8,
+          "nome": "Exercício não informado",
+          "series": []
         }
-
-      ],
-
-      "observacao": ""
-
+      ]
     },
-
     {
-
-      "numero": 2,
-
-      "nome": "Agachamento sumô",
-
-      "series": [
-
+      "id": "andre-2026-09-10-lower",
+      "pessoaId": "andre",
+      "data": "2026-09-10",
+      "titulo": "Lower",
+      "unidade": "kg",
+      "observacao": "",
+      "exercicios": [
         {
-
-          "peso": 20,
-
-          "repeticoes": 12
-
+          "numero": 1,
+          "nome": "Leg press",
+          "series": [
+            { "peso": 100, "repeticoes": 12 },
+            { "peso": 115, "repeticoes": 12 },
+            { "peso": 115, "repeticoes": 12 }
+          ],
+          "observacao": ""
         },
-
         {
-
-          "peso": 30,
-
-          "repeticoes": 12
-
+          "numero": 2,
+          "nome": "Agachamento sumô",
+          "series": [
+            { "peso": 20, "repeticoes": 12 },
+            { "peso": 30, "repeticoes": 12 },
+            { "peso": 40, "repeticoes": 12 }
+          ],
+          "observacao": "Regenerativo"
         },
-
         {
-
-          "peso": 40,
-
-          "repeticoes": 12
-
+          "numero": 3,
+          "nome": "Cadeira flexora",
+          "series": [
+            { "peso": 75, "repeticoes": 12 },
+            { "peso": 90, "repeticoes": 12 },
+            { "peso": 90, "repeticoes": 12 }
+          ],
+          "observacao": ""
+        },
+        {
+          "numero": 4,
+          "nome": "Cadeira extensora",
+          "series": [
+            { "peso": 115, "repeticoes": 8 },
+            { "peso": 140, "repeticoes": 10 },
+            { "peso": 140, "repeticoes": 10 }
+          ],
+          "observacao": ""
+        },
+        {
+          "numero": 5,
+          "nome": "Cadeira adutora",
+          "series": []
+        },
+        {
+          "numero": 6,
+          "nome": "Cadeira abdutora",
+          "series": [
+            { "peso": 86, "repeticoes": 12 },
+            { "peso": 86, "repeticoes": 12 },
+            { "peso": 86, "repeticoes": 12 }
+          ],
+          "observacao": ""
+        },
+        {
+          "numero": 7,
+          "nome": "Cadeira adutora",
+          "series": [],
+          "observacao": "Dados das séries não informados no conteúdo original."
         }
-
-      ],
-
-      "observacao": ""
-
-    },
-
-    {
-
-      "numero": 3,
-
-      "nome": "Cadeira flexora",
-
-      "series": [
-
-        {
-
-          "peso": 55,
-
-          "repeticoes": 12
-
-        },
-
-        {
-
-          "peso": 55,
-
-          "repeticoes": 12
-
-        },
-
-        {
-
-          "peso": 55,
-
-          "repeticoes": 12
-
-        }
-
-      ],
-
-      "observacao": ""
-
-    },
-
-    {
-
-      "numero": 4,
-
-      "nome": "Cadeira extensora",
-
-      "series": [
-
-        {
-
-          "peso": 55,
-
-          "repeticoes": 12
-
-        },
-
-        {
-
-          "peso": 55,
-
-          "repeticoes": 12
-
-        },
-
-        {
-
-          "peso": 55,
-
-          "repeticoes": 12
-
-        }
-
-      ],
-
-      "observacao": ""
-
-    },
-
-    {
-
-      "numero": 5,
-
-      "nome": "Cadeira adutora",
-
-      "series": []
-
-    },
-
-    {
-
-      "numero": 6,
-
-      "nome": "Cadeira abdutora",
-
-      "series": [
-
-        {
-
-          "peso": 60,
-
-          "repeticoes": 12
-
-        },
-
-        {
-
-          "peso": 66,
-
-          "repeticoes": 12
-
-        },
-
-        {
-
-          "peso": 66,
-
-          "repeticoes": 12
-
-        }
-
-      ],
-
-      "observacao": ""
-
-    },
-
-    {
-
-      "numero": 7,
-
-      "nome": "Cadeira adutora",
-
-      "series": [
-
-        {
-
-          "peso": 38,
-
-          "repeticoes": 13
-
-        },
-
-        {
-
-          "peso": 38,
-
-          "repeticoes": 13
-
-        },
-
-        {
-
-          "peso": 38,
-
-          "repeticoes": 13
-
-        }
-
-      ],
-
-      "observacao": ""
-
-    },
-
-    {
-
-      "numero": 8,
-
-      "nome": "Exercício não informado",
-
-      "series": []
-
+      ]
     }
-
   ]
-
-},{
-
-  "id": "andre-2026-09-10-lower",
-
-  "pessoaId": "andre",
-
-  "data": "2026-09-10",
-
-  "titulo": "Lower",
-
-  "unidade": "kg",
-
-  "observacao": "",
-
-  "exercicios": [
-
-    {
-
-      "numero": 1,
-
-      "nome": "Leg press",
-
-      "series": [
-
-        {
-
-          "peso": 100,
-
-          "repeticoes": 12
-
-        },
-
-        {
-
-          "peso": 115,
-
-          "repeticoes": 12
-
-        },
-
-        {
-
-          "peso": 115,
-
-          "repeticoes": 12
-
-        }
-
-      ],
-
-      "observacao": ""
-
-    },
-
-    {
-
-      "numero": 2,
-
-      "nome": "Agachamento sumô",
-
-      "series": [
-
-        {
-
-          "peso": 20,
-
-          "repeticoes": 12
-
-        },
-
-        {
-
-          "peso": 30,
-
-          "repeticoes": 12
-
-        },
-
-        {
-
-          "peso": 40,
-
-          "repeticoes": 12
-
-        }
-
-      ],
-
-      "observacao": "Regenerativo"
-
-    },
-
-    {
-
-      "numero": 3,
-
-      "nome": "Cadeira flexora",
-
-      "series": [
-
-        {
-
-          "peso": 75,
-
-          "repeticoes": 12
-
-        },
-
-        {
-
-          "peso": 90,
-
-          "repeticoes": 12
-
-        },
-
-        {
-
-          "peso": 90,
-
-          "repeticoes": 12
-
-        }
-
-      ],
-
-      "observacao": ""
-
-    },
-
-    {
-
-      "numero": 4,
-
-      "nome": "Cadeira extensora",
-
-      "series": [
-
-        {
-
-          "peso": 115,
-
-          "repeticoes": 8
-
-        },
-
-        {
-
-          "peso": 140,
-
-          "repeticoes": 10
-
-        },
-
-        {
-
-          "peso": 140,
-
-          "repeticoes": 10
-
-        }
-
-      ],
-
-      "observacao": ""
-
-    },
-
-    {
-
-      "numero": 5,
-
-      "nome": "Cadeira adutora",
-
-      "series": []
-
-    },
-
-    {
-
-      "numero": 6,
-
-      "nome": "Cadeira abdutora",
-
-      "series": [
-
-        {
-
-          "peso": 86,
-
-          "repeticoes": 12
-
-        },
-
-        {
-
-          "peso": 86,
-
-          "repeticoes": 12
-
-        },
-
-        {
-
-          "peso": 86,
-
-          "repeticoes": 12
-
-        }
-
-      ],
-
-      "observacao": ""
-
-    },
-
-    {
-
-      "numero": 7,
-
-      "nome": "Cadeira adutora",
-
-      "series": [
-  ]
-}}
+}
