@@ -1960,6 +1960,95 @@
       "observacao": ""
     }
   ]
+},{
+  "id": "andre-2026-09-22-terca",
+  "pessoaId": "andre",
+  "data": "2026-09-22",
+  "titulo": "Terça",
+  "unidade": "kg",
+  "observacao": "",
+  "exercicios": [
+    {
+      "numero": 1,
+      "nome": "Levantamento terra",
+      "series": [
+        {
+          "peso": 20,
+          "repeticoes": 5
+        },
+        {
+          "peso": 60,
+          "repeticoes": 6
+        },
+        {
+          "peso": 100,
+          "repeticoes": 5
+        },
+        {
+          "peso": 100,
+          "repeticoes": 5
+        },
+        {
+          "peso": 100,
+          "repeticoes": 5
+        }
+      ]
+    },
+    {
+      "numero": 2,
+      "nome": "Terra romeno",
+      "series": [
+        {
+          "peso": 60,
+          "repeticoes": 6
+        },
+        {
+          "peso": 60,
+          "repeticoes": 8
+        },
+        {
+          "peso": 60,
+          "repeticoes": 6
+        }
+      ]
+    },
+    {
+      "numero": 3,
+      "nome": "Cadeira flexora",
+      "series": [
+        {
+          "peso": 80,
+          "repeticoes": 12
+        },
+        {
+          "peso": 80,
+          "repeticoes": 12
+        },
+        {
+          "peso": 80,
+          "repeticoes": 12
+        }
+      ]
+    },
+    {
+      "numero": 4,
+      "nome": "Abdominal lateral romano",
+      "series": [
+        {
+          "peso": 1,
+          "repeticoes": 12
+        },
+        {
+          "peso": 1,
+          "repeticoes": 12
+        },
+        {
+          "peso": 1,
+          "repeticoes": 12
+        }
+      ]
+    }
+  ]
 }
   ]
 }
