@@ -2049,6 +2049,205 @@
       ]
     }
   ]
+}, 
+{
+  "id": "titio-douglas-2026-09-24-lower",
+  "pessoaId": "titio-douglas",
+  "data": "2026-09-24",
+  "titulo": "Lower",
+  "unidade": "kg",
+  "observacao": "",
+  "exercicios": [
+    {
+      "numero": 1,
+      "nome": "Leg press",
+      "series": [
+        {
+          "peso": 65,
+          "repeticoes": 12
+        },
+        {
+          "peso": 65,
+          "repeticoes": 12
+        },
+        {
+          "peso": 70,
+          "repeticoes": 12
+        }
+      ]
+    },
+    {
+      "numero": 2,
+      "nome": "Cadeira flexora",
+      "series": [
+        {
+          "peso": 65,
+          "repeticoes": 12
+        },
+        {
+          "peso": 65,
+          "repeticoes": 12
+        },
+        {
+          "peso": 65,
+          "repeticoes": 12
+        }
+      ]
+    },
+    {
+      "numero": 3,
+      "nome": "Cadeira extensora",
+      "series": [
+        {
+          "peso": 65,
+          "repeticoes": 12
+        },
+        {
+          "peso": 65,
+          "repeticoes": 12
+        },
+        {
+          "peso": 65,
+          "repeticoes": 12
+        }
+      ]
+    },
+    {
+      "numero": 4,
+      "nome": "Cadeira Adutora",
+      "series": [
+        {
+          "peso": 70,
+          "repeticoes": 12
+        },
+        {
+          "peso": 70,
+          "repeticoes": 12
+        },
+        {
+          "peso": 70,
+          "repeticoes": 12
+        }
+      ]
+    },
+    {
+      "numero": 5,
+      "nome": "Cadeira Abdutora",
+      "series": [
+        {
+          "peso": 38,
+          "repeticoes": 13
+        },
+        {
+          "peso": 45,
+          "repeticoes": 12
+        },
+        {
+          "peso": 52,
+          "repeticoes": 14
+        }
+      ]
+    }
+  ]
+},{
+  "id": "andre-2026-09-24-lower",
+  "pessoaId": "andre",
+  "data": "2026-09-24",
+  "titulo": "Lower",
+  "unidade": "kg",
+  "observacao": "",
+  "exercicios": [
+    {
+      "numero": 1,
+      "nome": "Leg press",
+      "series": [
+        {
+          "peso": 95,
+          "repeticoes": 12
+        },
+        {
+          "peso": 105,
+          "repeticoes": 12
+        },
+        {
+          "peso": 110,
+          "repeticoes": 12
+        }
+      ]
+    },
+    {
+      "numero": 2,
+      "nome": "Cadeira flexora",
+      "series": [
+        {
+          "peso": 90,
+          "repeticoes": 12
+        },
+        {
+          "peso": 110,
+          "repeticoes": 12
+        },
+        {
+          "peso": 110,
+          "repeticoes": 12
+        }
+      ]
+    },
+    {
+      "numero": 3,
+      "nome": "Cadeira extensora",
+      "series": [
+        {
+          "peso": 140,
+          "repeticoes": 8
+        },
+        {
+          "peso": 140,
+          "repeticoes": 8
+        },
+        {
+          "peso": 140,
+          "repeticoes": 8
+        }
+      ]
+    },
+    {
+      "numero": 4,
+      "nome": "Cadeira Adutora",
+      "series": [
+       {
+          "peso": 66,
+          "repeticoes": 11
+        },
+        {
+          "peso": 70,
+          "repeticoes": 10
+        },
+        {
+          "peso": 70,
+          "repeticoes": 12
+        }
+      ]
+    },
+    {
+      "numero": 5,
+      "nome": "Cadeira Abdutora",
+      "series": [
+        {
+          "peso": 72,
+          "repeticoes": 12
+        },
+        {
+          "peso": 72,
+          "repeticoes": 12
+        },
+        {
+          "peso": 72,
+          "repeticoes": 12
+        }
+      ]
+    }
+  ]
 }
   ]
 }
