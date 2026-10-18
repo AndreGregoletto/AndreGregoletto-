@@ -388,6 +388,25 @@
     let TRAINING_PROGRESS_RAW = null;
     let selectedComparePeriodA = null;
     let selectedComparePeriodB = null;
+const MEASURE_REGISTER_DRAFTS = readLocalJson('measurement-register-drafts') || {};
+let selectedMeasureRegisterPerson = '';
+let selectedMeasureRegisterDate = new Date().toISOString().slice(0, 10);
+
+const MEASURE_REGISTER_FIELDS = [
+  { key: 'idade', label: 'Idade', unit: 'anos', group: 'dados' },
+  { key: 'peso', label: 'Peso', unit: 'kg', group: 'dados' },
+  { key: 'peito', label: 'Peito', unit: 'mm', group: 'dobras' },
+  { key: 'abdomem', label: 'Abdômen', unit: 'mm', group: 'dobras' },
+  { key: 'tricipes', label: 'Tríceps', unit: 'mm', group: 'dobras' },
+  { key: 'flanco', label: 'Flanco / supra-ilíaca', unit: 'mm', group: 'dobras' },
+  { key: 'coxa', label: 'Coxa', unit: 'mm', group: 'dobras' },
+  { key: 'cintura', label: 'Cintura', unit: 'cm', group: 'medidas' },
+  { key: 'quadril', label: 'Quadril', unit: 'cm', group: 'medidas' },
+  { key: 'coxa', label: 'Coxa', unit: 'cm', group: 'medidas' },
+  { key: 'braco', label: 'Braço', unit: 'cm', group: 'medidas' }
+];
+
+
     let selectedComparePersonA = null;
     let selectedComparePersonB = null;
     let TRAINING_REGISTER_DRAFTS = {};
@@ -560,6 +579,7 @@
           Object.entries(people || {}).forEach(([name, data]) => rows.push(normalizeRow(period, name, data)));
         });
       }
+      rows = [...new Map(rows.map(row => [String(row.personId || row.name) + '::' + row.period, row])).values()];
       return addDeltas(rows).sort((a, b) => a.period !== b.period ? a.period.localeCompare(b.period) : a.name.localeCompare(b.name, 'pt-BR'));
     }
 
@@ -1470,16 +1490,32 @@
     function renderProgressVisual(personName, exerciseName) {
       const personId = Object.values(TRAINING_PEOPLE).find(person => person.nome === personName)?.id || personName;
       const records = TRAINING_PROGRESS[personId] || {};
-      const entries = Object.entries(records).flatMap(([date, record]) => record.exercicios.filter(item => !exerciseName || exerciseNameKey(item.nome) === exerciseName).map(item => ({ date, record, item })));
-      const selected = entries.filter(entry => !exerciseName || exerciseNameKey(entry.item.nome) === exerciseName);
+      const entries = [...new Map(Object.entries(records).flatMap(([date, record]) => record.exercicios.filter(item => !exerciseName || exerciseNameKey(item.nome) === exerciseName).map(item => ({ date, record, item }))).map(entry => [entry.date + '::' + exerciseNameKey(entry.item.nome), entry])).values()].sort((a, b) => a.date.localeCompare(b.date));
+      const selected = entries;
       const labels = selected.map(entry => formatPeriod(entry.date));
-      const units = [...new Set(selected.map(entry => entry.record?.unidade || 'kg'))].join('/') || 'kg';
+      const units = [...new Set(selected.map(entry => entry.item.unidade || entry.record?.unidade || 'kg'))].join('/') || 'kg';
       const maxLoads = selected.map(entry => entry.item.series.length ? Math.max(...entry.item.series.map(set => set.peso)) : null);
       const volumes = selected.map(entry => entry.item.series.reduce((sum, set) => sum + (set.peso * (Number.isFinite(set.repeticoes) ? set.repeticoes : 0)), 0) || null);
       const progressSummary = document.getElementById('trainingProgressSummary');
-      if (progressSummary) { const previous = selected.at(-2), latest = selected.at(-1); const max = item => item?.item?.series?.length ? Math.max(...item.item.series.map(set => set.peso)) : null; const volume = item => item?.item?.series?.reduce((sum, set) => sum + (set.peso * (Number.isFinite(set.repeticoes) ? set.repeticoes : 0)), 0) || null; const maxDelta = max(latest) !== null && max(previous) !== null ? max(latest) - max(previous) : null; const volumeDelta = volume(latest) !== null && volume(previous) !== null ? volume(latest) - volume(previous) : null; progressSummary.innerHTML = '<div class="mini-stat"><span>Maior carga recente</span><strong>' + (max(latest) === null ? '—' : formatNumber(max(latest), 2) + ' ' + units) + '</strong></div><div class="mini-stat"><span>Variação de carga</span><strong>' + (maxDelta === null ? '—' : (maxDelta >= 0 ? '+' : '') + formatNumber(maxDelta, 2) + ' ' + units) + '</strong></div><div class="mini-stat"><span>Variação de volume</span><strong>' + (volumeDelta === null ? '—' : (volumeDelta >= 0 ? '+' : '') + formatNumber(volumeDelta, 0) + ' kg·reps') + '</strong></div>'; }
+      if (progressSummary) {
+        const first = selected[0], previous = selected.at(-2), latest = selected.at(-1);
+        const max = entry => entry?.item?.series?.length ? Math.max(...entry.item.series.map(set => set.peso)) : null;
+        const volume = entry => entry?.item?.series?.reduce((sum, set) => sum + (set.peso * (Number.isFinite(set.repeticoes) ? set.repeticoes : 0)), 0) || null;
+        const maxValues = selected.map(max).filter(Number.isFinite);
+        const best = maxValues.length ? Math.max(...maxValues) : null;
+        const latestMax = max(latest);
+        const totalDelta = latestMax !== null && max(first) !== null ? latestMax - max(first) : null;
+        const volumeLatest = volume(latest);
+        const volumeDelta = volumeLatest !== null && volume(previous) !== null ? volumeLatest - volume(previous) : null;
+        progressSummary.innerHTML = '<div class="mini-stat"><span>Registros válidos</span><strong>' + selected.length + '</strong></div><div class="mini-stat"><span>Melhor carga</span><strong>' + (best === null ? '—' : formatNumber(best, 2) + ' ' + units) + '</strong></div><div class="mini-stat"><span>Última carga</span><strong>' + (latestMax === null ? '—' : formatNumber(latestMax, 2) + ' ' + units) + '</strong></div><div class="mini-stat"><span>Variação desde o início</span><strong>' + (totalDelta === null ? '—' : (totalDelta >= 0 ? '+' : '') + formatNumber(totalDelta, 2) + ' ' + units) + '</strong></div><div class="mini-stat"><span>Volume mais recente</span><strong>' + (volumeLatest === null ? '—' : formatNumber(volumeLatest, 0) + ' kg·reps') + '</strong></div><div class="mini-stat"><span>Variação de volume</span><strong>' + (volumeDelta === null ? '—' : (volumeDelta >= 0 ? '+' : '') + formatNumber(volumeDelta, 0) + ' kg·reps') + '</strong></div>';
+      }
       const timeline = document.getElementById('trainingProgressTimeline');
-      if (timeline) timeline.innerHTML = selected.map(entry => `<article class="progress-timeline-item"><time>${formatPeriod(entry.date)}</time><div><strong>${exerciseDisplayName(entry.item.nome)}</strong><p>${entry.item.series.length ? entry.item.series.map(set => `${formatNumber(set.peso, 2)} ${entry.record?.unidade || 'kg'} × ${set.repeticoes ?? '—'}`).join(' · ') : 'N/A'}</p></div></article>`).join('') || '<p class="muted">Nenhum registro para este exercício.</p>';
+      if (timeline) timeline.innerHTML = selected.map(entry => `<article class="progress-timeline-item"><time>${formatPeriod(entry.date)}</time><div><strong>${exerciseDisplayName(entry.item.nome)}</strong><p>${entry.item.series.length ? entry.item.series.map(set => `${set.emoji ? set.emoji + ' ' : ''}${formatNumber(set.peso, 2)} ${entry.record?.unidade || 'kg'} × ${set.repeticoes ?? '—'}`).join(' · ') : 'N/A'}</p></div></article>`).join('') || '<p class="muted">Nenhum registro para este exercício.</p>';
+      const latestTarget = document.getElementById('trainingProgressLatest');
+      if (latestTarget) {
+        const latest = selected.at(-1);
+        latestTarget.innerHTML = latest ? '<div class="latest-exercise-card"><div><span class="muted">Último registro do exercício</span><strong>' + formatPeriod(latest.date) + ' · ' + exerciseDisplayName(latest.item.nome) + '</strong></div><p>' + (latest.item.series.length ? latest.item.series.map(set => (set.emoji ? set.emoji + ' ' : '') + formatNumber(set.peso, 2) + ' ' + (latest.item.unidade || latest.record?.unidade || 'kg') + ' × ' + (set.repeticoes ?? '—')).join(' · ') : 'N/A') + '</p></div>' : '<p class="muted">Nenhum registro para este exercício.</p>';
+      }
       destroyChart('trainingProgressChart');
       const canvas = document.getElementById('trainingProgressChart');
       if (!canvas || !selected.length) return;
@@ -1502,15 +1538,8 @@
         <div class="grid-3" id="trainingProgressSummary" style="margin-top:14px"></div>
         <h4 style="margin:18px 0 10px">Timeline do exercício</h4>
         <div class="progress-timeline" id="trainingProgressTimeline"></div>
-      </section>` + Object.entries(records).sort(([a], [b]) => b.localeCompare(a)).map(([date, record]) => `
-        <section class="workout-section">
-          <div class="workout-head"><div><h3>${record.titulo} — ${formatPeriod(date)}</h3><div class="muted">${record.observacao}</div></div></div>
-          <div class="table-wrap">
-            <table class="progress-table"><thead><tr><th>#</th><th>Exercício</th><th>Séries realizadas</th><th>Observação</th></tr></thead><tbody>
-              ${record.exercicios.map(item => `<tr><td><strong>${item.numero}</strong></td><td><strong>${exerciseDisplayName(item.nome)}</strong></td><td>${item.series.length ? item.series.map(set => `${formatNumber(set.peso, 2)} ${record.unidade || 'kg'} × ${set.repeticoes ?? '—'}`).join('<br>') : 'N/A'}</td><td>${[...new Set(item.series.map(set => set.observacao).filter(Boolean).concat(item.observacao || []))].join('; ') || '—'}</td></tr>`).join('')}
-            </tbody></table>
-          </div>
-        </section>`).join('');
+        <div id="trainingProgressLatest"></div>
+      </section>`;
     }
 
     function trainingPeopleOptions(rows) {
@@ -1522,11 +1551,27 @@
       return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
     }
 
-    function trainingRegisterExerciseRow(exercise = {}, index = 0) {
+    const TRAINING_SERIES_EMOJIS = [
+      { value: '', label: 'nada' },
+      { value: '💀', label: '💀 caveira' },
+      { value: '🤢', label: '🤢 enjoo' },
+      { value: '💩', label: '💩 cocô' },
+      { value: '🏳️‍🌈', label: '🏳️‍🌈 bandeira LGBT' },
+      { value: '😴', label: '😴 cara com sono' },
+      { value: '😐', label: '😐 cara sem reação' },
+      { value: '😄', label: '😄 cara feliz' }
+    ];
+
+    function trainingRegisterEmojiOptions(selected = '') {
+      return TRAINING_SERIES_EMOJIS.map(option => `<option value="${option.value}" ${option.value === selected ? 'selected' : ''}>${option.label}</option>`).join('');
+    }
+
+    function trainingRegisterExerciseRow(exercise = {}, index = 0, defaultUnit = 'kg') {
       const series = Array.isArray(exercise.registroSeries) ? exercise.registroSeries : (Array.isArray(exercise.seriesRegistro) ? exercise.seriesRegistro : (Array.isArray(exercise.series) ? exercise.series : []));
+      const unit = exercise.unidade || defaultUnit || 'kg';
       return `<div class="register-exercise" data-register-exercise>
-        <div class="register-exercise-head"><span class="register-number">${index + 1}</span><input class="register-name" type="text" value="${exercise.nome || ''}" placeholder="Nome do exercício"><button type="button" class="ghost-btn register-remove" data-remove-exercise>Remover</button></div>
-        <div class="register-sets">${Array.from({ length: Math.max(3, series.length) }, (_, setIndex) => `<label>S${setIndex + 1}<input class="register-weight" type="number" step="0.01" min="0" value="${series[setIndex]?.peso ?? ''}" placeholder="kg/lb"><input class="register-reps" type="number" step="1" min="0" value="${series[setIndex]?.repeticoes ?? ''}" placeholder="reps"></label>`).join('')}</div><button type="button" class="ghost-btn register-add-set" data-add-set><i class="fa-solid fa-plus"></i> Adicionar série</button>
+        <div class="register-exercise-head"><span class="register-number">${index + 1}</span><input class="register-name" type="text" value="${exercise.nome || ''}" placeholder="Nome do exercicio"><label class="register-exercise-unit">Unidade<select class="register-unit"><option value="kg" ${unit === 'kg' ? 'selected' : ''}>kg</option><option value="lb" ${unit === 'lb' ? 'selected' : ''}>lb</option></select></label><button type="button" class="ghost-btn register-remove" data-remove-exercise>Remover</button></div>
+        <div class="register-sets">${Array.from({ length: Math.max(3, series.length) }, (_, setIndex) => `<label>S${setIndex + 1}<input class="register-weight" type="number" step="0.01" min="0" value="${series[setIndex]?.peso ?? ''}" placeholder="kg/lb"><input class="register-reps" type="number" step="1" min="0" value="${series[setIndex]?.repeticoes ?? ''}" placeholder="reps"><select class="register-emoji" aria-label="Como foi a série">${trainingRegisterEmojiOptions(series[setIndex]?.emoji || '')}</select></label>`).join('')}</div><button type="button" class="ghost-btn register-add-set" data-add-set><i class="fa-solid fa-plus"></i> Adicionar série</button>
         <input class="register-observation" type="text" value="${exercise.observacao || ''}" placeholder="Observação do exercício">
       </div>`;
     }
@@ -1549,14 +1594,16 @@
         modelo,
         data: date,
         titulo: workoutCode,
-        unidade: pane.querySelector('#registerUnit')?.value || 'kg',
+        unidade: 'kg',
         observacao: pane.querySelector('#registerSessionObservation')?.value || '',
         exercicios: [...pane.querySelectorAll('[data-register-exercise]')].map((item, index) => ({
           numero: index + 1,
           nome: item.querySelector('.register-name')?.value || '',
+          unidade: item.querySelector('.register-unit')?.value || 'kg',
           series: [...item.querySelectorAll('.register-sets label')].map(label => ({
             peso: label.querySelector('.register-weight')?.value === '' ? null : Number(label.querySelector('.register-weight')?.value),
-            repeticoes: label.querySelector('.register-reps')?.value === '' ? null : Number(label.querySelector('.register-reps')?.value)
+            repeticoes: label.querySelector('.register-reps')?.value === '' ? null : Number(label.querySelector('.register-reps')?.value),
+            emoji: label.querySelector('.register-emoji')?.value || ''
           })),
           observacao: item.querySelector('.register-observation')?.value || ''
         }))
@@ -1591,9 +1638,9 @@
           <div><label for="registerPerson">Pessoa / ID</label><select id="registerPerson">${options.map(item => `<option value="${item.id}" ${item.id === person.id ? 'selected' : ''}>${item.name} — ${item.id}</option>`).join('')}</select></div>
           <div><label for="registerWorkout">Treino</label><select id="registerWorkout">${days.map(item => `<option value="${item.codigo}" ${item.codigo === day.codigo ? 'selected' : ''}>${item.codigo} — ${item.nome}</option>`).join('')}</select></div>
           <div><label for="registerDate">Data</label><input id="registerDate" type="date" value="${draft?.data || activeDate}"></div>
-          <div><label for="registerUnit">Unidade da carga</label><select id="registerUnit"><option value="kg" ${(!draft?.unidade || draft.unidade === 'kg') ? 'selected' : ''}>kg</option><option value="lb" ${draft?.unidade === 'lb' ? 'selected' : ''}>lb</option></select></div>
+          <div class="register-unit-note"><span>Unidade</span><strong>Escolha em cada exercicio</strong></div>
         </div>
-        <div class="register-exercises" id="registerExercises">${registerExercises.map((exercise, index) => trainingRegisterExerciseRow(exercise, index)).join('')}</div>
+        <div class="register-exercises" id="registerExercises">${registerExercises.map((exercise, index) => trainingRegisterExerciseRow(exercise, index, draft?.unidade || 'kg')).join('')}</div>
         <div class="actions"><button type="button" class="ghost-btn" id="registerAddExercise"><i class="fa-solid fa-plus"></i> Adicionar exercício</button></div>
         <label for="registerSessionObservation">Observação da sessão</label><textarea id="registerSessionObservation" class="register-session-observation" placeholder="Ex.: treino adaptado, troca de exercício, equipamento utilizado...">${draft?.observacao || ''}</textarea>
         <div class="actions"><button type="button" class="primary-btn" id="registerGenerate"><i class="fa-solid fa-code"></i> Gerar objeto JSON</button><button type="button" class="ghost-btn" id="registerClear">Limpar rascunho</button><button type="button" class="ghost-btn" id="registerCopy" disabled><i class="fa-regular fa-copy"></i> Copiar objeto</button></div>
@@ -1615,13 +1662,12 @@
       const rerenderWithPlan = (nextPersonId, nextWorkoutCode) => { pane.innerHTML = renderTrainingRegister(rows, nextPersonId, nextWorkoutCode); bindTrainingRegister(rows, content, nextPersonId, nextWorkoutCode); };
       const exerciseList = pane.querySelector('#registerExercises');
       pane.querySelector('#registerAddExercise').addEventListener('click', () => { exerciseList.insertAdjacentHTML('beforeend', trainingRegisterExerciseRow({}, exerciseList.querySelectorAll('[data-register-exercise]').length)); });
-      exerciseList.addEventListener('click', event => { const addSet = event.target.closest('[data-add-set]'); if (addSet) { const exercise = addSet.closest('[data-register-exercise]'); const setIndex = exercise.querySelectorAll('.register-sets label').length; exercise.querySelector('.register-sets').insertAdjacentHTML('beforeend', `<label>S${setIndex + 1}<input class="register-weight" type="number" step="0.01" min="0" placeholder="kg/lb"><input class="register-reps" type="number" step="1" min="0" placeholder="reps"></label>`); saveTrainingRegisterDraft(pane, personId, workoutCode || workoutSelect.value); return; } if (event.target.closest('[data-remove-exercise]')) { event.target.closest('[data-register-exercise]').remove(); [...exerciseList.querySelectorAll('[data-register-exercise]')].forEach((item, index) => item.querySelector('.register-number').textContent = index + 1); saveTrainingRegisterDraft(pane, personId, workoutCode || workoutSelect.value); } });
+      exerciseList.addEventListener('click', event => { const addSet = event.target.closest('[data-add-set]'); if (addSet) { const exercise = addSet.closest('[data-register-exercise]'); const setIndex = exercise.querySelectorAll('.register-sets label').length; exercise.querySelector('.register-sets').insertAdjacentHTML('beforeend', `<label>S${setIndex + 1}<input class="register-weight" type="number" step="0.01" min="0" placeholder="kg/lb"><input class="register-reps" type="number" step="1" min="0" placeholder="reps"><select class="register-emoji" aria-label="Como foi a série">${trainingRegisterEmojiOptions()}</select></label>`); saveTrainingRegisterDraft(pane, personId, workoutCode || workoutSelect.value); return; } if (event.target.closest('[data-remove-exercise]')) { event.target.closest('[data-register-exercise]').remove(); [...exerciseList.querySelectorAll('[data-register-exercise]')].forEach((item, index) => item.querySelector('.register-number').textContent = index + 1); saveTrainingRegisterDraft(pane, personId, workoutCode || workoutSelect.value); } });
       pane.querySelector('#registerClear').addEventListener('click', () => { const date = pane.querySelector('#registerDate').value; const code = pane.querySelector('#registerWorkout').value; clearTrainingRegisterDraft(personId, date, code); pane.innerHTML = renderTrainingRegister(rows, personId, code); bindTrainingRegister(rows, content, personId, code); });
       pane.querySelector('#registerGenerate').addEventListener('click', () => {
         const person = trainingPeopleOptions(rows).find(item => item.id === pane.querySelector('#registerPerson').value);
         const day = TRAINING_PLANS[person.name].dias.find(item => item.codigo === pane.querySelector('#registerWorkout').value);
-        const unit = pane.querySelector('#registerUnit').value;
-        const session = { id: `${person.id}-${pane.querySelector('#registerDate').value}-${trainingSlug(day.codigo)}`, pessoaId: person.id, data: pane.querySelector('#registerDate').value, titulo: day.codigo, unidade: unit, observacao: pane.querySelector('#registerSessionObservation').value.trim(), exercicios: [...pane.querySelectorAll('[data-register-exercise]')].map((item, index) => { const series = [...item.querySelectorAll('.register-sets label')].map(label => ({ peso: Number(label.querySelector('.register-weight').value), repeticoes: Number(label.querySelector('.register-reps').value) })).filter(set => Number.isFinite(set.peso) && set.peso > 0); const result = { numero: index + 1, nome: item.querySelector('.register-name').value.trim() || 'Exercício não informado', series }; const observation = item.querySelector('.register-observation').value.trim(); if (observation) result.observacao = observation; return result; }) };
+        const session = { id: `${person.id}-${pane.querySelector('#registerDate').value}-${trainingSlug(day.codigo)}`, pessoaId: person.id, data: pane.querySelector('#registerDate').value, titulo: day.codigo, unidade: 'kg', observacao: pane.querySelector('#registerSessionObservation').value.trim(), exercicios: [...pane.querySelectorAll('[data-register-exercise]')].map((item, index) => { const series = [...item.querySelectorAll('.register-sets label')].map(label => ({ peso: Number(label.querySelector('.register-weight').value), repeticoes: Number(label.querySelector('.register-reps').value), emoji: label.querySelector('.register-emoji')?.value || '' })).filter(set => Number.isFinite(set.peso) && set.peso > 0); const result = { numero: index + 1, nome: item.querySelector('.register-name').value.trim() || 'Exercício não informado', unidade: item.querySelector('.register-unit')?.value || 'kg', series }; const observation = item.querySelector('.register-observation').value.trim(); if (observation) result.observacao = observation; return result; }) };
         const output = pane.querySelector('#registerOutput'); output.value = JSON.stringify(session, null, 2); pane.querySelector('#registerCopy').disabled = false; saveTrainingRegisterDraft(pane, personId, pane.querySelector('#registerWorkout').value);
       });
       pane.querySelector('#registerCopy').addEventListener('click', async () => { const output = pane.querySelector('#registerOutput'); try { await navigator.clipboard.writeText(output.value); pane.querySelector('#registerCopy').textContent = 'Copiado'; setTimeout(() => pane.querySelector('#registerCopy').innerHTML = '<i class="fa-regular fa-copy"></i> Copiar objeto', 1400); } catch { output.select(); document.execCommand('copy'); } });
@@ -1650,7 +1696,7 @@
       if (!select || !kpis || !history) return;
       const people = getPeople(rows); if (!selectedReportPerson || !people.includes(selectedReportPerson)) selectedReportPerson = people[0] || null;
       select.innerHTML = people.map(name => `<option value="${name}">${name}</option>`).join(''); select.value = selectedReportPerson || '';
-      const personRows = rows.filter(row => row.name === selectedReportPerson).sort((a, b) => a.period.localeCompare(b.period)); const latest = personRows.at(-1); const previous = personRows.at(-2);
+      const personRows = [...new Map(rows.filter(row => row.name === selectedReportPerson).map(row => [row.period, row])).values()].sort((a, b) => a.period.localeCompare(b.period)); const latest = personRows.at(-1); const previous = personRows.at(-2);
       const bfDelta = latest && previous && Number.isFinite(latest.bf) && Number.isFinite(previous.bf) ? latest.bf - previous.bf : null; const weightDelta = latest && previous && latest.weight > 0 && previous.weight > 0 ? latest.weight - previous.weight : null;
       kpis.innerHTML = `<div class="mini-stat"><span>Último BF%</span><strong>${formatPercent(latest?.bf)}</strong></div><div class="mini-stat"><span>Variação recente</span><strong>${deltaText(bfDelta)}</strong></div><div class="mini-stat"><span>Variação de peso</span><strong>${deltaText(weightDelta, ' kg')}</strong></div>`;
       history.innerHTML = [...personRows].reverse().map(row => `<tr><td>${formatPeriod(row.period)}</td><td><strong>${formatPercent(row.bf)}</strong></td><td>${deltaText(row.deltaBf)}</td><td>${formatKg(row.weight)}</td><td>${formatMm(row.sum)}</td><td>${measuresText(row.measures)}</td><td>${row.observation || '—'}</td><td>${badge(row)}</td></tr>`).join('');
@@ -1721,6 +1767,72 @@
       [['referenceMenChart', 'Homens', men], ['referenceWomenChart', 'Mulheres', women]].forEach(([id, label, values]) => { destroyChart(id); const canvas = document.getElementById(id); if (!canvas) return; charts[id] = new Chart(canvas, { type: 'bar', data: { labels: values.map(item => item.label), datasets: [{ label: label + ' - limite inferior', data: values.map(item => item.min), backgroundColor: 'rgba(40,200,255,.65)', borderRadius: 6 }, { label: 'limite superior', data: values.map(item => item.max), backgroundColor: 'rgba(191,134,255,.75)', borderRadius: 6 }] }, options: baseChartOptions('%') }); });
     }
 
+    function measurementRegisterPeople(rows) {
+      const source = DEFAULT_MEASUREMENTS.people || [];
+      if (source.length) return source.map(person => ({ id: person.id, name: person.nome || person.id }));
+      return [...new Map(rows.filter(row => row.personId).map(row => [row.personId, { id: row.personId, name: row.name }])).values()];
+    }
+
+    function measurementRegisterDraftKey(personId, date) {
+      return personId + '::' + date;
+    }
+
+    function measurementRegisterValue(draft, field) {
+      return field.group === 'medidas' ? draft?.medidas?.[field.key] : draft?.[field.key];
+    }
+
+    function collectMeasurementRegister(pane) {
+      const result = {};
+      MEASURE_REGISTER_FIELDS.forEach(field => {
+        const input = pane.querySelector('[data-measure-field="' + field.group + '-' + field.key + '"]');
+        if (!input || input.value === '') return;
+        const value = Number(input.value);
+        if (!Number.isFinite(value)) return;
+        if (field.group === 'medidas') {
+          if (!result.medidas) result.medidas = {};
+          result.medidas[field.key] = value;
+        } else {
+          result[field.key] = value;
+        }
+      });
+      const observation = pane.querySelector('#measureRegisterObservation')?.value.trim();
+      if (observation) result.observacao = observation;
+      return result;
+    }
+
+    function saveMeasurementRegisterDraft(pane) {
+      const personId = pane.querySelector('#measureRegisterPerson')?.value;
+      const date = pane.querySelector('#measureRegisterDate')?.value;
+      if (!personId || !date) return;
+      MEASURE_REGISTER_DRAFTS[measurementRegisterDraftKey(personId, date)] = collectMeasurementRegister(pane);
+      try { localStorage.setItem('measurement-register-drafts', JSON.stringify(MEASURE_REGISTER_DRAFTS)); } catch (error) { /* segue em memória */ }
+    }
+
+    function renderMeasurementRegister(rows) {
+      const target = document.getElementById('measureRegisterContent');
+      if (!target) return;
+      const people = measurementRegisterPeople(rows);
+      if (!selectedMeasureRegisterPerson || !people.some(person => person.id === selectedMeasureRegisterPerson)) selectedMeasureRegisterPerson = people[0]?.id || '';
+      const draft = MEASURE_REGISTER_DRAFTS[measurementRegisterDraftKey(selectedMeasureRegisterPerson, selectedMeasureRegisterDate)] || {};
+      const groups = [['dados', 'Dados principais'], ['dobras', 'Dobras do adipômetro (mm)'], ['medidas', 'Circunferências (cm)']];
+      const fields = groups.map(([group, title]) => '<div class="measure-register-group"><h4>' + title + '</h4><div class="measurement-register-grid">' + MEASURE_REGISTER_FIELDS.filter(field => field.group === group).map(field => '<label>' + field.label + ' <span>(' + field.unit + ')</span><input type="number" step="0.01" min="0" data-measure-field="' + field.group + '-' + field.key + '" value="' + (measurementRegisterValue(draft, field) ?? '') + '" placeholder="Opcional"></label>').join('') + '</div></div>').join('');
+      target.innerHTML = '<div class="register-toolbar measurement-register-toolbar"><div><label for="measureRegisterPerson">Pessoa</label><select id="measureRegisterPerson">' + people.map(person => '<option value="' + person.id + '" ' + (person.id === selectedMeasureRegisterPerson ? 'selected' : '') + '>' + person.name + '</option>').join('') + '</select></div><div><label for="measureRegisterDate">Data da medição</label><input id="measureRegisterDate" type="date" value="' + selectedMeasureRegisterDate + '"></div></div>' + fields + '<label for="measureRegisterObservation">Observação</label><textarea id="measureRegisterObservation" class="register-session-observation" placeholder="Ex.: horário, condição da medição, período menstrual...">' + (draft.observacao || '') + '</textarea><div class="actions"><button type="button" class="primary-btn" id="measureRegisterGenerate"><i class="fa-solid fa-code"></i> Gerar objeto JSON</button><button type="button" class="ghost-btn" id="measureRegisterClear">Limpar rascunho</button><button type="button" class="ghost-btn" id="measureRegisterCopy" disabled><i class="fa-regular fa-copy"></i> Copiar objeto</button></div><textarea id="measureRegisterOutput" class="register-output" readonly placeholder="O objeto pronto para colar aparecerá aqui."></textarea>';
+      const personSelect = target.querySelector('#measureRegisterPerson');
+      const dateInput = target.querySelector('#measureRegisterDate');
+      personSelect.addEventListener('change', () => { saveMeasurementRegisterDraft(target); selectedMeasureRegisterPerson = personSelect.value; renderMeasurementRegister(rows); });
+      dateInput.addEventListener('change', () => { saveMeasurementRegisterDraft(target); selectedMeasureRegisterDate = dateInput.value; renderMeasurementRegister(rows); });
+      target.oninput = () => saveMeasurementRegisterDraft(target);
+      target.querySelector('#measureRegisterClear').addEventListener('click', () => { delete MEASURE_REGISTER_DRAFTS[measurementRegisterDraftKey(personSelect.value, dateInput.value)]; try { localStorage.setItem('measurement-register-drafts', JSON.stringify(MEASURE_REGISTER_DRAFTS)); } catch (error) {} renderMeasurementRegister(rows); });
+      target.querySelector('#measureRegisterGenerate').addEventListener('click', () => {
+        const values = collectMeasurementRegister(target);
+        const output = { data: dateInput.value, pessoaId: personSelect.value, ...values };
+        target.querySelector('#measureRegisterOutput').value = JSON.stringify(output, null, 2);
+        target.querySelector('#measureRegisterCopy').disabled = false;
+        saveMeasurementRegisterDraft(target);
+      });
+      target.querySelector('#measureRegisterCopy').addEventListener('click', async () => { const output = target.querySelector('#measureRegisterOutput'); try { await navigator.clipboard.writeText(output.value); target.querySelector('#measureRegisterCopy').textContent = 'Copiado'; setTimeout(() => target.querySelector('#measureRegisterCopy').innerHTML = '<i class="fa-regular fa-copy"></i> Copiar objeto', 1400); } catch { output.select(); document.execCommand('copy'); } });
+    }
+
     function renderAll() {
       const rows = getRows();
       renderKpis(rows);
@@ -1730,6 +1842,7 @@
       renderPeriodTab(rows);
       renderMeasureTab(rows);
       renderTrainingTab(rows);
+      renderMeasurementRegister(rows);
       renderDetailedReports(rows);
       renderComparisonTab(rows);
       renderReferenceTab();
