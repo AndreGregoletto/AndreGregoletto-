@@ -1,4 +1,4 @@
-const CACHE_NAME = 'consulta-corporal-v1';
+const CACHE_NAME = 'consulta-corporal-v2';
 const APP_SHELL = ['./', './index.html', './script.js', './data.json', './training-progress.json', './manifest.json'];
 
 self.addEventListener('install', event => {

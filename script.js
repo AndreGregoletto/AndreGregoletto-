@@ -1904,3 +1904,34 @@ const MEASURE_REGISTER_FIELDS = [
         document.querySelector("main").insertAdjacentHTML("afterbegin", "<div class=\"note\" role=\"alert\">Data could not be loaded. Publish data.json with the page.</div>");
       });
   
+    /* Melhorias progressivas de interação: busca, teclado, feedback e estados vazios. */
+    (() => {
+      const normalizeText = value => String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+      let toastTimer;
+      function showToast(message, type = 'success') {
+        let toast = document.getElementById('uiToast');
+        if (!toast) { toast = document.createElement('div'); toast.id = 'uiToast'; toast.className = 'data-toast'; toast.setAttribute('role', 'status'); document.body.appendChild(toast); }
+        toast.textContent = message; toast.classList.toggle('error', type === 'error'); toast.classList.add('visible'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('visible'), 3600);
+      }
+      function addPersonSearch(listId, label) {
+        const list = document.getElementById(listId);
+        if (!list || list.previousElementSibling?.classList.contains('person-search')) return;
+        const wrapper = document.createElement('div'); wrapper.className = 'person-search';
+        wrapper.innerHTML = `<i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><input type="search" aria-label="${label}" placeholder="Buscar por nome..." autocomplete="off"><small>Digite para filtrar</small>`;
+        list.parentNode.insertBefore(wrapper, list);
+        const input = wrapper.querySelector('input');
+        input.addEventListener('input', () => {
+          const query = normalizeText(input.value); let visible = 0;
+          list.querySelectorAll('.person-card').forEach(card => { const match = !query || normalizeText(card.textContent).includes(query); card.hidden = !match; if (match) visible += 1; });
+          let empty = list.nextElementSibling?.classList.contains('empty-state') ? list.nextElementSibling : null;
+          if (!visible && query) { if (!empty) { empty = document.createElement('div'); empty.className = 'empty-state'; list.after(empty); } empty.textContent = `Nenhuma pessoa encontrada para “${input.value}”.`; } else if (empty) empty.remove();
+        });
+      }
+      function enhancePersonCards() {
+        addPersonSearch('personCards', 'Buscar pessoa na consulta individual'); addPersonSearch('trainingPersonCards', 'Buscar pessoa no treinamento');
+        document.querySelectorAll('.person-card').forEach(card => { if (card.dataset.keyboardReady) return; card.dataset.keyboardReady = 'true'; card.setAttribute('role', 'button'); card.setAttribute('tabindex', '0'); card.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); card.click(); } }); });
+      }
+      const main = document.getElementById('main-content'); if (main) new MutationObserver(enhancePersonCards).observe(main, { childList: true, subtree: true }); enhancePersonCards();
+      document.addEventListener('keydown', event => { if (event.key !== '/' || /input|textarea|select/i.test(document.activeElement?.tagName || '')) return; const activeSearch = document.querySelector('.person-search input'); if (activeSearch) { event.preventDefault(); activeSearch.focus(); } });
+      window.addEventListener('online', () => showToast('Conexão restaurada.')); window.addEventListener('offline', () => showToast('Modo offline: usando os dados disponíveis.', 'error'));
+    })();
