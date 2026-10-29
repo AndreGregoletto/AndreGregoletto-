@@ -2,7 +2,7 @@
     let DEFAULT_MEASUREMENTS = {};
 
     const TRAINING_PLANS = {
-      "Tia Mah": {
+      "Bê": {
             "titulo": "Treino feminino",
             "observacao": "Treino importado do PDF Treino-woman. Cada aba representa um dia/treino.",
             "dias": [
@@ -11,40 +11,46 @@
                         "nome": "Posterior & Glúteo",
                         "exercicios": [
                               {
-                                    "nome": "Mesa flexora",
+                                    "nome": "Mesa Flexora",
                                     "series": "4",
                                     "repeticoes": "12",
-                                    "video": "https://www.youtube.com/shorts/IXg1PQ_5gmw"
+                                    "video": "https://www.youtube.com/shorts/IXg1PQ_5gmw",
+                                    "exercicioId": "mesa-flexora"
                               },
                               {
                                     "nome": "Stiff",
                                     "series": "3",
                                     "repeticoes": "12",
-                                    "video": "https://www.youtube.com/shorts/raMtPJQ5f9A"
+                                    "video": "https://www.youtube.com/shorts/raMtPJQ5f9A",
+                                    "exercicioId": "stiff"
                               },
                               {
-                                    "nome": "Cadeira flexora",
+                                    "nome": "Cadeira Flexora",
                                     "series": "3",
                                     "repeticoes": "15",
-                                    "video": "https://www.youtube.com/shorts/T46yKiz8laY"
+                                    "video": "https://www.youtube.com/shorts/T46yKiz8laY",
+                                    "exercicioId": "cadeira-flexora"
                               },
                               {
-                                    "nome": "Afundo búlgaro",
+                                    "nome": "Agachamento Búlgaro",
                                     "series": "3",
                                     "repeticoes": "10",
-                                    "video": "https://www.youtube.com/shorts/0KQOdTvfc5A"
+                                    "video": "https://www.youtube.com/shorts/0KQOdTvfc5A",
+                                    "exercicioId": "agachamento-bulgaro"
                               },
                               {
-                                    "nome": "Cadeira adutora",
+                                    "nome": "Cadeira Adutora",
                                     "series": "3",
                                     "repeticoes": "15",
-                                    "video": "https://www.youtube.com/shorts/1aATfJITaIw"
+                                    "video": "https://www.youtube.com/shorts/1aATfJITaIw",
+                                    "exercicioId": "cadeira-adutora"
                               },
                               {
-                                    "nome": "Elevação pélvica (máquina ou barra livre)",
+                                    "nome": "Elevação Pélvica",
                                     "series": "4",
                                     "repeticoes": "12",
-                                    "video": "https://www.youtube.com/shorts/Nuoo1XgRtGY"
+                                    "video": "https://www.youtube.com/shorts/Nuoo1XgRtGY",
+                                    "exercicioId": "elevacao-pelvica"
                               }
                         ]
                   },
@@ -53,46 +59,53 @@
                         "nome": "Peito, Ombro & Tríceps",
                         "exercicios": [
                               {
-                                    "nome": "Supino reto",
+                                    "nome": "Supino Reto",
                                     "series": "4",
                                     "repeticoes": "10",
-                                    "video": "https://www.youtube.com/shorts/hlV6f0kHmeo"
+                                    "video": "https://www.youtube.com/shorts/hlV6f0kHmeo",
+                                    "exercicioId": "supino-reto"
                               },
                               {
-                                    "nome": "Supino inclinado na máquina",
+                                    "nome": "Supino Inclinado na Máquina",
                                     "series": "3",
                                     "repeticoes": "10",
-                                    "video": "https://www.youtube.com/shorts/wW0sG8mXqO0"
+                                    "video": "https://www.youtube.com/shorts/wW0sG8mXqO0",
+                                    "exercicioId": "supino-inclinado-na-maquina"
                               },
                               {
-                                    "nome": "Elevação lateral",
+                                    "nome": "Elevação Lateral",
                                     "series": "4",
                                     "repeticoes": "12",
-                                    "video": "https://www.youtube.com/shorts/ot9nwSC1JnA"
+                                    "video": "https://www.youtube.com/shorts/ot9nwSC1JnA",
+                                    "exercicioId": "elevacao-lateral"
                               },
                               {
-                                    "nome": "Elevação frontal",
+                                    "nome": "Elevação Frontal",
                                     "series": "3",
                                     "repeticoes": "12",
-                                    "video": "https://www.youtube.com/shorts/GqZRmCow0rw"
+                                    "video": "https://www.youtube.com/shorts/GqZRmCow0rw",
+                                    "exercicioId": "elevacao-frontal"
                               },
                               {
-                                    "nome": "Tríceps corda",
+                                    "nome": "Tríceps na Corda",
                                     "series": "4",
                                     "repeticoes": "12",
-                                    "video": "https://www.youtube.com/shorts/-QGC1cL6ETE"
+                                    "video": "https://www.youtube.com/shorts/-QGC1cL6ETE",
+                                    "exercicioId": "triceps-na-corda"
                               },
                               {
-                                    "nome": "Abdominal (prancha)",
+                                    "nome": "Prancha Abdominal",
                                     "series": "3",
                                     "repeticoes": "30 seg",
-                                    "video": "https://www.youtube.com/shorts/uxPlAbWFUDs"
+                                    "video": "https://www.youtube.com/shorts/uxPlAbWFUDs",
+                                    "exercicioId": "prancha-abdominal"
                               },
                               {
-                                    "nome": "Panturrilha (escada ou em pé)",
+                                    "nome": "Panturrilha (Escada ou em Pé)",
                                     "series": "4",
                                     "repeticoes": "15",
-                                    "video": "https://www.youtube.com/shorts/3afDSh_V0sg"
+                                    "video": "https://www.youtube.com/shorts/3afDSh_V0sg",
+                                    "exercicioId": "panturrilha-escada-ou-em-pe"
                               }
                         ]
                   },
@@ -104,37 +117,43 @@
                                     "nome": "Agachamento",
                                     "series": "4",
                                     "repeticoes": "10",
-                                    "video": "https://www.youtube.com/shorts/1oipoiTpbJA"
+                                    "video": "https://www.youtube.com/shorts/1oipoiTpbJA",
+                                    "exercicioId": "agachamento"
                               },
                               {
-                                    "nome": "Hack machine",
+                                    "nome": "Hack Machine",
                                     "series": "4",
                                     "repeticoes": "12",
-                                    "video": "https://www.youtube.com/watch?v=SBBURLX8eKs"
+                                    "video": "https://www.youtube.com/watch?v=SBBURLX8eKs",
+                                    "exercicioId": "hack-machine"
                               },
                               {
-                                    "nome": "Leg press 45°",
+                                    "nome": "Leg Press 45°",
                                     "series": "4",
                                     "repeticoes": "12",
-                                    "video": "https://www.youtube.com/shorts/D9WR6PoMYxs"
+                                    "video": "https://www.youtube.com/shorts/D9WR6PoMYxs",
+                                    "exercicioId": "leg-press-45"
                               },
                               {
-                                    "nome": "Afundo e passada",
+                                    "nome": "Afundo e Passada",
                                     "series": "3",
                                     "repeticoes": "10",
-                                    "video": "https://www.youtube.com/shorts/JoZYP87WAp0"
+                                    "video": "https://www.youtube.com/shorts/JoZYP87WAp0",
+                                    "exercicioId": "afundo-e-passada"
                               },
                               {
-                                    "nome": "Cadeira extensora",
+                                    "nome": "Cadeira Extensora",
                                     "series": "4",
                                     "repeticoes": "12",
-                                    "video": "https://www.youtube.com/shorts/PzIfB9MiiX8"
+                                    "video": "https://www.youtube.com/shorts/PzIfB9MiiX8",
+                                    "exercicioId": "cadeira-extensora"
                               },
                               {
-                                    "nome": "Cadeira abdutora",
+                                    "nome": "Cadeira Abdutora",
                                     "series": "3",
                                     "repeticoes": "15",
-                                    "video": "https://www.youtube.com/shorts/nabhYLtz8Gg"
+                                    "video": "https://www.youtube.com/shorts/nabhYLtz8Gg",
+                                    "exercicioId": "cadeira-abdutora"
                               }
                         ]
                   },
@@ -143,40 +162,46 @@
                         "nome": "Costas & Bíceps",
                         "exercicios": [
                               {
-                                    "nome": "Remada aberta polia alta",
+                                    "nome": "Remada Aberta na Polia Alta",
                                     "series": "4",
                                     "repeticoes": "10",
-                                    "video": "https://www.youtube.com/shorts/_2MfZAj98tk"
+                                    "video": "https://www.youtube.com/shorts/_2MfZAj98tk",
+                                    "exercicioId": "remada-aberta-na-polia-alta"
                               },
                               {
-                                    "nome": "Puxada triângulo polia",
+                                    "nome": "Puxada Alta com Triângulo",
                                     "series": "3",
                                     "repeticoes": "12",
-                                    "video": "https://www.youtube.com/shorts/ySLFHxmJ_Sc"
+                                    "video": "https://www.youtube.com/shorts/ySLFHxmJ_Sc",
+                                    "exercicioId": "puxada-alta-com-triangulo"
                               },
                               {
-                                    "nome": "Pull down",
+                                    "nome": "Pulldown",
                                     "series": "3",
                                     "repeticoes": "12",
-                                    "video": "https://www.youtube.com/shorts/GDhW19yQrJI"
+                                    "video": "https://www.youtube.com/shorts/GDhW19yQrJI",
+                                    "exercicioId": "pulldown"
                               },
                               {
-                                    "nome": "Rosca direta (cabo, halter ou barra W)",
+                                    "nome": "Rosca Direta",
                                     "series": "4",
                                     "repeticoes": "12",
-                                    "video": "https://www.youtube.com/shorts/x6JCKfdzPJE"
+                                    "video": "https://www.youtube.com/shorts/x6JCKfdzPJE",
+                                    "exercicioId": "rosca-direta"
                               },
                               {
-                                    "nome": "Abdominal (prancha)",
+                                    "nome": "Prancha Abdominal",
                                     "series": "3",
                                     "repeticoes": "60 seg",
-                                    "video": "https://www.youtube.com/shorts/uxPlAbWFUDs"
+                                    "video": "https://www.youtube.com/shorts/uxPlAbWFUDs",
+                                    "exercicioId": "prancha-abdominal"
                               },
                               {
-                                    "nome": "Panturrilha (escada ou em pé)",
+                                    "nome": "Panturrilha (Escada ou em Pé)",
                                     "series": "4",
                                     "repeticoes": "20",
-                                    "video": "https://www.youtube.com/shorts/3afDSh_V0sg"
+                                    "video": "https://www.youtube.com/shorts/3afDSh_V0sg",
+                                    "exercicioId": "panturrilha-escada-ou-em-pe"
                               }
                         ]
                   },
@@ -185,40 +210,46 @@
                         "nome": "Full inferiores leve — ênfase glúteo",
                         "exercicios": [
                               {
-                                    "nome": "Elevação pélvica (máquina ou barra livre)",
+                                    "nome": "Elevação Pélvica",
                                     "series": "4",
                                     "repeticoes": "12",
-                                    "video": "https://www.youtube.com/shorts/Nuoo1XgRtGY"
+                                    "video": "https://www.youtube.com/shorts/Nuoo1XgRtGY",
+                                    "exercicioId": "elevacao-pelvica"
                               },
                               {
-                                    "nome": "Glúteo no cabo",
+                                    "nome": "Glúteo no Cabo",
                                     "series": "3",
                                     "repeticoes": "12",
-                                    "video": "https://www.youtube.com/shorts/XqQlpJhB8xU"
+                                    "video": "https://www.youtube.com/shorts/XqQlpJhB8xU",
+                                    "exercicioId": "gluteo-no-cabo"
                               },
                               {
-                                    "nome": "Cadeira abdutora",
+                                    "nome": "Cadeira Abdutora",
                                     "series": "3",
                                     "repeticoes": "20",
-                                    "video": "https://www.youtube.com/shorts/nabhYLtz8Gg"
+                                    "video": "https://www.youtube.com/shorts/nabhYLtz8Gg",
+                                    "exercicioId": "cadeira-abdutora"
                               },
                               {
-                                    "nome": "Cadeira flexora",
+                                    "nome": "Cadeira Flexora",
                                     "series": "3",
                                     "repeticoes": "12",
-                                    "video": "https://www.youtube.com/shorts/T46yKiz8laY"
+                                    "video": "https://www.youtube.com/shorts/T46yKiz8laY",
+                                    "exercicioId": "cadeira-flexora"
                               },
                               {
-                                    "nome": "Mesa flexora",
+                                    "nome": "Mesa Flexora",
                                     "series": "3",
                                     "repeticoes": "12",
-                                    "video": "https://www.youtube.com/shorts/IXg1PQ_5gmw"
+                                    "video": "https://www.youtube.com/shorts/IXg1PQ_5gmw",
+                                    "exercicioId": "mesa-flexora"
                               },
                               {
-                                    "nome": "Cardio (bicicleta, escada ou esteira)",
+                                    "nome": "Cardio (Bicicleta, Escada ou Esteira)",
                                     "series": "20",
                                     "repeticoes": "30 min",
-                                    "video": "https://i.pinimg.com/originals/e6/9a/ca/e69acae1176c249d95dcea23f85381c9.jpg"
+                                    "video": "https://i.pinimg.com/originals/e6/9a/ca/e69acae1176c249d95dcea23f85381c9.jpg",
+                                    "exercicioId": "cardio-bicicleta-escada-ou-esteira"
                               }
                         ]
                   },
@@ -227,86 +258,1108 @@
                         "nome": "Dia de estímulo — Glúteo, abdômen e cardio",
                         "exercicios": [
                               {
-                                    "nome": "Elevação pélvica (máquina ou barra livre)",
+                                    "nome": "Elevação Pélvica",
                                     "series": "4",
                                     "repeticoes": "12",
-                                    "video": "https://www.youtube.com/shorts/Nuoo1XgRtGY"
+                                    "video": "https://www.youtube.com/shorts/Nuoo1XgRtGY",
+                                    "exercicioId": "elevacao-pelvica"
                               },
                               {
-                                    "nome": "Cadeira adutora",
+                                    "nome": "Cadeira Adutora",
                                     "series": "3",
                                     "repeticoes": "15",
-                                    "video": "https://www.youtube.com/shorts/1aATfJITaIw"
+                                    "video": "https://www.youtube.com/shorts/1aATfJITaIw",
+                                    "exercicioId": "cadeira-adutora"
                               },
                               {
-                                    "nome": "Cadeira abdutora",
+                                    "nome": "Cadeira Abdutora",
                                     "series": "3",
                                     "repeticoes": "20",
-                                    "video": "https://www.youtube.com/shorts/nabhYLtz8Gg"
+                                    "video": "https://www.youtube.com/shorts/nabhYLtz8Gg",
+                                    "exercicioId": "cadeira-abdutora"
                               },
                               {
-                                    "nome": "Glúteo no cabo",
+                                    "nome": "Glúteo no Cabo",
                                     "series": "3",
                                     "repeticoes": "12",
-                                    "video": "https://www.youtube.com/shorts/XqQlpJhB8xU"
+                                    "video": "https://www.youtube.com/shorts/XqQlpJhB8xU",
+                                    "exercicioId": "gluteo-no-cabo"
                               },
                               {
-                                    "nome": "Abdominal (prancha)",
+                                    "nome": "Prancha Abdominal",
                                     "series": "3",
                                     "repeticoes": "60 seg",
-                                    "video": "https://www.youtube.com/shorts/uxPlAbWFUDs"
+                                    "video": "https://www.youtube.com/shorts/uxPlAbWFUDs",
+                                    "exercicioId": "prancha-abdominal"
                               },
                               {
-                                    "nome": "Cardio (bicicleta, escada ou esteira)",
+                                    "nome": "Cardio (Bicicleta, Escada ou Esteira)",
                                     "series": "20",
                                     "repeticoes": "30 min",
-                                    "video": "https://i.pinimg.com/originals/e6/9a/ca/e69acae1176c249d95dcea23f85381c9.jpg"
+                                    "video": "https://i.pinimg.com/originals/e6/9a/ca/e69acae1176c249d95dcea23f85381c9.jpg",
+                                    "exercicioId": "cardio-bicicleta-escada-ou-esteira"
+                              }
+                        ]
+                  }
+            ]
+      },
+      "Thais Oliveira": {
+            "titulo": "Treino feminino",
+            "observacao": "Treino importado do PDF Treino-woman. Cada aba representa um dia/treino.",
+            "dias": [
+                  {
+                        "codigo": "A",
+                        "nome": "Posterior & Glúteo",
+                        "exercicios": [
+                              {
+                                    "nome": "Mesa Flexora",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/IXg1PQ_5gmw",
+                                    "exercicioId": "mesa-flexora"
+                              },
+                              {
+                                    "nome": "Stiff",
+                                    "series": "3",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/raMtPJQ5f9A",
+                                    "exercicioId": "stiff"
+                              },
+                              {
+                                    "nome": "Cadeira Flexora",
+                                    "series": "3",
+                                    "repeticoes": "15",
+                                    "video": "https://www.youtube.com/shorts/T46yKiz8laY",
+                                    "exercicioId": "cadeira-flexora"
+                              },
+                              {
+                                    "nome": "Agachamento Búlgaro",
+                                    "series": "3",
+                                    "repeticoes": "10",
+                                    "video": "https://www.youtube.com/shorts/0KQOdTvfc5A",
+                                    "exercicioId": "agachamento-bulgaro"
+                              },
+                              {
+                                    "nome": "Cadeira Adutora",
+                                    "series": "3",
+                                    "repeticoes": "15",
+                                    "video": "https://www.youtube.com/shorts/1aATfJITaIw",
+                                    "exercicioId": "cadeira-adutora"
+                              },
+                              {
+                                    "nome": "Elevação Pélvica",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/Nuoo1XgRtGY",
+                                    "exercicioId": "elevacao-pelvica"
+                              }
+                        ]
+                  },
+                  {
+                        "codigo": "B",
+                        "nome": "Peito, Ombro & Tríceps",
+                        "exercicios": [
+                              {
+                                    "nome": "Supino Reto",
+                                    "series": "4",
+                                    "repeticoes": "10",
+                                    "video": "https://www.youtube.com/shorts/hlV6f0kHmeo",
+                                    "exercicioId": "supino-reto"
+                              },
+                              {
+                                    "nome": "Supino Inclinado na Máquina",
+                                    "series": "3",
+                                    "repeticoes": "10",
+                                    "video": "https://www.youtube.com/shorts/wW0sG8mXqO0",
+                                    "exercicioId": "supino-inclinado-na-maquina"
+                              },
+                              {
+                                    "nome": "Elevação Lateral",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/ot9nwSC1JnA",
+                                    "exercicioId": "elevacao-lateral"
+                              },
+                              {
+                                    "nome": "Elevação Frontal",
+                                    "series": "3",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/GqZRmCow0rw",
+                                    "exercicioId": "elevacao-frontal"
+                              },
+                              {
+                                    "nome": "Tríceps na Corda",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/-QGC1cL6ETE",
+                                    "exercicioId": "triceps-na-corda"
+                              },
+                              {
+                                    "nome": "Prancha Abdominal",
+                                    "series": "3",
+                                    "repeticoes": "30 seg",
+                                    "video": "https://www.youtube.com/shorts/uxPlAbWFUDs",
+                                    "exercicioId": "prancha-abdominal"
+                              },
+                              {
+                                    "nome": "Panturrilha (Escada ou em Pé)",
+                                    "series": "4",
+                                    "repeticoes": "15",
+                                    "video": "https://www.youtube.com/shorts/3afDSh_V0sg",
+                                    "exercicioId": "panturrilha-escada-ou-em-pe"
+                              }
+                        ]
+                  },
+                  {
+                        "codigo": "C",
+                        "nome": "Quadríceps e Glúteo",
+                        "exercicios": [
+                              {
+                                    "nome": "Agachamento",
+                                    "series": "4",
+                                    "repeticoes": "10",
+                                    "video": "https://www.youtube.com/shorts/1oipoiTpbJA",
+                                    "exercicioId": "agachamento"
+                              },
+                              {
+                                    "nome": "Hack Machine",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/watch?v=SBBURLX8eKs",
+                                    "exercicioId": "hack-machine"
+                              },
+                              {
+                                    "nome": "Leg Press 45°",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/D9WR6PoMYxs",
+                                    "exercicioId": "leg-press-45"
+                              },
+                              {
+                                    "nome": "Afundo e Passada",
+                                    "series": "3",
+                                    "repeticoes": "10",
+                                    "video": "https://www.youtube.com/shorts/JoZYP87WAp0",
+                                    "exercicioId": "afundo-e-passada"
+                              },
+                              {
+                                    "nome": "Cadeira Extensora",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/PzIfB9MiiX8",
+                                    "exercicioId": "cadeira-extensora"
+                              },
+                              {
+                                    "nome": "Cadeira Abdutora",
+                                    "series": "3",
+                                    "repeticoes": "15",
+                                    "video": "https://www.youtube.com/shorts/nabhYLtz8Gg",
+                                    "exercicioId": "cadeira-abdutora"
+                              }
+                        ]
+                  },
+                  {
+                        "codigo": "D",
+                        "nome": "Costas & Bíceps",
+                        "exercicios": [
+                              {
+                                    "nome": "Remada Aberta na Polia Alta",
+                                    "series": "4",
+                                    "repeticoes": "10",
+                                    "video": "https://www.youtube.com/shorts/_2MfZAj98tk",
+                                    "exercicioId": "remada-aberta-na-polia-alta"
+                              },
+                              {
+                                    "nome": "Puxada Alta com Triângulo",
+                                    "series": "3",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/ySLFHxmJ_Sc",
+                                    "exercicioId": "puxada-alta-com-triangulo"
+                              },
+                              {
+                                    "nome": "Pulldown",
+                                    "series": "3",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/GDhW19yQrJI",
+                                    "exercicioId": "pulldown"
+                              },
+                              {
+                                    "nome": "Rosca Direta",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/x6JCKfdzPJE",
+                                    "exercicioId": "rosca-direta"
+                              },
+                              {
+                                    "nome": "Prancha Abdominal",
+                                    "series": "3",
+                                    "repeticoes": "60 seg",
+                                    "video": "https://www.youtube.com/shorts/uxPlAbWFUDs",
+                                    "exercicioId": "prancha-abdominal"
+                              },
+                              {
+                                    "nome": "Panturrilha (Escada ou em Pé)",
+                                    "series": "4",
+                                    "repeticoes": "20",
+                                    "video": "https://www.youtube.com/shorts/3afDSh_V0sg",
+                                    "exercicioId": "panturrilha-escada-ou-em-pe"
+                              }
+                        ]
+                  },
+                  {
+                        "codigo": "E",
+                        "nome": "Full inferiores leve — ênfase glúteo",
+                        "exercicios": [
+                              {
+                                    "nome": "Elevação Pélvica",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/Nuoo1XgRtGY",
+                                    "exercicioId": "elevacao-pelvica"
+                              },
+                              {
+                                    "nome": "Glúteo no Cabo",
+                                    "series": "3",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/XqQlpJhB8xU",
+                                    "exercicioId": "gluteo-no-cabo"
+                              },
+                              {
+                                    "nome": "Cadeira Abdutora",
+                                    "series": "3",
+                                    "repeticoes": "20",
+                                    "video": "https://www.youtube.com/shorts/nabhYLtz8Gg",
+                                    "exercicioId": "cadeira-abdutora"
+                              },
+                              {
+                                    "nome": "Cadeira Flexora",
+                                    "series": "3",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/T46yKiz8laY",
+                                    "exercicioId": "cadeira-flexora"
+                              },
+                              {
+                                    "nome": "Mesa Flexora",
+                                    "series": "3",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/IXg1PQ_5gmw",
+                                    "exercicioId": "mesa-flexora"
+                              },
+                              {
+                                    "nome": "Cardio (Bicicleta, Escada ou Esteira)",
+                                    "series": "20",
+                                    "repeticoes": "30 min",
+                                    "video": "https://i.pinimg.com/originals/e6/9a/ca/e69acae1176c249d95dcea23f85381c9.jpg",
+                                    "exercicioId": "cardio-bicicleta-escada-ou-esteira"
+                              }
+                        ]
+                  },
+                  {
+                        "codigo": "F",
+                        "nome": "Dia de estímulo — Glúteo, abdômen e cardio",
+                        "exercicios": [
+                              {
+                                    "nome": "Elevação Pélvica",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/Nuoo1XgRtGY",
+                                    "exercicioId": "elevacao-pelvica"
+                              },
+                              {
+                                    "nome": "Cadeira Adutora",
+                                    "series": "3",
+                                    "repeticoes": "15",
+                                    "video": "https://www.youtube.com/shorts/1aATfJITaIw",
+                                    "exercicioId": "cadeira-adutora"
+                              },
+                              {
+                                    "nome": "Cadeira Abdutora",
+                                    "series": "3",
+                                    "repeticoes": "20",
+                                    "video": "https://www.youtube.com/shorts/nabhYLtz8Gg",
+                                    "exercicioId": "cadeira-abdutora"
+                              },
+                              {
+                                    "nome": "Glúteo no Cabo",
+                                    "series": "3",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/XqQlpJhB8xU",
+                                    "exercicioId": "gluteo-no-cabo"
+                              },
+                              {
+                                    "nome": "Prancha Abdominal",
+                                    "series": "3",
+                                    "repeticoes": "60 seg",
+                                    "video": "https://www.youtube.com/shorts/uxPlAbWFUDs",
+                                    "exercicioId": "prancha-abdominal"
+                              },
+                              {
+                                    "nome": "Cardio (Bicicleta, Escada ou Esteira)",
+                                    "series": "20",
+                                    "repeticoes": "30 min",
+                                    "video": "https://i.pinimg.com/originals/e6/9a/ca/e69acae1176c249d95dcea23f85381c9.jpg",
+                                    "exercicioId": "cardio-bicicleta-escada-ou-esteira"
                               }
                         ]
                   }
             ]
       },
       "Titio Douglas": {
-        "titulo": "Treino conjunto — Upper / Lower / Fullbody",
-        "observacao": "Manual de Treino — Ciclo de 8 Semanas. Rotina compartilhada com André.",
-        "dias": [
-          {"codigo": "Upper", "nome": "Upper — segunda-feira", "exercicios": [
-            {"nome": "Fly", "series": "3 x 12"}, {"nome": "Supino reto", "series": "3 x 12"}, {"nome": "Remada alta supinada", "series": "3 x 12"}, {"nome": "Remada baixa triângulo", "series": "3 x 12"}, {"nome": "Desenvolvimento máquina", "series": "3 x 12"}, {"nome": "Elevação lateral", "series": "3 x 12-15"}, {"nome": "Tríceps paralela", "series": "3 x 10-12"}, {"nome": "Rosca Scott", "series": "3 x 12"}
-          ]},
-          {"codigo": "Lower", "nome": "Lower — quinta-feira", "exercicios": [
-            {"nome": "Leg press", "series": "4 x 10"}, {"nome": "Agachamento sumô", "series": "3 x 12"}, {"nome": "Cadeira flexora", "series": "3 x 12"}, {"nome": "Cadeira extensora", "series": "3 x 12"}
-          ]},
-          {"codigo": "Fullbody", "nome": "Fullbody — sábado", "exercicios": [
-            {"nome": "Supino reto", "series": "3 x 12"}, {"nome": "Fly", "series": "3 x 12"}, {"nome": "Puxada alta individual", "series": "3 x 12"}, {"nome": "Remada baixa triângulo", "series": "3 x 12"}, {"nome": "Elevação lateral", "series": "3 x 12-15"}, {"nome": "Tríceps paralela", "series": "3 x 10"}, {"nome": "Rosca Scott", "series": "3 x 12"}, {"nome": "Cadeira flexora", "series": "4 x 8"}, {"nome": "Cadeira extensora", "series": "4 x 10"}
-          ]}
-        ]
+            "titulo": "Treino conjunto — Upper / Lower / Fullbody",
+            "observacao": "Manual de Treino — Ciclo de 8 Semanas. Rotina compartilhada com André.",
+            "dias": [
+                  {
+                        "codigo": "Upper",
+                        "nome": "Upper — segunda-feira",
+                        "exercicios": [
+                              {
+                                    "nome": "Fly",
+                                    "series": "3 x 12",
+                                    "exercicioId": "fly"
+                              },
+                              {
+                                    "nome": "Supino Reto",
+                                    "series": "3 x 12",
+                                    "exercicioId": "supino-reto"
+                              },
+                              {
+                                    "nome": "Remada Alta (Pegada Supinada)",
+                                    "series": "3 x 12",
+                                    "exercicioId": "remada-alta-pegada-supinada"
+                              },
+                              {
+                                    "nome": "Remada Baixa com Triângulo",
+                                    "series": "3 x 12",
+                                    "exercicioId": "remada-baixa-com-triangulo"
+                              },
+                              {
+                                    "nome": "Desenvolvimento na Máquina",
+                                    "series": "3 x 12",
+                                    "exercicioId": "desenvolvimento-na-maquina"
+                              },
+                              {
+                                    "nome": "Elevação Lateral",
+                                    "series": "3 x 12-15",
+                                    "exercicioId": "elevacao-lateral"
+                              },
+                              {
+                                    "nome": "Tríceps Paralela",
+                                    "series": "3 x 10-12",
+                                    "exercicioId": "triceps-paralela"
+                              },
+                              {
+                                    "nome": "Rosca Scott",
+                                    "series": "3 x 12",
+                                    "exercicioId": "rosca-scott"
+                              }
+                        ]
+                  },
+                  {
+                        "codigo": "Lower",
+                        "nome": "Lower — quinta-feira",
+                        "exercicios": [
+                              {
+                                    "nome": "Leg Press",
+                                    "series": "4 x 10",
+                                    "exercicioId": "leg-press"
+                              },
+                              {
+                                    "nome": "Agachamento Sumô",
+                                    "series": "3 x 12",
+                                    "exercicioId": "agachamento-sumo"
+                              },
+                              {
+                                    "nome": "Cadeira Flexora",
+                                    "series": "3 x 12",
+                                    "exercicioId": "cadeira-flexora"
+                              },
+                              {
+                                    "nome": "Cadeira Extensora",
+                                    "series": "3 x 12",
+                                    "exercicioId": "cadeira-extensora"
+                              }
+                        ]
+                  },
+                  {
+                        "codigo": "Fullbody",
+                        "nome": "Fullbody — sábado",
+                        "exercicios": [
+                              {
+                                    "nome": "Supino Reto",
+                                    "series": "3 x 12",
+                                    "exercicioId": "supino-reto"
+                              },
+                              {
+                                    "nome": "Fly",
+                                    "series": "3 x 12",
+                                    "exercicioId": "fly"
+                              },
+                              {
+                                    "nome": "Puxada Alta Unilateral",
+                                    "series": "3 x 12",
+                                    "exercicioId": "puxada-alta-unilateral"
+                              },
+                              {
+                                    "nome": "Remada Baixa com Triângulo",
+                                    "series": "3 x 12",
+                                    "exercicioId": "remada-baixa-com-triangulo"
+                              },
+                              {
+                                    "nome": "Elevação Lateral",
+                                    "series": "3 x 12-15",
+                                    "exercicioId": "elevacao-lateral"
+                              },
+                              {
+                                    "nome": "Tríceps Paralela",
+                                    "series": "3 x 10",
+                                    "exercicioId": "triceps-paralela"
+                              },
+                              {
+                                    "nome": "Rosca Scott",
+                                    "series": "3 x 12",
+                                    "exercicioId": "rosca-scott"
+                              },
+                              {
+                                    "nome": "Cadeira Flexora",
+                                    "series": "4 x 8",
+                                    "exercicioId": "cadeira-flexora"
+                              },
+                              {
+                                    "nome": "Cadeira Extensora",
+                                    "series": "4 x 10",
+                                    "exercicioId": "cadeira-extensora"
+                              }
+                        ]
+                  }
+            ]
       },
       "André": {
-        "titulo": "Manual de Treino — Ciclo de 8 Semanas",
-        "observacao": "Rotina completa de segunda a domingo. Progressão planejada para força, hipertrofia e condicionamento.",
-        "dias": [
-          {"codigo": "Domingo", "nome": "Cardio longo / recuperação", "exercicios": [
-            {"nome": "Corrida Z2", "series": "45-70 min"}, {"nome": "Mobilidade", "series": "10-15 min"}
-          ]},
-          {"codigo": "Upper", "nome": "Upper — segunda-feira", "exercicios": [
-            {"nome": "Fly", "series": "3 x 12"}, {"nome": "Supino reto", "series": "3 x 12"}, {"nome": "Remada alta supinada", "series": "3 x 12"}, {"nome": "Remada baixa triângulo", "series": "3 x 12"}, {"nome": "Desenvolvimento máquina", "series": "3 x 12"}, {"nome": "Elevação lateral", "series": "3 x 12-15"}, {"nome": "Tríceps paralela", "series": "3 x 10-12"}, {"nome": "Rosca Scott", "series": "3 x 12"}
-          ]},
-          {"codigo": "Terça", "nome": "Terra + posterior + grip", "exercicios": [
-            {"nome": "Levantamento terra", "series": "Conforme tabela de progressão"}, {"nome": "Terra romeno", "series": "3 x 8-10"}, {"nome": "Cadeira flexora", "series": "3 x 10-12"}, {"nome": "Panturrilha", "series": "4 x 12-20"}, {"nome": "Sustentação de barra / grip", "series": "3 séries"}
-          ]},
-          {"codigo": "Quarta", "nome": "Ombros + cardio de qualidade", "exercicios": [
-            {"nome": "Desenvolvimento militar", "series": "Conforme tabela de progressão"}, {"nome": "Elevação lateral na polia", "series": "4 x 10-15"}, {"nome": "Crucifixo invertido", "series": "4 x 12-15"}, {"nome": "Face pull", "series": "3 x 12-15"}, {"nome": "Cardio", "series": "Conforme tabela"}
-          ]},
-          {"codigo": "Lower", "nome": "Lower — quinta-feira", "exercicios": [
-            {"nome": "Leg press", "series": "4 x 10"}, {"nome": "Agachamento sumô", "series": "3 x 12"}, {"nome": "Cadeira flexora", "series": "3 x 12"}, {"nome": "Cadeira extensora", "series": "3 x 12"}, {"nome": "Cadeira abdutora", "series": "3 x 12-15"}, {"nome": "Cadeira adutora", "series": "3 x 12-15"}, {"nome": "Panturrilha", "series": "3-4 x 15-20"}
-          ]},
-          {"codigo": "Sexta", "nome": "Agachamento + core + cardio leve", "exercicios": [
-            {"nome": "Agachamento livre", "series": "Conforme tabela de progressão"}, {"nome": "Búlgaro livre", "series": "3 x 8-12"}, {"nome": "Extensão lombar ou reverse hyper", "series": "3 x 10-15"}, {"nome": "Abdominal / core", "series": "3-4 séries"}, {"nome": "Cardio Z2", "series": "25-40 min"}
-          ]},
-          {"codigo": "Fullbody", "nome": "Fullbody — sábado", "exercicios": [
-            {"nome": "Supino reto", "series": "3 x 12"}, {"nome": "Fly", "series": "3 x 12"}, {"nome": "Puxada alta individual", "series": "3 x 12"}, {"nome": "Remada baixa triângulo", "series": "3 x 12"}, {"nome": "Elevação lateral", "series": "3 x 12-15"}, {"nome": "Tríceps paralela", "series": "3 x 10"}, {"nome": "Rosca Scott", "series": "3 x 12"}, {"nome": "Leg press", "series": "4 x 10"}, {"nome": "Cadeira flexora", "series": "4 x 8"}, {"nome": "Cadeira extensora", "series": "4 x 10"}, {"nome": "Panturrilha", "series": "3 x 15-20"}
-          ]}
-        ]
+            "titulo": "Treino PPL - UL (by Pacholok)",
+            "observacao": "Divisão Pull / Push / Legs / Upper / Lower. Séries válidas conforme planejamento; repetições ainda não informadas.",
+            "dias": [
+                  {
+                        "codigo": "Pull",
+                        "nome": "Pull — Costas e bíceps",
+                        "exercicios": [
+                              {
+                                    "nome": "Remada Curvada",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "remada-curvada"
+                              },
+                              {
+                                    "nome": "Puxada Alta (Pegada Aberta)",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "puxada-alta-pegada-aberta"
+                              },
+                              {
+                                    "nome": "Puxada Alta com Triângulo",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "puxada-alta-com-triangulo"
+                              },
+                              {
+                                    "nome": "Serrote",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "serrote"
+                              },
+                              {
+                                    "nome": "Rosca Scott",
+                                    "series": "3 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "rosca-scott"
+                              },
+                              {
+                                    "nome": "Rosca Bayesian",
+                                    "series": "3",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "rosca-bayesian"
+                              }
+                        ]
+                  },
+                  {
+                        "codigo": "Push",
+                        "nome": "Push — Peito, ombros e tríceps",
+                        "exercicios": [
+                              {
+                                    "nome": "Fly",
+                                    "series": "3 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "fly"
+                              },
+                              {
+                                    "nome": "Supino Inclinado com Halteres",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "supino-inclinado-com-halteres"
+                              },
+                              {
+                                    "nome": "Supino Reto na Máquina",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "supino-reto-na-maquina"
+                              },
+                              {
+                                    "nome": "Elevação Frontal",
+                                    "series": "A definir",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "elevacao-frontal"
+                              },
+                              {
+                                    "nome": "Elevação Lateral",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "elevacao-lateral"
+                              },
+                              {
+                                    "nome": "Tríceps na Corda",
+                                    "series": "3 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "triceps-na-corda"
+                              }
+                        ]
+                  },
+                  {
+                        "codigo": "Legs",
+                        "nome": "Legs — Inferiores",
+                        "exercicios": [
+                              {
+                                    "nome": "Cadeira Flexora",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "cadeira-flexora"
+                              },
+                              {
+                                    "nome": "Hack Machine",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "hack-machine"
+                              },
+                              {
+                                    "nome": "Cadeira Extensora",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "cadeira-extensora"
+                              },
+                              {
+                                    "nome": "Elevação Pélvica",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "elevacao-pelvica"
+                              },
+                              {
+                                    "nome": "Cadeira Adutora",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "cadeira-adutora"
+                              }
+                        ]
+                  },
+                  {
+                        "codigo": "Upper",
+                        "nome": "Upper — Superiores",
+                        "exercicios": [
+                              {
+                                    "nome": "Supino Inclinado na Máquina",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "supino-inclinado-na-maquina"
+                              },
+                              {
+                                    "nome": "Fly",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "fly"
+                              },
+                              {
+                                    "nome": "Remada Baixa na Polia",
+                                    "series": "2",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "remada-baixa-na-polia"
+                              },
+                              {
+                                    "nome": "Pulldown na Máquina",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "pulldown-na-maquina"
+                              },
+                              {
+                                    "nome": "Elevação Lateral",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "elevacao-lateral"
+                              },
+                              {
+                                    "nome": "Rosca Direta",
+                                    "series": "3 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "rosca-direta"
+                              },
+                              {
+                                    "nome": "Tríceps Francês na Máquina",
+                                    "series": "3 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "triceps-frances-na-maquina"
+                              }
+                        ]
+                  },
+                  {
+                        "codigo": "Lower",
+                        "nome": "Lower — Inferiores",
+                        "exercicios": [
+                              {
+                                    "nome": "Cadeira Flexora",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "cadeira-flexora"
+                              },
+                              {
+                                    "nome": "Agachamento",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "agachamento"
+                              },
+                              {
+                                    "nome": "Leg Press 45°",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "leg-press-45"
+                              },
+                              {
+                                    "nome": "Stiff",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "stiff"
+                              },
+                              {
+                                    "nome": "Cadeira Abdutora",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "cadeira-abdutora"
+                              }
+                        ]
+                  },
+                  {
+                        "codigo": "Cardio",
+                        "nome": "Cardio — Esteira, Bicicleta ou Escada",
+                        "tipo": "cardio",
+                        "exercicios": [
+                              {
+                                    "nome": "Esteira",
+                                    "exercicioId": "cardio-esteira",
+                                    "tipo": "cardio",
+                                    "series": "—",
+                                    "repeticoes": "Tempo (min) × distância (km)"
+                              },
+                              {
+                                    "nome": "Bicicleta",
+                                    "exercicioId": "cardio-bicicleta",
+                                    "tipo": "cardio",
+                                    "series": "—",
+                                    "repeticoes": "Tempo (min) × distância (km)"
+                              },
+                              {
+                                    "nome": "Escada",
+                                    "exercicioId": "cardio-escada",
+                                    "tipo": "cardio",
+                                    "series": "—",
+                                    "repeticoes": "Tempo (min) × degraus"
+                              }
+                        ]
+                  }
+            ]
+      },
+      "Isaias Teofilo": {
+            "titulo": "Treino do Isaías — Superior/Inferior (4 dias)",
+            "observacao": "Divisão Superior A, Inferior A, Superior B e Inferior B. Séries e repetições ainda não foram informadas.",
+            "dias": [
+                  {
+                        "codigo": "1",
+                        "nome": "Superior A",
+                        "exercicios": [
+                              {
+                                    "nome": "Supino Inclinado com Halteres",
+                                    "series": "A definir",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "supino-inclinado-com-halteres"
+                              },
+                              {
+                                    "nome": "Puxada Alta",
+                                    "series": "A definir",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "puxada-alta"
+                              },
+                              {
+                                    "nome": "Supino Reto na Máquina",
+                                    "series": "A definir",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "supino-reto-na-maquina"
+                              },
+                              {
+                                    "nome": "Remada",
+                                    "series": "A definir",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "remada"
+                              },
+                              {
+                                    "nome": "Elevação Lateral",
+                                    "series": "A definir",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "elevacao-lateral"
+                              },
+                              {
+                                    "nome": "Tríceps na Polia",
+                                    "series": "A definir",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "triceps-na-polia"
+                              },
+                              {
+                                    "nome": "Rosca Direta",
+                                    "series": "A definir",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "rosca-direta"
+                              }
+                        ]
+                  },
+                  {
+                        "codigo": "2",
+                        "nome": "Inferior A",
+                        "exercicios": [
+                              {
+                                    "nome": "Agachamento ou Hack Machine",
+                                    "series": "A definir",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "agachamento-ou-hack-machine"
+                              },
+                              {
+                                    "nome": "Leg Press",
+                                    "series": "A definir",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "leg-press"
+                              },
+                              {
+                                    "nome": "Mesa Flexora",
+                                    "series": "A definir",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "mesa-flexora"
+                              },
+                              {
+                                    "nome": "Cadeira Extensora",
+                                    "series": "A definir",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "cadeira-extensora"
+                              },
+                              {
+                                    "nome": "Panturrilha",
+                                    "series": "A definir",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "panturrilha"
+                              }
+                        ]
+                  },
+                  {
+                        "codigo": "3",
+                        "nome": "Superior B",
+                        "exercicios": [
+                              {
+                                    "nome": "Puxada Alta",
+                                    "series": "A definir",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "puxada-alta"
+                              },
+                              {
+                                    "nome": "Remada Baixa na Polia",
+                                    "series": "A definir",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "remada-baixa-na-polia"
+                              },
+                              {
+                                    "nome": "Supino Inclinado na Máquina",
+                                    "series": "A definir",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "supino-inclinado-na-maquina"
+                              },
+                              {
+                                    "nome": "Fly",
+                                    "series": "A definir",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "fly"
+                              },
+                              {
+                                    "nome": "Elevação Lateral",
+                                    "series": "A definir",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "elevacao-lateral"
+                              },
+                              {
+                                    "nome": "Crucifixo Inverso",
+                                    "series": "A definir",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "crucifixo-inverso"
+                              },
+                              {
+                                    "nome": "Rosca Inclinada",
+                                    "series": "A definir",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "rosca-inclinada"
+                              },
+                              {
+                                    "nome": "Tríceps na Polia",
+                                    "series": "A definir",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "triceps-na-polia"
+                              }
+                        ]
+                  },
+                  {
+                        "codigo": "4",
+                        "nome": "Inferior B",
+                        "exercicios": [
+                              {
+                                    "nome": "Terra Romeno com Halteres",
+                                    "series": "A definir",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "terra-romeno-com-halteres"
+                              },
+                              {
+                                    "nome": "Agachamento Búlgaro",
+                                    "series": "A definir",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "agachamento-bulgaro"
+                              },
+                              {
+                                    "nome": "Mesa Flexora",
+                                    "series": "A definir",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "mesa-flexora"
+                              },
+                              {
+                                    "nome": "Cadeira Extensora",
+                                    "series": "A definir",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "cadeira-extensora"
+                              },
+                              {
+                                    "nome": "Panturrilha",
+                                    "series": "A definir",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "panturrilha"
+                              }
+                        ]
+                  }
+            ]
+      },
+      "Lucas Marques": {
+            "titulo": "Treino PPL - UL (by Pacholok)",
+            "observacao": "Divisão Pull / Push / Legs / Upper / Lower. Séries válidas conforme planejamento; repetições ainda não informadas.",
+            "dias": [
+                  {
+                        "codigo": "Pull",
+                        "nome": "Pull — Costas e bíceps",
+                        "exercicios": [
+                              {
+                                    "nome": "Remada Curvada",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "remada-curvada"
+                              },
+                              {
+                                    "nome": "Puxada Alta (Pegada Aberta)",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "puxada-alta-pegada-aberta"
+                              },
+                              {
+                                    "nome": "Puxada Alta com Triângulo",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "puxada-alta-com-triangulo"
+                              },
+                              {
+                                    "nome": "Serrote",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "serrote"
+                              },
+                              {
+                                    "nome": "Rosca Scott",
+                                    "series": "3 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "rosca-scott"
+                              },
+                              {
+                                    "nome": "Rosca Bayesian",
+                                    "series": "3",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "rosca-bayesian"
+                              }
+                        ]
+                  },
+                  {
+                        "codigo": "Push",
+                        "nome": "Push — Peito, ombros e tríceps",
+                        "exercicios": [
+                              {
+                                    "nome": "Fly",
+                                    "series": "3 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "fly"
+                              },
+                              {
+                                    "nome": "Supino Inclinado com Halteres",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "supino-inclinado-com-halteres"
+                              },
+                              {
+                                    "nome": "Supino Reto na Máquina",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "supino-reto-na-maquina"
+                              },
+                              {
+                                    "nome": "Elevação Frontal",
+                                    "series": "A definir",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "elevacao-frontal"
+                              },
+                              {
+                                    "nome": "Elevação Lateral",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "elevacao-lateral"
+                              },
+                              {
+                                    "nome": "Tríceps na Corda",
+                                    "series": "3 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "triceps-na-corda"
+                              }
+                        ]
+                  },
+                  {
+                        "codigo": "Legs",
+                        "nome": "Legs — Inferiores",
+                        "exercicios": [
+                              {
+                                    "nome": "Cadeira Flexora",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "cadeira-flexora"
+                              },
+                              {
+                                    "nome": "Hack Machine",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "hack-machine"
+                              },
+                              {
+                                    "nome": "Cadeira Extensora",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "cadeira-extensora"
+                              },
+                              {
+                                    "nome": "Elevação Pélvica",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "elevacao-pelvica"
+                              },
+                              {
+                                    "nome": "Cadeira Adutora",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "cadeira-adutora"
+                              }
+                        ]
+                  },
+                  {
+                        "codigo": "Upper",
+                        "nome": "Upper — Superiores",
+                        "exercicios": [
+                              {
+                                    "nome": "Supino Inclinado na Máquina",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "supino-inclinado-na-maquina"
+                              },
+                              {
+                                    "nome": "Fly",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "fly"
+                              },
+                              {
+                                    "nome": "Remada Baixa na Polia",
+                                    "series": "2",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "remada-baixa-na-polia"
+                              },
+                              {
+                                    "nome": "Pulldown na Máquina",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "pulldown-na-maquina"
+                              },
+                              {
+                                    "nome": "Elevação Lateral",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "elevacao-lateral"
+                              },
+                              {
+                                    "nome": "Rosca Direta",
+                                    "series": "3 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "rosca-direta"
+                              },
+                              {
+                                    "nome": "Tríceps Francês na Máquina",
+                                    "series": "3 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "triceps-frances-na-maquina"
+                              }
+                        ]
+                  },
+                  {
+                        "codigo": "Lower",
+                        "nome": "Lower — Inferiores",
+                        "exercicios": [
+                              {
+                                    "nome": "Cadeira Flexora",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "cadeira-flexora"
+                              },
+                              {
+                                    "nome": "Agachamento",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "agachamento"
+                              },
+                              {
+                                    "nome": "Leg Press 45°",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "leg-press-45"
+                              },
+                              {
+                                    "nome": "Stiff",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "stiff"
+                              },
+                              {
+                                    "nome": "Cadeira Abdutora",
+                                    "series": "2 válidas",
+                                    "repeticoes": "A definir",
+                                    "exercicioId": "cadeira-abdutora"
+                              }
+                        ]
+                  }
+            ]
       }
 };
 
@@ -390,7 +1443,13 @@
     let selectedComparePeriodB = null;
 const MEASURE_REGISTER_DRAFTS = readLocalJson('measurement-register-drafts') || {};
 let selectedMeasureRegisterPerson = '';
-let selectedMeasureRegisterDate = new Date().toISOString().slice(0, 10);
+function currentLocalDate() {
+      const date = new Date();
+      return date.getFullYear() + '-' +
+        String(date.getMonth() + 1).padStart(2, '0') + '-' +
+        String(date.getDate()).padStart(2, '0');
+    }
+let selectedMeasureRegisterDate = currentLocalDate();
 
 const MEASURE_REGISTER_FIELDS = [
   { key: 'idade', label: 'Idade', unit: 'anos', group: 'dados' },
@@ -415,6 +1474,15 @@ const MEASURE_REGISTER_FIELDS = [
       TRAINING_REGISTER_DRAFTS = JSON.parse(localStorage.getItem('training-register-drafts') || '{}');
       TRAINING_REGISTER_ACTIVE_DATES = JSON.parse(localStorage.getItem('training-register-active-dates') || '{}');
     } catch (error) { TRAINING_REGISTER_DRAFTS = {}; TRAINING_REGISTER_ACTIVE_DATES = {}; }
+    // Nunca reaproveitar automaticamente a data de outro dia.
+    // Rascunhos permanecem salvos e acessíveis caso a data antiga seja selecionada manualmente.
+    for (const [workout, date] of Object.entries(TRAINING_REGISTER_ACTIVE_DATES)) {
+      if (typeof date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(date) || date < currentLocalDate()) {
+        delete TRAINING_REGISTER_ACTIVE_DATES[workout];
+      }
+    }
+    try { localStorage.setItem('training-register-active-dates', JSON.stringify(TRAINING_REGISTER_ACTIVE_DATES)); }
+    catch (error) { /* armazenamento não disponível */ }
 
     const BODY_FAT_REFERENCE = {
       M: [{ key: 'essential', label: 'Essencial', min: 2, max: 5 }, { key: 'athlete', label: 'Atleta', min: 6, max: 12 }, { key: 'fitness', label: 'Fitness', min: 13, max: 16 }, { key: 'average', label: 'Sobrepeso', min: 17, max: 22 }, { key: 'aboveAverage', label: 'Elevado', min: 23, max: 29 }, { key: 'high', label: 'Obesidade', min: 30, max: 40 }],
@@ -515,7 +1583,8 @@ const MEASURE_REGISTER_FIELDS = [
       return (raw.sessions || []).reduce((grouped, session) => {
         if (!grouped[session.pessoaId]) grouped[session.pessoaId] = {};
         const { id, pessoaId, data, ...record } = session;
-        grouped[pessoaId][data] = record;
+        // Uma pessoa pode ter vários treinos no mesmo dia: preserva todos por ID.
+        grouped[pessoaId][data + '::' + (id || Object.keys(grouped[pessoaId]).length)] = { ...record, id, data };
         return grouped;
       }, {});
     }
@@ -938,33 +2007,121 @@ const MEASURE_REGISTER_FIELDS = [
     function renderSummary(rows) {
       const personSelect = document.getElementById('summaryPersonFilter');
       const periodSelect = document.getElementById('summaryPeriodFilter');
-      const people = getPeople(rows), periods = getPeriods(rows);
+      const registeredPeople = registeredPeopleOptions(rows);
+      const people = registeredPeople.map(person => person.name);
+      const periods = getPeriods(rows);
+
       if (!selectedSummaryPerson || !people.includes(selectedSummaryPerson)) selectedSummaryPerson = '';
       if (!selectedSummaryPeriod || !periods.includes(selectedSummaryPeriod)) selectedSummaryPeriod = '';
-      if (personSelect) { personSelect.innerHTML = '<option value="">Todas</option>' + people.map(name => '<option value="' + name + '">' + name + '</option>').join(''); personSelect.value = selectedSummaryPerson; }
-      if (periodSelect) { periodSelect.innerHTML = '<option value="">Todos</option>' + periods.map(period => '<option value="' + period + '">' + formatPeriod(period) + '</option>').join(''); periodSelect.value = selectedSummaryPeriod; }
-      const filtered = rows.filter(row => (!selectedSummaryPerson || row.name === selectedSummaryPerson) && (!selectedSummaryPeriod || row.period === selectedSummaryPeriod));
-      const latest = getLatestPeriod(filtered.length ? filtered : rows);
-      const latestRows = filtered.filter(row => row.period === latest);
+
+      if (personSelect) {
+        personSelect.innerHTML = '<option value="">Todas</option>' + people.map(name => '<option value="' + name + '">' + name + '</option>').join('');
+        personSelect.value = selectedSummaryPerson;
+      }
+
+      if (periodSelect) {
+        periodSelect.innerHTML = '<option value="">Todos</option>' + periods.map(period => '<option value="' + period + '">' + formatPeriod(period) + '</option>').join('');
+        periodSelect.value = selectedSummaryPeriod;
+      }
+
+      const filteredRows = rows.filter(row =>
+        (!selectedSummaryPerson || row.name === selectedSummaryPerson) &&
+        (!selectedSummaryPeriod || row.period === selectedSummaryPeriod)
+      );
+
+      const latest = getLatestPeriod(filteredRows.length ? filteredRows : rows);
+      const latestRows = latest ? filteredRows.filter(row => row.period === latest) : [];
       const calculated = latestRows.filter(row => Number.isFinite(row.bf)).length;
       const deltas = latestRows.filter(row => Number.isFinite(row.deltaBf));
       const averageDelta = deltas.length ? deltas.reduce((sum, row) => sum + row.deltaBf, 0) / deltas.length : null;
+
       const summaryKpis = document.getElementById('summaryKpis');
-      if (summaryKpis) summaryKpis.innerHTML = '<div class="mini-stat"><span>Período exibido</span><strong>' + formatPeriod(latest) + '</strong></div><div class="mini-stat"><span>BF% calculável</span><strong>' + calculated + '/' + latestRows.length + '</strong></div><div class="mini-stat"><span>Variação média</span><strong>' + deltaText(averageDelta) + '</strong></div>';
-      document.getElementById('summaryRows').innerHTML = [...filtered].sort((a, b) => b.period.localeCompare(a.period) || a.name.localeCompare(b.name, 'pt-BR')).map(row => '<tr><td><strong>' + row.name + '</strong></td><td>' + formatPeriod(row.period) + '</td><td>' + (row.age ?? '—') + '</td><td>' + formatKg(row.weight) + '</td><td>' + row.protocol + '<br>' + badge(row) + '</td><td>' + foldsText(row.folds) + '</td><td><strong>' + formatMm(row.sum) + '</strong></td><td><strong>' + formatPercent(row.bf) + '</strong></td><td>' + deltaText(row.deltaBf) + '</td><td>' + measuresText(row.measures) + '</td><td class="muted">' + (row.observation ? row.warning + ' ' + row.observation : row.warning) + '</td></tr>').join('');
+      if (summaryKpis) {
+        summaryKpis.innerHTML =
+          '<div class="mini-stat"><span>Período exibido</span><strong>' + (latest ? formatPeriod(latest) : '—') + '</strong></div>' +
+          '<div class="mini-stat"><span>BF% calculável</span><strong>' + calculated + '/' + latestRows.length + '</strong></div>' +
+          '<div class="mini-stat"><span>Variação média</span><strong>' + deltaText(averageDelta) + '</strong></div>';
+      }
+
+      const visibleRegistered = registeredPeople.filter(person =>
+        !selectedSummaryPerson || person.name === selectedSummaryPerson
+      );
+
+      const rowsByPerson = new Map();
+      [...filteredRows]
+        .sort((a, b) => b.period.localeCompare(a.period))
+        .forEach(row => {
+          if (!rowsByPerson.has(row.name)) rowsByPerson.set(row.name, []);
+          rowsByPerson.get(row.name).push(row);
+        });
+
+      const tableRows = [];
+
+      visibleRegistered.forEach(person => {
+        const personRows = rowsByPerson.get(person.name) || [];
+
+        if (personRows.length) {
+          personRows.forEach(row => {
+            tableRows.push(
+              '<tr>' +
+              '<td><strong>' + row.name + '</strong></td>' +
+              '<td>' + formatPeriod(row.period) + '</td>' +
+              '<td>' + (row.age ?? '—') + '</td>' +
+              '<td>' + formatKg(row.weight) + '</td>' +
+              '<td>' + row.protocol + '<br>' + badge(row) + '</td>' +
+              '<td>' + foldsText(row.folds) + '</td>' +
+              '<td><strong>' + formatMm(row.sum) + '</strong></td>' +
+              '<td><strong>' + formatPercent(row.bf) + '</strong></td>' +
+              '<td>' + deltaText(row.deltaBf) + '</td>' +
+              '<td>' + measuresText(row.measures) + '</td>' +
+              '<td class="muted">' + (row.observation ? row.warning + ' ' + row.observation : row.warning) + '</td>' +
+              '</tr>'
+            );
+          });
+        } else if (!selectedSummaryPeriod) {
+          tableRows.push(
+            '<tr>' +
+            '<td><strong>' + person.name + '</strong></td>' +
+            '<td>—</td>' +
+            '<td>—</td>' +
+            '<td>—</td>' +
+            '<td>Sem medição<br><span class="badge-status bad">Sem medição</span></td>' +
+            '<td><span class="muted">—</span></td>' +
+            '<td><strong>—</strong></td>' +
+            '<td><strong>—</strong></td>' +
+            '<td><span class="muted">—</span></td>' +
+            '<td><span class="muted">—</span></td>' +
+            '<td class="muted">Usuário cadastrado e pronto para iniciar.</td>' +
+            '</tr>'
+          );
+        }
+      });
+
+      document.getElementById('summaryRows').innerHTML = tableRows.join('');
       updateDataDiagnostics(rows);
     }
 
     function renderPersonCards(rows) {
-      const latestRows = rowsForLatestByPerson(rows);
-      if (!selectedPersonName) selectedPersonName = latestRows[0]?.name || getPeople(rows)[0];
+      const people = registeredPeopleOptions(rows);
+      if (!selectedPersonName || !people.some(person => person.name === selectedPersonName)) {
+        selectedPersonName = people[0]?.name || null;
+      }
 
-      document.getElementById('personCards').innerHTML = latestRows.map(item => `
-        <div class="person-card ${item.name === selectedPersonName ? 'active' : ''}" data-person-name="${item.name}">
-          <strong>${item.name}</strong>
-          <small>${formatPercent(item.bf)} • soma ${formatMm(item.sum)}<br>${formatPeriod(item.period)} • var. ${Number.isFinite(item.deltaBf) ? deltaText(item.deltaBf) : '—'}</small>
-        </div>
-      `).join('');
+      document.getElementById('personCards').innerHTML = people.map(person => {
+        const latest = rows
+          .filter(row => row.name === person.name && row.measured)
+          .sort((a, b) => b.period.localeCompare(a.period))[0];
+
+        return `
+          <div class="person-card ${person.name === selectedPersonName ? 'active' : ''}" data-person-name="${person.name}">
+            <strong>${person.name}</strong>
+            <small>${latest
+              ? `${formatPercent(latest.bf)} • soma ${formatMm(latest.sum)}<br>${formatPeriod(latest.period)} • var. ${Number.isFinite(latest.deltaBf) ? deltaText(latest.deltaBf) : '—'}`
+              : 'Sem medição registrada<br>Pronto para começar'}
+            </small>
+          </div>
+        `;
+      }).join('');
 
       document.querySelectorAll('[data-person-name]').forEach(card => {
         card.addEventListener('click', () => {
@@ -1041,9 +2198,7 @@ const MEASURE_REGISTER_FIELDS = [
     }
 
     function orderedTrainingDays(personName, plan) {
-      if (personName !== 'André') return plan.dias;
-      const order = { Upper: 1, 'Terça': 2, 'Quarta': 3, Lower: 4, Sexta: 5, Fullbody: 6, Domingo: 7 };
-      return [...plan.dias].sort((a, b) => (order[a.codigo] || 99) - (order[b.codigo] || 99));
+      return plan.dias;
     }
 
     function renderWorkoutSection(personName) {
@@ -1065,7 +2220,7 @@ const MEASURE_REGISTER_FIELDS = [
           <div class="workout-tabs">
             ${days.map((day, index) => `
               <button type="button" class="workout-tab ${index === 0 ? 'active' : ''}" data-workout-tab="${index}">
-                Treino ${day.codigo}
+                ${day.tipo === 'cardio' ? 'Cardio' : 'Treino ' + day.codigo}
               </button>
             `).join('')}
           </div>
@@ -1074,7 +2229,7 @@ const MEASURE_REGISTER_FIELDS = [
             ${days.map((day, index) => `
               <div class="workout-pane ${index === 0 ? 'active' : ''}" data-workout-pane="${index}">
                 <div class="workout-day-title">
-                  <strong>Treino ${day.codigo} | ${day.nome}</strong><br>
+                  <strong>${day.tipo === 'cardio' ? 'Cardio' : 'Treino ' + day.codigo} | ${day.nome}</strong><br>
                   ${day.exercicios.length} exercícios cadastrados
                 </div>
 
@@ -1084,8 +2239,7 @@ const MEASURE_REGISTER_FIELDS = [
                       <div>
                         <h4>${exercise.nome}</h4>
                         <div class="exercise-meta">
-                          <span>Séries: ${exercise.series}</span>
-                          <span>Reps/tempo: ${exercise.repeticoes}</span>
+                          ${day.tipo === 'cardio' ? '<span>Modalidade: Cardio</span><span>' + exercise.repeticoes + '</span>' : '<span>Séries: ' + exercise.series + '</span><span>Reps/tempo: ' + exercise.repeticoes + '</span>'}
                         </div>
                         ${exercise.video ? `<a class="exercise-link" href="${exercise.video}" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i> Abrir referência</a>` : '<span class="muted"><i class="fa-solid fa-list-check"></i> Conforme o manual de 8 semanas</span>'}
                       </div>
@@ -1119,9 +2273,31 @@ const MEASURE_REGISTER_FIELDS = [
     function renderPersonDetail(rows, name) {
       const personRows = rows.filter(row => row.name === name).sort((a, b) => a.period.localeCompare(b.period));
       const latest = [...personRows].reverse().find(row => row.measured) || personRows[personRows.length - 1];
+      const registered = registeredPeopleOptions(rows).find(person => person.name === name);
 
       if (!latest) {
-        document.getElementById('personDetail').innerHTML = '<p class="note">Nenhuma pessoa encontrada.</p>';
+        if (!registered) {
+          document.getElementById('personDetail').innerHTML = '<p class="note">Nenhuma pessoa encontrada.</p>';
+          return;
+        }
+
+        document.getElementById('personDetail').innerHTML = `
+          <div class="detail-header">
+            <div>
+              <h2>${registered.name}</h2>
+              <div class="muted">Usuário cadastrado • ainda sem medição</div>
+            </div>
+            <div><span class="badge-status bad">Sem medição</span></div>
+          </div>
+
+          <div class="note" style="margin-bottom:18px">
+            Nenhuma medição corporal foi registrada para esta pessoa ainda.
+          </div>
+
+          ${renderWorkoutSection(registered.name)}
+        `;
+
+        bindWorkoutTabs();
         return;
       }
 
@@ -1473,34 +2649,150 @@ const MEASURE_REGISTER_FIELDS = [
 
 
 
-    function exerciseNameKey(name) {
-      const normalized = String(name || '')
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, ' ')
-        .trim();
-      return normalized === 'rosca w' ? 'rosca scott' : normalized;
+    /* Catálogo central de exercícios: nomes equivalentes sem unir aparelhos diferentes. */
+    const EXERCISE_CANONICAL_NAME_BY_KEY = {
+      "prancha abdominal": "Prancha Abdominal",
+      "abdominal prancha": "Prancha Abdominal",
+      "abdominal lateral no banco romano": "Abdominal Lateral no Banco Romano",
+      "abdominal lateral romano": "Abdominal Lateral no Banco Romano",
+      "abdominal na maquina": "Abdominal na Máquina",
+      "abdominal maquina": "Abdominal na Máquina",
+      "agachamento bulgaro": "Agachamento Búlgaro",
+      "afundo bulgaro": "Agachamento Búlgaro",
+      "agachamento": "Agachamento",
+      "agachamento ou hack machine": "Agachamento ou Hack Machine",
+      "agachamento ou hack": "Agachamento ou Hack Machine",
+      "agachamento sumo": "Agachamento Sumô",
+      "afundo e passada": "Afundo e Passada",
+      "cadeira abdutora": "Cadeira Abdutora",
+      "abdutor": "Cadeira Abdutora",
+      "cadeira adutora": "Cadeira Adutora",
+      "cadeira extensora": "Cadeira Extensora",
+      "cadeira extensor": "Cadeira Extensora",
+      "cadeira flexora": "Cadeira Flexora",
+      "cardio bicicleta escada ou esteira": "Cardio (Bicicleta, Escada ou Esteira)",
+      "crucifixo inverso": "Crucifixo Inverso",
+      "desenvolvimento na maquina": "Desenvolvimento na Máquina",
+      "desenvolvimento maquina": "Desenvolvimento na Máquina",
+      "elevacao frontal": "Elevação Frontal",
+      "elevacao frontal com corda": "Elevação Frontal",
+      "elevacao frontal corda": "Elevação Frontal",
+      "elevacao frontal na polia": "Elevação Frontal",
+      "elevacao frontal polia": "Elevação Frontal na Polia",
+      "elevacao lateral": "Elevação Lateral",
+      "elevacao lateral maquina polia": "Elevação Lateral",
+      "elevacao lateral na maquina": "Elevação Lateral",
+      "elevacao lateral maquina": "Elevação Lateral",
+      "elevacao lateral na polia": "Elevação Lateral",
+      "elevacao lateral polia": "Elevação Lateral",
+      "elevacao pelvica": "Elevação Pélvica",
+      "elevacao pelvica maquina ou barra livre": "Elevação Pélvica",
+      "fly": "Fly",
+      "crucifixo": "Fly",
+      "gluteo no cabo": "Glúteo no Cabo",
+      "hack machine": "Hack Machine",
+      "leg press 45": "Leg Press 45°",
+      "leg 45": "Leg Press 45°",
+      "leg press": "Leg Press",
+      "levantamento terra": "Levantamento Terra",
+      "mesa flexora": "Mesa Flexora",
+      "panturrilha": "Panturrilha",
+      "panturrilha escada ou em pe": "Panturrilha (Escada ou em Pé)",
+      "pulldown": "Pulldown",
+      "pull down": "Pulldown",
+      "pulldown na maquina": "Pulldown na Máquina",
+      "pulldown maquina": "Pulldown na Máquina",
+      "puxada alta": "Puxada Alta",
+      "puxada alta pegada aberta": "Puxada Alta (Pegada Aberta)",
+      "pulley frente aberto": "Puxada Alta (Pegada Aberta)",
+      "puxada alta com triangulo": "Puxada Alta com Triângulo",
+      "pulley triangulo": "Puxada Alta com Triângulo",
+      "puxada triangulo polia": "Puxada Alta com Triângulo",
+      "puxada alta unilateral": "Puxada Alta Unilateral",
+      "puxada alta individual": "Puxada Alta Unilateral",
+      "remada": "Remada",
+      "remada aberta na polia alta": "Remada Aberta na Polia Alta",
+      "remada aberta polia alta": "Remada Aberta na Polia Alta",
+      "remada alta pegada supinada": "Remada Alta (Pegada Supinada)",
+      "remada alta supinada": "Remada Alta (Pegada Supinada)",
+      "remada baixa": "Remada Baixa na Polia",
+      "remada baixa na polia": "Remada Baixa na Polia",
+      "remada baixa pulley": "Remada Baixa na Polia",
+      "remada baixa com triangulo": "Remada Baixa com Triângulo",
+      "remada baixa triangulo": "Remada Baixa com Triângulo",
+      "remada curvada": "Remada Curvada",
+      "remada na maquina pegada supinada": "Remada na Máquina (Pegada Supinada)",
+      "remada maquina supinada": "Remada na Máquina (Pegada Supinada)",
+      "rosca bayesian": "Rosca Bayesian",
+      "rosca direta": "Rosca Direta",
+      "rosca direta no cabo": "Rosca Direta",
+      "rosca direta cabo": "Rosca Direta no Cabo",
+      "rosca direta polia": "Rosca Direta no Cabo",
+      "rosca direta cabo halter barra w": "Rosca Direta",
+      "rosca direta cabo halter ou barra w": "Rosca Direta (Cabo/Halter/Barra W)",
+      "rosca inclinada": "Rosca Inclinada",
+      "rosca scott": "Rosca Scott",
+      "rosca scott na polia": "Rosca Scott na Polia",
+      "serrote": "Serrote",
+      "stiff": "Stiff",
+      "supino inclinado com halteres": "Supino Inclinado com Halteres",
+      "supino inclinado halter": "Supino Inclinado com Halteres",
+      "supino inclinado na maquina": "Supino Inclinado na Máquina",
+      "supino inclinado maquina": "Supino Inclinado na Máquina",
+      "supino reto": "Supino Reto",
+      "supino reto na maquina": "Supino Reto na Máquina",
+      "supino reto maquina": "Supino Reto na Máquina",
+      "terra romeno com halteres": "Terra Romeno com Halteres",
+      "triceps na corda": "Tríceps na Corda",
+      "triceps corda": "Tríceps na Corda",
+      "triceps frances na maquina": "Tríceps Francês na Máquina",
+      "triceps frances maquina": "Tríceps Francês na Máquina",
+      "triceps na polia": "Tríceps na Polia",
+      "triceps paralela": "Tríceps Paralela",
+      "supino inclinado halteres": "Supino Inclinado com Halteres",
+      "pulley frente": "Puxada Alta (Pegada Aberta)",
+      "puxada frente aberta": "Puxada Alta (Pegada Aberta)",
+      "triceps pulley corda": "Tríceps na Corda",
+      "cabo triceps": "Tríceps na Polia",
+      "voador peitoral": "Fly",
+      "peck deck": "Fly",
+      "crucifixo peitoral": "Fly",
+      "elevacao lateral no cabo": "Elevação Lateral"
+};
+
+    function baseExerciseNameKey(name) {
+      return String(name || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+        .replace(/[^a-z0-9]+/g, ' ').trim();
     }
 
     function exerciseDisplayName(name) {
-      return exerciseNameKey(name) === 'rosca scott' ? 'Rosca Scott' : name;
+      return EXERCISE_CANONICAL_NAME_BY_KEY[baseExerciseNameKey(name)] || String(name || '').trim();
+    }
+
+    function exerciseNameKey(name) {
+      return baseExerciseNameKey(exerciseDisplayName(name));
+    }
+    function exerciseTrackingKey(exercise) {
+      return exercise?.exercicioId ? baseExerciseNameKey(exercise.exercicioId) : exerciseNameKey(exercise?.nome);
     }
 
     function renderProgressVisual(personName, exerciseName) {
       const personId = Object.values(TRAINING_PEOPLE).find(person => person.nome === personName)?.id || personName;
       const records = TRAINING_PROGRESS[personId] || {};
-      const entries = [...new Map(Object.entries(records).flatMap(([date, record]) => record.exercicios.filter(item => !exerciseName || exerciseNameKey(item.nome) === exerciseName).map(item => ({ date, record, item }))).map(entry => [entry.date + '::' + exerciseNameKey(entry.item.nome), entry])).values()].sort((a, b) => a.date.localeCompare(b.date));
+      const entries = Object.entries(records).flatMap(([key, record]) => (record.exercicios || [])
+        .filter(item => !exerciseName || exerciseTrackingKey(item) === exerciseName)
+        .map(item => ({ date: record.data || key.split('::')[0], record, item })))
+        .sort((a, b) => a.date.localeCompare(b.date) || String(a.record.id).localeCompare(String(b.record.id)));
       const selected = entries;
       const labels = selected.map(entry => formatPeriod(entry.date));
       const units = [...new Set(selected.map(entry => entry.item.unidade || entry.record?.unidade || 'kg'))].join('/') || 'kg';
       const maxLoads = selected.map(entry => entry.item.series.length ? Math.max(...entry.item.series.map(set => set.peso)) : null);
-      const volumes = selected.map(entry => entry.item.series.reduce((sum, set) => sum + (set.peso * (Number.isFinite(set.repeticoes) ? set.repeticoes : 0)), 0) || null);
+      const volumes = selected.map(entry => entry.item.series.reduce((sum, set) => sum + (set.peso * (Number.isFinite(set.repeticoes) && set.repeticoes > 0 && set.repeticoes <= 200 ? set.repeticoes : 0)), 0) || null);
       const progressSummary = document.getElementById('trainingProgressSummary');
       if (progressSummary) {
         const first = selected[0], previous = selected.at(-2), latest = selected.at(-1);
         const max = entry => entry?.item?.series?.length ? Math.max(...entry.item.series.map(set => set.peso)) : null;
-        const volume = entry => entry?.item?.series?.reduce((sum, set) => sum + (set.peso * (Number.isFinite(set.repeticoes) ? set.repeticoes : 0)), 0) || null;
+        const volume = entry => entry?.item?.series?.reduce((sum, set) => sum + (set.peso * (Number.isFinite(set.repeticoes) && set.repeticoes > 0 && set.repeticoes <= 200 ? set.repeticoes : 0)), 0) || null;
         const maxValues = selected.map(max).filter(Number.isFinite);
         const best = maxValues.length ? Math.max(...maxValues) : null;
         const latestMax = max(latest);
@@ -1529,7 +2821,7 @@ const MEASURE_REGISTER_FIELDS = [
       const personId = Object.values(TRAINING_PEOPLE).find(person => person.nome === personName)?.id || personName;
       const records = TRAINING_PROGRESS[personId];
       if (!records) return '<section class="workout-section"><p class="muted">Nenhuma evolução registrada para esta pessoa.</p></section>';
-      const exerciseOptions = [...new Map(Object.values(records).flatMap(record => record.exercicios.map(item => [exerciseNameKey(item.nome), exerciseDisplayName(item.nome)]))).entries()];
+      const exerciseOptions = [...new Map(Object.values(records).flatMap(record => record.exercicios.map(item => [exerciseTrackingKey(item), exerciseDisplayName(item.nome)]))).entries()];
       return `<section class="workout-section">
         <div class="workout-head"><div><h3>Gráficos de progressão</h3><div class="muted">Acompanhe carga máxima e volume acumulado por exercício.</div></div></div>
         <label for="progressExerciseSelect">Exercício</label>
@@ -1542,9 +2834,28 @@ const MEASURE_REGISTER_FIELDS = [
       </section>`;
     }
 
+    function registeredPeopleOptions(rows) {
+      const byName = new Map();
+
+      (DEFAULT_MEASUREMENTS.people || []).forEach(person => {
+        const name = person.nome || person.id;
+        if (name) byName.set(name, { name, id: person.id || trainingSlug(name) });
+      });
+
+      Object.values(TRAINING_PEOPLE || {}).forEach(person => {
+        const name = person.nome || person.id;
+        if (name) byName.set(name, { name, id: person.id || byName.get(name)?.id || trainingSlug(name) });
+      });
+
+      rows.filter(row => row.name).forEach(row => {
+        if (!byName.has(row.name)) byName.set(row.name, { name: row.name, id: row.personId || trainingSlug(row.name) });
+      });
+
+      return [...byName.values()].sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'));
+    }
+
     function trainingPeopleOptions(rows) {
-      const ids = new Map(rows.filter(row => row.personId).map(row => [row.name, row.personId]));
-      return getPeople(rows).filter(name => TRAINING_PLANS[name]).map(name => ({ name, id: ids.get(name) || name.toLowerCase().replace(/[^a-z0-9]+/gi, '-') }));
+      return registeredPeopleOptions(rows).filter(person => TRAINING_PLANS[person.name]);
     }
 
     function trainingSlug(value) {
@@ -1569,9 +2880,11 @@ const MEASURE_REGISTER_FIELDS = [
     function trainingRegisterExerciseRow(exercise = {}, index = 0, defaultUnit = 'kg') {
       const series = Array.isArray(exercise.registroSeries) ? exercise.registroSeries : (Array.isArray(exercise.seriesRegistro) ? exercise.seriesRegistro : (Array.isArray(exercise.series) ? exercise.series : []));
       const unit = exercise.unidade || defaultUnit || 'kg';
+      const seriesHint = typeof exercise.series === 'string' ? exercise.series.trim().match(/^(\d+)\s*(?:v[aá]lidas?)?$/i) : null;
+      const suggestedSeries = seriesHint ? Math.max(1, Math.min(10, Number(seriesHint[1]))) : (series.length || 3);
       return `<div class="register-exercise" data-register-exercise>
-        <div class="register-exercise-head"><span class="register-number">${index + 1}</span><input class="register-name" type="text" value="${exercise.nome || ''}" placeholder="Nome do exercicio"><label class="register-exercise-unit">Unidade<select class="register-unit"><option value="kg" ${unit === 'kg' ? 'selected' : ''}>kg</option><option value="lb" ${unit === 'lb' ? 'selected' : ''}>lb</option></select></label><button type="button" class="ghost-btn register-remove" data-remove-exercise>Remover</button></div>
-        <div class="register-sets">${Array.from({ length: Math.max(3, series.length) }, (_, setIndex) => `<label>S${setIndex + 1}<input class="register-weight" type="number" step="0.01" min="0" value="${series[setIndex]?.peso ?? ''}" placeholder="kg/lb"><input class="register-reps" type="number" step="1" min="0" value="${series[setIndex]?.repeticoes ?? ''}" placeholder="reps"><select class="register-emoji" aria-label="Como foi a série">${trainingRegisterEmojiOptions(series[setIndex]?.emoji || '')}</select></label>`).join('')}</div><button type="button" class="ghost-btn register-add-set" data-add-set><i class="fa-solid fa-plus"></i> Adicionar série</button>
+        <div class="register-exercise-head"><span class="register-number">${index + 1}</span><input class="register-name" type="text" list="exerciseCanonicalOptions" value="${exerciseDisplayName(exercise.nome || '')}" placeholder="Escolha um exercício"><label class="register-exercise-unit">Unidade<select class="register-unit"><option value="kg" ${unit === 'kg' ? 'selected' : ''}>kg</option><option value="lb" ${unit === 'lb' ? 'selected' : ''}>lb</option></select></label><button type="button" class="ghost-btn register-remove" data-remove-exercise>Remover</button></div>
+        <div class="register-sets">${Array.from({ length: Math.max(suggestedSeries, series.length) }, (_, setIndex) => `<label>S${setIndex + 1}<input class="register-weight" type="number" step="0.01" min="0" value="${series[setIndex]?.peso ?? ''}" placeholder="kg/lb"><input class="register-reps" type="number" step="1" min="0" value="${series[setIndex]?.repeticoes ?? ''}" placeholder="reps"><select class="register-emoji" aria-label="Como foi a série">${trainingRegisterEmojiOptions(series[setIndex]?.emoji || '')}</select></label>`).join('')}</div><button type="button" class="ghost-btn register-add-set" data-add-set><i class="fa-solid fa-plus"></i> Adicionar série</button>
         <input class="register-observation" type="text" value="${exercise.observacao || ''}" placeholder="Observação do exercício">
       </div>`;
     }
@@ -1598,7 +2911,8 @@ const MEASURE_REGISTER_FIELDS = [
         observacao: pane.querySelector('#registerSessionObservation')?.value || '',
         exercicios: [...pane.querySelectorAll('[data-register-exercise]')].map((item, index) => ({
           numero: index + 1,
-          nome: item.querySelector('.register-name')?.value || '',
+          nome: exerciseDisplayName(item.querySelector('.register-name')?.value || ''),
+          exercicioId: exerciseNameKey(item.querySelector('.register-name')?.value || '').replace(/ /g,'-'),
           unidade: item.querySelector('.register-unit')?.value || 'kg',
           series: [...item.querySelectorAll('.register-sets label')].map(label => ({
             peso: label.querySelector('.register-weight')?.value === '' ? null : Number(label.querySelector('.register-weight')?.value),
@@ -1619,19 +2933,128 @@ const MEASURE_REGISTER_FIELDS = [
       try { localStorage.setItem('training-register-drafts', JSON.stringify(TRAINING_REGISTER_DRAFTS)); localStorage.setItem('training-register-active-dates', JSON.stringify(TRAINING_REGISTER_ACTIVE_DATES)); } catch (error) { /* sem persistência local disponível */ }
     }
 
+    
+    function renderCardioRegister(rows,person,day) {
+      const people=trainingPeopleOptions(rows);
+      const days=TRAINING_PLANS[person.name].dias;
+      const date=TRAINING_REGISTER_ACTIVE_DATES[person.id+'::Cardio'] || currentLocalDate();
+      const draft=TRAINING_REGISTER_DRAFTS[trainingRegisterDraftKey(person.id,date,'Cardio')] || {};
+      const safe=value=>String(value??'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+      const options=people.map(p=>'<option value="'+safe(p.id)+'" '+(p.id===person.id?'selected':'')+'>'+safe(p.name)+'</option>').join('');
+      const workoutOptions=days.map(d=>'<option value="'+safe(d.codigo)+'" '+(d.codigo===day.codigo?'selected':'')+'>'+safe(d.nome)+'</option>').join('');
+      const modalities=['Esteira','Bicicleta','Escada'].map(x=>'<option value="'+x+'" '+(x===(draft.modalidade||'Esteira')?'selected':'')+'>'+x+'</option>').join('');
+      return '<section class="workout-section training-register cardio-register" data-cardio-register>' +
+        '<div class="workout-head"><div><h3>Registrar cardio</h3><p class="muted">Atividade aeróbica não soma tonelagem de musculação.</p></div><span class="badge-status good">CARDIO</span></div>'+
+        '<div class="register-toolbar">'+
+        '<div><label for="registerPerson">Pessoa</label><select id="registerPerson">'+options+'</select></div>'+
+        '<div><label for="registerWorkout">Treino</label><select id="registerWorkout">'+workoutOptions+'</select></div>'+
+        '<div><label for="registerDate">Data</label><input id="registerDate" type="date" value="'+safe(draft.data||date)+'"></div></div>'+
+        '<div class="cardio-fields">'+
+        '<label for="cardioActivity">Modalidade<select id="cardioActivity">'+modalities+'</select></label>'+
+        '<label for="cardioDuration">Tempo (minutos)<input id="cardioDuration" type="number" min="1" step="1" inputmode="numeric" placeholder="60" value="'+safe(draft.duracaoMinutos??'')+'"></label>'+
+        '<label for="cardioDistance" data-cardio-distance>Distância (km)<input id="cardioDistance" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="9" value="'+safe(draft.distanciaKm??'')+'"></label>'+
+        '<label for="cardioSteps" data-cardio-steps hidden>Degraus subidos<input id="cardioSteps" type="number" min="1" step="1" inputmode="numeric" placeholder="1000" value="'+safe(draft.degraus??'')+'"></label>'+
+        '</div><label for="registerSessionObservation">Observação</label><textarea id="registerSessionObservation" class="register-session-observation">'+safe(draft.observacao||'')+'</textarea>'+
+        '<p class="muted">Esteira/Bicicleta: tempo e distância. Escada: tempo e degraus.</p>'+
+        '<div class="actions"><button type="button" class="primary-btn" id="registerGenerate">Gerar objeto JSON</button>'+
+        '<button type="button" class="ghost-btn" id="registerClear">Limpar rascunho</button>'+
+        '<button type="button" class="ghost-btn" id="registerCopy" disabled>Copiar objeto</button></div>'+
+        '<p id="cardioValidation" class="workout-data-warning" role="alert" hidden></p>'+
+        '<textarea id="registerOutput" class="register-output" readonly placeholder="Objeto de cardio"></textarea></section>';
+    }
+
+    function saveCardioRegisterDraft(pane) {
+      const id=pane.querySelector('#registerPerson')?.value;
+      const date=pane.querySelector('#registerDate')?.value;
+      if(!id||!date)return;
+      TRAINING_REGISTER_DRAFTS[trainingRegisterDraftKey(id,date,'Cardio')]={
+        modelo:'cardio-v1',pessoaId:id,data:date,titulo:'Cardio',
+        modalidade:pane.querySelector('#cardioActivity').value,
+        duracaoMinutos:pane.querySelector('#cardioDuration').value,
+        distanciaKm:pane.querySelector('#cardioDistance').value,
+        degraus:pane.querySelector('#cardioSteps').value,
+        observacao:pane.querySelector('#registerSessionObservation').value
+      };
+      TRAINING_REGISTER_ACTIVE_DATES[id+'::Cardio']=date;
+      try {
+        localStorage.setItem('training-register-drafts',JSON.stringify(TRAINING_REGISTER_DRAFTS));
+        localStorage.setItem('training-register-active-dates',JSON.stringify(TRAINING_REGISTER_ACTIVE_DATES));
+      } catch(error) {}
+    }
+
+    function bindCardioRegister(rows,content) {
+      const slot=content.querySelector('[data-training-pane="register"]');
+      const pane=slot?.querySelector('[data-cardio-register]');
+      if(!pane)return;
+      const pField=pane.querySelector('#registerPerson');
+      const wField=pane.querySelector('#registerWorkout');
+      const redraw=(id,code)=>{
+        slot.innerHTML=renderTrainingRegister(rows,id,code);
+        bindTrainingRegister(rows,content,id,code);
+      };
+      pField.addEventListener('change',()=>{
+        const person=trainingPeopleOptions(rows).find(p=>p.id===pField.value);
+        redraw(person?.id,TRAINING_PLANS[person?.name]?.dias[0]?.codigo);
+      });
+      wField.addEventListener('change',()=>{saveCardioRegisterDraft(pane);redraw(pField.value,wField.value);});
+      const refresh=()=>{
+        const isStairs=pane.querySelector('#cardioActivity').value==='Escada';
+        pane.querySelector('[data-cardio-steps]').hidden=!isStairs;
+        pane.querySelector('[data-cardio-distance]').hidden=isStairs;
+      };
+      refresh();
+      pane.addEventListener('input',()=>saveCardioRegisterDraft(pane));
+      pane.addEventListener('change',()=>{refresh();saveCardioRegisterDraft(pane);});
+      pane.querySelector('#registerClear').onclick=()=>{
+        const id=pField.value,date=pane.querySelector('#registerDate').value;
+        clearTrainingRegisterDraft(id,date,'Cardio');redraw(id,'Cardio');
+      };
+      pane.querySelector('#registerGenerate').onclick=()=>{
+        const modality=pane.querySelector('#cardioActivity').value;
+        const minutes=Number(pane.querySelector('#cardioDuration').value);
+        const stairs=modality==='Escada';
+        const value=Number(pane.querySelector(stairs?'#cardioSteps':'#cardioDistance').value);
+        const date=pane.querySelector('#registerDate').value;
+        const error=pane.querySelector('#cardioValidation');
+        if(!date || !Number.isInteger(minutes)||minutes<=0||!Number.isFinite(value)||value<=0||(stairs&&!Number.isInteger(value))){
+          error.hidden=false;
+          error.textContent='Informe uma data, duração em minutos e '+(stairs?'degraus inteiros.':'distância em km.');
+          return;
+        }
+        error.hidden=true;
+        const quantity=stairs?{degraus:value}:{distanciaKm:value};
+        const id=pField.value;
+        const session={id:id+'-'+date+'-cardio-'+trainingSlug(modality),pessoaId:id,data:date,titulo:'Cardio',
+          tipo:'cardio',modalidade:modality,duracaoMinutos:minutes,...quantity,
+          observacao:pane.querySelector('#registerSessionObservation').value.trim(),
+          exercicios:[{numero:1,nome:modality,exercicioId:'cardio-'+trainingSlug(modality),
+            tipo:'cardio',duracaoMinutos:minutes,...quantity,series:[]}]};
+        pane.querySelector('#registerOutput').value=JSON.stringify(session,null,2);
+        pane.querySelector('#registerCopy').disabled=false;
+        saveCardioRegisterDraft(pane);
+      };
+      pane.querySelector('#registerCopy').onclick=async()=>{
+        const field=pane.querySelector('#registerOutput');
+        try {await navigator.clipboard.writeText(field.value);pane.querySelector('#registerCopy').textContent='Copiado';}
+        catch(error){field.select();document.execCommand('copy');}
+      };
+    }
+
     function renderTrainingRegister(rows, personId, workoutCode) {
       const options = trainingPeopleOptions(rows);
       const person = options.find(item => item.id === personId) || options[0];
       const plan = TRAINING_PLANS[person?.name];
       const days = plan ? orderedTrainingDays(person.name, plan) : [];
       const day = days.find(item => item.codigo === workoutCode) || days[0];
-      const today = new Date().toISOString().slice(0, 10);
+      const today = currentLocalDate();
       if (!person || !plan || !day) return '<section class="workout-section"><p class="muted">Nenhum plano disponível para registro.</p></section>';
+      if (day.tipo === 'cardio') return renderCardioRegister(rows,person,day);
       const activeDate = TRAINING_REGISTER_ACTIVE_DATES[`${person.id}::${day.codigo}`] || today;
       const savedDraft = TRAINING_REGISTER_DRAFTS[trainingRegisterDraftKey(person.id, activeDate, day.codigo)];
       const modelo = day.exercicios.map(item => exerciseNameKey(item.nome)).join('|');
       const draft = savedDraft?.modelo === modelo ? savedDraft : null;
       const registerExercises = draft?.exercicios?.length ? draft.exercicios : day.exercicios;
+      const canonicalNames=[...new Set(Object.values(EXERCISE_CANONICAL_NAME_BY_KEY))].sort((a,b)=>a.localeCompare(b,'pt-BR'));
       return `<section class="workout-section training-register">
         <div class="workout-head"><div><h3>Registrar sessão</h3><div class="muted">Preencha a sessão realizada e gere o objeto pronto para colar no training-progress.json.</div></div></div>
         <div class="register-toolbar">
@@ -1640,7 +3063,7 @@ const MEASURE_REGISTER_FIELDS = [
           <div><label for="registerDate">Data</label><input id="registerDate" type="date" value="${draft?.data || activeDate}"></div>
           <div class="register-unit-note"><span>Unidade</span><strong>Escolha em cada exercicio</strong></div>
         </div>
-        <div class="register-exercises" id="registerExercises">${registerExercises.map((exercise, index) => trainingRegisterExerciseRow(exercise, index, draft?.unidade || 'kg')).join('')}</div>
+        <datalist id="exerciseCanonicalOptions">${canonicalNames.map(name => `<option value="${name}">`).join('')}</datalist><div class="register-exercises" id="registerExercises">${registerExercises.map((exercise, index) => trainingRegisterExerciseRow(exercise, index, draft?.unidade || 'kg')).join('')}</div>
         <div class="actions"><button type="button" class="ghost-btn" id="registerAddExercise"><i class="fa-solid fa-plus"></i> Adicionar exercício</button></div>
         <label for="registerSessionObservation">Observação da sessão</label><textarea id="registerSessionObservation" class="register-session-observation" placeholder="Ex.: treino adaptado, troca de exercício, equipamento utilizado...">${draft?.observacao || ''}</textarea>
         <div class="actions"><button type="button" class="primary-btn" id="registerGenerate"><i class="fa-solid fa-code"></i> Gerar objeto JSON</button><button type="button" class="ghost-btn" id="registerClear">Limpar rascunho</button><button type="button" class="ghost-btn" id="registerCopy" disabled><i class="fa-regular fa-copy"></i> Copiar objeto</button></div>
@@ -1651,6 +3074,7 @@ const MEASURE_REGISTER_FIELDS = [
     function bindTrainingRegister(rows, content, personId, workoutCode) {
       const pane = content.querySelector('[data-training-pane="register"]');
       if (!pane) return;
+      if (pane.querySelector('[data-cardio-register]')) { bindCardioRegister(rows,content); return; }
       const personSelect = pane.querySelector('#registerPerson');
       const workoutSelect = pane.querySelector('#registerWorkout');
       const currentPersonId = personId || personSelect.value;
@@ -1661,28 +3085,29 @@ const MEASURE_REGISTER_FIELDS = [
       pane.addEventListener('change', event => { if (!event.target.matches('#registerPerson, #registerWorkout')) saveTrainingRegisterDraft(pane, personId, workoutCode || workoutSelect.value); });
       const rerenderWithPlan = (nextPersonId, nextWorkoutCode) => { pane.innerHTML = renderTrainingRegister(rows, nextPersonId, nextWorkoutCode); bindTrainingRegister(rows, content, nextPersonId, nextWorkoutCode); };
       const exerciseList = pane.querySelector('#registerExercises');
+      exerciseList.addEventListener('focusout',event=>{if(!event.target.matches('.register-name'))return;const name=exerciseDisplayName(event.target.value);if(name&&name!==event.target.value){event.target.value=name;saveTrainingRegisterDraft(pane);}});
       pane.querySelector('#registerAddExercise').addEventListener('click', () => { exerciseList.insertAdjacentHTML('beforeend', trainingRegisterExerciseRow({}, exerciseList.querySelectorAll('[data-register-exercise]').length)); });
       exerciseList.addEventListener('click', event => { const addSet = event.target.closest('[data-add-set]'); if (addSet) { const exercise = addSet.closest('[data-register-exercise]'); const setIndex = exercise.querySelectorAll('.register-sets label').length; exercise.querySelector('.register-sets').insertAdjacentHTML('beforeend', `<label>S${setIndex + 1}<input class="register-weight" type="number" step="0.01" min="0" placeholder="kg/lb"><input class="register-reps" type="number" step="1" min="0" placeholder="reps"><select class="register-emoji" aria-label="Como foi a série">${trainingRegisterEmojiOptions()}</select></label>`); saveTrainingRegisterDraft(pane, personId, workoutCode || workoutSelect.value); return; } if (event.target.closest('[data-remove-exercise]')) { event.target.closest('[data-register-exercise]').remove(); [...exerciseList.querySelectorAll('[data-register-exercise]')].forEach((item, index) => item.querySelector('.register-number').textContent = index + 1); saveTrainingRegisterDraft(pane, personId, workoutCode || workoutSelect.value); } });
       pane.querySelector('#registerClear').addEventListener('click', () => { const date = pane.querySelector('#registerDate').value; const code = pane.querySelector('#registerWorkout').value; clearTrainingRegisterDraft(personId, date, code); pane.innerHTML = renderTrainingRegister(rows, personId, code); bindTrainingRegister(rows, content, personId, code); });
       pane.querySelector('#registerGenerate').addEventListener('click', () => {
         const person = trainingPeopleOptions(rows).find(item => item.id === pane.querySelector('#registerPerson').value);
         const day = TRAINING_PLANS[person.name].dias.find(item => item.codigo === pane.querySelector('#registerWorkout').value);
-        const session = { id: `${person.id}-${pane.querySelector('#registerDate').value}-${trainingSlug(day.codigo)}`, pessoaId: person.id, data: pane.querySelector('#registerDate').value, titulo: day.codigo, unidade: 'kg', observacao: pane.querySelector('#registerSessionObservation').value.trim(), exercicios: [...pane.querySelectorAll('[data-register-exercise]')].map((item, index) => { const series = [...item.querySelectorAll('.register-sets label')].map(label => ({ peso: Number(label.querySelector('.register-weight').value), repeticoes: Number(label.querySelector('.register-reps').value), emoji: label.querySelector('.register-emoji')?.value || '' })).filter(set => Number.isFinite(set.peso) && set.peso > 0); const result = { numero: index + 1, nome: item.querySelector('.register-name').value.trim() || 'Exercício não informado', unidade: item.querySelector('.register-unit')?.value || 'kg', series }; const observation = item.querySelector('.register-observation').value.trim(); if (observation) result.observacao = observation; return result; }) };
+        const session = { id: `${person.id}-${pane.querySelector('#registerDate').value}-${trainingSlug(day.codigo)}`, pessoaId: person.id, data: pane.querySelector('#registerDate').value, titulo: day.codigo, unidade: 'kg', observacao: pane.querySelector('#registerSessionObservation').value.trim(), exercicios: [...pane.querySelectorAll('[data-register-exercise]')].map((item, index) => { const series = [...item.querySelectorAll('.register-sets label')].map(label => ({ peso: Number(label.querySelector('.register-weight').value), repeticoes: Number(label.querySelector('.register-reps').value), emoji: label.querySelector('.register-emoji')?.value || '' })).filter(set => Number.isFinite(set.peso) && set.peso > 0); const result = { numero: index + 1, nome: exerciseDisplayName(item.querySelector('.register-name').value.trim() || 'Exercício não informado'), exercicioId: exerciseNameKey(item.querySelector('.register-name').value.trim() || 'Exercício não informado').replace(/ /g,'-'), unidade: item.querySelector('.register-unit')?.value || 'kg', series }; const observation = item.querySelector('.register-observation').value.trim(); if (observation) result.observacao = observation; return result; }) };
         const output = pane.querySelector('#registerOutput'); output.value = JSON.stringify(session, null, 2); pane.querySelector('#registerCopy').disabled = false; saveTrainingRegisterDraft(pane, personId, pane.querySelector('#registerWorkout').value);
       });
       pane.querySelector('#registerCopy').addEventListener('click', async () => { const output = pane.querySelector('#registerOutput'); try { await navigator.clipboard.writeText(output.value); pane.querySelector('#registerCopy').textContent = 'Copiado'; setTimeout(() => pane.querySelector('#registerCopy').innerHTML = '<i class="fa-regular fa-copy"></i> Copiar objeto', 1400); } catch { output.select(); document.execCommand('copy'); } });
     }
 
     function renderTrainingTab(rows) {
-      const people = getPeople(rows);
+      const options = trainingPeopleOptions(rows);
       const cards = document.getElementById('trainingPersonCards');
       const content = document.getElementById('trainingContent');
       if (!cards || !content) return;
-      const available = people.filter(name => TRAINING_PLANS[name]);
-      if (!selectedTrainingPersonName || !TRAINING_PLANS[selectedTrainingPersonName]) selectedTrainingPersonName = available[0] || null;
+      const available = options.map(item => item.name);
+      if (!selectedTrainingPersonName || !available.includes(selectedTrainingPersonName)) selectedTrainingPersonName = available[0] || null;
       cards.innerHTML = available.map(name => `<button type="button" class="person-card ${name === selectedTrainingPersonName ? 'active' : ''}" data-training-person="${name}"><strong>${name}</strong><small>${TRAINING_PLANS[name].titulo}</small></button>`).join('');
-      const registerPerson = trainingPeopleOptions(rows).find(item => item.name === selectedTrainingPersonName);
-      content.innerHTML = selectedTrainingPersonName ? `<div class="workout-tabs training-view-tabs" role="tablist" aria-label="Seções do treinamento"><button type="button" class="workout-tab active" data-training-view="plan">Plano de treino</button><button type="button" class="workout-tab" data-training-view="evolution">Evolução</button><button type="button" class="workout-tab" data-training-view="register">Registro</button></div><div data-training-pane="plan">${renderWorkoutSection(selectedTrainingPersonName)}</div><div data-training-pane="evolution" hidden>${renderTrainingProgress(selectedTrainingPersonName)}</div><div data-training-pane="register" hidden>${renderTrainingRegister(rows, registerPerson?.id)}</div>` : '<p class="note">Nenhum treinamento cadastrado.</p>';
+      const registerPerson = options.find(item => item.name === selectedTrainingPersonName);
+      content.innerHTML = selectedTrainingPersonName ? `${renderTrainingVolumeSummary(selectedTrainingPersonName)}<div class="workout-tabs training-view-tabs" role="tablist" aria-label="Seções do treinamento"><button type="button" class="workout-tab active" data-training-view="plan">Plano de treino</button><button type="button" class="workout-tab" data-training-view="evolution">Evolução</button><button type="button" class="workout-tab" data-training-view="register">Registro</button></div><div data-training-pane="plan">${renderWorkoutSection(selectedTrainingPersonName)}</div><div data-training-pane="evolution" hidden>${renderTrainingProgress(selectedTrainingPersonName)}</div><div data-training-pane="register" hidden>${renderTrainingRegister(rows, registerPerson?.id)}</div>` : '<p class="note">Nenhum treinamento cadastrado.</p>';
       cards.querySelectorAll('[data-training-person]').forEach(card => card.addEventListener('click', () => { selectedTrainingPersonName = card.dataset.trainingPerson; renderTrainingTab(rows); }));
       content.querySelectorAll('[data-training-view]').forEach(tab => tab.addEventListener('click', () => { content.querySelectorAll('[data-training-view]').forEach(item => item.classList.toggle('active', item === tab)); content.querySelectorAll('[data-training-pane]').forEach(pane => pane.hidden = pane.dataset.trainingPane !== tab.dataset.trainingView); if (tab.dataset.trainingView === 'plan') bindWorkoutTabs(); if (tab.dataset.trainingView === 'register') { const selected = trainingPeopleOptions(rows).find(item => item.name === selectedTrainingPersonName); bindTrainingRegister(rows, content, selected?.id); } }));
       bindWorkoutTabs();
@@ -1842,6 +3267,8 @@ const MEASURE_REGISTER_FIELDS = [
       renderPeriodTab(rows);
       renderMeasureTab(rows);
       renderTrainingTab(rows);
+      renderWorkoutCalendar();
+      renderWorkoutComparison(rows);
       renderMeasurementRegister(rows);
       renderDetailedReports(rows);
       renderComparisonTab(rows);
@@ -1904,34 +3331,3 @@ const MEASURE_REGISTER_FIELDS = [
         document.querySelector("main").insertAdjacentHTML("afterbegin", "<div class=\"note\" role=\"alert\">Data could not be loaded. Publish data.json with the page.</div>");
       });
   
-    /* Melhorias progressivas de interação: busca, teclado, feedback e estados vazios. */
-    (() => {
-      const normalizeText = value => String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
-      let toastTimer;
-      function showToast(message, type = 'success') {
-        let toast = document.getElementById('uiToast');
-        if (!toast) { toast = document.createElement('div'); toast.id = 'uiToast'; toast.className = 'data-toast'; toast.setAttribute('role', 'status'); document.body.appendChild(toast); }
-        toast.textContent = message; toast.classList.toggle('error', type === 'error'); toast.classList.add('visible'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('visible'), 3600);
-      }
-      function addPersonSearch(listId, label) {
-        const list = document.getElementById(listId);
-        if (!list || list.previousElementSibling?.classList.contains('person-search')) return;
-        const wrapper = document.createElement('div'); wrapper.className = 'person-search';
-        wrapper.innerHTML = `<i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><input type="search" aria-label="${label}" placeholder="Buscar por nome..." autocomplete="off"><small>Digite para filtrar</small>`;
-        list.parentNode.insertBefore(wrapper, list);
-        const input = wrapper.querySelector('input');
-        input.addEventListener('input', () => {
-          const query = normalizeText(input.value); let visible = 0;
-          list.querySelectorAll('.person-card').forEach(card => { const match = !query || normalizeText(card.textContent).includes(query); card.hidden = !match; if (match) visible += 1; });
-          let empty = list.nextElementSibling?.classList.contains('empty-state') ? list.nextElementSibling : null;
-          if (!visible && query) { if (!empty) { empty = document.createElement('div'); empty.className = 'empty-state'; list.after(empty); } empty.textContent = `Nenhuma pessoa encontrada para “${input.value}”.`; } else if (empty) empty.remove();
-        });
-      }
-      function enhancePersonCards() {
-        addPersonSearch('personCards', 'Buscar pessoa na consulta individual'); addPersonSearch('trainingPersonCards', 'Buscar pessoa no treinamento');
-        document.querySelectorAll('.person-card').forEach(card => { if (card.dataset.keyboardReady) return; card.dataset.keyboardReady = 'true'; card.setAttribute('role', 'button'); card.setAttribute('tabindex', '0'); card.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); card.click(); } }); });
-      }
-      const main = document.getElementById('main-content'); if (main) new MutationObserver(enhancePersonCards).observe(main, { childList: true, subtree: true }); enhancePersonCards();
-      document.addEventListener('keydown', event => { if (event.key !== '/' || /input|textarea|select/i.test(document.activeElement?.tagName || '')) return; const activeSearch = document.querySelector('.person-search input'); if (activeSearch) { event.preventDefault(); activeSearch.focus(); } });
-      window.addEventListener('online', () => showToast('Conexão restaurada.')); window.addEventListener('offline', () => showToast('Modo offline: usando os dados disponíveis.', 'error'));
-    })();
