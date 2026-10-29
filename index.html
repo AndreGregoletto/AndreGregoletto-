@@ -817,47 +817,199 @@
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
     @media (max-width: 480px) { .progress-timeline-item { grid-template-columns: 1fr; gap: 5px; } .workout-tabs { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; } .workout-tab { flex: 0 0 auto; min-height: 44px; } }
     @media print { .tabs, .skip-link, .exercise-video, .chart-wrap { height: 250px !important; } .chart-wrap canvas { display: block !important; } .section { display: block !important; } .panel, .measure-card, .workout-section, .exercise-card { box-shadow: none; background: #fff; color: #111; border-color: #bbb; } }
-  </style>
-  <style>
-    :root { --accent: #a8f36b; --accent-strong: #7fdc3f; --surface-soft: rgba(15, 34, 70, .58); --glow: 0 18px 60px rgba(0, 0, 0, .28); }
-    html { scroll-behavior: smooth; }
-    body { background: radial-gradient(circle at 12% 0%, rgba(168,243,107,.10), transparent 22%), radial-gradient(circle at 92% 18%, rgba(40,200,255,.14), transparent 28%), linear-gradient(135deg, #020817 0%, #071936 58%, #030b1b 100%); }
-    .container { width: min(1480px, calc(100% - 36px)); padding-top: 34px; }
-    .hero { gap: 22px; margin-bottom: 24px; }
-    .hero-main, .hero-side, .panel, .card { background: linear-gradient(145deg, rgba(12, 31, 66, .92), rgba(5, 16, 36, .84)); border-color: rgba(140, 194, 255, .22); box-shadow: var(--glow); }
-    .hero-main { padding: 36px; min-height: 250px; display: flex; flex-direction: column; justify-content: center; }
-    .hero-main:before { content: ""; position: absolute; inset: auto auto -110px -100px; width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, rgba(168,243,107,.14), transparent 68%); }
-    .hero-main:after { background: radial-gradient(circle, rgba(40,200,255,.26), transparent 65%); }
-    .eyebrow { color: #e1ffc7; border-color: rgba(168,243,107,.35); background: rgba(168,243,107,.10); }
-    h1 { max-width: 760px; font-size: clamp(38px, 5vw, 70px); letter-spacing: -2.6px; }
-    .subtitle { max-width: 720px; font-size: 16px; }
-    .stat, .mini-stat { background: var(--surface-soft); border-color: rgba(140,194,255,.18); }
-    .tabs { top: 14px; padding: 8px; border-radius: 20px; background: rgba(2,8,23,.84); border-color: rgba(140,194,255,.24); box-shadow: 0 12px 38px rgba(0,0,0,.24); }
-    .tab-menu { gap: 7px; }
-    .tab-btn, .ghost-btn, .primary-btn { min-height: 42px; border-radius: 13px; }
-    .tab-btn { background: transparent; border-color: transparent; color: #c3d2ec; }
-    .tab-btn:hover { background: rgba(40,200,255,.08); }
-    .tab-btn.active { color: #edffd9; background: linear-gradient(135deg, rgba(168,243,107,.18), rgba(40,200,255,.14)); border-color: rgba(168,243,107,.42); }
-    .primary-btn { color: #07131d; background: linear-gradient(135deg, var(--accent), #65d8c8); border-color: transparent; box-shadow: 0 10px 24px rgba(168,243,107,.14); }
-    .panel { padding: 24px; }
-    .panel h2 { font-size: clamp(21px, 2vw, 28px); }
-    .person-card, .measure-card, .workout-section, .exercise-card { transition: transform .2s ease, border-color .2s ease, background .2s ease; }
-    .person-card:hover, .person-card.active, .measure-card:hover, .exercise-card:hover { transform: translateY(-3px); border-color: rgba(168,243,107,.5); }
-    .person-card.active { background: linear-gradient(145deg, rgba(168,243,107,.12), rgba(40,200,255,.08)); }
-    .person-search { display: flex; align-items: center; gap: 10px; margin: 12px 0 16px; padding: 10px 12px; border: 1px solid rgba(140,194,255,.18); border-radius: 16px; background: rgba(2,8,23,.28); }
-    .person-search i { color: var(--accent); }
-    .person-search input { border: 0; padding: 4px 0; background: transparent; box-shadow: none; }
-    .person-search input:focus { outline: none; }
-    .person-search small { margin-left: auto; color: var(--muted); white-space: nowrap; }
-    .empty-state { padding: 26px; border: 1px dashed rgba(140,194,255,.3); border-radius: 18px; color: var(--muted); text-align: center; }
-    .data-toast { position: fixed; right: 18px; bottom: 18px; z-index: 30; max-width: min(360px, calc(100vw - 36px)); padding: 13px 15px; border: 1px solid rgba(168,243,107,.35); border-radius: 14px; color: #efffdc; background: rgba(8,27,35,.94); box-shadow: var(--glow); opacity: 0; transform: translateY(10px); pointer-events: none; transition: .2s ease; }
-    .data-toast.visible { opacity: 1; transform: translateY(0); }
-    .data-toast.error { border-color: rgba(239,68,68,.45); color: #fecaca; }
-    .section { animation: section-in .22s ease both; }
-    @keyframes section-in { from { opacity: .5; transform: translateY(4px); } to { opacity: 1; transform: none; } }
-    @media (max-width: 820px) { .container { width: min(100% - 22px, 1480px); padding-top: 20px; } .hero-main { min-height: 0; padding: 26px 22px; } .panel { padding: 18px; } .person-search small { display: none; } }
-    @media (max-width: 560px) { body { padding-top: 64px; } h1 { letter-spacing: -1.7px; } .hero-main { padding: 24px 18px; } .tabs { left: 8px; right: 8px; top: 8px; } .data-toast { right: 11px; bottom: 11px; } }
-  </style>
+  
+    /* Correções do formulário de treinos em telas pequenas */
+    .training-register,
+    .register-exercises,
+    .register-exercise,
+    .register-toolbar,
+    .register-exercise-head,
+    .register-sets,
+    .register-sets label { min-width: 0; max-width: 100%; }
+
+    .register-toolbar > div,
+    .register-exercise-head > *,
+    .register-sets label > * { min-width: 0; }
+
+    .register-toolbar select,
+    .register-toolbar input,
+    .register-exercise input,
+    .register-exercise select,
+    .register-exercise button {
+      max-width: 100%;
+    }
+
+    @media (max-width: 600px) {
+      .training-register { padding: 12px; overflow-wrap: anywhere; }
+      .register-toolbar { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+      .register-toolbar > div { width: 100%; min-width: 0; }
+      .register-toolbar select,
+      .register-toolbar input { display: block; width: 100%; min-width: 0; font-size: 16px; }
+      .register-unit-note { grid-column: 1; }
+
+      .register-exercise { padding: 12px; }
+      .register-exercise-head {
+        display: grid;
+        grid-template-columns: 32px minmax(0, 1fr);
+        gap: 10px;
+        align-items: center;
+      }
+      .register-exercise-head .register-number { grid-column: 1; grid-row: 1; }
+      .register-exercise-head .register-name {
+        grid-column: 2;
+        grid-row: 1;
+        width: 100%;
+        min-width: 0;
+        font-size: 16px;
+      }
+      .register-exercise-head .register-exercise-unit {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        width: 100%;
+      }
+      .register-exercise-head .register-exercise-unit select { width: 100%; min-width: 0; font-size: 16px; }
+      .register-exercise-head .register-remove {
+        grid-column: 1 / -1;
+        grid-row: 3;
+        justify-self: end;
+        min-height: 38px;
+      }
+
+      .register-sets { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+      .register-sets label {
+        display: grid;
+        grid-template-columns: 28px minmax(0, 1fr) minmax(0, 1fr);
+        gap: 8px;
+        align-items: center;
+        width: 100%;
+        min-width: 0;
+      }
+      .register-sets label .register-weight,
+      .register-sets label .register-reps { width: 100%; min-width: 0; font-size: 16px; }
+      .register-sets label .register-emoji {
+        grid-column: 2 / 4;
+        width: 100%;
+        min-width: 0;
+        font-size: 16px;
+      }
+      .register-observation,
+      .register-session-observation,
+      .register-output { display: block; width: 100%; min-width: 0; }
+      .register-add-set { min-height: 40px; }
+    }
+
+  
+    /* Painel de calendário, comparações e volume acumulado de treinos */
+    .workout-calendar-controls, .workout-compare-filters { display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; align-items:end; margin:18px 0; }
+    .workout-calendar-controls label, .workout-compare-filters label { display:grid; gap:6px; min-width:0; flex:1 1 210px; }
+    .workout-calendar-controls select, .workout-compare-filters select { width:100%; min-width:0; max-width:100%; }
+    .workout-calendar-navigation { display:flex; align-items:center; justify-content:space-between; gap:10px; flex:1 1 200px; }
+    .workout-calendar-navigation strong { text-transform:capitalize; text-align:center; font-size:16px; }
+    .workout-calendar-navigation .ghost-btn { border-radius:12px; min-width:42px; padding:8px 11px; font-size:23px; }
+    .workout-calendar-grid { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:7px; margin:16px 0 10px; }
+    .workout-cal-weekday { text-align:center; padding:6px 0; color:var(--muted); font-weight:800; font-size:13px; }
+    .workout-cal-day { display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-start; text-align:left; gap:5px; min-width:0; min-height:94px; padding:10px; border:1px solid var(--line); border-radius:13px; font:inherit; color:var(--text); background:rgba(8,20,46,.55); cursor:pointer; transition:background .14s,border-color .14s; }
+    .workout-cal-day strong { font-size:17px; }
+    .workout-cal-day small { color:var(--muted); font-size:11px; }
+    .workout-cal-day em { font-size:12px; font-style:normal; font-weight:800; color:#9fe7ff; }
+    .workout-cal-day.has-session { border-color:rgba(40,200,255,.6); background:rgba(40,200,255,.12); }
+    .workout-cal-day.selected { outline:2px solid var(--cyan); outline-offset:1px; background:rgba(40,200,255,.22); }
+    .workout-cal-day:hover { border-color:var(--cyan); }
+    .workout-help { margin-top:12px; font-size:12px; line-height:1.5; }
+    .workout-day-report { margin-top:20px; }
+    .workout-day-report h3 { margin:0 0 12px; }
+    .workout-total { padding:12px; border-radius:12px; border:1px solid var(--line); background:rgba(40,200,255,.07); }
+    .workout-tonnage { font-size:17px; color:#a5f3fc; white-space:normal; text-align:right; }
+    .workout-log-list { display:grid; gap:12px; margin-top:12px; }
+    .workout-log-card { border:1px solid var(--line); border-radius:14px; padding:12px; background:rgba(7,20,46,.48); min-width:0; }
+    .workout-log-header { display:flex; justify-content:space-between; align-items:start; flex-wrap:wrap; gap:10px; }
+    .workout-log-header strong, .workout-log-header small { display:block; }
+    .workout-log-header small { margin-top:5px; color:var(--muted); }
+    .workout-log-card details { margin-top:12px; }
+    .workout-log-card summary { color:#9fe7ff; cursor:pointer; font-weight:700; padding:6px 0; }
+    .workout-detail-exercises { padding-left:23px; margin:10px 0 0; }
+    .workout-detail-exercises li { margin-bottom:12px; line-height:1.5; overflow-wrap:anywhere; }
+    .workout-detail-exercises li strong, .workout-detail-exercises li span { display:block; }
+    .workout-detail-exercises li span { color:var(--muted); font-size:13px; }
+    .workout-detail-exercises li span strong { display:inline; color:var(--text); }
+    .workout-metric-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:16px 0; }
+    .workout-metric { padding:14px; border:1px solid var(--line); border-radius:14px; background:rgba(40,200,255,.06); min-width:0; }
+    .workout-metric span { display:block; font-size:12px; color:var(--muted); }
+    .workout-metric strong { display:block; margin-top:7px; font-size:clamp(16px,2vw,23px); color:var(--text); overflow-wrap:anywhere; }
+    .workout-volume-summary { margin:18px 0; }
+    .workout-volume-summary h4 { margin:18px 0 6px; }
+    .workout-compare-card { padding:18px 0; border-top:1px solid var(--line); }
+    .workout-compare-card h3 { margin:4px 0 10px; }
+    .workout-compare-card p { line-height:1.5; }
+    .workout-compare-filters { justify-content:flex-start; }
+    .workout-compare-filters label { flex:1 1 250px; }
+    .workout-chart { min-height:280px; height:320px; margin:16px 0; }
+    .workout-table { min-width:540px; }
+    .workout-table td { font-variant-numeric:tabular-nums; }
+    #workoutCalendarRoot, #workoutComparisonRoot { min-width:0; }
+    @media(max-width:720px) {
+      .workout-calendar-grid { gap:4px; }
+      .workout-cal-day { min-height:74px; padding:7px 4px; border-radius:9px; gap:4px; }
+      .workout-cal-day strong { font-size:14px; }
+      .workout-cal-day small { font-size:9px; line-height:1.2; overflow-wrap:anywhere; }
+      .workout-cal-day em { font-size:10px; }
+      .workout-metric-grid { grid-template-columns:1fr; gap:8px; }
+      .workout-calendar-controls label, .workout-calendar-navigation { flex-basis:100%; }
+      .workout-log-header { flex-direction:column; }
+      .workout-tonnage { text-align:left; }
+      .workout-chart { height:300px; }
+    }
+    @media(max-width:385px) {
+      .workout-cal-day { min-height:68px; }
+      .workout-cal-day em { font-size:9px; }
+    }
+
+  
+    /* Legibilidade dos cartões de seleção na aba Treinamento */
+    body:not(.light-theme) #trainingPersonCards .person-card,
+    body:not(.light-theme) #trainingPersonCards .person-card strong,
+    body:not(.light-theme) #trainingPersonCards .person-card small {
+      color: #ffffff !important;
+    }
+    body.light-theme #trainingPersonCards .person-card,
+    body.light-theme #trainingPersonCards .person-card strong,
+    body.light-theme #trainingPersonCards .person-card small {
+      color: #12213a !important;
+    }
+
+  
+    .workout-data-warning {
+      margin: 12px 0 0;
+      padding: 10px 12px;
+      border: 1px solid rgba(245, 158, 11, .55);
+      border-radius: 12px;
+      background: rgba(245, 158, 11, .09);
+      color: #fcd68c;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    body.light-theme .workout-data-warning { color: #894800; background: rgba(245, 158, 11, .12); }
+
+    /* Formulário aeróbico com unidades específicas e layout responsivo */
+    .cardio-register { min-width: 0; }
+    .cardio-fields {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 14px 0 20px;
+    }
+    .cardio-fields label { display: grid; min-width: 0; gap: 7px; }
+    .cardio-fields input, .cardio-fields select { width: 100%; min-width: 0; font-size: 16px; }
+    .cardio-fields [hidden] { display: none !important; }
+    .cardio-compare-card { border-top: 2px solid rgba(34,197,94,.45); }
+    .cardio-compare-card h3 { color: #8df3bc; }
+    .cardio-register .badge-status { letter-spacing: .08em; }
+    @media(max-width:600px) {
+      .cardio-fields { grid-template-columns: minmax(0, 1fr); gap: 11px; }
+      .cardio-register .register-toolbar { grid-template-columns: minmax(0,1fr); }
+      .cardio-register .register-toolbar > div { width: 100%; }
+    }
+</style>
 </head>
 
 <body>
@@ -880,6 +1032,8 @@
       <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
       <button class="tab-btn" data-tab="individual">Consulta individual</button>
       <button class="tab-btn" data-tab="treinamento">Treinamento</button>
+      <button class="tab-btn" data-tab="calendario-treinos">Calendário de treinos</button>
+      <button class="tab-btn" data-tab="comparar-cargas">Comparar cargas</button>
       <button class="tab-btn" data-tab="registro-medidas">Registrar medidas</button>
       <button class="tab-btn" data-tab="medidas">Medidas corporais</button>
       <button class="tab-btn" data-tab="periodos">Dados por período</button>
@@ -968,11 +1122,27 @@
     <section id="treinamento" class="section">
       <article class="panel">
         <h2>Treinamento</h2>
-        <p class="muted">Selecione uma pessoa para consultar o plano. Douglas faz Upper, Lower e Fullbody; André segue a rotina completa de segunda a domingo do manual de 8 semanas.</p>
+        <p class="muted">Selecione uma pessoa para consultar o plano, o histórico de sessões e o volume total movimentado em cada treino.</p>
         <div class="person-list" id="trainingPersonCards"></div>
         <div id="trainingContent"></div>
       </article>
     </section>
+    <section id="calendario-treinos" class="section">
+      <article class="panel">
+        <h2><i class="fa-regular fa-calendar-days"></i> Calendário de treinos</h2>
+        <p class="muted">Consulte os dias em que cada pessoa treinou, com detalhes da sessão e volume total movimentado. O mesmo dia pode conter mais de um treino.</p>
+        <div id="workoutCalendarRoot"></div>
+      </article>
+    </section>
+
+    <section id="comparar-cargas" class="section">
+      <article class="panel">
+        <h2><i class="fa-solid fa-chart-column"></i> Comparar pesos e cargas</h2>
+        <p class="muted">Compare a maior carga de cada exercício, o volume total do histórico e o peso corporal registrado de todas as pessoas.</p>
+        <div id="workoutComparisonRoot"></div>
+      </article>
+    </section>
+
     <section id="registro-medidas" class="section">
       <article class="panel">
         <h2>Registrar medidas mensais</h2>
@@ -1463,7 +1633,7 @@
       "peito": 10,
       "abdomem": 20,
       "coxa": 20,
-      "peso": 75.90,
+      "peso": 75.9,
       "medidas": {
         "peito": 98,
         "abdomem": 90,
@@ -1492,8 +1662,8 @@
       "idade": 13,
       "peito": 9,
       "abdomem": 10,
-      "coxa":18 ,
-      "peso": 59.80,
+      "coxa": 18,
+      "peso": 59.8,
       "medidas": {
         "peito": 82,
         "abdomem": 76,
@@ -5185,11 +5355,1132 @@
           ]
         }
       ]
+    },
+    {
+      "id": "andre-2026-10-19-d",
+      "pessoaId": "andre",
+      "data": "2026-10-19",
+      "titulo": "D",
+      "unidade": "kg",
+      "observacao": "",
+      "exercicios": [
+        {
+          "numero": 1,
+          "nome": "Remada Aberta na Polia Alta",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 60,
+              "repeticoes": 12,
+              "emoji": "😐"
+            },
+            {
+              "peso": 70,
+              "repeticoes": 12,
+              "emoji": "💀"
+            },
+            {
+              "peso": 80,
+              "repeticoes": 12,
+              "emoji": "🏳️‍🌈"
+            }
+          ],
+          "exercicioId": "remada-aberta-na-polia-alta"
+        },
+        {
+          "numero": 2,
+          "nome": "Puxada Alta com Triângulo",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 138,
+              "repeticoes": 12,
+              "emoji": "😐"
+            },
+            {
+              "peso": 138,
+              "repeticoes": 12,
+              "emoji": "😐"
+            },
+            {
+              "peso": 138,
+              "repeticoes": 12,
+              "emoji": "😐"
+            }
+          ],
+          "exercicioId": "puxada-alta-com-triangulo"
+        },
+        {
+          "numero": 3,
+          "nome": "Remada na Máquina (Pegada Supinada)",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 82,
+              "repeticoes": 12,
+              "emoji": "😐"
+            },
+            {
+              "peso": 82,
+              "repeticoes": 12,
+              "emoji": "😐"
+            },
+            {
+              "peso": 82,
+              "repeticoes": 10,
+              "emoji": "💀"
+            }
+          ],
+          "exercicioId": "remada-na-maquina-pegada-supinada"
+        },
+        {
+          "numero": 4,
+          "nome": "Rosca Direta",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 20,
+              "repeticoes": 12,
+              "emoji": ""
+            },
+            {
+              "peso": 27.5,
+              "repeticoes": 10,
+              "emoji": ""
+            },
+            {
+              "peso": 27.5,
+              "repeticoes": 8,
+              "emoji": "💀"
+            }
+          ],
+          "exercicioId": "rosca-direta"
+        }
+      ]
+    },
+    {
+      "id": "andre-2026-10-20-push",
+      "pessoaId": "andre",
+      "data": "2026-10-20",
+      "titulo": "Push",
+      "unidade": "kg",
+      "observacao": "",
+      "exercicios": [
+        {
+          "numero": 1,
+          "nome": "Fly",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 64,
+              "repeticoes": 8,
+              "emoji": "😐"
+            },
+            {
+              "peso": 68,
+              "repeticoes": 12,
+              "emoji": "😐"
+            },
+            {
+              "peso": 68,
+              "repeticoes": 12,
+              "emoji": "😐"
+            }
+          ],
+          "exercicioId": "fly"
+        },
+        {
+          "numero": 2,
+          "nome": "Supino Inclinado com Halteres",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 38,
+              "repeticoes": 12,
+              "emoji": "😐"
+            },
+            {
+              "peso": 38,
+              "repeticoes": 12,
+              "emoji": "💀"
+            }
+          ],
+          "exercicioId": "supino-inclinado-com-halteres"
+        },
+        {
+          "numero": 3,
+          "nome": "Supino Reto na Máquina",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 110,
+              "repeticoes": 12,
+              "emoji": "😐"
+            },
+            {
+              "peso": 110,
+              "repeticoes": 12,
+              "emoji": "😐"
+            }
+          ],
+          "exercicioId": "supino-reto-na-maquina"
+        },
+        {
+          "numero": 4,
+          "nome": "Elevação Frontal",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 5,
+              "repeticoes": 8,
+              "emoji": "💀"
+            },
+            {
+              "peso": 5,
+              "repeticoes": 8,
+              "emoji": "💀"
+            },
+            {
+              "peso": 5,
+              "repeticoes": 8,
+              "emoji": "💀"
+            }
+          ],
+          "exercicioId": "elevacao-frontal"
+        },
+        {
+          "numero": 5,
+          "nome": "Elevação Lateral",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 5,
+              "repeticoes": 12,
+              "emoji": "😴"
+            },
+            {
+              "peso": 5,
+              "repeticoes": 8,
+              "emoji": "💀"
+            }
+          ],
+          "exercicioId": "elevacao-lateral"
+        },
+        {
+          "numero": 6,
+          "nome": "Tríceps na Corda",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 17,
+              "repeticoes": 12,
+              "emoji": "😐"
+            },
+            {
+              "peso": 25,
+              "repeticoes": 12,
+              "emoji": "😐"
+            },
+            {
+              "peso": 30,
+              "repeticoes": 10,
+              "emoji": "💀"
+            }
+          ],
+          "exercicioId": "triceps-na-corda"
+        }
+      ]
+    },
+    {
+      "id": "andre-2026-10-21-legs",
+      "pessoaId": "andre",
+      "data": "2026-10-21",
+      "titulo": "Legs",
+      "unidade": "kg",
+      "observacao": "",
+      "exercicios": [
+        {
+          "numero": 1,
+          "nome": "Cadeira Flexora",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 110,
+              "repeticoes": 12,
+              "emoji": "😴"
+            },
+            {
+              "peso": 110,
+              "repeticoes": 12,
+              "emoji": "😴"
+            }
+          ],
+          "exercicioId": "cadeira-flexora"
+        },
+        {
+          "numero": 2,
+          "nome": "Hack Machine",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 60,
+              "repeticoes": 12,
+              "emoji": "😐"
+            },
+            {
+              "peso": 100,
+              "repeticoes": 12,
+              "emoji": "💀"
+            },
+            {
+              "peso": 100,
+              "repeticoes": 12,
+              "emoji": "💀"
+            }
+          ],
+          "exercicioId": "hack-machine"
+        },
+        {
+          "numero": 3,
+          "nome": "Cadeira Extensora",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 145,
+              "repeticoes": 15,
+              "emoji": "🏳️‍🌈"
+            },
+            {
+              "peso": 145,
+              "repeticoes": 12,
+              "emoji": "💀"
+            },
+            {
+              "peso": 145,
+              "repeticoes": 15,
+              "emoji": "💀"
+            }
+          ],
+          "observacao": "Máquina ruim e leve",
+          "exercicioId": "cadeira-extensora"
+        },
+        {
+          "numero": 4,
+          "nome": "Elevação Pélvica",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 80,
+              "repeticoes": 6,
+              "emoji": ""
+            },
+            {
+              "peso": 130,
+              "repeticoes": 12,
+              "emoji": "💀"
+            },
+            {
+              "peso": 130,
+              "repeticoes": 12,
+              "emoji": "💀"
+            }
+          ],
+          "observacao": "Aumentar a carga",
+          "exercicioId": "elevacao-pelvica"
+        },
+        {
+          "numero": 5,
+          "nome": "Cadeira Adutora",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 93,
+              "repeticoes": 12,
+              "emoji": "😐"
+            },
+            {
+              "peso": 100,
+              "repeticoes": 12,
+              "emoji": "💩"
+            }
+          ],
+          "exercicioId": "cadeira-adutora"
+        },
+        {
+          "numero": 6,
+          "nome": "Levantamento Terra",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 20,
+              "repeticoes": 8,
+              "emoji": "😴"
+            },
+            {
+              "peso": 60,
+              "repeticoes": 4,
+              "emoji": "😴"
+            },
+            {
+              "peso": 100,
+              "repeticoes": 10,
+              "emoji": "😴"
+            },
+            {
+              "peso": 100,
+              "repeticoes": 10,
+              "emoji": "😐"
+            },
+            {
+              "peso": 100,
+              "repeticoes": 10,
+              "emoji": "🤢"
+            },
+            {
+              "peso": 100,
+              "repeticoes": 10,
+              "emoji": "💀"
+            },
+            {
+              "peso": 100,
+              "repeticoes": 10,
+              "emoji": "💀"
+            }
+          ],
+          "exercicioId": "levantamento-terra"
+        },
+        {
+          "numero": 7,
+          "nome": "Abdominal na Máquina",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 80,
+              "repeticoes": 15,
+              "emoji": "😐"
+            },
+            {
+              "peso": 95,
+              "repeticoes": 12,
+              "emoji": "😐"
+            },
+            {
+              "peso": 95,
+              "repeticoes": 15,
+              "emoji": "😐"
+            }
+          ],
+          "exercicioId": "abdominal-na-maquina"
+        },
+        {
+          "numero": 8,
+          "nome": "Abdominal Lateral no Banco Romano",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 35,
+              "repeticoes": 15,
+              "emoji": "🤢"
+            },
+            {
+              "peso": 35,
+              "repeticoes": 15,
+              "emoji": "😐"
+            },
+            {
+              "peso": 35,
+              "repeticoes": 15,
+              "emoji": "🤢"
+            }
+          ],
+          "exercicioId": "abdominal-lateral-no-banco-romano"
+        }
+      ]
+    },
+    {
+      "id": "andre-2026-10-22-upper",
+      "pessoaId": "andre",
+      "data": "2026-10-22",
+      "titulo": "Upper",
+      "unidade": "kg",
+      "observacao": "",
+      "exercicios": [
+        {
+          "numero": 1,
+          "nome": "Supino Inclinado na Máquina",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 80,
+              "repeticoes": 8,
+              "emoji": "💀"
+            },
+            {
+              "peso": 80,
+              "repeticoes": 8,
+              "emoji": "💀"
+            }
+          ],
+          "exercicioId": "supino-inclinado-na-maquina"
+        },
+        {
+          "numero": 2,
+          "nome": "Fly",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 40,
+              "repeticoes": 10,
+              "emoji": "😴"
+            },
+            {
+              "peso": 75,
+              "repeticoes": 12,
+              "emoji": ""
+            },
+            {
+              "peso": 83,
+              "repeticoes": 8,
+              "emoji": ""
+            }
+          ],
+          "exercicioId": "fly"
+        },
+        {
+          "numero": 3,
+          "nome": "Remada Baixa na Polia",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 75,
+              "repeticoes": 10,
+              "emoji": "🏳️‍🌈"
+            },
+            {
+              "peso": 75,
+              "repeticoes": 10,
+              "emoji": "🏳️‍🌈"
+            }
+          ],
+          "exercicioId": "remada-baixa-na-polia"
+        },
+        {
+          "numero": 4,
+          "nome": "Pulldown na Máquina",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 35,
+              "repeticoes": 12,
+              "emoji": "😴"
+            },
+            {
+              "peso": 50,
+              "repeticoes": 8,
+              "emoji": "😐"
+            },
+            {
+              "peso": 50,
+              "repeticoes": 8,
+              "emoji": "😴"
+            }
+          ],
+          "exercicioId": "pulldown-na-maquina"
+        },
+        {
+          "numero": 5,
+          "nome": "Elevação Lateral",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 35,
+              "repeticoes": 12,
+              "emoji": "💀"
+            },
+            {
+              "peso": 35,
+              "repeticoes": 10,
+              "emoji": ""
+            }
+          ],
+          "exercicioId": "elevacao-lateral"
+        },
+        {
+          "numero": 6,
+          "nome": "Rosca Direta",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 20,
+              "repeticoes": 12,
+              "emoji": "😐"
+            },
+            {
+              "peso": 27.5,
+              "repeticoes": 12,
+              "emoji": "💀"
+            },
+            {
+              "peso": 30,
+              "repeticoes": 8,
+              "emoji": "💀"
+            }
+          ],
+          "exercicioId": "rosca-direta"
+        },
+        {
+          "numero": 7,
+          "nome": "Tríceps Francês na Máquina",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 75,
+              "repeticoes": 12,
+              "emoji": ""
+            },
+            {
+              "peso": 80,
+              "repeticoes": 12,
+              "emoji": ""
+            },
+            {
+              "peso": 100,
+              "repeticoes": 12,
+              "emoji": ""
+            }
+          ],
+          "exercicioId": "triceps-frances-na-maquina"
+        }
+      ]
+    },
+    {
+      "id": "andre-2026-10-23-cardio",
+      "pessoaId": "andre",
+      "data": "2026-10-23",
+      "titulo": "Cardio",
+      "tipo": "cardio",
+      "duracaoMinutos": 60,
+      "distanciaKm": 9,
+      "observacao": "Esteira: 1 hora, 9 km percorridos.",
+      "exercicios": [
+        {
+          "numero": 1,
+          "nome": "Esteira",
+          "tipo": "cardio",
+          "duracaoMinutos": 60,
+          "distanciaKm": 9,
+          "observacao": "60 minutos de esteira, distância de 9 km.",
+          "series": []
+        }
+      ]
+    },
+    {
+      "id": "andre-2026-10-24-lower",
+      "pessoaId": "andre",
+      "data": "2026-10-24",
+      "titulo": "Lower",
+      "unidade": "kg",
+      "observacao": "",
+      "exercicios": [
+        {
+          "numero": 1,
+          "nome": "Cadeira Flexora",
+          "exercicioId": "cadeira-flexora",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 110,
+              "repeticoes": 12,
+              "emoji": "😐"
+            },
+            {
+              "peso": 110,
+              "repeticoes": 12,
+              "emoji": "💀"
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "nome": "Agachamento",
+          "exercicioId": "agachamento",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 120,
+              "repeticoes": 12,
+              "emoji": "😐"
+            },
+            {
+              "peso": 200,
+              "repeticoes": 12,
+              "emoji": ""
+            }
+          ]
+        },
+        {
+          "numero": 3,
+          "nome": "Leg Press 45°",
+          "exercicioId": "leg-press-45",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 240,
+              "repeticoes": 12,
+              "emoji": "😐"
+            },
+            {
+              "peso": 360,
+              "repeticoes": 12,
+              "emoji": "💀"
+            },
+            {
+              "peso": 360,
+              "repeticoes": 12,
+              "emoji": ""
+            }
+          ]
+        },
+        {
+          "numero": 4,
+          "nome": "Rdl",
+          "exercicioId": "rdl",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 40,
+              "repeticoes": 8,
+              "emoji": ""
+            },
+            {
+              "peso": 55,
+              "repeticoes": 12,
+              "emoji": ""
+            },
+            {
+              "peso": 55,
+              "repeticoes": 8,
+              "emoji": ""
+            }
+          ]
+        },
+        {
+          "numero": 5,
+          "nome": "Cadeira Abdutora",
+          "exercicioId": "cadeira-abdutora",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 100,
+              "repeticoes": 12,
+              "emoji": ""
+            },
+            {
+              "peso": 100,
+              "repeticoes": 12,
+              "emoji": "🤢"
+            },
+            {
+              "peso": 100,
+              "repeticoes": 12,
+              "emoji": ""
+            }
+          ]
+        },
+        {
+          "numero": 6,
+          "nome": "Cadeira Abdutora",
+          "exercicioId": "cadeira-abdutora",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 100,
+              "repeticoes": 12,
+              "emoji": ""
+            },
+            {
+              "peso": 100,
+              "repeticoes": 12,
+              "emoji": ""
+            },
+            {
+              "peso": 100,
+              "repeticoes": 12,
+              "emoji": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "andre-2026-10-26-pull",
+      "pessoaId": "andre",
+      "data": "2026-10-26",
+      "titulo": "Pull",
+      "unidade": "kg",
+      "observacao": "",
+      "exercicios": [
+        {
+          "numero": 1,
+          "nome": "Remada Curvada",
+          "exercicioId": "remada-curvada",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 60,
+              "repeticoes": 12,
+              "emoji": "😐"
+            },
+            {
+              "peso": 80,
+              "repeticoes": 12,
+              "emoji": "😐"
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "nome": "Puxada Alta (Pegada Aberta)",
+          "exercicioId": "puxada-alta-pegada-aberta",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 82,
+              "repeticoes": 8,
+              "emoji": "🏳️‍🌈"
+            },
+            {
+              "peso": 82,
+              "repeticoes": 8,
+              "emoji": "💀"
+            }
+          ]
+        },
+        {
+          "numero": 3,
+          "nome": "Puxada Alta com Triângulo",
+          "exercicioId": "puxada-alta-com-triangulo",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 60,
+              "repeticoes": 8,
+              "emoji": "😐"
+            },
+            {
+              "peso": 75,
+              "repeticoes": 8,
+              "emoji": ""
+            },
+            {
+              "peso": 75,
+              "repeticoes": 8,
+              "emoji": ""
+            }
+          ]
+        },
+        {
+          "numero": 4,
+          "nome": "Serrote",
+          "exercicioId": "serrote",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 138,
+              "repeticoes": 12,
+              "emoji": ""
+            },
+            {
+              "peso": 138,
+              "repeticoes": 12,
+              "emoji": ""
+            }
+          ]
+        },
+        {
+          "numero": 5,
+          "nome": "Rosca Scott",
+          "exercicioId": "rosca-scott",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 56.25,
+              "repeticoes": 12,
+              "emoji": "😐"
+            },
+            {
+              "peso": 56.25,
+              "repeticoes": 12,
+              "emoji": ""
+            },
+            {
+              "peso": 56.25,
+              "repeticoes": 12,
+              "emoji": ""
+            }
+          ]
+        },
+        {
+          "numero": 6,
+          "nome": "Rosca Bayesian polia leve",
+          "exercicioId": "rosca-bayesian-polia-leve",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 25,
+              "repeticoes": 12,
+              "emoji": ""
+            },
+            {
+              "peso": 25,
+              "repeticoes": 10,
+              "emoji": "💀"
+            },
+            {
+              "peso": 25,
+              "repeticoes": 8,
+              "emoji": "💀"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "andre-2026-10-27-push",
+      "pessoaId": "andre",
+      "data": "2026-10-27",
+      "titulo": "Push",
+      "unidade": "kg",
+      "observacao": "",
+      "exercicios": [
+        {
+          "numero": 1,
+          "nome": "Fly",
+          "exercicioId": "fly",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 75,
+              "repeticoes": 12,
+              "emoji": ""
+            },
+            {
+              "peso": 82,
+              "repeticoes": 10,
+              "emoji": ""
+            },
+            {
+              "peso": 82,
+              "repeticoes": 8,
+              "emoji": ""
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "nome": "Supino Inclinado com Halteres",
+          "exercicioId": "supino-inclinado-com-halteres",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 36,
+              "repeticoes": 12,
+              "emoji": "😐"
+            },
+            {
+              "peso": 40,
+              "repeticoes": 12,
+              "emoji": "😄"
+            },
+            {
+              "peso": 40,
+              "repeticoes": 10,
+              "emoji": ""
+            }
+          ]
+        },
+        {
+          "numero": 3,
+          "nome": "Supino Reto na Máquina",
+          "exercicioId": "supino-reto-na-maquina",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 110,
+              "repeticoes": 12,
+              "emoji": "😴"
+            },
+            {
+              "peso": 110,
+              "repeticoes": 20,
+              "emoji": "😴"
+            }
+          ]
+        },
+        {
+          "numero": 4,
+          "nome": "Desenvolvimento",
+          "exercicioId": "desenvolvimento",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 26,
+              "repeticoes": 12,
+              "emoji": "💀"
+            },
+            {
+              "peso": 28,
+              "repeticoes": 12,
+              "emoji": ""
+            },
+            {
+              "peso": 34,
+              "repeticoes": 12,
+              "emoji": ""
+            }
+          ]
+        },
+        {
+          "numero": 5,
+          "nome": "Elevação Lateral",
+          "exercicioId": "elevacao-lateral",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 40,
+              "repeticoes": 12,
+              "emoji": "😐"
+            },
+            {
+              "peso": 40,
+              "repeticoes": 12,
+              "emoji": "😐"
+            }
+          ]
+        },
+        {
+          "numero": 6,
+          "nome": "Tríceps na Corda",
+          "exercicioId": "triceps-na-corda",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 30,
+              "repeticoes": 12,
+              "emoji": ""
+            },
+            {
+              "peso": 37.5,
+              "repeticoes": 8,
+              "emoji": ""
+            },
+            {
+              "peso": 37.5,
+              "repeticoes": 10,
+              "emoji": ""
+            }
+          ],
+          "observacao": "Polia pesada"
+        }
+      ]
+    },
+    {
+      "id": "andre-2026-10-28-legs",
+      "pessoaId": "andre",
+      "data": "2026-10-28",
+      "titulo": "Legs",
+      "unidade": "kg",
+      "observacao": "",
+      "exercicios": [
+        {
+          "numero": 1,
+          "nome": "Cadeira Flexora",
+          "exercicioId": "cadeira-flexora",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 80,
+              "repeticoes": 8,
+              "emoji": ""
+            },
+            {
+              "peso": 110,
+              "repeticoes": 12,
+              "emoji": ""
+            },
+            {
+              "peso": 110,
+              "repeticoes": 17,
+              "emoji": ""
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "nome": "Hack Machine",
+          "exercicioId": "hack-machine",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 80,
+              "repeticoes": 12,
+              "emoji": ""
+            },
+            {
+              "peso": 140,
+              "repeticoes": 12,
+              "emoji": ""
+            },
+            {
+              "peso": 200,
+              "repeticoes": 12,
+              "emoji": ""
+            }
+          ]
+        },
+        {
+          "numero": 3,
+          "nome": "Cadeira Extensora",
+          "exercicioId": "cadeira-extensora",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 140,
+              "repeticoes": 12,
+              "emoji": "🏳️‍🌈"
+            },
+            {
+              "peso": 140,
+              "repeticoes": 12,
+              "emoji": "🏳️‍🌈"
+            }
+          ]
+        },
+        {
+          "numero": 4,
+          "nome": "Elevação Pélvica",
+          "exercicioId": "elevacao-pelvica",
+          "unidade": "kg",
+          "series": [
+            {
+              "peso": 160,
+              "repeticoes": 12,
+              "emoji": ""
+            },
+            {
+              "peso": 180,
+              "repeticoes": 12,
+              "emoji": "💀"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
 </script>
-  <script src="script.js?v=20261022-1"></script>
-  <script>if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("service-worker.js").catch(() => {});</script>
+  <script src="training-dashboard.js?v=20261026-local-dates"></script>
+  <script src="script.js?v=20261026-local-dates"></script>
+  <script>if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("service-worker.js?v=20261026-local-dates").catch(() => {});</script>
 </body>
 </html>
