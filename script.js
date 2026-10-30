@@ -2821,7 +2821,7 @@ const MEASURE_REGISTER_FIELDS = [
       const personId = Object.values(TRAINING_PEOPLE).find(person => person.nome === personName)?.id || personName;
       const records = TRAINING_PROGRESS[personId];
       if (!records) return '<section class="workout-section"><p class="muted">Nenhuma evolução registrada para esta pessoa.</p></section>';
-      const exerciseOptions = [...new Map(Object.values(records).flatMap(record => record.exercicios.map(item => [exerciseTrackingKey(item), exerciseDisplayName(item.nome)]))).entries()];
+      const exerciseOptions = [...new Map(Object.values(records).flatMap(record => record.exercicios.map(item => [exerciseTrackingKey(item), exerciseDisplayName(item.nome)]))).entries()].sort((a, b) => a[1].localeCompare(b[1], 'pt-BR', { sensitivity: 'base' }));
       return `<section class="workout-section">
         <div class="workout-head"><div><h3>Gráficos de progressão</h3><div class="muted">Acompanhe carga máxima e volume acumulado por exercício.</div></div></div>
         <label for="progressExerciseSelect">Exercício</label>
