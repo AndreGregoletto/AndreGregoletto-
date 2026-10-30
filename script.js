@@ -2863,6 +2863,11 @@ const MEASURE_REGISTER_FIELDS = [
     }
 
     const TRAINING_SERIES_EMOJIS = [
+      { value: '🚧', label: '🚧 aquecimento (cone)' },
+      { value: '🥶', label: '🥶 frio' },
+      { value: '😬', label: '😬 difícil' },
+      { value: '💪', label: '💪 forte' },
+      { value: '🦖', label: '🦖 dinossauro' },
       { value: '', label: 'nada' },
       { value: '💀', label: '💀 caveira' },
       { value: '🤢', label: '🤢 enjoo' },
