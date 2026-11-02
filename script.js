@@ -1623,7 +1623,10 @@ const MEASURE_REGISTER_FIELDS = [
         const value = numberOrNull(rawValue);
         if (site && value !== null) folds[site] = value;
       });
-      const age = numberOrNull(data?.idade ?? data?.age);
+      const historicalAge = personId && Array.isArray(DEFAULT_MEASUREMENTS?.measurements)
+        ? DEFAULT_MEASUREMENTS.measurements.filter(item => item.pessoaId === personId && item.data <= period && numberOrNull(item.idade ?? item.age) !== null).sort((a,b) => b.data.localeCompare(a.data))[0]
+        : null;
+      const age = numberOrNull(data?.idade ?? data?.age ?? historicalAge?.idade ?? historicalAge?.age);
       const weight = numberOrNull(data?.peso ?? data?.weight);
       const sex = data?.sex || inferSex(folds);
       const measures = normalizeMeasures(data);
