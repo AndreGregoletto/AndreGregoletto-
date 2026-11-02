@@ -428,7 +428,8 @@
         "coxa": 65,
         "braco": 38.5
       },
-      "observacao": "Peito 104"
+      "observacao": "Peito 104",
+      "idade": 28
     },
     {
       "data": "2026-11-02",
@@ -446,7 +447,8 @@
         "coxa": 50.5,
         "braco": 24
       },
-      "observacao": "Peito 80"
+      "observacao": "Peito 80",
+      "idade": 13
     },
     {
       "data": "2026-11-02",
@@ -460,7 +462,8 @@
         "quadril": 121,
         "coxa": 57,
         "braco": 33
-      }
+      },
+      "idade": 75
     },
     {
       "data": "2026-11-02",
@@ -474,7 +477,8 @@
         "quadril": 66,
         "coxa": 50,
         "braco": 29.5
-      }
+      },
+      "idade": 44
     },
     {
       "data": "2026-11-02",
@@ -491,7 +495,8 @@
         "coxa": 52,
         "braco": 32
       },
-      "observacao": "Peito 90.5"
+      "observacao": "Peito 90.5",
+      "idade": 43
     }
   ]
 }
