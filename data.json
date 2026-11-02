@@ -321,8 +321,8 @@
         "coxa": 53,
         "braco": 22
       }
-    }   
-    ,{
+    },
+    {
       "data": "2026-09-06",
       "pessoaId": "dona-ines",
       "idade": 75,
@@ -374,7 +374,7 @@
       "peito": 10,
       "abdomem": 20,
       "coxa": 20,
-      "peso": 75.90,
+      "peso": 75.9,
       "medidas": {
         "peito": 98,
         "abdomem": 90,
@@ -403,14 +403,95 @@
       "idade": 13,
       "peito": 9,
       "abdomem": 10,
-      "coxa":18 ,
-      "peso": 59.80,
+      "coxa": 18,
+      "peso": 59.8,
       "medidas": {
         "peito": 82,
         "abdomem": 76,
         "coxa": 50,
         "braco": 23
       }
+    },
+    {
+      "data": "2026-11-02",
+      "pessoaId": "andre",
+      "peso": 86,
+      "peito": 6,
+      "abdomem": 10,
+      "tricipes": 13,
+      "flanco": 10,
+      "coxa": 13,
+      "medidas": {
+        "peito": 104,
+        "cintura": 83.5,
+        "quadril": 103.5,
+        "coxa": 65,
+        "braco": 38.5
+      },
+      "observacao": "Peito 104"
+    },
+    {
+      "data": "2026-11-02",
+      "pessoaId": "felipe",
+      "peso": 59.9,
+      "peito": 4,
+      "abdomem": 10,
+      "tricipes": 12,
+      "flanco": 14,
+      "coxa": 22,
+      "medidas": {
+        "peito": 80,
+        "cintura": 73,
+        "quadril": 91,
+        "coxa": 50.5,
+        "braco": 24
+      },
+      "observacao": "Peito 80"
+    },
+    {
+      "data": "2026-11-02",
+      "pessoaId": "dona-ines",
+      "peso": 84.2,
+      "tricipes": 16,
+      "flanco": 26,
+      "coxa": 22,
+      "medidas": {
+        "cintura": 102,
+        "quadril": 121,
+        "coxa": 57,
+        "braco": 33
+      }
+    },
+    {
+      "data": "2026-11-02",
+      "pessoaId": "tia-mah",
+      "peso": 65.55,
+      "tricipes": 22,
+      "flanco": 20,
+      "coxa": 16,
+      "medidas": {
+        "cintura": 75.5,
+        "quadril": 66,
+        "coxa": 50,
+        "braco": 29.5
+      }
+    },
+    {
+      "data": "2026-11-02",
+      "pessoaId": "titio-douglas",
+      "peso": 70.05,
+      "peito": 4,
+      "abdomem": 18,
+      "tricipes": 8,
+      "flanco": 12,
+      "coxa": 16,
+      "medidas": {
+        "peito": 90.5,
+        "cintura": 81,
+        "coxa": 52,
+        "braco": 32
+      },
+      "observacao": "Peito 90.5"
     }
   ]
 }
