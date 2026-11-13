@@ -2,7 +2,270 @@
     let DEFAULT_MEASUREMENTS = {};
 
     const TRAINING_PLANS = {
-      "Bê": {
+      "Tia Mah": {
+            "titulo": "Treino feminino",
+            "observacao": "Treino importado do PDF Treino-woman. Cada aba representa um dia/treino.",
+            "dias": [
+                  {
+                        "codigo": "A",
+                        "nome": "Posterior & Glúteo",
+                        "exercicios": [
+                              {
+                                    "nome": "Mesa flexora",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/IXg1PQ_5gmw"
+                              },
+                              {
+                                    "nome": "Stiff",
+                                    "series": "3",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/raMtPJQ5f9A"
+                              },
+                              {
+                                    "nome": "Cadeira flexora",
+                                    "series": "3",
+                                    "repeticoes": "15",
+                                    "video": "https://www.youtube.com/shorts/T46yKiz8laY"
+                              },
+                              {
+                                    "nome": "Afundo búlgaro",
+                                    "series": "3",
+                                    "repeticoes": "10",
+                                    "video": "https://www.youtube.com/shorts/0KQOdTvfc5A"
+                              },
+                              {
+                                    "nome": "Cadeira adutora",
+                                    "series": "3",
+                                    "repeticoes": "15",
+                                    "video": "https://www.youtube.com/shorts/1aATfJITaIw"
+                              },
+                              {
+                                    "nome": "Elevação pélvica (máquina ou barra livre)",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/Nuoo1XgRtGY"
+                              }
+                        ]
+                  },
+                  {
+                        "codigo": "B",
+                        "nome": "Peito, Ombro & Tríceps",
+                        "exercicios": [
+                              {
+                                    "nome": "Supino reto",
+                                    "series": "4",
+                                    "repeticoes": "10",
+                                    "video": "https://www.youtube.com/shorts/hlV6f0kHmeo"
+                              },
+                              {
+                                    "nome": "Supino inclinado na máquina",
+                                    "series": "3",
+                                    "repeticoes": "10",
+                                    "video": "https://www.youtube.com/shorts/wW0sG8mXqO0"
+                              },
+                              {
+                                    "nome": "Elevação lateral",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/ot9nwSC1JnA"
+                              },
+                              {
+                                    "nome": "Elevação frontal",
+                                    "series": "3",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/GqZRmCow0rw"
+                              },
+                              {
+                                    "nome": "Tríceps corda",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/-QGC1cL6ETE"
+                              },
+                              {
+                                    "nome": "Abdominal (prancha)",
+                                    "series": "3",
+                                    "repeticoes": "30 seg",
+                                    "video": "https://www.youtube.com/shorts/uxPlAbWFUDs"
+                              },
+                              {
+                                    "nome": "Panturrilha (escada ou em pé)",
+                                    "series": "4",
+                                    "repeticoes": "15",
+                                    "video": "https://www.youtube.com/shorts/3afDSh_V0sg"
+                              }
+                        ]
+                  },
+                  {
+                        "codigo": "C",
+                        "nome": "Quadríceps e Glúteo",
+                        "exercicios": [
+                              {
+                                    "nome": "Agachamento",
+                                    "series": "4",
+                                    "repeticoes": "10",
+                                    "video": "https://www.youtube.com/shorts/1oipoiTpbJA"
+                              },
+                              {
+                                    "nome": "Hack machine",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/watch?v=SBBURLX8eKs"
+                              },
+                              {
+                                    "nome": "Leg press 45°",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/D9WR6PoMYxs"
+                              },
+                              {
+                                    "nome": "Afundo e passada",
+                                    "series": "3",
+                                    "repeticoes": "10",
+                                    "video": "https://www.youtube.com/shorts/JoZYP87WAp0"
+                              },
+                              {
+                                    "nome": "Cadeira extensora",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/PzIfB9MiiX8"
+                              },
+                              {
+                                    "nome": "Cadeira abdutora",
+                                    "series": "3",
+                                    "repeticoes": "15",
+                                    "video": "https://www.youtube.com/shorts/nabhYLtz8Gg"
+                              }
+                        ]
+                  },
+                  {
+                        "codigo": "D",
+                        "nome": "Costas & Bíceps",
+                        "exercicios": [
+                              {
+                                    "nome": "Remada aberta polia alta",
+                                    "series": "4",
+                                    "repeticoes": "10",
+                                    "video": "https://www.youtube.com/shorts/_2MfZAj98tk"
+                              },
+                              {
+                                    "nome": "Puxada triângulo polia",
+                                    "series": "3",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/ySLFHxmJ_Sc"
+                              },
+                              {
+                                    "nome": "Pull down",
+                                    "series": "3",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/GDhW19yQrJI"
+                              },
+                              {
+                                    "nome": "Rosca direta (cabo, halter ou barra W)",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/x6JCKfdzPJE"
+                              },
+                              {
+                                    "nome": "Abdominal (prancha)",
+                                    "series": "3",
+                                    "repeticoes": "60 seg",
+                                    "video": "https://www.youtube.com/shorts/uxPlAbWFUDs"
+                              },
+                              {
+                                    "nome": "Panturrilha (escada ou em pé)",
+                                    "series": "4",
+                                    "repeticoes": "20",
+                                    "video": "https://www.youtube.com/shorts/3afDSh_V0sg"
+                              }
+                        ]
+                  },
+                  {
+                        "codigo": "E",
+                        "nome": "Full inferiores leve — ênfase glúteo",
+                        "exercicios": [
+                              {
+                                    "nome": "Elevação pélvica (máquina ou barra livre)",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/Nuoo1XgRtGY"
+                              },
+                              {
+                                    "nome": "Glúteo no cabo",
+                                    "series": "3",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/XqQlpJhB8xU"
+                              },
+                              {
+                                    "nome": "Cadeira abdutora",
+                                    "series": "3",
+                                    "repeticoes": "20",
+                                    "video": "https://www.youtube.com/shorts/nabhYLtz8Gg"
+                              },
+                              {
+                                    "nome": "Cadeira flexora",
+                                    "series": "3",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/T46yKiz8laY"
+                              },
+                              {
+                                    "nome": "Mesa flexora",
+                                    "series": "3",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/IXg1PQ_5gmw"
+                              },
+                              {
+                                    "nome": "Cardio (bicicleta, escada ou esteira)",
+                                    "series": "20",
+                                    "repeticoes": "30 min",
+                                    "video": "https://i.pinimg.com/originals/e6/9a/ca/e69acae1176c249d95dcea23f85381c9.jpg"
+                              }
+                        ]
+                  },
+                  {
+                        "codigo": "F",
+                        "nome": "Dia de estímulo — Glúteo, abdômen e cardio",
+                        "exercicios": [
+                              {
+                                    "nome": "Elevação pélvica (máquina ou barra livre)",
+                                    "series": "4",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/Nuoo1XgRtGY"
+                              },
+                              {
+                                    "nome": "Cadeira adutora",
+                                    "series": "3",
+                                    "repeticoes": "15",
+                                    "video": "https://www.youtube.com/shorts/1aATfJITaIw"
+                              },
+                              {
+                                    "nome": "Cadeira abdutora",
+                                    "series": "3",
+                                    "repeticoes": "20",
+                                    "video": "https://www.youtube.com/shorts/nabhYLtz8Gg"
+                              },
+                              {
+                                    "nome": "Glúteo no cabo",
+                                    "series": "3",
+                                    "repeticoes": "12",
+                                    "video": "https://www.youtube.com/shorts/XqQlpJhB8xU"
+                              },
+                              {
+                                    "nome": "Abdominal (prancha)",
+                                    "series": "3",
+                                    "repeticoes": "60 seg",
+                                    "video": "https://www.youtube.com/shorts/uxPlAbWFUDs"
+                              },
+                              {
+                                    "nome": "Cardio (bicicleta, escada ou esteira)",
+                                    "series": "20",
+                                    "repeticoes": "30 min",
+                                    "video": "https://i.pinimg.com/originals/e6/9a/ca/e69acae1176c249d95dcea23f85381c9.jpg"
+                              }
+                        ]
+                  }
+            ]
+      },      "Bê": {
             "titulo": "Treino feminino",
             "observacao": "Treino importado do PDF Treino-woman. Cada aba representa um dia/treino.",
             "dias": [
